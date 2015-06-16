@@ -1,0 +1,13 @@
+根据编码和防伪码生成条形码
+
+测试通过
+
+python version: 2.7.6
+
+usage:
+
+    1. pip install -r requirements.txt
+
+    2. python main.py
+
+    3. check ur dir: pics

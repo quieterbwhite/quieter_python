@@ -18,7 +18,7 @@ def get_bar_code(bianma, fangweima):
 
         .ttc 是字体文件
         返回条形码图片名
-        目录使用常量或者怎样
+        注意:字体文件，存储图片文件路径的处理, 可以使用常量
     '''
 
     bc = code128.Code128()
@@ -45,9 +45,11 @@ def get_bar_code(bianma, fangweima):
 
 def main():
 
-    bianma = ''
-    fangweima = ''
-    filename = get_bar_code(bianma, fangweima)
+    bianma = 'ZGYH201500101'
+    fangweima = '128135635798'
+    get_bar_code(bianma, fangweima)
+
+    print 'Done'
 
 
-if '__name__' == '__main__': main()
+if __name__ == '__main__': main()
