@@ -7,31 +7,36 @@
 从客户端接收图片文件并保存，可选择缩略图等参数
 '''
 
-from config import PATH, PATH_THUM, NEW_WIDTH, THUM_FORMAT
+from config import BASE_DIR, NEW_WIDTH, THUM_FORMAT
 from PIL import Image
 import uuid
 import os
 
 
-def process(f, thum=False):
+def upload_pic(f, thum=False, path='static/imgs', path_thum=''):
     ''' 保存上传的文件
 
         f: 获取的文件
         thum: 是否生成缩略图
+        path: 原图保存的路径
+        path_thum: 缩略图保存的路径
     '''
+    path = os.path.join(BASE_DIR, path)
+    path_thum = os.path.join(BASE_DIR, path_thum)
+    print 'path: ', path
 
     img = Image.open(f)
 
     name = str(uuid.uuid4())
     pic = name + '.png'
-    file_name = os.path.join(PATH, pic)
+    file_name = os.path.join(path, pic)
     img.save(file_name)
 
     if not thum:
         return pic
 
     pic_thum = name + '-thum.png'
-    file_name_thum = os.path.join(PATH_THUM, pic_thum)
+    file_name_thum = os.path.join(path_thum, pic_thum)
 
     original_size = img.size # PIL的size属性结构：(width, height)
     new_width = NEW_WIDTH
