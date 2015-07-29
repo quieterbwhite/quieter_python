@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>JWT-user reg</title>
+    </head>
+
+    <body>
+        <form method="post" action="">
+            {% csrf_token %}
+            username:<input type="text" name="username" ><br />
+            password:<input type="password" name="password" ><br />
+            mobile:<input type="text" name="mobile" ><br />
+            email:<input type="text" name="email" ><br />
+            <input type="submit" name="submit" value="submit">
+        </form>
+    </body>
+</html>

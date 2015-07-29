@@ -10,6 +10,7 @@ class JWTUser(User):
 
     mobile = StringField()
     email = EmailField()
+    token = StringField()
 
     # 不使用 mongoengine 的索引, 自己通过数据库创建索引
     # mobile, username

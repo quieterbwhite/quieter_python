@@ -2,7 +2,7 @@
 
 from django import forms
 from django.contrib import auth
-from user_mng import UserManager
+from user.user_mng import UserManager
 
 
 class UserRegForm(forms.Form):
@@ -43,7 +43,7 @@ class UserRegForm(forms.Form):
         return username
 
     def clean(self):
-        cleaned_data = super(UserSignUpForm, self).clean()
+        cleaned_data = super(UserRegForm, self).clean()
         password = cleaned_data.get('password', '')
         username = cleaned_data.get('username', '')
 
@@ -55,8 +55,16 @@ class UserRegForm(forms.Form):
 class UserLoginForm(forms.Form):
     ''' 用户登录表单 '''
 
-    username = forms.CharField()
-    password = forms.CharField()
+    username = forms.CharField(
+                                min_length=5,
+                                max_length=20,
+                                required=True
+                            )
+    password = forms.CharField(
+                                min_length=5,
+                                max_length=20,
+                                required=True
+                            )
 
     def clean(self):
         cleaned_data = super(UserLoginForm, self).clean()
@@ -67,6 +75,4 @@ class UserLoginForm(forms.Form):
         if not user:
             raise forms.ValidationError('wrong u | p')
 
-        if not user.is_active:
-            raise forms.ValidationError('pls activate first.')
         return cleaned_data

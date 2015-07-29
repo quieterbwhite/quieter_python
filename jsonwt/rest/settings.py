@@ -55,7 +55,9 @@ ROOT_URLCONF = 'rest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/var/www/rest/jsonwt/user/template',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,7 +125,6 @@ AUTHENTICATION_BACKENDS = (
     'mongoengine.django.auth.MongoEngineBackend',
 )
 
-#AUTH_USER_MODEL = 'mongo_auth.MongoUser'
-#MONGOENGINE_USER_DOCUMENT = 'maintain.models.CustomUser'
+MONGOENGINE_USER_DOCUMENT = 'user.models.JWTUser'
 
 SESSION_ENGINE = 'mongoengine.django.sessions'

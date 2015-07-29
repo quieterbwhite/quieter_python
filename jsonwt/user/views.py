@@ -4,7 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
 from django.shortcuts import render, redirect
 
-from models import JWTUser, Data
+from user.models import JWTUser, Data
 
 class TestView(View):
 
