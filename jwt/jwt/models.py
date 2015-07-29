@@ -8,9 +8,11 @@ from mongoengine.django.auth import User
 
 class JWTUser(User):
 
-    username = StringField()
-    password = StringField()
+    mobile = StringField()
+    email = EmailField()
 
+    # 不使用 mongoengine 的索引, 自己通过数据库创建索引
+    # mobile, username
     User.meta = {
         'collection':'JWTUser'
     }
