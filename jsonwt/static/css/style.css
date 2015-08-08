@@ -1,0 +1,548 @@
+/*!FROONT Project element styles */
+
+h1 {
+  font-weight: 600;
+  font-size: 3.25rem;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem
+}
+h2 {
+  font-weight: 600;
+  font-size: 2.625rem;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem
+}
+h3 {
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem
+}
+h4 {
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem
+}
+h5 {
+  font-weight: 600;
+  font-size: .6875rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: .07rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem
+}
+h6 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem
+}
+p {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem
+}
+blockquote {
+  font-weight: 300;
+  font-size: 1.375rem;
+  line-height: 1.7;
+  letter-spacing: -0.03rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  margin-left: 2.5rem
+}
+a {
+  text-decoration: underline;
+  color: inherit
+}
+a:hover {
+  opacity: .8
+}
+.fr_submit_button {
+  font-family: Oxygen;
+  font-weight: 400;
+  font-size: 1em;
+  text-align: center;
+  letter-spacing: .03em;
+  color: white;
+  background-color: grey;
+  border-radius: 3px
+}
+.fr_form_input {
+  font-family: Didact Gothic;
+  font-size: 1em;
+  line-height: 20px;
+  color: #999;
+  background-color: #fcfcfc;
+  border: 1px solid #E5E5E5;
+  border-radius: 3px
+}
+.fr_form_heading {
+  float: none;
+  display: block;
+  width: 90%;
+  font-family: Didact Gothic;
+  font-weight: 400;
+  font-size: 3.25em;
+  line-height: 1.1em;
+  text-align: center;
+  letter-spacing: .01em;
+  margin-right: auto;
+  margin-left: auto;
+  color: grey
+}
+.fr_paragraph_main_center_white {
+  font-family: europa;
+  font-weight: 300;
+  font-size: 1.1em;
+  line-height: 1.4;
+  text-align: center;
+  letter-spacing: .01em;
+  color: white
+}
+.fr_h1_main_center_white {
+  font-family: europa;
+  font-weight: 900;
+  font-size: 3.55em;
+  line-height: 1.0em;
+  text-align: center;
+  letter-spacing: 0;
+  color: white
+}
+.fr_submit_button_1 {
+  font-family: europa;
+  font-weight: 300;
+  font-size: 1em;
+  text-align: center;
+  letter-spacing: .03em;
+  color: white;
+  background-color: #f1625f;
+  border-radius: 5px
+}
+.fr_form_input_1 {
+  font-family: europa;
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 20px;
+  color: #999;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 5px
+}
+.fr_h1_black {
+  font-family: europa;
+  font-weight: 900;
+  font-size: 3.55em;
+  line-height: 1.0em;
+  text-align: center;
+  letter-spacing: 0;
+  color: black
+}
+.fr_bf_link {
+  font-family: futura-pt;
+  font-weight: 200;
+  font-size: 1.1em;
+  text-align: left;
+  color: #00db92
+}
+.fr_paragraph_left_white {
+  font-family: europa;
+  font-weight: 300;
+  font-size: 1.1em;
+  line-height: 1.4em;
+  text-align: left;
+  letter-spacing: .01em;
+  color: white
+}
+.fr_h2_left_white {
+  font-family: europa;
+  font-weight: 300;
+  font-size: 1.7em;
+  line-height: 1.45em;
+  text-align: left;
+  letter-spacing: .05em;
+  color: white
+}
+.fr_form {
+  float: none;
+  display: none;
+  width: 100%;
+  vertical-align: top;
+  padding-top: 200px;
+  padding-bottom: 200px
+}
+.fr_submit_button {
+  float: none;
+  display: block;
+  width: 90%;
+  vertical-align: top;
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  min-width: 200px;
+  max-width: 300px
+}
+.fr_email_input {
+  float: none;
+  display: block;
+  width: 90%;
+  vertical-align: top;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 15px;
+  padding-right: 5px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  min-width: 200px;
+  max-width: 300px
+}
+.fr_form_title {
+  float: none;
+  display: block;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px
+}
+.fr_container_2 {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto
+}
+.fr_header_1 {
+  float: none;
+  display: block;
+  width: 100%;
+  vertical-align: top;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-image: url(../images/thumbnail/hill.png_1200x800.png);
+  background-position: center center;
+  background-size: cover
+}
+.fr_hd1_paragraph {
+  float: none;
+  display: block;
+  width: 90%;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 600px
+}
+.fr_hd1_main_title {
+  float: none;
+  display: block;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 600px
+}
+.fr_styled_form_2 {
+  float: none;
+  display: block;
+  width: 100%;
+  vertical-align: top;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  background-color: white
+}
+.fr_styled_submit_btn_2 {
+  float: none;
+  display: block;
+  width: 90%;
+  vertical-align: top;
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width: 300px
+}
+.fr_styled_email_input_2 {
+  float: none;
+  display: block;
+  width: 90%;
+  vertical-align: top;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+  padding-right: 5px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  max-width: 300px
+}
+.fr_styled_form_2_heading {
+  float: none;
+  display: block;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px
+}
+.fr_footer_4 {
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: black;
+  background-position: center center;
+  background-size: cover;
+  min-height: 7.5625em
+}
+.fr_f4_2_columns {
+  width: 90%;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  padding-top: 1px;
+  max-width: 1200px
+}
+.fr_f4_2_columns>.fr-widget:nth-child(2n+1) {
+  margin-top: .6em;
+  margin-right: 3.3%;
+  margin-bottom: .6em;
+  margin-left: 0;
+  width: 46.7%;
+  clear: left;
+  max-width: inherit
+}
+.fr_f4_2_columns>.fr-widget:nth-child(2n+2) {
+  margin-top: .6em;
+  margin-right: 0;
+  margin-bottom: .6em;
+  margin-left: 3.3%;
+  width: 46.7%;
+  clear: none;
+  max-width: inherit
+}
+.fr_f4_text_cont {
+  float: right;
+  padding-top: 1px;
+  max-width: 25em
+}
+.fr_f4_email {
+  float: none;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  margin-bottom: .7em;
+  margin-left: -0.01%
+}
+.fr_f4_soc_icons {
+  float: left;
+  display: inline-block;
+  width: 90%;
+  vertical-align: top;
+  margin-right: auto;
+  margin-bottom: 20px;
+  max-width: 160px
+}
+.fr_f4_soc_icons>.fr-widget:nth-child(3n+1) {
+  margin-top: .6em;
+  margin-right: 1%;
+  margin-bottom: .6em;
+  margin-left: 0;
+  width: 32%;
+  clear: left;
+  max-width: inherit
+}
+.fr_f4_soc_icons>.fr-widget:nth-child(3n+2) {
+  margin-top: .6em;
+  margin-right: 1%;
+  margin-bottom: .6em;
+  margin-left: 1%;
+  width: 31%;
+  clear: none;
+  max-width: inherit
+}
+.fr_f4_soc_icons>.fr-widget:nth-child(3n+3) {
+  margin-top: .6em;
+  margin-right: 0;
+  margin-bottom: .6em;
+  margin-left: 1%;
+  width: 32%;
+  clear: none;
+  max-width: inherit
+}
+.fr_f4_youtube {
+  padding-top: 1px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0
+}
+.fr_f4_yt_icon {
+  float: left;
+  display: block;
+  width: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  max-height: 64px;
+  fill: white
+}
+.fr_f4_facebook {
+  padding-top: 1px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0
+}
+.fr_f4_fb_icon {
+  float: left;
+  display: block;
+  width: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  max-height: 64px;
+  fill: white
+}
+.fr_f4_twitter {
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  padding-top: 1px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0
+}
+.fr_f4_tw_icon {
+  float: left;
+  display: block;
+  width: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  max-height: 64px;
+  fill: white
+}
+.fr_f4_paragraph {
+  float: none;
+  display: block;
+  width: 100%;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-left: auto
+}
+.fr_f4_title {
+  float: none;
+  display: block;
+  width: 100%;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-left: auto
+}
+.fr_f4_container_one {
+  float: none;
+  display: block;
+  width: 46.69921875%;
+  padding-top: 1px;
+  background-color: black;
+  min-height: 13.7509765625em;
+  max-width: 1200px
+}
+.fr_styled_email_input_3 {
+  float: none;
+  display: block;
+  width: 90%;
+  vertical-align: top;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+  padding-right: 5px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  max-width: 300px
+}
+.fr_styled_email_input_4 {
+  float: none;
+  display: block;
+  width: 90%;
+  vertical-align: top;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+  padding-right: 5px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  max-width: 300px
+}
+.fr_f4_yt_icon .fr-svg-inner {
+  padding-bottom: 100%;
+  position: relative
+}
+.fr_f4_fb_icon .fr-svg-inner {
+  padding-bottom: 100%;
+  position: relative
+}
+.fr_f4_tw_icon .fr-svg-inner {
+  padding-bottom: 100%;
+  position: relative
+}
+@media screen and (max-width: 480px) {
+  .fr_h1_main_center_white {
+    font-size: 2.5em
+  }
+  .fr_h2_left_white {
+    font-size: 1.3em
+  }
+  .fr_header_1 {
+    padding-top: 80px;
+    padding-bottom: 80px
+  }
+  .fr_f4_2_columns>.fr-widget:nth-child(1n+1) {
+    margin-top: .6em;
+    margin-right: 0;
+    margin-bottom: .6em;
+    margin-left: 0;
+    width: 100%;
+    clear: left;
+    max-width: inherit
+  }
+  .fr_f4_container_one {
+    display: none
+  }
+}
+@media screen and (max-width: 320px) {
+  .fr_form_heading {
+    margin-top: 0
+  }
+  .fr_h1_black {
+    font-size: 2.5em
+  }
+  .fr_form {
+    padding-top: 120px;
+    padding-bottom: 120px
+  }
+  .fr_styled_form_2 {
+    padding-top: 120px;
+    padding-bottom: 140px
+  }
+}
+.fr_email_input {
+  transition-property: color, background-color;
+  transition-duration: .3s;
+  transition-timing-function: ease-out
+}
+.fr_email_input:hover {
+  color: #b92b2b;
+  background-color: #ddb5b5;
+  transition-duration: .125s
+}

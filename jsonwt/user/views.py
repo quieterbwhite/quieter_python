@@ -1,27 +1,42 @@
 # -*- coding=utf-8 -*-
+# Created Time: 2015年08月08日 星期六 12时15分28秒
+# File Name: views.py
 
-from django.http import HttpResponse, JsonResponse
+'''
+user json web token
+'''
+
 from django.views.generic import View
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render
 
-from user.models import JWTUser, Data
+from manager import UserManager
+from lib import res
 
-class TestView(View):
+import json, traceback
 
-    def get(self, request, *args, **kwargs):
 
-        res = {'name':'tiger'}
-        return JsonResponse(res)
-
-class TestDBView(View):
+class UserPageRegisView(View):
 
     def get(self, request, *args, **kwargs):
+        return render(request, 'login.html')
 
-        Data(
-            name='tiger',
-            age=18
-        ).save()
 
-        res = {'name':'bwhite'}
+class UserRegisView(View):
+    '''  '''
+
+    def get(self, request, *args, **kwargs):
+        try:
+            user_dict = json.loads(request.body)
+            print 'user_dict: ', user_dict
+            #UserManager.save_user(user_dict)
+            print 'save user'
+        except ValueError:
+            traceback.print_exc()
+            res.update({'err_code':10002})
+        except:
+            traceback.print_exc()
+            res.update({'err_code':10001})
+
+        # TODO 统一为 json 返回增加 错误消息 继承/中间件
         return JsonResponse(res)
-

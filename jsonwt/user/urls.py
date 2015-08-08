@@ -1,16 +1,14 @@
 # -*- coding=utf-8 -*-
+# Created Time: 2015年08月08日 星期六 12时15分02秒
+# File Name: urls.py
 
 from django.conf.urls import patterns, url
+from views import UserRegisView, UserPageRegisView
 
-from user.views import TestView, TestDBView
-from user.user_views import UserRegView, UserLoginView, UserIndexView
 
-urlpatterns = patterns('',
-    url(r'^test$',TestView.as_view()),
-    url(r'^data$',TestDBView.as_view()),
-
-    url(r'^user/reg$',UserRegView.as_view(), name='reg'),
-    url(r'^user/log$',UserLoginView.as_view(), name='log'),
-    url(r'^user/index$',UserIndexView.as_view(), name='index'),
+urlpatterns = patterns(
+    '',
+    url(r'/regis_page$', UserPageRegisView.as_view()),
+    url(r'/regis$', UserRegisView.as_view()),
 
 )

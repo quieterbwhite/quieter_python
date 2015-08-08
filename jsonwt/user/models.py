@@ -1,29 +1,12 @@
-#coding=utf-8
+# -*- coding=utf-8 -*-
+# Created Time: 2015年08月08日 星期六 12时15分10秒
+# File Name: models.py
 
-from mongoengine import *
-import datetime
-
+from mongoengine import Document, StringField
 from mongoengine.django.auth import User
 
 
-class JWTUser(User):
+class TokenUser(User):
+    '''  '''
 
     mobile = StringField()
-    email = EmailField()
-    token = StringField()
-
-    # 不使用 mongoengine 的索引, 自己通过数据库创建索引
-    # mobile, username
-    User.meta = {
-        'collection':'JWTUser'
-    }
-
-class Data(Document):
-
-    name = StringField()
-    age = IntField()
-
-    meta = {
-        'collection':'Data'
-    }
-
