@@ -17,7 +17,7 @@ import mongoengine
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_DIR = BASE_DIR + '/static'
-print 'static dir: ', STATIC_DIR
+#print 'static dir: ', STATIC_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -37,20 +37,21 @@ INSTALLED_APPS = (
     #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    #'django.contrib.sessions',
+    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
 
 MIDDLEWARE_CLASSES = (
-    #'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'middleware.token_auth.TokenAuthMiddleware',
 )
 
 ROOT_URLCONF = 'jsonwt.urls'
@@ -131,8 +132,9 @@ LOGGING = {
     }
 }
 
+# mongodb
 _MONGODB_HOST = '127.0.0.1'
-_MONGODB_NAME = 'weishequ'
+_MONGODB_NAME = 'jwt'
 _MONGODB_DATABASE_HOST = \
         'mongodb://%s/%s' \
         % (_MONGODB_HOST, _MONGODB_NAME)
@@ -140,5 +142,20 @@ _MONGODB_DATABASE_HOST = \
 mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
 AUTHENTICATION_BACKENDS = ('mongoengine.django.auth.MongoEngineBackend',)
 MONGOENGINE_USER_DOCUMENT = 'user.models.TokenUser'
+
+# json web token
+JWT_SECRET = '55c808909dd4e45ed22382ba'
+JWT_ALGORITHM = 'HS256'
+JWT_EXP = 1000
+JWT_OPTIONS = {
+   'verify_signature': True,
+   'verify_exp': True,
+   'verify_nbf': False,
+   'verify_iat': False,
+   'verify_aud': False,
+   'require_exp': False,
+   'require_iat': False,
+   'require_nbf': False
+}
 
 

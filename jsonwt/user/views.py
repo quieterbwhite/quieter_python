@@ -9,9 +9,13 @@ user json web token
 from django.views.generic import View
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.contrib import auth
+from django.conf import settings
 
+from tokens import token_en
 from manager import UserManager
 from lib import res
+import datetime
 
 import json, traceback
 
@@ -25,11 +29,11 @@ class UserPageRegisView(View):
 class UserRegisView(View):
     '''  '''
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         try:
-            user_dict = json.loads(request.body)
-            print 'user_dict: ', user_dict
-            #UserManager.save_user(user_dict)
+            udict = json.loads(request.body)
+            print 'udict: ', udict
+            UserManager.save_user(udict)
             print 'save user'
         except ValueError:
             traceback.print_exc()
@@ -40,3 +44,79 @@ class UserRegisView(View):
 
         # TODO 统一为 json 返回增加 错误消息 继承/中间件
         return JsonResponse(res)
+
+
+class UserLoginView(View):
+    '''  '''
+
+    def post(self, request, *args, **kwargs):
+        try:
+            udict = json.loads(request.body)
+            print 'udict: ', udict
+            user = auth.authenticate(
+                    username=udict['username'],
+                    password=udict['password']
+                )
+        except:
+            traceback.print_exc()
+            res.update({'err_code':'10004'})
+            return JsonResponse(res)
+
+        print 'user: ', user
+        if not user:
+            res.update({'err_code':10003})
+            return JsonResponse(res)
+
+        # set token
+        payload = {
+            'uid':str(user.id),
+            'username':user.username,
+            'mobile':'15202897835',
+            'exp':datetime.datetime.utcnow() + datetime.timedelta(seconds=settings.JWT_EXP)
+        }
+
+        try:
+            token = token_en(payload, settings.JWT_SECRET, settings.JWT_ALGORITHM)
+            res.update({'token':token})
+        except:
+            traceback.print_exc()
+            res.update({'err_code':10001})
+
+        return JsonResponse(res)
+
+
+class UserIndexView(View):
+    ''' 用户中心 '''
+
+    def post(self, request, *args, **kwargs):
+        try:
+            udict = json.loads(request.body)
+            print 'udict: ', udict
+        except:
+            traceback.print_exc()
+            res.update({'err_code':'10004'})
+            return JsonResponse(res)
+
+        return JsonResponse(res)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
