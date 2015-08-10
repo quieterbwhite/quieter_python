@@ -14,17 +14,16 @@ from user.tokens import token_de
 
 class TokenAuthMiddleware(object):
     '''
-        模块 -> url 列表
-        模块 -> 角色
-        角色 -> 用户
+        模块 -> url 列表  模块 -> 角色  角色 -> 用户
+        也就是如果需要一个权限管理系统的话,定义模块与url的映射,模块与角色的映射,
+        角色与用户的映射,可以增删改查管理权限,这个要做的话,还要仔细考虑一下.
     '''
 
     def process_request(self, request):
 
-        print 'meta: ', request.META
+        #print 'meta: ', request.META
 
         http_token = request.META.get('HTTP_TOKEN', '')
-        print 'token: ', http_token
 
         req_path = request.path
 
@@ -39,8 +38,6 @@ class TokenAuthMiddleware(object):
                                             settings.JWT_ALGORITHM,
                                             settings.JWT_OPTIONS
                                         )
-            print 'de_data: ', de_data
-            print 'err_code: ', err_code
             if not de_data:
                 res.update({'err_code':err_code})
                 return JsonResponse(res)

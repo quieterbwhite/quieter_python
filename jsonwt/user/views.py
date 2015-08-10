@@ -21,20 +21,19 @@ import json, traceback
 
 
 class UserPageRegisView(View):
+    ''' 注册页面 '''
 
     def get(self, request, *args, **kwargs):
         return render(request, 'login.html')
 
 
 class UserRegisView(View):
-    '''  '''
+    ''' 注册 '''
 
     def post(self, request, *args, **kwargs):
         try:
             udict = json.loads(request.body)
-            print 'udict: ', udict
             UserManager.save_user(udict)
-            print 'save user'
         except ValueError:
             traceback.print_exc()
             res.update({'err_code':10002})
@@ -47,12 +46,11 @@ class UserRegisView(View):
 
 
 class UserLoginView(View):
-    '''  '''
+    ''' 登录 '''
 
     def post(self, request, *args, **kwargs):
         try:
             udict = json.loads(request.body)
-            print 'udict: ', udict
             user = auth.authenticate(
                     username=udict['username'],
                     password=udict['password']
@@ -62,7 +60,6 @@ class UserLoginView(View):
             res.update({'err_code':'10004'})
             return JsonResponse(res)
 
-        print 'user: ', user
         if not user:
             res.update({'err_code':10003})
             return JsonResponse(res)
@@ -91,7 +88,7 @@ class UserIndexView(View):
     def post(self, request, *args, **kwargs):
         try:
             udict = json.loads(request.body)
-            print 'udict: ', udict
+            # 查询需要的信息返回
         except:
             traceback.print_exc()
             res.update({'err_code':'10004'})
