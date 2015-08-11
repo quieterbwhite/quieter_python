@@ -15,9 +15,9 @@ from django.conf import settings
 from tokens import token_en
 from manager import UserManager
 from lib import res
-import datetime
+from add_task import add_task_to_queue
 
-import json, traceback
+import json, traceback, datetime
 
 
 class UserPageRegisView(View):
@@ -25,6 +25,32 @@ class UserPageRegisView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'login.html')
+
+
+class UserRegisSmsView(View):
+    ''' 用户短信注册 '''
+
+    def post(self, request, *args, **kwargs):
+        try:
+            udict = json.loads(request.body)
+            #UserManager.save_user(udict)
+            #add_task_to_queue(udict['mobile'], udict['content'])
+            mobile = '15202897835'
+            content = 'tiger'
+            print add_task_to_queue
+            print 'type of func: ', add_task_to_queue
+
+            add_task_to_queue(mobile, content)
+        except ValueError:
+            traceback.print_exc()
+            res.update({'err_code':10002})
+        except:
+            traceback.print_exc()
+            res.update({'err_code':10001})
+
+        return JsonResponse(res)
+
+
 
 
 class UserRegisView(View):
@@ -95,8 +121,6 @@ class UserIndexView(View):
             return JsonResponse(res)
 
         return JsonResponse(res)
-
-
 
 
 
