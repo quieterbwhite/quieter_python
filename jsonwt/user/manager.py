@@ -6,7 +6,7 @@ from models import TokenUser
 
 
 class UserManager(object):
-    '''  '''
+    ''' 用户管理 '''
 
     def __init__(self, uid):
         self.user = TokenUser.objects(id=uid).first()
