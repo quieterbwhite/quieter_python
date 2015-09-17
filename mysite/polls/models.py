@@ -12,6 +12,13 @@ class Question(models.Model):
     def was_published_recently(self):
     	return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
+    def get_json_data(self):
+    	res = {
+    		'question_text':self.question_text,
+    		'pub_date':self.pub_date.strftime('%s')
+    	}
+    	return res
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question)
