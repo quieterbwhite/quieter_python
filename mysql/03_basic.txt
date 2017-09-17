@@ -154,9 +154,52 @@
 
 14. 事务
 
-    
+    表 -> begin -> 内存级临时表 -> commit | rollback   
 
+15. 索引
 
+    越小的数据类型通常更好, 它在磁盘，内存，cpu缓存中需要更少的空间，处理快
+
+    简单的数据类型更好, 整型比起字符，处理开销更小，因为字符串比较更复杂
+
+    尽量避免 NULL, 含有空值的列很难进行查询优化，应该用0，空串等代替
+
+    索引分单列索引和组合索引
+
+    查看索引:
+
+        show index from table_name;
+
+    创建索引:
+        
+        create index indexName ON mytable(username(length), age);
+
+        字符串的话，指定长度, 整型不需要
+
+    删除索引:
+
+        drop index [indexName] ON mytable;
+
+    虽然索引提高了查询速度，同时会降低更新表速度，如对表进行 insert, update, delete,
+    因为更新表时，不仅要保存数据，还要更新索引文件
+
+    建立索引会占用磁盘空间
+
+    开启运行时间监测:
+
+        set profiling = 1;
+
+    执行查询语句:
+
+        select * from area where title = "北京市";
+
+    查看执行时间:
+
+        show profiles;
+
+    为area 的 title 创建索引:
+
+        create index titleIndex on area(title(20));
 
 
 
