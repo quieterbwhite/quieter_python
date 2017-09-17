@@ -1,0 +1,165 @@
+
+1. 数据库
+
+    创建:     create database student charset=utf8mb4;
+    查看:     show databases;
+    查看当前: select database();
+    切换:     use student;
+    删除:     drop student;
+
+2. 表
+
+    创建:
+        create table handsom(
+            id int auto_increment primary key not null,
+            name varchar(20) nut null,
+            birthday datetime,
+            gender bit default 1,
+            isDelete bit default 0
+        );
+    查看: show tables;
+    删除: drop table student;
+    修改: alter table student add | change | drop name
+
+          alter table subject add isdelete bit default 0;
+
+3. 数据
+
+    插入: insert into handsom values(0, 'libo', '1990-10-10', 1, 0);
+
+    更新: update handsom set name = 'tiger' where name = 'libo';
+
+          update subject set isdelete=0 where title in ('linux', 'redis');
+
+    删除: delete from handsom where id = 1;
+
+4. 去除重复的行
+
+    select distinct gender from student;
+
+    select distinct id, gender from student;
+
+5. 运算符
+
+    比较: =, >, >=, <, <=, !=, <>
+
+    逻辑: and, or, not
+
+6. 模糊查询
+
+    like
+
+    % 表示任意多个字符
+
+    _ 表示一个任意字符
+
+    select * from student where name like 'tiger%' or name like '%tiger%';
+
+7. 聚合
+
+    count
+        select count(*) from student;
+    max
+        select max(id) from student where gender = 0;
+    min
+        select min(id) from student where isdelete = 0;
+        
+        select * from student where id=(select min(id) from student where isdelete=0);
+    sum
+        select sum(id) from student where gender = 1;
+    avg
+        select avg(id) from student where gender = 1;
+
+8. 分组
+
+    group by
+
+        select gender, count(*) from student group by gender;   
+
+    having 分组后数据筛选
+
+               where        group by       having
+        原始集 -----> 结果集 -----> 结果集 ---->
+
+        select gender, count(*) from student group by gender having gender = 0;
+
+        select gender, count(*) as rs from student group by gender having rs > 2;
+
+9. 排序
+
+    order by
+
+        select * from student where gender=1 and isdelete=0 order by id desc, name asc;
+
+10. 分页
+
+        select * from student limit 10, 10;
+
+        求第n页的数据, 每页显示m条数据，当前显示第n页
+
+        select * from student where isdelete=0 limit (n-1)*m, m;
+
+11. 连接查询
+
+        当对多张有关系的表进行查询时，需要使用join
+
+        select student.name, subject.title, score.score
+        from score
+        inner join student on score.stuid = student.id
+        inner join subject on score.subid = subject.id;
+
+        table A inner join B: 表a与表b匹配的行会出现在结果中
+        
+        table a left join b: 表a与表b匹配的行会出现在结果中, 外加表a中独有的数据，未对应的数据用null填充
+
+        table a right join b: 表a与表b匹配的行会出现在结果中, 外加表b中独有的数据，未对应的数据用null填充
+
+        查询男生姓名，总分
+
+            select name, sum(score)
+            from student
+            inner join score on student.id = score.stuid
+            where gender = 1
+            group by id;
+
+12. 视图
+
+    view, 视图本质就是对查询的一个封装
+
+        create view v_stu_sco_sub as
+        select stu.*, sco.score, sub.title from scores as sco
+        inner join student as stu on sco.stuid = stu.id
+        inner join subject as sub on sco.subid = sub.id;
+
+        alter view v_stu_sco_sub as
+        select stu.*, sco.score, sub.title from scores as sco
+        inner join student as stu on sco.stuid = stu.id
+        inner join subject as sub on sco.subid = sub.id
+        where stu.isdelete=0 and sub.isdelete=0;
+
+    视图的用途就是查询
+
+        select * from v_stu_sco_sub;
+
+13. 自关联查询
+
+    查询省的名称为 山西省 的所有城市
+
+        select city.* from area as city
+        inner join area as province on city.pid = province.aid
+        where province.atitle = "山西省";
+
+    用子查询:
+        select * from area where pid=(select id from area where title="山西省")
+
+14. 事务
+
+    
+
+
+
+
+
+
+
+
