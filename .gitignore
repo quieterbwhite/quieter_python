@@ -12,6 +12,8 @@ local/
 
 # Distribution / packaging
 .Python
+*.sqlite3
+.vscode/
 env/
 build/
 develop-eggs/
