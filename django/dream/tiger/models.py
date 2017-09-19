@@ -13,7 +13,7 @@ class BookInfo(models.Model):
     bpub_date = models.DateField()
 
     def __str__(self):
-        return self.btitle
+        return self.btitle.encode("utf8")
 
     """
         b = BookInfo()
@@ -32,3 +32,6 @@ class HeroInfo(models.Model):
     hcontent = models.CharField(max_length=1000)
 
     hbook = models.ForeignKey(BookInfo)
+
+    def __str__(self):
+        return self.hname.encode("utf8")
