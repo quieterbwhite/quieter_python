@@ -4,6 +4,25 @@
 
 """
 
+pip install django
+
+django-admin startproject dream
+
+cd dream
+
+python manage.py startapp tiger
+
+add model info
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python shell:
+
+    from tiger.models import *
+
+    b = BookInfo()
 
 
 """
