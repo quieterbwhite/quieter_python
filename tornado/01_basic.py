@@ -1,7 +1,7 @@
 # -*- coding=utf-8 -*-
 
 import tornado.web
-import tornaod.ioloop
+import tornado.ioloop
 
 class IndexHandler(tornado.web.RequestHandler):
 
@@ -11,6 +11,6 @@ class IndexHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
 
-    app = tornado.web.application([(r"/", IndexHandler)])
+    app = tornado.web.Application([(r"/", IndexHandler)])
     app.listen(8000)
     tornado.ioloop.IOLoop.current().start()
