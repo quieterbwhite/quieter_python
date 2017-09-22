@@ -4,6 +4,8 @@ import os, sys
 
 """
 以下示例显示了pipe()方法的用法。
+
+ref: http://www.yiibai.com/python/os_pipe.html
 """
 
 print ("The child will write text to a pipe and ")
