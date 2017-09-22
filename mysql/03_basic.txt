@@ -17,7 +17,9 @@
             gender bit default 1,
             isDelete bit default 0
         );
-    查看: show tables;
+    查看:
+        show tables;
+        desc student;
     删除: drop table student;
     修改: alter table student add | change | drop name
 
