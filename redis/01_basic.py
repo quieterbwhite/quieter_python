@@ -125,7 +125,7 @@ string
 
     判断键是否存在，如果存在返回1，不存在返回0
     EXISTS key [key ...]
-    
+
     查看键对应的value的类型
     TYPE key
 
@@ -176,8 +176,11 @@ hash
     返回值的字符串长度
     HSTRLEN key field
 
+    HASH 类型不能像 STRING 一样直接设置过期时间，但是redis有另外一个单独的方法
+    可以为任意数据设置过期时间
+
 发布订阅
 
-    
+
 
 """
