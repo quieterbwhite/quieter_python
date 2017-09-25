@@ -21,4 +21,7 @@
 
 6. 当与客户端对应的的socket可写时，ioloop从epoll中拿到了对应可写的socket，
 将缓冲区中对应的响应报文数据写入到socket中传回给客户端，完成请求处理。
+
+7. epoll 每次只返回给ioloop可以处理的socket，然后ioloop对拿到的socket依次
+进行处理，有效充分的利用了CPU时间，进而达到提升支持高并发的能力。
 """
