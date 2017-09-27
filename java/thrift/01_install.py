@@ -18,6 +18,8 @@ ref:
 
     sudo apt-get install automake bison flex g++ git libboost1.55-all-dev libevent-dev libssl-dev libtool make pkg-config
 
+    sudo apt-get install python-dev python3-dev
+
 2.将thrift安装包下载下来，并解压安装
 
     tar -zxvf thrift-0.10.0.tar.gz
@@ -27,6 +29,10 @@ ref:
     sudo make install
 
 安装成功后可通过如下命令来验证，如果出现Thrift version 0.10.0则代表安装成功
+
+bwhite@os:~/software/thrift-0.10.0$ which thrift
+/usr/local/bin/thrift
+bwhite@os:~/software/thrift-0.10.0$
 
 thrift -version
 
