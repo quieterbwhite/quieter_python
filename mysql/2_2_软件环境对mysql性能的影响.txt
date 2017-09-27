@@ -1,0 +1,41 @@
+2_2_软件环境对mysql性能的影响
+
+Linux 系统参数优化
+
+    内核相关参数 /etc/sysctl.conf
+
+    net.core.somaxconn=65535
+    net.core.netdev_max_backlog=65535
+    net.ipv4.tcp_max_syn_backlog=65535
+
+    # 加快tcp连接的回收
+    net.ipv4.tcp_fin_timeout=10
+    net.ipv4.tcp_tw_reuse=1
+    net.ipv4.tcp_tw_recycle=1
+
+    # tcp连接接收和发送缓冲区大小的默认值和最大值,对于数据库应用来说应该调大些
+    net.core.wmem_default=87380
+    net.core.wmem_max=16777216
+    net.core.rmem_default=87380
+    net.core.rmem_max=16777216
+
+    # 减少失效连接所占用tcp系统资源数量，加快资源回收效率
+    net.ipv4.tcp_keepalive_time = 120
+    net.ipv4.tcp_keepalive_intvl = 30
+    net.ipv4.tcp_keepalive_probes = 3
+    默认值都有点大，适当调小些
+
+    以上是网络相关的参数
+
+    kernel.shmmax = 4294967295
+    1. 这个参数应该设置的足够大，以便能在一个共享内存段容下整个InnoDB缓冲池的大小
+    2. 这个值得大小对于64位的Linux系统，可取的最大值为物理内存值-1byte,
+        建议值为大于物理内存的一半，一般取值大于InnoDB缓冲池的大小即可，
+        可以去物理内存-1byte
+    
+    vm.swappiness = 0
+    Linux系统交换分区
+        在Linux系统安装时都会有一个特殊的磁盘分区，称之为系统交换分区
+        如果我们使用free -m 命令，其中swap就是交换分区
+
+
