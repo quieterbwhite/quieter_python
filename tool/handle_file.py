@@ -4,6 +4,7 @@
 
 import shutil
 import os
+import zipfile
 
 
 class FileService(object):
@@ -39,3 +40,11 @@ class FileService(object):
             pass
 
         return size
+
+    @classmethod
+    def unzip_file(cls, src, dst):
+        """ 加压zip压缩包到指定目录 """
+
+        zf = zipfile.ZipFile(src)
+        zf.extractall(dst)
+
