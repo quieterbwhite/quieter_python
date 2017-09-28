@@ -11,6 +11,33 @@ from utils.commons import required_login
 from utils.qiniu_storage import storage
 from utils.session import Session
 
+import tornado
+
+import time
+
+class TestHandler(BaseHandler):
+
+    @tornado.gen.engine
+    def get(self):
+
+        res = yield tornado.gen.Task(self.test)
+        print res
+        
+        self.write("TestHandler")
+        self.finish()
+
+    @tornado.gen.engine
+    def test(self, callback=None):
+
+        time.sleep(2)
+        callback(["libo"])
+
+class TestAsyncHandler(BaseHandler):
+
+    def get(self):
+
+        self.write("TestAsyncHandler")
+
 class AreaInfoHandler(BaseHandler):
     """提供城区信息"""
     def get(self):

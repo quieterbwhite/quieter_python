@@ -7,6 +7,10 @@ from handlers import Passport, VerifyCode, Profile, House, Orders
 
 urls = [
     # (r"/log", Passport.LogHandler),
+
+    (r"/api/test", House.TestHandler),
+    (r"/api/test2", House.TestAsyncHandler),
+
     (r"/api/register", Passport.RegisterHandler),
     (r"/api/login", Passport.LoginHandler),
     (r"/api/logout", Passport.LogoutHandler),
@@ -33,3 +37,4 @@ urls = [
      dict(path=os.path.join(os.path.dirname(__file__), "html"), default_filename="index.html"))
 ]
 
+# using append to add other urls
