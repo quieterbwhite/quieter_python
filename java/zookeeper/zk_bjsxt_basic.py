@@ -4,19 +4,29 @@
 
 
 """
-没有单节点部署的，最少是三个节点。推荐是奇数个节点。利于选举服务。
+zookeeper
 
-    ZAB   了解
+    是一个高效的分布式协调服务，暴露一些公共服务，如:
+    命名，配置管理，同步控制，组服务，集群管理，leader选举等
+
+    没有单节点部署的，最少是三个节点。推荐是奇数个节点。利于选举服务。
+
+    了解即可
+    zookeeper 基于 ZAB算法,原子消息广播协议,能够保证分布式环境中数据的一致性 
 
     paxos   了解
 
-    面试的时候会问，了解即可。
+    顺序一致性，从一个客户端发起的事务请求，最终将会严格的按照其发起的顺序被应用到zookeeper中
+
+    ... TODO 文档的内容写过来
 
 # 集群配置:
 
+    修改 /zookeeper/conf/zoo.cfg 配置文件
+
     tickTime=2000
-    dataDir=/home/bwhite/software/zookeeper-3.4.10/data
-    dataLogDir=/home/bwhite/software/zookeeper-3.4.10/log
+    dataDir=/home/bwhite/software/zookeeper-3.4.10/data   # mkdir
+    dataLogDir=/home/bwhite/software/zookeeper-3.4.10/log # mkdir
     clientPort=2181
 
     #server.0 = 192.168.31.35:2888:3888
@@ -46,6 +56,18 @@
     zookeeper 就是一个树形结构的东西。每个节点包括key, value
 
     value 可以使字符串，图片，文件，json字符串
+
+    根据提示命令进行操作:
+
+        查找：ls /    ls /zookeeper
+        创建并赋值: create /bhz hadoop
+        获取: get /bhz
+        设值：set /bhz nidaye
+        可以看到zookeeper集群的数据一致性
+        rmr /path 递归删除节点
+        delete /path/child 删除某个指定的节点
+
+    创建的节点有两种类型，短暂(ephemeral), 持久(persistent)
 
 # Java 操作 zookeeper
 
