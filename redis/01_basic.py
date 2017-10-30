@@ -3,6 +3,10 @@
 # File Name: 01_basic.py
 
 """
+黑马Python Redis 课程笔记
+"""
+
+"""
 安装
 
     https://redis.io/

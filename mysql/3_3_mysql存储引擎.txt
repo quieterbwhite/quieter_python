@@ -1,0 +1,69 @@
+MySql 体系结构
+
+插件式存储引擎
+
+mysql体系结构
+
+客户端：
+    jdbc， php， java
+
+mysql服务层: 
+    连接管理器
+    查询缓存
+    查询解析
+    查询优化器
+
+select 语句：
+    如何从文件中获得我们所要查询的数据，
+    这个具体的实现方式则是由下一层存储引擎层来实现的
+
+存储引擎层：
+    存储引擎是针对表的而不是针对库的
+    一个库中的不同表可以使用不同的存储引擎
+
+mysql 常用存储引擎之 MyISAM 
+
+    Mysql5.5之前版本默认存储引擎
+
+    myisam: 系统表，临时表
+        这里的临时表是指，在排序，分组等操作中，当数量超过一定的大小之后，由查询优化器建立的临时表
+
+    myisam 存储引擎表有MYD(数据文件)和MYI(索引文件)组成。
+    myIsam.frm 记录表结构
+    myIsam.MYD
+    myIsam.MYI
+
+    并发性与锁级别:
+
+        表锁
+
+        并发性不好
+    
+    表损坏修复
+
+        check table tablename
+        repair table tablename
+
+        create table myIsam(id int, c1 varchar(20))engine=myisam;
+
+        ls -l myIsam*
+
+        check table myIsam;
+        repair table myIsam;
+
+    支持的索引类型
+
+        全文索引
+        支持数据压缩(数据导入后就不再修改), 命令：myisampack
+            myisampack -b -f myIsam.MYI
+            压缩过后再插入数据会失败，会提示这个表是一个只读的表
+            所以已压缩的表不能写操作只能读操作
+
+    适用场景:
+
+        非事务型应用
+        只读类应用
+        空间类应用
+
+mysql 常用存储引擎之 
+

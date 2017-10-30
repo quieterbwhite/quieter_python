@@ -27,6 +27,8 @@ Linux 系统参数优化
 
     以上是网络相关的参数
 
+    内核相关参数:
+
     kernel.shmmax = 4294967295
     1. 这个参数应该设置的足够大，以便能在一个共享内存段容下整个InnoDB缓冲池的大小
     2. 这个值得大小对于64位的Linux系统，可取的最大值为物理内存值-1byte,
@@ -34,8 +36,75 @@ Linux 系统参数优化
         可以去物理内存-1byte
     
     vm.swappiness = 0
+    这个参数当内存不足时会对性能产生比较明显的影响
     Linux系统交换分区
         在Linux系统安装时都会有一个特殊的磁盘分区，称之为系统交换分区
         如果我们使用free -m 命令，其中swap就是交换分区
+        当操作系统因为没有足够的内存时就会将一些虚拟内存写到磁盘的交换分区中
+        这样就会发生内存交换,影响性能
+
+        结论：
+            在mysql服务器上保留交换分区是很有必要的，但是要控制何时使用交换分区
+            vm.swappiness = 0, 表示告诉Linux内核除非虚拟内存完全占满，否则不要使用交换分区
+
+    增加资源限制(/etc/security/limit.conf)
+    这个文件实际上是Linux PAM, 也就是插入式认证模块的配置文件。
+    打开文件数的限制。
+
+    * soft nofile 65535, 加到limit.conf文件的末尾就可以了
+    * hard nofile 65535, 加到limit.conf文件的末尾就可以了
+
+    * 表示对所有用户有效
+    soft 指的是当前系统生效的设置, 对同一资源 soft 不能大于 hard 
+    hard 表明系统中所能设置的最大值
+    nofile 表示所限制的资源是打开文件的最大数目
+    65535 就是限制的数量
+
+    结论：把可打开的文件数量增加到65535个以保证可以打开足够多的文件句柄
+    注意：这个文件的修改需要重启系统才可以生效
+
+    磁盘调度策略(/sys/block/devname/queue/scheduler)
+
+    cat /sys/block/sda/queue/scheduler
+    noop anticipatory deadline [cfq] 默认值，适合桌面系统，不适用于mysql服务器
+
+    noop(电梯式调度策略)
+        NOOP 实现了一个FIFO队列，它像电梯的工作方法一样对I/O请求进行组织，当有一个新的请求当来时，
+        它将请求合并到最近的请求之后，以此来保证请求同一介质。
+        NOOP倾向饿死读而利于写，因此NOOP对于闪存设备，RAM，嵌入式系统是最好的选择
+
+    deadline(截止时间调度策略)
+    Deadline确保了在一个截止时间内服务请求，这个截止时间是可调整的，而默认读期限短于写期限。
+    这样就防止了写操作因为不能被读取而饿死的现象，
+    Deadline 对数据库类应用是最好的选择
+
+    anticipatory(预料I/O调度策略)
+    本质上与deadline一样，但在最后一次读操作后，要等待6ms，才能继续进行对其他I/O请求的调度。
+    它会在每个6ms中插入新的I/O操作，而会将一些小写入流合并成一个大写入流，用写入延时换取最大的吞吐量。
+    AS适合与写入较多的环境，比如文件服务器，AS对数据库环境表现很差。
+
+    修改策略:
+        echo deadline > /sys/block/sda/queue/scheduler
+
+
+    文件系统对性能的影响
+
+        Linux：ext3, ext4, XFS, 都有日志功能，对数据安全非常重要。选用XFS系统最佳。
+
+        如果选用ext3/4，有部分参数需要注意(/etc/fstab)
+
+            data = writeback / ordered / journal 三种不同的日志策略
+
+                writeback, ...
+
+        常用配置方式
+        /dev/sda1/ext4 noatime, nodiratime, data = writeback 1 1
+
+
+
+
+
+
+
 
 
