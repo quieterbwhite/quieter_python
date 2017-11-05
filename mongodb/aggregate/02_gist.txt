@@ -1,0 +1,95 @@
+https://gist.github.com/bertrandmartel/333635227172ab732b8c6ff2f230f162
+# Aggregate page views distinct by IP
+
+input data : 
+
+```
+db.data.insert([{
+    memberId: 1236,
+    platform: "PC",
+    channel: "A",
+    page: "B",
+    ip: "192.168.10.1",
+    isActive: true,
+    createOn: "2017-02-19T09:28:43.688Z",
+    isSubmit: false,
+}, {
+    memberId: 1236,
+    platform: "PC",
+    channel: "A",
+    page: "A",
+    ip: "192.168.10.2",
+    isActive: true,
+    createOn: "2017-02-19T09:28:43.688Z",
+    isSubmit: false,
+}, {
+    memberId: 1237,
+    platform: "PC",
+    channel: "A",
+    page: "C",
+    ip: "192.168.10.3",
+    isActive: true,
+    createOn: "2017-02-19T09:28:43.688Z",
+    isSubmit: false,
+}, {
+    memberId: 1237,
+    platform: "PC",
+    channel: "A",
+    page: "C",
+    ip: "192.168.10.4",
+    isActive: true,
+    createOn: "2017-02-19T09:28:43.688Z",
+    isSubmit: false,
+}, {
+    memberId: 1237,
+    platform: "PC",
+    channel: "A",
+    page: "C",
+    ip: "192.168.10.4",
+    isActive: true,
+    createOn: "2017-02-19T09:28:43.688Z",
+    isSubmit: false,
+}])
+```
+
+## Aggregation
+
+```
+db.data.aggregate([{
+    $group: {
+        _id: {
+            memberId: "$memberId",
+            platform: "$platform",
+            channel: "$channel",
+            page: "$page",
+            ip: "$ip"
+        },
+        pv: {
+            $sum: 1
+        }
+    }
+}, {
+    $group: {
+        _id: {
+            memberId: "$_id.memberId",
+            platform: "$_id.platform",
+            channel: "$_id.channel",
+            page: "$_id.page"
+        },
+        pv: {
+            $sum: "$pv"
+        },
+        uv: {
+            $sum: 1
+        }
+    }
+}])
+```
+
+## Sample output
+
+```
+{ "_id" : { "memberId" : 1236, "platform" : "PC", "channel" : "A", "page" : "B" }, "pv" : 1, "uv" : 1 }
+{ "_id" : { "memberId" : 1236, "platform" : "PC", "channel" : "A", "page" : "A" }, "pv" : 1, "uv" : 1 }
+{ "_id" : { "memberId" : 1237, "platform" : "PC", "channel" : "A", "page" : "C" }, "pv" : 3, "uv" : 2 }
+```
