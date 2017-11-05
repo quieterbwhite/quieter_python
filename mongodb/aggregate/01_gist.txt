@@ -1,0 +1,31 @@
+https://stackoverflow.com/questions/15938859/mongodb-aggregate-within-daily-grouping
+
+db.inventory.aggregate(
+  { $match : { "saleDate" : { $gte: ISODate("2013-04-10T00:00:00.000Z"), $lt: ISODate("2013-04-11T00:00:00.000Z")  } } } ,
+  { $group : { _id : { make : "$make", saleDayOfMonth : { $dayOfMonth : "$saleDate" } }, cnt : { $sum : 1 } } }
+)
+
+db.sales.aggregate(
+  [
+     {
+         $project: {
+                yearMonthDay: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+                time: { $dateToString: { format: "%H:%M:%S:%L", date: "$date" } }
+         }
+     }
+  ]
+)
+
+/////////////////////////////////////////////////////////////////////////////
+
+https://stackoverflow.com/questions/16368638/mongodb-distinct-aggregation
+
+SQL Query: (group by & count of distinct)
+
+select city,count(distinct(emailId)) from TransactionDetails group by city;
+Equivalent mongo query would look like this:
+
+db.TransactionDetails.aggregate([ 
+{$group:{_id:{"CITY" : "$cityName"},uniqueCount: {$addToSet: "$emailId"}}},
+{$project:{"CITY":1,uniqueCustomerCount:{$size:"$uniqueCount"}} } 
+]);
