@@ -1,0 +1,152 @@
+MySQL 服务器参数
+
+mysql 获取配置信息路径
+
+    命令行参数
+
+        mysqld_safe --datadir=/data/sql_data
+
+    配置文件
+
+        读取配置文件的顺序
+
+        mysqld --help --verbose | grep -A 1 'Default options'
+
+        /etc/my.cnf /etc/mysql/my.cnf /home/mysql/my.cnf ~/.my.cnf
+
+mysql配置参数的作用域
+
+    全局参数
+
+        全局有效,有的更改只对新的连接有效,需注意
+
+        set global 参数名=参数值
+
+    会话参数
+
+        set [session] 参数名=参数值
+
+    show variables where variable_name='wait_timeout' or variable_name='interactive_timeout';
+
+    set global wait_timeout = 3600;set global interactive_timeout = 3600;
+
+
+内存配置相关参数
+
+    确定可以使用的内存的上限
+
+    确定mysql的每个连接使用的内存
+
+        sort_buffer_size, 排序缓冲区
+
+        join_buffer_size, 连接缓冲区
+
+        read_buffer_size, myisam
+
+        read_rnd_buffer_size, 索引缓冲区大小
+
+        以上都是为每一个线程分配的,如果有一百个连接,就会分配一百个的和
+        所以如果为了性能, 每个都配置得很大, 很有可能造成内存溢出, 使mysql服务器崩溃
+
+    确定需要为操作系统保留多少内存
+
+        一台服务器运行一个mysql实例就好.
+
+        如何为缓冲池分配内存
+
+            缓冲池,用于延迟写入,就可以将多个写操作一起顺序写入磁盘
+
+            Innodb_buffer_pool_size, 定义了Innodb使用的缓存池的大小
+                这个参数对innodb存储引擎非常重要, 其性能严重依赖于这个参数
+
+            总内存 - (每个线程所需要的连接数 * 连接数) - 系统保留内存
+
+            key_buffer_size, 
+
+
+IO相关参数
+
+    Innodb_log_file_size 单个日志文件的大小, 可以根据情况稍微大点
+
+    Innodb_log_files_in_group 事务日志的个数, 这个参数没有意义
+
+    事务日志总大小: Innodb_log_files_in_group * Innodb_log_file_size
+
+    Innodb_log_buffer_size 事务缓冲区大小
+
+    Innodb_flush_log_at_trx_commit 刷新事务日志频率, 该参数的影响大于事务缓冲区大小
+
+        0: 每秒进行一次log写入cache, 并flush log 到磁盘
+        1: 默认值, 在每次事务提交执行log写入cache, 并flush log 到磁盘, 不会丢失.
+        2: 建议, 每次事务提交, 执行log数据写入到cache, 每秒执行一次flush log到磁盘
+
+    Innodb_flush_method=O_DIRECT, 透传,mysql直接到磁盘,不经过系统缓冲区
+
+    Innodb_file_per_table = 1, 控制如何使用表空间
+
+    innodb_doublewrite = 1, 双写缓存,主要是避免没有写完整导致数据损坏,数据安全,性能损耗小
+
+安全相关参数:
+
+    expire_logs_days 指定自动清理binglog的天数, 比如7天..
+
+    max_allowed_packet 控制mysql可以接收的包的大小
+
+    skip_name_resolve 禁用DNS查找
+
+    sysdate_is_now 确保 sysdate() 返回确定性日期
+
+    read_only 禁止非super权限的用户写权限, 主从情况下,从机器可以开启这个选项
+
+    skip_slave_start 禁用slave自动恢复, 也是从库中使用,因为因为崩溃过后自动恢复也有可能很危险
+
+其他常用配置参数
+
+    sync_binlog 控制mysql如何向磁盘刷新binlog, 主从的主应该设置为1, 更安全.
+
+    max_connections 控制允许的最大连接数
+
+
+数据库设计对性能的影响
+
+    过分的反范式化为表建立太多的列
+
+    过分的范式化造成太多的表关联
+
+    在OLTP环境中使用不恰当的分区表
+
+    使用外键保证数据的完整性, 不要使用外键约束, 拷贝,处理数据,多实例,很多情况下都会造成事情很复杂,还影响性能
+
+
+性能优化顺序
+
+    数据库结构设计和sql语句
+
+    数据库存储引擎的选择和参数配置
+
+    系统选择及优化
+
+    硬件升级
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

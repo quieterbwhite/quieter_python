@@ -1,0 +1,58 @@
+MySQL基准测试
+
+计划和设计基准测试
+
+    对整个系统还是某一组件
+    使用什么样的数据
+
+准备基准测试及数据脚本收集
+
+    CPU使用率, IO, 网络流量, 状态与计数器信息等
+
+基准测试中容易忽略的问题
+
+    使用生产环境时只使用了部分数据
+    在多用户场景中,只做单用户的测试 - 推荐使用多线程并发测试
+    在单服务器上测试分布式应用 - 推荐使用相同架构进行测试
+    反复执行同一查询 - 容易缓存命中,无法反应真实查询性能
+
+常用基准测试工具
+
+    mysqlslap
+        mysql自带的基准测试工具
+        可以模拟服务器负载,并输出相关统计信息
+        可以指定也可以自动生成查询语句
+
+        --auto-generate-sql, 由系统自动生成sql脚本进行测试
+
+        --auto-generate-sql-add-autoincrement 在生成的表中增加自增id
+
+        --auto-generate-sql-load-type 指定测试中使用的查询类型
+
+        --auto-generate-sql-write-number 指定初始化数据时生成的数据量
+
+        --concurrency 指定并发线程数量
+
+        --no-drop 指定不清理测试数据
+
+        --iterations 指定测试运行的次数
+
+        --number-of-queries 指定每一个线程执行的查询数量
+
+        --debug-info 指定输出额外的内存及cpu统计信息
+
+        --number-int-cols 测试表中 int 类型列的数量
+
+        --number-char-cols 测试表中 char 类型列的数量
+
+        --create-schema 指定了用于执行测试的数据库的名字
+
+        --query 用于指定自定义的sql脚本
+
+        测试工具使用详情没有学习. 待需要进行测试的时候再学习.
+        mysql性能管理及架构设计 第三章
+
+    sysbench
+
+        mysql性能管理及架构设计 第三章
+
