@@ -308,7 +308,7 @@ $skip
 
     例2：查询从第3条开始的学生信息
     db.stu.aggregate([{$skip:2}])
-    
+
     例3：统计男生、女生人数，按人数升序，取第二条数据
     db.stu.aggregate([
         {$group:{_id:'$gender',counter:{$sum:1}}},
@@ -355,7 +355,7 @@ $unwind
         使用语法1查询
         db.t3.aggregate([{$unwind:'$size'}])
         查看查询结果，发现对于空数组、无字段、null的文档，都被丢弃了
-        
+
         问：如何能不丢弃呢？
         答：使用语法2查询
         db.t3.aggregate([{$unwind:{path:'$sizes',preserveNullAndEmptyArrays:true}}])
@@ -539,7 +539,7 @@ $unwind
     -h：服务器地址
     -d：需要恢复的数据库实例
     --dir：备份数据所在位置
-    
+
     例2
     mongorestore -h 192.168.196.128:27017 -d test2 --dir ~/Desktop/test1bak/test1
 
