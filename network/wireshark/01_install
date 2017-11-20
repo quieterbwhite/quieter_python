@@ -1,0 +1,15 @@
+
+https://jingyan.baidu.com/article/c74d60009d992f0f6a595de6.html
+
+install wireshark on ubuntu:
+
+
+bwhite@x:~/mygithub/known/linux$ sudo apt-get install wireshark
+bwhite@x:~/mygithub/known/linux$ sudo wireshark 
+bwhite@x:~/mygithub/known/linux$ sudo groupadd  wireshark
+groupadd: group 'wireshark' already exists
+bwhite@x:~/mygithub/known/linux$ sudo chgrp wireshark /usr/bin/dumpcap 
+bwhite@x:~/mygithub/known/linux$ sudo chmod 4755 /usr/bin/dumpcap 
+bwhite@x:~/mygithub/known/linux$ sudo gpasswd -a bwhite wireshark 
+Adding user bwhite to group wireshark
+bwhite@x:~/mygithub/known/linux$ 
