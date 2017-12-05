@@ -2,3 +2,5 @@
 from __future__ import unicode_literals
 
 data_dict = {}
+
+data_list = []

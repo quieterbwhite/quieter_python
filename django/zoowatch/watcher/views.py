@@ -7,6 +7,8 @@ from django.views.generic import View
 
 from container.service import data_dict
 
+from container.service import data_list
+
 from logs.mylog import flogger
 
 import json
@@ -19,6 +21,8 @@ class WatchTestView(View):
 
         res = {'err_code':0}
 
-        flogger.info(data_dict)
+        flogger.info(data_list)
+
+        res.update({"data":data_list})
 
         return JsonResponse(res)
