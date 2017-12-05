@@ -18,6 +18,7 @@ migrations/
 *.sqlite3
 .vscode/
 env/
+.idea/
 build/
 develop-eggs/
 dist/
