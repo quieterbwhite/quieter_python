@@ -25,6 +25,12 @@
     安装：将redis的命令安装到/usr/bin/目录
     sudo make install
 
+    或者:
+
+        http://www.runoob.com/redis/redis-install.html
+
+        $sudo apt-get install redis-server
+
 运行
 
     启动服务器：
@@ -71,6 +77,18 @@
     停止redis服务
     ps ajx|grep redis
     sudo kill -9 redis的进程id
+
+    密码相关:
+        http://github.tiankonguse.com/doc/redis/connection/auth.html
+
+        https://itbilu.com/database/redis/Ey_r7mWR.html
+
+        可以通过配置文件修改密码
+        /etc/redis/redis.conf
+        line: 396   requirepass
+
+        或者直接使用命令修改
+        redis> CONFIG SET requirepass secret_password   # 密码: secret_password
 
 数据操作
 
