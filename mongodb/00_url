@@ -1,9 +1,12 @@
 
 
 
-* robomongo
+# 图形化客户端工具
+
+    robomongo
 
 
-* install mongodb on ubuntu
+# install mongodb on ubuntu
 
-https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+    https://docs.mongodb.com/manual/tutorial/install-mongodb-enterprise-on-ubuntu/
+
