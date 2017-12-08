@@ -22,7 +22,7 @@
 
 3. 安装系统软件
 
-    sudo apt-get install build-essential python-dev python3-dev python-pip python3-pip nginx supervisor terminator vim git mysql-server mysql-client libmysqlclient-dev
+    sudo apt-get install build-essential python-dev python3-dev python-pip python3-pip nginx supervisor terminator vim git mysql-server mysql-client libmysqlclient-dev openssl libssl-dev
 
 4. 其他软件
 
@@ -47,5 +47,7 @@
 5. pip install
 
     mysqlclient
+
+    jwt
 
 """
