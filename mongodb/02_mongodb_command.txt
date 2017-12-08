@@ -1,0 +1,8 @@
+'''
+记录 mongodb 用到的相关命令
+'''
+
+
+1. shell 下连接数据库
+
+mongo --host 10.0.1.37 admin --port 27018 -u mongo -p idealsee2012
