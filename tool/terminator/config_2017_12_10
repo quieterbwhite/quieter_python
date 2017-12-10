@@ -1,0 +1,45 @@
+[global_config]
+  focus = system
+  suppress_multiple_term_dialog = True
+[keybindings]
+  close_term = <Primary><Shift>b
+  go_down = <Super>j
+  go_left = <Super>h
+  go_right = <Super>u
+  go_up = <Super>k
+  line_down = <Alt>j
+  line_up = <Alt>k
+  new_window = <Primary><Shift>w
+  resize_down = <Primary><Shift>Down
+  split_vert = <Primary><Shift>i
+  switch_to_tab_1 = <Alt>1
+  switch_to_tab_10 = <Alt>grave
+  switch_to_tab_2 = <Alt>2
+  switch_to_tab_3 = <Alt>3
+  switch_to_tab_4 = <Alt>4
+  switch_to_tab_5 = <Alt>5
+  switch_to_tab_6 = <Alt>6
+  switch_to_tab_7 = <Alt>7
+  switch_to_tab_8 = <Alt>8
+  switch_to_tab_9 = <Alt>9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_image = None
+    copy_on_selection = True
+    cursor_color = "#11ff00"
+    cursor_shape = ibeam
+    font = Ubuntu Mono 22
+    foreground_color = "#ffffff"
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    show_titlebar = False
+    use_system_font = False
+    visible_bell = True
