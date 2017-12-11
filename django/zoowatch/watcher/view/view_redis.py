@@ -1,28 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-
 from django.http import JsonResponse
 from django.views.generic import View
 
-from container.service import data_dict
-
-from container.service import data_list
+from conns.redis_service.redis_client import redis_client
 
 from logs.mylog import flogger
 
-import json
 
-
-class WatchTestView(View):
-    """  """
+class RedisTestView(View):
 
     def get(self, request, *args, **kwargs):
 
-        res = {'err_code':0}
+        res = {'code':0}
 
-        flogger.info(data_list)
-
-        res.update({"data":data_list})
+        flogger.info("RedisTestView - redis obj id: %s" % id(redis_client))
 
         return JsonResponse(res)

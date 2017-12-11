@@ -4,10 +4,12 @@
 
 from django.conf.urls import url
 
-from . import views
+from watcher.view import view_watch, view_redis
 
 urlpatterns = [
 
-    url(r'^test$', views.WatchTestView.as_view())
+    url(r'^test$', view_watch.WatchTestView.as_view()),
+
+    url(r'^redis$', view_redis.RedisTestView.as_view())
 
 ]

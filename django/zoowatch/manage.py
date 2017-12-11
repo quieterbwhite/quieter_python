@@ -4,8 +4,6 @@ import sys
 
 from logs.mylog import flogger
 
-from container.service import data_dict
-
 from zoo.zoo_func import handle_zoo
 
 
@@ -30,8 +28,6 @@ if __name__ == "__main__":
     flogger.info("before execute")
 
     handle_zoo()
-
-    data_dict.update({"name":"tiger"})
 
     execute_from_command_line(sys.argv)
     flogger.info("after execute")

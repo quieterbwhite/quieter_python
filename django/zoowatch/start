@@ -1,0 +1,39 @@
+#!/bin/bash
+
+NAME="zoowatch"                                 # Name of the application
+USERNAME=`whoami`
+DJANGODIR=/home/$USERNAME/mygit/known/projects/zoowatch   # Django project directory
+SOCKFILE=/tmp/zoowatch.sock                           # we will communicte using this unix socket
+USER=$USERNAME                                           # the user to run as
+GROUP=$USERNAME                                          # the group to run as
+NUM_WORKERS=4                                         # how many worker processes should Gunicorn spawn
+TIMEOUT=8
+DJANGO_SETTINGS_MODULE=zoowatch.settings              # which settings file should Django use
+DJANGO_WSGI_MODULE=zoowatch.wsgi                      # WSGI module name
+ 
+echo "Starting $NAME as `whoami`"
+ 
+# Activate the virtual environment
+cd $DJANGODIR
+source ./venv/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+ 
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+ 
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+exec ./venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --worker-class gevent \
+  --user=$USER --group=$GROUP \
+  --bind=unix:$SOCKFILE \
+  --timeout $TIMEOUT \
+  --log-level=debug \
+  --log-file=- \
+
+#--access-logformat = %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+#--access-logformat = "remote": "%(h)s", "date": "%(t)s", "method": "%(m)s", "status": "%(s)s", "url": "%(U)s", "query": "%(q)s", "referer" :%(f)s", "user-agent" : "%(a)s", "request_time" : "%(L)s"

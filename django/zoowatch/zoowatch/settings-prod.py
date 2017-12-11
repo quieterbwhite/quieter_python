@@ -28,7 +28,8 @@ SECRET_KEY = '-bmw^7uzk!^t!tdo1n-w$6q6lm3vafuoecv57ujc6p6(%32!d+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -82,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'watch',
         'USER': 'root',
-        'PASSWORD': 'tiger',
+        'PASSWORD': 'swartzookeeperedis',
         'HOST': '127.0.0.1',
     }
 }
