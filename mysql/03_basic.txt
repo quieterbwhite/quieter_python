@@ -17,13 +17,38 @@
             gender bit default 1,
             isDelete bit default 0
         );
+
+	create table `see` (
+	    `id` INT NOT NULL AUTO_INCREMENT,
+	    `uid` INT NOT NULL DEFAULT 0,
+	    `openid` VARCHAR(50) NOT NULL COMMENT 'wechat openid',
+	    `shopid` INT NOT NULL COMMENT '店铺id',
+	    `content` TEXT COMMENT '内容',
+	    `is_pub` INT NOT NULL DEFAULT 0 COMMENT '0未发布1已发布',
+	    `created` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '创建时间',
+	    `updated` VARCHAR(32) NOT NULL DEFAULT '' COMMENT '最后更新时间',
+	    `money` DECIMAL(5, 3) DEFAULT NULL,
+	    primary key (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET='utf8mb4';
+
     查看:
         show tables;
+
         desc student;
+
+        show create table see;
+
     删除: drop table student;
+
     修改: alter table student add | change | drop name
 
           alter table subject add isdelete bit default 0;
+
+          # 增加列
+          ALTER TABLE see ADD COLUMN money DECIMAL(5, 3) DEFAULT NULL;
+
+          # 修改列
+          ALTER TABLE see MODIFY COLUMN money DECIMAL(5, 2) DEFAULT NULL;
 
 3. 数据
 
@@ -54,7 +79,6 @@
     % 表示任意多个字符
 
     _ 表示一个任意字符
-
     select * from student where name like 'tiger%' or name like '%tiger%';
 
 7. 聚合
