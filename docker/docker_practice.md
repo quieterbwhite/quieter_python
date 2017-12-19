@@ -238,6 +238,117 @@ $ docker  diff    webserver
 
 ## 操作Docker容器
 ```
+* 新建并启动
+
+    # 输出后终止容器
+    $ docker run ubuntu:14.04 /bin/echo 'hello world'
+
+    # 启动一个bash终端，允许用户进行交互
+    $ docker run -t -i ubuntu:14.04 /bin/bash
+
+        -t 分配一个伪终端(pseudo-tty)并绑定到容器的标准输入上
+        -i 让容器的标准输入保持打开
+
+* 后台运行
+
+    使用 -d 参数运行容器
+
+    docker run -d ubuntu:17.10 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+
+    此时容器会在后台运行。输出结果可以使用 docker logs 查看
+
+    要获取容器的输出信息，可以通过 docker container logs 命令
+
+    docker container logs [container ID or NAMES]
+
+* 终止容器
+
+    docker container stop
+
+    终止状态的容器可以用 docker container ls -a 查看
+
+* 进入容器
+
+    docker exec
+
+    docker run -dit ubuntu
+
+    docker container ls
+
+    docker exec -it 69d1 bash
+    如果从这个stdin中exit，不会导致容器的停止。
+    这就是为什么推荐使用docker exec 而不是 attach 的原因
+
+* 导出和导入容器
+
+    docker export 命令可以到处本地某个容器
+
+    $ docker ps -a
+
+    # 这样将导出容器快照到本地文件
+    $ docker export container_id > ubuntu.tar
+
+* 导入容器快照
+
+    可以使用 docker import 导入容器快照文件为镜像
+
+    $ cat ubuntu.tar | docker import - test/ubuntu:v1.0
+
+    docker load 导入镜像存储文件 && docker import 导入容器快照
+
+    区别:
+        快照将丢失历史记录和元数据信息
+
+* 删除容器
+
+    $ docker container rm trusting_newton
+
+    如果要删除一个运行中的容器，可以添加 -f 参数，Docker 会发送 SIGKILL 信号给容器
+
+* 清理所有处于终止状态的容器
+
+    $ docker container prune
+```
+
+## 访问仓库
+```
+* 登录&退出
+
+    docker login
+
+    docker logout
+
+* 拉取镜像
+
+    # 以 centos 为关键字进行搜索
+    docker search centos
+
+* 推送镜像
+
+    用户在登录后也可以推送自己的镜像到 Docker Hub。
+
+    $ docker tag ubuntu:17.10 psky/ubuntu:17.10
+
+    $ docker image ls
+
+    $ docker push psky/ubuntu:17.10
+
+    $ docker search psky
+
+* 自动创建
+
+    pass
+
+* 私有仓库
+
+    pass
+
+* Docker 数据管理
+
+
+
+
+
 
 ```
 
