@@ -1,0 +1,246 @@
+# Docker 基础
+
+## 安装docker
+```
+# 方法一
+sudo wget -qO- https://get.docker.com/ | sh
+    -q, 减少输出
+    O-, 将下载的脚本文件送给sh执行
+        
+
+# 方法二, 用这个就好了，虽然不是最新的，但是是比较新的稳定版本
+sudo apt-get install docker.io
+
+# 让当前用户可以直接执行docker命令
+sudo usermod -aG docker imooc
+
+测试是否安装成功:
+    $ sudo docker info
+    $ sudo docker version
+```
+
+## 命令解释
+```
+
+$ docker pull
+
+# 显示所有顶层镜像
+$ docker image ls
+
+# 显示所有镜像，包括中间层镜像
+$ docker image ls -a
+
+$ docker run
+
+$ docker container ls
+
+$ docker system df, 查看镜像，容器，数据卷所占空间
+
+# 删除镜像
+$ docker rm
+
+# 删除容器
+$ docker rmi
+
+$ docker cp
+
+# 将修改过的容器保存未镜像, 一般不用commit命令
+$ docker commit --author "psKy <libo0o@163.com>" --message "修改了默认网页" webserver nginx:v2
+    --author: 修改的作者
+    --message: 记录本次修改的内容
+
+# 使用build命令构建镜像, 当前目录新建 Dockerfile
+$ docker build -t nginx:v3 .
+
+    命令最后的 .  其实并不是指Dockerfile的路径，而是指上下文路径
+    构建镜像要用到的文件应该都放到 指定的上下文目录中，不然Docker引擎不能获得文件
+
+# 查看镜像内的历史记录
+$ docker  history nginx:v2
+
+# show dangling image, 显示虚悬镜像
+$ docker  image   ls  -f  dangling=true
+
+# 删除虚悬镜像
+$ docker  image   prune
+
+# 查看容器的修改
+$ docker  diff    webserver
+```
+
+# Dockerfile
+```
+* COPY 复制文件
+
+    COPY package.json /usr/src/app/
+
+* ADD 更高级的复制文件
+
+     在 COPY 和 ADD 指令中选择的时候，可以遵循这样的原则，
+     所有的文件复制都使用 COPY 指令，仅在需要自动解压的场合使用 ADD
+
+* CMD 容器自动命令
+
+    容器就死进程。
+    既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。
+    CMD指令就是用于指定默认的容器主进程的启动命令。
+
+    Docker 不是虚拟机，容器中的应用都应该在前台执行，而不是像虚拟机，物理机里面那样，
+    用upstart/systemd去启动后台服务，容器内没有后台服务的概念。
+    如前台执行 nginx 主进程:
+        CMD ["nginx", "-g", "daemon off;"]
+
+* ENTRYPOINT 入口点
+
+    ENTRYPOINT 和 CMD 目的一样，都是在指定启动程序及参数。
+
+    当指定了 ENTRYPOINT 后，CMD的含义就发生了变化，不再是直接运行其命令，
+    而是将 CMD 的内容作为参数传给 ENTRYPOINT 指令，换句话说实际执行时，将变为:
+
+    <ENTRYPOINT> "<CMD>"
+
+    为什么有了 CMD 还有 ENTRYPOINT?
+
+    场景一： 动态参数, 让镜像变成命令一样使用
+
+    CMD:
+        FROM ubuntu:16.04
+        RUN apt-get update \
+            && apt-get install -y curl \
+            && rm -rf /var/lib/apt/lists/*
+        CMD ["curl", "-s", "http://ip.cn"]
+
+        # 构建镜像
+        docker build -t myip
+        # 执行
+        docker run myip
+
+        这样做不好的地方在于，不能给内部命令动态增加参数
+        而 ENTRYPOINT 就可以解决这个问题
+
+    ENTRYPOINT:
+        FROM ubuntu:16.04
+        RUN apt-get update |
+            && apt-get install -y curl \
+            && rm -rf /var/lib/apt/lists/*
+        ENTRYPOINT ["curl", "-s", "http://ip.cn"]
+
+        # 构建镜像
+        docker build -t myip
+        # 执行
+        docker run myip -i 
+        CMD 的内容将会作为参数传递给 ENTRYPOINT
+        -i 是新的参数CMD 
+
+    场景二：应用运行前的准备工作
+
+        准备工作是和容器 CMD 无关的，无论是 CMD 是什么，都需要事先进行一个预处理的工作。
+        这种情况下，可以写一个脚本，然后放入 ENTRYPOINT 中去执行，而这个脚本会
+        将接到的参数(也就是<CMD>)作为命令，在脚本最后执行。如官方redis:
+
+        FROM alpine:3.4
+        ...
+        RUN addgroup -S redis && adduser -S -G redis redis
+        ...
+        ENTRYPOINT ["docker-entrypoint.sh"]
+
+        EXPOSE 6379
+        CMD ["redis-server"]$
+
+        可以看到创建了用户，并指定了 ENTRYPOINT 为 docker-entrypoint.sh 脚本。
+
+    场景三：设置环境变量
+
+        ENV VERSION=1.0 DEBUG=on \
+        NAME="Happy Feet"
+
+        无论是后面的其他指令，如 RUN, 还是运行时应用
+        都可以直接使用这里定义的环境变量。
+
+* ARG 构建参数
+
+    构建参数和 ENV 的效果一样，都是设置环境变量。
+    所不同的是，ARG 所设置的构建环境的环境变量, 在将来容器运行时是不会存在这些环境变量的。
+
+    Dockerfile 中的ARG指令是定义参数名称，以及定义其默认值。
+    该默认值可以在构建命令docker build 中用 --build-arg <参数名>=<值> 来覆盖。
+
+* VOLUME 定义匿名卷
+
+    VOLUME /data
+
+    Dockerfile 中，我们可以事先指定某些目录挂载为匿名卷，这样在运行时如果用户
+    不指定挂载，其应用也可以正常运行，不会向容器存储层写入大量数据。
+
+    运行时可以覆盖这个挂载设置，如:
+    docker run -d -v mydata:/data xxxx
+    在这行命令中，就使用了mydata这个命令卷挂载到了/data这个位置，
+    替代了Dockerfile 中定义的匿名卷的挂载配置。
+
+* EXPOSE 申明端口
+
+    EXPOSE 指令是申明运行时容器提供服务端口，
+    这只是一个申明，在运行时并不会因为这个声明就会开启这个端口的服务。
+
+    要将EXPOSE和在运行时使用 -p <宿主端口>:<容器端口>区分开来。
+    -p, 是映射宿主端口和容器端口,换句话说,
+    就是将容器的对应端口服务公开给外界访问,而 EXPOSE 仅仅是声明
+    容器打算使用什么端口而已,并不会自动在宿主进行端口映射。
+
+* WORKDIR 指定工作目录
+
+    WORKDIR <工作目录路径>
+
+    RUN cd /app
+    RUN echo "hello" > world.txt
+    这两行 RUN 命令的执行环境根本不同，是两个完全不同的容器。
+
+    每一个 RUN 都是启动一个容器，执行命令，然后提交存储层文件变更。
+    第一层 RUN cd /app 的执行仅仅是当前进程的工作目录变更,一个内存上的变化而已,其结果不会造成任
+    何文件变更。而到第二层的时候,启动的是一个全新的容器,跟第一层的容器更完全没关
+    系,自然不可能继承前一层构建过程中的内存变化。
+    因此如果需要改变以后各层的工作目录的位置,那么应该使用 WORKDIR 指令。
+
+* USER 指定当前用户
+
+    USER <用户名>   
+
+    这个用户必须是事先建立好的，否则无法切换
+
+    RUN groupadd -r redis && useradd -r -g redis redis
+    USER redis
+    RUN ["redis-server"]
+
+    gosu 用户，这个需要的时候查资料 docker_practice.pdf
+
+* HEALTHCHECK 健康检查
+
+
+* Dockerfile 多阶段构建
+```
+
+```
+* 示例一
+
+    FROM ubuntu
+    MAINTAINER libo
+    RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+    RUN apt-get update
+    RUN apt-get install -y nginx
+    COPY index.html /var/www/html
+    ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"] # run nginx frontend
+    EXPOSE 80
+
+    docker build -t libo/hello-nginx .
+
+    docker run -d -p 80:80 libo/hello-nginx
+```
+
+## 操作Docker容器
+```
+
+```
+
+
+
+
