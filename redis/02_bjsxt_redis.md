@@ -1,13 +1,15 @@
 # bjsxt redis 课程笔记
 
-"""
+```
 redis 多实例, 串行
 
 memcache 单机高性能，并行
-"""
+```
 
-"""
+## 安装
+```
 下载地址http://redis.io/download
+
 安装步骤：
 
 1 首先需要安装gcc，把下载好的redis-3.0.0-rc2.tar.gz 放到linux /usr/local文件夹下
@@ -49,14 +51,13 @@ ps -ef | grep redis 查看是否有redis服务 或者 查看端口：netstat -tu
 （2）kill 进程号、
                             
 （3）/usr/local/redis/bin/redis-cli shutdown 
-"""
+```
 
-"""
-配置参数
-
+## 配置参数
+```
 daemonize yes 是否后台启动
 
 port 6379 端口
 
 tcp-backlog 511
-"""
+```
