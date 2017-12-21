@@ -1,0 +1,30 @@
+maven install
+
+1. official download page:
+
+http://maven.apache.org/download.cgi
+
+2. release to
+
+D:\java\apache-maven-3.3.9
+
+3. modify env var
+
+add M2_HOME  D:\java\apache-maven-3.3.9
+
+path add: D:\java\apache-maven-3.3.9\bin
+
+4. test if install success
+
+cmd:  mvn -version
+
+5. mirror:
+
+    <mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <mirrorOf>central</mirrorOf>        
+    </mirror>
+
+mvn archetype:generate -DgroupId=imooc-arthur -DartifactId=spring-mvc-study -DarchetypeArtifactId=maven-archetype-webapp

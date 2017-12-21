@@ -30,8 +30,7 @@ $ docker image ls
 # 显示所有镜像，包括中间层镜像
 $ docker image ls -a
 
-$ docker run
-
+# 显示容器
 $ docker container ls
 
 $ docker system df, 查看镜像，容器，数据卷所占空间
@@ -42,9 +41,7 @@ $ docker rm
 # 删除容器
 $ docker rmi
 
-$ docker cp
-
-# 将修改过的容器保存未镜像, 一般不用commit命令
+# 将修改过的容器保存为镜像, 一般不用commit命令
 $ docker commit --author "psKy <libo0o@163.com>" --message "修改了默认网页" webserver nginx:v2
     --author: 修改的作者
     --message: 记录本次修改的内容
@@ -541,7 +538,11 @@ $ docker  diff    webserver
 
 ## Compose
 ```
+* 安装与卸载
 
+    sudo pip install docker-compose
+
+    sudo pip uninstall docker-compose
 ```
 
 
