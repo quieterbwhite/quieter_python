@@ -2,19 +2,23 @@
 
 ## 安装docker
 ```
-# 方法一
-sudo wget -qO- https://get.docker.com/ | sh
-    -q, 减少输出
-    O-, 将下载的脚本文件送给sh执行
+* 方法一
+
+    $ sudo wget -qO- https://get.docker.com/ | sh
+
+        -q, 减少输出
+        O-, 将下载的脚本文件送给sh执行
         
+* 方法二, 用这个就好了，虽然不是最新的，但是是比较新的稳定版本
 
-# 方法二, 用这个就好了，虽然不是最新的，但是是比较新的稳定版本
-sudo apt-get install docker.io
+    $ sudo apt-get install docker.io
 
-# 让当前用户可以直接执行docker命令
-sudo usermod -aG docker imooc
+* 让当前用户可以直接执行docker命令
 
-测试是否安装成功:
+    $ sudo usermod -aG docker `whoami`
+
+*测试是否安装成功:
+
     $ sudo docker info
     $ sudo docker version
 ```
