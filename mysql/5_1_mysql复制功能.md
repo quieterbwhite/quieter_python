@@ -186,7 +186,7 @@ mysql 存储引擎层日志
 基于日志点的复制配置步骤
 
     在主DB服务器上建立复制账号
-    
+
         创建复制用户
         create user 'repl' @ 'IP段' identified by 'Passw0rd';
         授权
@@ -212,7 +212,272 @@ mysql 存储引擎层日志
 
     初始化从服务器数据
 
+        同步早期主数据库中的数据
 
+        mysqldump --master-data = 2-single-transaction
 
+        // 用这个
+        xtrabackup --slave-info
 
+    启动复制链路
+
+        change master to master_host = 'master_host_ip',
+                master_user = 'repl',
+                master_password = 'Passw0rd',
+                master_log_file = 'mysql_log_file_name',
+                master_log_pos = 4;
+
+        实际操练:
+
+            node_master node_slave
+
+            node_master:
+
+                create user repl@'192.168.3.%' identified by '123456';
+
+                grant replication slave on *.* to repl'192.168.3.%';
+
+            主从服务器配置文件修改
+
+            复制主数据库数据
+
+                主:
+                    mysqldump --single-transaction --master-data --triggers --routines --all-databases -uroot -p >> all.sql
+
+                    scp all.sql root@192.168.3.101:/root
+
+                从：
+                    mysql -uroot -p < all.sql
+
+                    change master to master_host='192.168.3.101',
+                    master_user='repl',
+                    master_password='123456',
+                    master_log_file='mysql-bin.000003', master_log_pos=1839; // 从all.sql中拷贝的
+
+                    show slave status\G;
+
+                    start slave;
+
+                    show processlist; 
+
+    优点:
+        是MySQL最早支持的复制技术，bug相对较少
+        对sql查询没有任务限制
+        故障处理比较容易
+
+    缺点：
+        故障转移时重新获取新主的日志点信息比较困难
+```
+
+## 基于GTID的复制
+```
+基于日志的复制：
+    从哪个二进制日志的偏移量进行增量同步
+    如果指定错误会遗漏或重复
+    造成主从数据不一致
+
+基于GTID的复制
+    从库告诉主库已执行事务的GTID值
+    主库返回从库未执行事务的GTID值
+
+    同一个事务只在指定的从库执行一次
+    就可以避免由于数据偏移量不正确导致数据错误
+
+什么是GTID
+
+    全局事务id，其保证为每一个在主上提交的事务在复制集群中可以生成一个唯一的id
+
+    GTID = source_id:transaction_id
+
+    步骤:
+        在主DB服务器上建立复制账号
+
+            create user 'repl' @ 'ip段' identified by 'Passw0rd';
+
+            grant replication slave on *.* to 'repl' @ 'ip段';
+
+        配置主数据库服务器
+
+            bin_log = /usr/local/mysql/log/mysql-bin
+
+            server_id = 100 // 唯一
+
+            gtid_mode = on  // 是否开启
+            // 强制gtid一致性
+            enforce-gtid-consiste
+
+            log-slave-updates = on // < 5.7 版本需要
+
+        配置从数据库服务器
+
+            server_id = 101
+
+            relay_log = /usr/local/mysql/log/relay_log
+
+            gtid_mode = on
+
+            enforce-gtid-consistency
+
+            log-slave-updates = on
+
+            read_only = on  // 保证从数据库服务器的安全性
+
+            master_info_repository = TABLE
+
+            relay_log_info_repository = TABLE
+        
+        初始化从服务器数据
+
+            mysqldump --master-data=2 --single-transaction
+
+            xtarbackup --slave-info
+
+            启动基于GTID的复制
+                change master to master_host = 'master_host_ip',
+                    master_user = 'repl',
+                    master_password = 'Passw0rd',
+                    master_auto_position = 1  // 告诉从服务器使用GTID方式
+
+        实际操作：
+            查看复制用户是否已经建立：
+                select user, host from user;
+
+                show grants for repl@'192.168.3.%';
+
+                有用户过后，修改配置文件，打开相关的几个设置项
+
+                修改配置文件过后要重启
+
+优点:
+    可以方便进行故障转移
+
+    从库不会丢失主库上的任何修改
+
+缺点：
+    故障处理比较复杂
+
+    对执行的SQL有一定限制
+
+选择复制模式要考虑的问题
+
+    所使用的MySQL数据库的版本
+
+    复制架构及主从切换的方式
+
+    所使用的高可用管理组件
+
+    对应用得支持程度
+```
+
+## MySQL复制拓扑
+```
+mysql 5.7 之前， 一个从库只能有一个主库
+mysql 5.7 之后支持一从多主架构
+
+一主多从的复制拓扑
+
+    优点:
+        配置简单
+        可以用多个从库分担读负载
+
+    用途：
+        为不同的业务使用不同的从库
+        将一台从库放到远程IDC中，用作灾备恢复
+        分担主库的读负载
+
+主主复制拓扑
+
+    主备模式的主主复制
+
+        同时只有一个主对外提供服务，只有在其出现问题时，另一个主才会替换其成为主
+
+        一台服务器处于只读状态并且只作为热备使用
+
+        在对外提供服务的主库出现故障或是计划性维护时才会进行切换,
+        使原来的备库成为主库，而原来的主库会成为新的备库并处于只读或是下线状态，
+        待维护完成后重新上线
+
+        这种模式更常用一些, 作为一种高可用方案
+
+        注意：
+            确保两台服务器上的初始数据相同
+            确保两台服务器上已经启动binlog并且有不同的server_id
+            在两台服务器上启用log_slave_updates参数
+            在初始的备库上启用read_only
+
+    主主模式的主主复制
+
+        两个主中所操作的表最好能够分开
+        使用下面两个参数控制自增id的生成
+            // 步长, 默认一
+            auto_increment_increment = 2
+            // 自增id从哪个值开始
+            auto_increment_offset = 1 | 2
+
+        注意：
+            产生数据冲突而造成复制链路的中断
+            耗费大量时间
+            造成数据丢失
+
+            除非没有其他办法，否则不建议使用这种复制模式
+
+级联复制
+
+    主库 -> 分发主库 -> 多个从库
+```
+
+## mysql复制性能优化
+```
+影响主从延迟的因素
+
+    主库写入二进制日志的时间
+        控制主库的事务大小，分割大事务
+
+    二进制日志传输时间
+        使用mixed日志格式
+
+    默认情况下 从 只有一个sql线程，主上并发的修改在从上变成了串行
+        多线程复制 >5.6
+            在MySQL5.7中可以按照逻辑时钟的方式来分配sql线程
+
+            如何配置多线程复制
+                stop slave // 在从上停止链路复制  show slave status \G;
+                // 如何使用多线程复制，逻辑时钟
+                set global slave_parallel_type = 'logical_clock';
+                // 并发处理的线程数
+                set global slave_parallel_workers = 4;
+                // 开启复制
+                start slave;
+
+            show variables like 'slave_parallel_type';
+
+            show processlist\G
+```
+
+## mysql复制常见问题处理
+```
+由于数据损坏或丢失所引起的主从复制错误
+
+    主库或从库意外宕机引起的错误
+        使用跳过二进制日志事件
+        注入空事务的方式先恢复中断的复制链路
+        再使用其他方法来对比主从服务器上的数据
+
+    主库上的二进制日志损坏
+        通过 change master 命令来重新指定
+
+    备库上的中继日志损坏
+
+在从库上进行数据修改造成的主从复制错误
+
+不唯一的server_id 或 server_uuid
+
+max_allow_packet设置引起的主从复制错误
+
+mysql复制无法解决的问题
+
+    分担主数据库的写负载
+        分库分表
+
+    自动进行故障转移和主从切换
 ```
