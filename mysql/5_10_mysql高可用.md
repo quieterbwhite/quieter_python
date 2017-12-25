@@ -64,6 +64,6 @@ MMM(Multi-Master Replication Manager)
 
     MMM 部署所需资源有哪些
 
-        ![MMM 资源](http://7sbqvw.com1.z0.glb.clouddn.com/celery_flower_monitor_first.png, "MMM")
+        ![MMM 资源](http://7sbqvw.com1.z0.glb.clouddn.com/celery_flower_monitor_first.png "fasd")
 
 ```
