@@ -5,6 +5,11 @@
 git@github.com:junglelord/spider-course-2.git
 ```
 
+## 安装说明
+```
+RTX 安装说明
+```
+
 ## BOOK
 ```
 高可用架构
