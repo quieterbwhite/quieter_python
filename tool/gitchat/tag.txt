@@ -1,0 +1,49 @@
+
+Git 标签
+
+Git 使用的标签有两种类型：轻量级的（lightweight）和含附注的（annotated）。
+轻量级标签就像是个不会变化的分支，实际上它就是个指向特定提交对象的引用。
+
+
+# 查看标签信息
+$ git show v1.4
+
+
+# 找到历史提交的commit id
+git log --pretty=oneline --abbrev-commit
+
+
+# 比方说要对add merge这次提交打标签，它对应的commit id是6224937，敲入命令：
+$ git tag v0.9 6224937
+
+
+# 创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+$ git tag -a v0.1 -m "version 0.1 released" 3628164
+
+
+# 用特定的搜索模式列出符合条件的标签
+$ git tag -l 'v1.4.2.*'
+v1.4.2.1
+v1.4.2.2
+v1.4.2.3
+v1.4.2.4
+
+
+# 分享标签
+默认情况下，git push 并不会把标签传送到远端服务器上，只有通过显式命令才能分享标签到远端仓库。
+其命令格式如同推送分支，运行 git push origin [tagname] 
+$ git push origin v1.5
+
+如果要一次推送所有本地新增的标签上去，可以使用 --tags 选项：
+$ git push origin --tags
+
+# 删除本地tag
+
+    git tag -d tag_name
+
+# 删除远程tag
+
+    git push origin --delete tag tag_name
+
+
+
