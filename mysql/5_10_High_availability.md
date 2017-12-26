@@ -63,7 +63,8 @@ MMM(Multi-Master Replication Manager)
         MMM监控服务器
 
     MMM 部署所需资源有哪些
-
+```
 ![MMM 资源](http://7sbqvw.com1.z0.glb.clouddn.com/github/mysql/github_mysql_mmm_setup_env.jpg)
-
+```
+继续
 ```
