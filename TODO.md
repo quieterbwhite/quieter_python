@@ -10,8 +10,6 @@ git@github.com:junglelord/spider-course-2.git
 RTX 安装说明
 ```
 
-![mole](https://github.com/linwh8/ModernWebPrograming/raw/master/My_image/puzzle.png)
-
 ## BOOK
 ```
 高可用架构
