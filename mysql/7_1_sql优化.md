@@ -122,7 +122,79 @@ mysql 依照这个执行计划和存储引擎进行交互
     查看每一个查询所消耗的总时间的信息
 
     show profile for query N;
-    查询每个阶段所消耗的时间
+    查询某个阶段所消耗的时间
+
+    show warnings;
+
+使用 performance_schema, since v5.5
+
+    // 启动监控项
+    UPDATE `setup_instruments` SET enabled='YES', TIMED='YES' WHERE NAME LIKE 'stage%';
+
+    UPDATE `setup_consumers` SET enabled='YES' WHERE NAME LIKE 'events%';
+
+    开启 performance_schema 是全局有效的
+
+    // 没写出来，需要再到网上去找
+    一条语句可以查询执行中各个阶段所消耗的时间
+```
+
+## 特定sql的查询优化
+```
+如何获取一个存在性能问题的sql
+
+如何度量一个SQL在执行的各个阶段所消耗的时间
+
+接下来就该优化SQL语句了
+
+大表的数据修改最好分批进行
+    1000万行数据的表中删除/更新100万行记录一次只删除/更新5000行记录
+    暂停几秒(给主从复制一定时间)
+
+如何修改大表的结构
+    对表中的列的字段类型进行修改
+    改变字段的宽度时还是会锁表
+    无法解决主从数据库延迟的问题
+
+    // mysql shell 下直接执行修改
+    alter table sbtest4 modify c varchar(150) not null default '';
+
+    // 专业工具修改 大表结构
+    pt-online-schema-change \
+    --alter="MODIFY c VARCHAR(150) NOT NULL DEFAULT ''" \
+    --user=root --password=Password D=imooc,t=sbtest4 \
+    --charset=utf8 --execute
+
+    所做的事情就是建立新表，拷贝旧表数据到新表，删除旧表，重命名新表
+
+如何优化 not in 和 <> 查询
+
+    // 原始语句
+    select customer_id, first_name, last_name, email from customer
+    where customer_id not in (select customer_id from payment) // payment 表会被多次查询
+
+    // 改写
+    select a.customer_id, a.first_name, a.last_name, a.email from customer a
+    LEFT JOIN payment b ON a.customer_id = b.customer_id
+    WHERE b.customer_id IS NULL
+
+使用汇总表优化查询
+
+    select count(*) from product_comment where product_id = 99;
+
+    汇总表就是提前把要统计的数据进行汇总并记录到表中以备后续查询使用
+
+    // 建立汇总表
+    create table product_comment_cnt(product_id INT, cnt INT);
+    // 每天凌晨统计前一天的数据存储到表中
+
+    // 前面所有的加上当天的评论数
+    select sum(cnt) from (
+        select cnt from product_comment_cnt where product_id=99
+        uniont all 
+        select count(*) from product_comment where product_id = 99
+        and timestr > DATE(NOW())
+    ) a
 
 ```
 
