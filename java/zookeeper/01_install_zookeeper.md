@@ -1,10 +1,15 @@
-# -*- coding=utf-8 -*-
-# Created Time: 2017年08月05日 星期六 19时53分22秒
-# File Name: zookeeper.py
+# Zookeeper 安装
+>Created Time: 2017年08月05日 星期六 19时53分22秒
 
+## Ubuntu apt 安装
+```
+$ sudo apt install zookeeperd
 
-Keeper 服务注册中心
+$ service zookeeper status
+```
 
+## 源码安装
+```
 ZooKeeper 是一个分布式的，开放源码的分布式应用程序协调服务。
 它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。
 
@@ -30,3 +35,5 @@ zoo.cfg 代码如下（自己指定 log 文件目录）：
 
     cd zookeeper-3.3.6/bin
     ./zkServer.sh start
+
+```
