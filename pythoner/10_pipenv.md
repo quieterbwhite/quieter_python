@@ -1,9 +1,9 @@
 # Pipenv & 虚拟环境¶
-> https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html
-> https://pipenv.readthedocs.io/en/latest/
-> https://sikaixing.com/2017/06/03/pipenv_intro/
-> https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv
-> https://python.freelycode.com/contribution/detail/682
+> https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html  
+> https://pipenv.readthedocs.io/en/latest/  
+> https://sikaixing.com/2017/06/03/pipenv_intro/  
+> https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv  
+> https://python.freelycode.com/contribution/detail/682  
 
 ![pipenv](http://7sbqvw.com1.z0.glb.clouddn.com/github/python/pipenv.jpg)
 
