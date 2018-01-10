@@ -23,3 +23,5 @@ https://github.com/python-excel
 Creating Excel files with Python and XlsxWriter
 https://xlsxwriter.readthedocs.io/
 ```
+
+[openpyxl python lib to read and write excel](https://einverne.github.io/post/2017/07/openpyxl-python-lib-to-read-and-write-excel.html)
