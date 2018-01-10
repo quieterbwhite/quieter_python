@@ -19,4 +19,8 @@ https://item.jd.com/12195481.html?dist=jd
 https://item.jd.com/12153914.html#crumb-wrap
 
 mysql pdf
+
+* linux shell sock5 proxychain
+
+* 油猴脚本 
 ```

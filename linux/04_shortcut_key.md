@@ -3,7 +3,7 @@
 
 ## chrome 快捷键
 ```
-快捷键	作用
+快捷键	        作用
 Alt + Left	back current page
 Alt + Right	Forward current page
 Ctrl + H	在新标签页打开历史记录
@@ -37,4 +37,18 @@ t	新建标签页
 x	关闭当前标签页
 b	弹出 vomnibar 来打开收藏夹中的网址
 o	打开收藏夹，历史记录中的地址
+```
+
+## Shell
+```
+TRL-B  左移光标
+CTRL-F 右移光标
+CTRL-P 查看上一条命令(或上移光标)
+CTRL-N 查看下一条命令(或下移光标)
+CTRL-A 移动光标至行首
+CTRL-E 移动光标至行尾
+CTRL-W 删除前一个词
+CTRL-U 删除从光标至行首的内容
+CTRL-K 删除从光标至行尾的内容
+CTRL-Y 粘贴已删除的文本(例如粘贴CTRL-U所删除的内容)
 ```
