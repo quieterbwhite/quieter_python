@@ -25,3 +25,5 @@ https://xlsxwriter.readthedocs.io/
 ```
 
 [openpyxl python lib to read and write excel](https://einverne.github.io/post/2017/07/openpyxl-python-lib-to-read-and-write-excel.html)
+
+[用python处理csv文件](https://blog.qikqiak.com/post/python-process-csv-file/)

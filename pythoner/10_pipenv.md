@@ -4,6 +4,7 @@
 > https://sikaixing.com/2017/06/03/pipenv_intro/  
 > https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv  
 > https://python.freelycode.com/contribution/detail/682  
+> http://crazygit.wiseturtles.com/2018/01/08/pipenv-tour/  
 
 ![pipenv](http://7sbqvw.com1.z0.glb.clouddn.com/github/python/pipenv.jpg)
 
