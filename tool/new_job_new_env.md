@@ -51,6 +51,12 @@ robomongo
 
 redis
 
+typora
+
+vlc
+
+坚果云
+
 网易云音乐
 http://music.163.com/#/download
 
@@ -59,6 +65,9 @@ http://www.lovebizhi.com/linux.html
 
 有道词典
 http://cidian.youdao.com/index-linux.html
+
+上面这些deb包安装的时候如果报错没有依赖，解决方法: sudo apt-get install -f
+因为deb包安装不会自动解决依赖
 
 梧桐那时雨
 http://blog.csdn.net/fuchaosz/article/details/51882935
