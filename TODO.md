@@ -7,7 +7,6 @@ git@github.com:junglelord/spider-course-2.git
 
 ## 安装说明
 ```
-RTX 安装说明
 ```
 
 ## BOOK
@@ -22,5 +21,4 @@ mysql pdf
 
 * linux shell sock5 proxychain
 
-* 油猴脚本 
 ```
