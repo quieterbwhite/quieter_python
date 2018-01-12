@@ -48,6 +48,18 @@ mongodb
 robomongo
 
 redis
+
+网易云音乐
+http://music.163.com/#/download
+
+爱壁纸
+http://www.lovebizhi.com/linux.html
+
+有道词典
+http://cidian.youdao.com/index-linux.html
+
+梧桐那时雨
+http://blog.csdn.net/fuchaosz/article/details/51882935
 ```
 
 ## pip install
@@ -56,4 +68,15 @@ redis
 mysqlclient
 
 jwt
+```
+
+## other
+```
+Deluge BitTorrent Client
+
+aMule
+
+transmission-gtk
+
+uget-gtk
 ```
