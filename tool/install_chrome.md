@@ -1,5 +1,5 @@
 # Ubuntu 16.04 install chrome
-
+> https://stackoverflow.com/questions/36825082/cannot-install-chrome-on-ubuntu-16-04  
 Update the packages first in Ubuntu by below command.  
 ```
 ~$ sudo apt-get update
