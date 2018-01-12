@@ -63,5 +63,11 @@ build.gradle 解释:
 
     如, 需要找 netty 的 gradle 描述。搜索 netty-all, 然后找需要的版本就行。
 
+约定优于配置:
 
+    项目根目录下新建 src 目录。
+
+        ./netty_lecture/src/main/
+                                /java       # 源代码目录
+                                /resources  # 资源目录
 ```
