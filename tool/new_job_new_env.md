@@ -35,6 +35,8 @@ sogoupinyin
 
 zookeeper
 
+zookeeperd
+
 intellij idea
 
 vscode
@@ -79,4 +81,6 @@ aMule
 transmission-gtk
 
 uget-gtk
+
+you-get
 ```
