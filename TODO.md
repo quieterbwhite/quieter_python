@@ -19,6 +19,4 @@ https://item.jd.com/12153914.html#crumb-wrap
 
 mysql pdf
 
-* linux shell sock5 proxychain
-
 ```

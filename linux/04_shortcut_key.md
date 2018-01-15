@@ -52,3 +52,35 @@ CTRL-U 删除从光标至行首的内容
 CTRL-K 删除从光标至行尾的内容
 CTRL-Y 粘贴已删除的文本(例如粘贴CTRL-U所删除的内容)
 ```
+
+## Intellij IDEA
+```
+复制当前行  Ctrl + d
+
+删除当前行  Ctrl + y     Ctrl + x
+
+撤销            Ctrl + z
+
+上/下移一行 Alt+Shift+Up/Down
+
+类结构图      Ctrl+H
+
+打开/隐藏 project 视图  Alt + 1
+
+方法间移动  Alt+Up/Down
+
+高亮文本，按 Esc 消失  Ctrl+Shift+F7
+
+选中一个文本按 F3 可以逐个查找
+
+向下插入新行    Shift+Enter
+
+全局查找           Shift+Shift
+
+定位行              Ctrl + g
+
+按单词删除       Ctrl+Backspace
+
+当前方法展开、折叠    Ctrl +  +/-
+全部展开、折叠           Ctrl+Shift + +/-
+```
