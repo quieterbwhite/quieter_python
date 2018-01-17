@@ -147,13 +147,19 @@ source .bashrc
 
 vim .bashrc
 
-PROTOC_HOME=/home/bwhite/software/protoc-3.3.0-linux-x86_64/bin
-PATH=$PROTOC_HOME:$PATH
+PROTOC_HOME=/home/bwhite/software/protoc-3.3.0-linux-x86_64
+PATH=$PROTOC_HOME/bin:$PATH
 
 :wq
 source .bashrc
 which protoc
 
-还得下载语言对应的包 protobuf-java-3.3.0.zip
+可以下载语言对应的包 protobuf-java-3.3.0.zip
+
+还要通过 maven/gradle 安装对应语言的工具包 Installation - With Maven
+search.maven.org
+    search for: 
+	protobuf-java
+	protobuf-java-util
 ```
 

@@ -31,6 +31,8 @@ pycharm
 
 jdk
 
+sublime
+
 sogoupinyin
 
 zookeeper
