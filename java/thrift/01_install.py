@@ -14,17 +14,27 @@ ref:
 """
 
 """
+ubuntu直接安装，就是版本不是最新的,基本没用
+
+    sudo apt-get install thrift-compiler
+"""
+
+"""
 1. 首先安装依赖项：
 
-    sudo apt-get install automake bison flex g++ git libboost1.55-all-dev libevent-dev libssl-dev libtool make pkg-config
+    sudo apt-get install automake bison flex g++ git libboost1.58-all-dev libevent-dev libssl-dev libtool make pkg-config
 
     sudo apt-get install python-dev python3-dev
+
+    sudo apt-get install openjdk-8-jdk-headless ant
+
+    如果系统版本较高，则需安装更高版本依赖库，如Ubuntu 16.04.2，就需要libboost1.58-all-dev及最低JDK8
 
 2.将thrift安装包下载下来，并解压安装
 
     tar -zxvf thrift-0.10.0.tar.gz
     cd thrift-0.10.0/
-    ./configure     // ./configure --prefix=/usr/local/thrift
+    ./configure
     sudo make
     sudo make install
 
