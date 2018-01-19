@@ -47,6 +47,12 @@ bwhite@os:~/software/thrift-0.10.0$
 thrift -version
 
 
+## 安装语言依赖
+
+    python - sudo pip3 install thrift
+    java - gradle
+
+
 可能出现的问题
 当执行thrift -version的时候可能出现如下错误：
 
