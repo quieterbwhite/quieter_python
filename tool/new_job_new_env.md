@@ -9,15 +9,17 @@
 
     https://wiki.ubuntu.com.cn/%E6%BA%90%E5%88%97%E8%A1%A8
 
+    apt edit-sources
+
 2. 更新系统
 
-    sudo apt-get update
+    sudo apt update
 
-    sudo apt-get upgrade
+    sudo apt upgrade
 
 3. 安装系统软件
 
-    sudo apt-get install build-essential dpkg-dev python-dev python3-dev python-pip python3-pip nginx supervisor terminator vim git mysql-server mysql-client libmysqlclient-dev openssl libssl-dev
+    sudo apt install build-essential dpkg-dev python-dev python3-dev python-pip python3-pip nginx supervisor terminator vim git redis-server mysql-server mysql-client libmysqlclient-dev openssl libssl-dev zookeeperd docker.io
 ```
 
 ## 其他软件
@@ -37,8 +39,6 @@ sogoupinyin
 
 zookeeper
 
-zookeeperd
-
 intellij idea
 
 vscode
@@ -50,8 +50,6 @@ mysql workbench
 mongodb
 
 robomongo
-
-redis
 
 typora
 
@@ -78,9 +76,13 @@ http://blog.csdn.net/fuchaosz/article/details/51882935
 ## pip install
 
 ```
+pipenv
+
 mysqlclient
 
-jwt
+Pillow
+
+PyJWT
 ```
 
 ## other
