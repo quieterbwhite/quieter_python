@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>dolphinx</title>
+    <style>
+        html, body, #app {
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        首先介绍一些浮动模型的基本知识：浮动模型也是一种可视化格式模型，浮动的框可以左右移动（根据float属性值而定），
+        直到它的外边缘碰到包含框或者另一个浮动元素的框的边缘。浮动元素不在文档的普通流中，
+        文档的普通流中的元素表现的就像浮动元素不存在一样.《CSS Mastery》里作者画了几个图非常有意思，可以帮助我们理解浮动的表现，
+        我简单的画几个。
+    -->
+    <div style="border: solid 5px #0e0; width:300px;">
+        <div style="height: 100px; width: 100px; background-color: Red;">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Green; ">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Yellow;">
+        </div>
+    </div>
+</body>
+
+</html>

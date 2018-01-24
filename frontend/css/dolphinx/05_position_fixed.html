@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>dolphinx - position - normal</title>
+    <style>
+        html, body, #app {
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        最后要说的就是fixed属性了，应用fixed也叫固定定位，固定定位是绝对定位的中，固定定位的元素也不包含在普通文档流中，
+        差异是苦丁元素的包含块儿是视口（viewport），经常见一些页面的如人人网看在线好友那个模块总在窗口右下角，
+        估计用的是类似技术
+        可见hongse和黄色div布局没有受到绿色div影响，而无论是页面纵向滚动条在页面顶端还是底端，绿色div总是在视口左下角
+    -->
+    <div style="border: solid 1px #0e0; width:200px;">
+        <div style="height: 100px; width: 100px; background-color: Red;">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Green; position:fixed; bottom:20px; left:20px;">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Yellow;">
+        </div>
+    </div>
+</body>
+
+</html>

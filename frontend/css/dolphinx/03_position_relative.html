@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>dolphinx - position - normal</title>
+    <style>
+        html,
+        body,
+        #app {
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        相对定位比较简单，对应position属性的relative值，如果对一个元素进行相对定位，它将出现在他所在的位置上，
+        然后可以通过设置垂直或水平位置，让这个元素相对于它自己移动，在使用相对定位时，无论元素是否移动，元素在文档流中占据原来空间，
+        只是表现会改变。
+    -->
+    <div style="border: solid 1px #0e0; width:200px;">
+        <div style="height: 100px; width: 100px; background-color: Red;">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Green; position:relative; top:20px; left:20px;">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Red;">
+        </div>
+    </div>
+</body>
+
+</html>

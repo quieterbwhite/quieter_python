@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>dolphinx - position - normal</title>
+    <style>
+        html, body, #app {
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        相对定位可以看作特殊的普通流定位，元素位置是相对于他在普通流中位置发生变化，而绝对定位使元素的位置与文档流无关，也不占据文档流空间，普通流中的元素布局就像绝对定位元素不存在一样。
+
+        绝对定位的元素的位置是相对于距离他最近的非static祖先元素位置决定的。如果元素没有已定位的祖先元素，那么他的位置就相对于初始包含块儿（body或html神马的）元素。
+
+        因为绝对定位与文档流无关，所以绝对定位的元素可以覆盖页面上的其他元素，可以通过z-index属性控制叠放顺序，z-index越高，元素位置越靠上。
+
+        还是刚才的例子，稍微改动一下，让绿色div绝对定位，为了清晰显示，第二个红色div改为黄色。
+
+        这时可以看出，绿色div是相对于父元素，也就是绿框div进行的移位，而红色和黄色div进行布局时就像绿色div不存在一样。
+    -->
+    <div style="border: solid 1px #0e0; width:200px; position:relative;">
+        <div style="height: 100px; width: 100px; background-color: Red;">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Green; position:absolute; top:20px; left:20px;">
+        </div>
+        <div style="height: 100px; width: 100px; background-color: Yellow;">
+        </div>
+    </div>
+</body>
+
+</html>

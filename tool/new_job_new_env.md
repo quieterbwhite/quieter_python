@@ -33,6 +33,8 @@ pycharm
 
 jdk
 
+node
+
 sublime
 
 sogoupinyin
@@ -71,6 +73,9 @@ http://cidian.youdao.com/index-linux.html
 
 梧桐那时雨
 http://blog.csdn.net/fuchaosz/article/details/51882935
+
+rundeck   -   后台任务
+    http://tech.oyster.com/rundeck-vs-crontab-why-rundeck-won/
 ```
 
 ## pip install

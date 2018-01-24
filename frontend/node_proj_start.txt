@@ -1,0 +1,26 @@
+1. 初始化项目
+
+	vue init <template-name> <project-name>
+
+	如：
+		$ vue init webpack eyefota
+
+		? Project name eyefota
+		? Project description A Vue.js project
+		? Author libo <libo@idealsee.cn>
+		? Vue build standalone
+		? Install vue-router? Yes
+		? Use ESLint to lint your code? No
+		? Setup unit tests with Karma + Mocha? No
+		? Setup e2e tests with Nightwatch? No
+
+		   vue-cli · Generated "eyefota".
+
+		   To get started:
+		   
+		     cd eyefota
+		     npm install
+		     npm run dev
+		   
+		   Documentation can be found at https://vuejs-templates.github.io/webpack
+
