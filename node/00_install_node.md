@@ -1,8 +1,11 @@
-1. 安装最新版　node
+# 安装最新版　node
 
-	http://nodejs.cn/download/
+```
+http://nodejs.cn/download/  
 
 2. 安装淘宝 npm 镜像
+
+    https://npm.taobao.org/
 
 	npm install -g cnpm --registry=https://registry.npm.taobao.org
 
@@ -27,3 +30,4 @@
 
 	npm install axios --save
 
+```

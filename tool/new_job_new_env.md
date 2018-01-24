@@ -76,6 +76,8 @@ http://blog.csdn.net/fuchaosz/article/details/51882935
 
 rundeck   -   后台任务
     http://tech.oyster.com/rundeck-vs-crontab-why-rundeck-won/
+
+crontab-ui
 ```
 
 ## pip install
@@ -88,6 +90,8 @@ mysqlclient
 Pillow
 
 PyJWT
+
+apscheduler
 ```
 
 ## other
