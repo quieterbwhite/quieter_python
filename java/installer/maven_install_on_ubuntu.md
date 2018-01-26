@@ -22,6 +22,13 @@ Alternatively use your preferred archive extraction tool.
 Add the bin directory of the created directory apache-maven-3.5.0 to the PATH environment variable
 ```
 
+## env
+```
+$ more /etc/environment 
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/bwhite/software/node-v8.1.
+3-linux-x64/bin:/home/bwhite/software/apache-maven-3.5.0/bin"
+```
+
 Confirm with mvn -v in a new shell. The result should look similar to
 ```
 Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T04:57:37-07:00)
