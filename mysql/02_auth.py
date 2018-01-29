@@ -1,31 +1,43 @@
-# -*- coding=utf-8 -*-
-# Created Time: 2016年02月13日 星期六 11时40分24秒
-# File Name: 01_auth.py
+# Mysql 安装 及 权限管理
 
-'''
-Mysql 安装 及 权限管理
-'''
+## 修改用户名密码
+```
+格式：mysqladmin -u用户名 -p旧密码 password 新密码
 
-'''
-1. Install mysql
+命令行修改root密码：
+    mysql> UPDATE mysql.user SET password=PASSWORD(’新密码’) WHERE User=’root’;
+    mysql> FLUSH PRIVILEGES;
+
+显示当前的user：
+    mysql> SELECT USER();
+```
+
+## Install mysql
+```
 apt-get update
+
 apt-get install mysql-server
+
 Now we’ll instruct MySQL to create its database directory structure: mysql_install_db
+
 And now let’s secure MySQL by removing the test databases and anonymous user created by default: mysql_secure_installation
+
 Then, assuming you set a strong root password, go ahead and enter n at the following prompt:
-Change the root password? [Y/n] n
-Remove anonymous users, Y:
-Remove anonymous users? [Y/n] Y
-Disallow root logins remotely, Y:
-Disallow root login remotely? [Y/n] Y
-Remove test database and access to it, Y:
-Remove test database and access to it? [Y/n] Y
-And reload privilege tables, Y:
-Reload privilege tables now? [Y/n] Y
+
+    Change the root password? [Y/n] n
+    Remove anonymous users, Y:
+    Remove anonymous users? [Y/n] Y
+    Disallow root logins remotely, Y:
+    Disallow root login remotely? [Y/n] Y
+    Remove test database and access to it, Y:
+    Remove test database and access to it? [Y/n] Y
+    And reload privilege tables, Y:
+    Reload privilege tables now? [Y/n] Y
 
 You can check the version of the MySQL installation with the following command:  mysql -V
 
 mysql>
+
 Exit the command line with the following command:  exit
 To stop MySQL:  service mysql stop
 To start MySQL:  service mysql start
@@ -72,5 +84,4 @@ FLUSH   PRIVILEGES;
 如果你想允许用户myuser从ip为192.168.1.6的主机连接到mysql服务器的dk数据库，并使用mypassword作为密码
 GRANT ALL PRIVILEGES ON dk.* TO 'myuser'@'192.168.1.3' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
 FLUSH   PRIVILEGES;
-
-'''
+```
