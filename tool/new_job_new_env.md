@@ -35,6 +35,8 @@ jdk
 
 node
 
+postman
+
 sublime
 
 sogoupinyin
