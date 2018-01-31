@@ -21,8 +21,6 @@ mysql pdf
 
 ```
 
-```sequence
 Alice->Bob: Hello Bob, how are you?
 Note right of Bog: Bob thinks
 Bob-->Alice: I am good thanks!
-```
