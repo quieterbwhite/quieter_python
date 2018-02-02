@@ -1,4 +1,4 @@
-# nginx+django实现下载文件自动定位并重命名
+# nginx+django 下载文件
 > http://www.dannysite.com/blog/103/  
 
 实现访问同一地址，鉴权，通过Nginx下载指定文件  
