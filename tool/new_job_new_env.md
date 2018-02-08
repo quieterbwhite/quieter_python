@@ -43,6 +43,8 @@ sogoupinyin
 
 zookeeper
 
+kafka
+
 intellij idea
 
 vscode
@@ -83,8 +85,9 @@ crontab-ui
 ```
 
 ## pip install
-
 ```
+arrow   时间处理
+
 pipenv
 
 mysqlclient
@@ -94,6 +97,8 @@ Pillow
 PyJWT
 
 apscheduler
+
+python-hwinfo  python 获取硬件信息
 ```
 
 ## other
