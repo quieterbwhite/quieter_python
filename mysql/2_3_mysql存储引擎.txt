@@ -28,6 +28,9 @@ mysql 常用存储引擎之 MyISAM
     myisam: 系统表，临时表
         这里的临时表是指，在排序，分组等操作中，当数量超过一定的大小之后，由查询优化器建立的临时表
 
+    MyISAM 不支持行级锁，换句话说，MyISAM 会对整张表加锁，而不是针对行。
+    同时，MyISAM 不支持事务和外键。MyISAM 可被压缩，存储空间较小，而且 MyISAM 在筛选大量数据时非常快。
+
     myisam 存储引擎表有MYD(数据文件)和MYI(索引文件)组成。
     myIsam.frm 记录表结构
     myIsam.MYD
@@ -66,6 +69,11 @@ mysql 常用存储引擎之 MyISAM
         空间类应用
 
 mysql 常用存储引擎之 Innodb
+
+    InnoDB 是事务型引擎，当事务异常提交时，会被回滚。
+    同时，InnoDB 支持行锁。
+    此外，InnoDB 需要更多存储空间，会在内存中建立其专用的缓冲池用于高速缓冲数据和索引。
+    InnoDB 支持自动奔溃恢复特性。
 
     mysql5.5及之后的版本默认存储引擎
 
@@ -265,7 +273,16 @@ mysql 常用存储引擎之 Federated
     * 不要混合适用存储引擎
 
 
+InnoDB 与 MyISAM 的主要区别
 
+    方面            MyISAM  InnoDB
 
-    
+    事务            不支持  支持
+    外键            不支持  支持
+    行级锁          不支持  支持
+    自动奔溃恢复    不支持  支持
+
+对于如何选择 InnoDB 与 MyISAM 存储引擎，我的建议：
+
+    一般情况下，应该优先选择 InnoDB 存储引擎，并且尽量不要将 InnoDB 与 MyISAM 混合使用。    
 

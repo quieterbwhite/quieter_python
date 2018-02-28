@@ -1,3 +1,12 @@
+# Mysql url
+
+```
 1. create db with utf8mb4
 
-	www.xiaotanzhu.com/2016/08/14/create-mysql-database-with-utf8mb4.html
+    www.xiaotanzhu.com/2016/08/14/create-mysql-database-with-utf8mb4.html
+
+2. 服务端指南 数据存储篇 | MySQL
+
+    http://blog.720ui.com/2017/mysql_core_01_data_type/
+
+```
