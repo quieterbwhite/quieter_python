@@ -49,9 +49,7 @@ intellij idea
 
 vscode
 
-mysql
-
-mysql workbench
+mysql-workbench
 
 mongodb
 

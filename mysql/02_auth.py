@@ -1,87 +1,88 @@
-# Mysql 安装 及 权限管理
+# Mysql 权限管理
+> http://blog.720ui.com/2017/mysql_core_06_security/  数据库安全性
+
+```
+MySQL 权限控制，分为两个步骤。
+
+第一步骤
+
+    服务器会检查是否允许连接。
+    因为创建用户的时候会加上主机限制，可以限制成本地、某个 IP、某个 IP 段等，只允许从配置的指定地方登录。
+
+第二步骤
+
+    如果允许连接，那么 MySQL 会检查发出的每个请求是否有足够的权限执行。
+    举个例子，假设需要删除某个表，MySQL 会检查是否对这个表有删除操作权限。
+
+MySQL 为了数据库的安全性，设置了对数据的存取进行控制的语句，对用户授权使用 GRANT 语句，收回所授的权限使用 REVOKE 语句。
+```
+
+## GRANT 授予用户权限
+```
+授予用户权限，简单格式可概括如下。
+
+    GRANT <权限>
+
+    ON <数据库对象>
+
+    TO <用户>
+
+假设，需要让普通 DBA 管理某个数据库的权限，可以授予这个数据库的所有权限。
+
+    grant select, insert, update, delete on db_name.* to 'dba'@'localhost'
+
+假设，需要让高级 DBA 管理某个数据库的权限，可以授予这个数据库的所有权限。
+
+    grant all on db_name.* to 'dba'@'localhost';
+
+假设，需要让超级管理员管理所有数据库的权限。
+
+    grant all on *.* to 'dba'@'localhost';
+
+假设，需要让超级管理员管理所有数据库的权限，赋予远程权限。
+
+    grant all on *.* to 'dba'@'192.168.244.142' identified by 'mypassword' with grant option;
+```
+
+## REVOKE 收回用户权限
+```
+回收用户权限，和授予用户权限类似，只需要把关键字 to 改成 from 即可。
+
+    REVOKE <权限>
+
+    ON <数据库对象>
+
+    FROM <用户>
+
+假设，需要收回普通 DBA 某个数据库的删除权限。
+
+    revoke delete on db_name.* from 'dba'@'localhost';
+```
+
+## 数据库安全原则
+```
+对于数据库安全问题，需要遵守几个原则：
+
+    遵守最小特权，授予所需要的最小权限。
+    如果用户只需要查询权限，就不要额外授予新增、更新、删除权限，这样可以防止用户干坏事。
+
+    需要定期回收权限或者删除无用用户。
+
+    创建用户的时候限制用户的登录主机，例如限制指定 IP 或内网 IP 网段。
+```
 
 ## 修改用户名密码
 ```
 格式：mysqladmin -u用户名 -p旧密码 password 新密码
 
 命令行修改root密码：
+
     mysql> UPDATE mysql.user SET password=PASSWORD(’新密码’) WHERE User=’root’;
+
     mysql> FLUSH PRIVILEGES;
 
 显示当前的user：
+
     mysql> SELECT USER();
 ```
 
-## Install mysql
-```
-apt-get update
-
-apt-get install mysql-server
-
-Now we’ll instruct MySQL to create its database directory structure: mysql_install_db
-
-And now let’s secure MySQL by removing the test databases and anonymous user created by default: mysql_secure_installation
-
-Then, assuming you set a strong root password, go ahead and enter n at the following prompt:
-
-    Change the root password? [Y/n] n
-    Remove anonymous users, Y:
-    Remove anonymous users? [Y/n] Y
-    Disallow root logins remotely, Y:
-    Disallow root login remotely? [Y/n] Y
-    Remove test database and access to it, Y:
-    Remove test database and access to it? [Y/n] Y
-    And reload privilege tables, Y:
-    Reload privilege tables now? [Y/n] Y
-
-You can check the version of the MySQL installation with the following command:  mysql -V
-
-mysql>
-
-Exit the command line with the following command:  exit
-To stop MySQL:  service mysql stop
-To start MySQL:  service mysql start
-To check the status of MySQL:  service mysql status
-To restart MySQL:  service mysql restart
-
-安装 Mysql workbench: sudo apt-get install mysql-workbench
-
-服务器连接错误Host 'XXX' is not allowed to connect to this MySQL server:
-
-本地计算机ip：192.168.1.100
-远程计算机ip：192.168.1.244
- 远程计算机打开 mysql 服务器：#/etc/init.d/mysql.server start
-   本地计算机连接远程 mysql服务器：./mysql -h "192.168.1.244" -u root -p
-   发生以下错误：
-   ERROR 1130 (HY000): Host '192.168.1.100' is not allowed to connect to this MySQL server
-
-出现这种情况是因为mysql服务器出于安全考虑，默认只允许本地登录数据库服务器。
-解决方法：
-1，远程计算机(ip:192.168.1.244)执行如下：
-   开启服务器：/etc/init.d/mysql.server start
-   登陆服务器：bin/mysql -u root -p
-   使用服务器：mysql> use mysql
-   创建远程登陆用户并授权 :
-   mysql> grant all PRIVILEGES on test.* to andy@'192.168.1.100' identified by '123456';
-上面的语句表示将 test 数据库的所有权限授权给 andy 这个用户，允许 andy 用户在 192.168.1.100这个 IP 进行远程登陆，并设置 andy 用户的密码为 123456 。
-下面逐一分析所有的参数：
-all PRIVILEGES 表示赋予所有的权限给指定用户，这里也可以替换为赋予某一具体的权限，例如：select,insert,update,delete,create,drop 等，具体权限间用“,”半角逗号分隔。
-test.* 表示上面的权限是针对于哪个表的，test 指的是数据库，后面的 * 表示对于所有的表，由此可以推理出：对于全部数据库的全部表授权为“*.*”，对于某一数据库的全部表授权为“数据库名.*”，对于某一数据库的某一表授权为“数据库名.表名”。
-andy 表示你要给哪个用户授权，这个用户可以是存在的用户，也可以是不存在的用户
-192.168.1.100 表示允许远程连接的 IP 地址，如果想不限制链接的 IP 则设置为“%”即可
-123456 为用户的密码
-执行了上面的语句后，再执行下面的语句，方可立即生效。
-    > flush privileges;
-2，本地计算机(ip:192.168.1.100)：
-   执行如下：./mysql -h 192.168.1.244 -u andy -p 123456
-
-例如，你想myuser使用mypassword从任何主机连接到mysql服务器的话。
-GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
-FLUSH   PRIVILEGES;
-如果你想允许用户myuser从ip为192.168.1.6的主机连接到mysql服务器，并使用mypassword作为密码
-GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'192.168.1.3' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
-FLUSH   PRIVILEGES;
-如果你想允许用户myuser从ip为192.168.1.6的主机连接到mysql服务器的dk数据库，并使用mypassword作为密码
-GRANT ALL PRIVILEGES ON dk.* TO 'myuser'@'192.168.1.3' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
-FLUSH   PRIVILEGES;
-```
