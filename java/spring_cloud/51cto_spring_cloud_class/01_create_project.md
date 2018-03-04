@@ -22,10 +22,18 @@ second:
 
 导入项目到 idea
 
-新建 schema.sql data.sql 到 resources 目录下
+创建服务提供者:
 
-创建实体 User
+    新建 schema.sql data.sql 到 resources 目录下
+
+    创建实体 User
+
+创建服务消费者:
+
+    pass
 ```
+
+## 服务提供者
 
 ## 创建 schema.sql 建表语句
 ```sql
@@ -134,3 +142,5 @@ public class MicroserviceSimpleProviderUserApplication {
     }
 }
 ```
+
+## 服务消费者
