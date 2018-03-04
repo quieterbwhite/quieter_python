@@ -1,0 +1,1 @@
+# Spring cloud microservice consumer test
