@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class MicroserviceSimpleConsumerMovieApplication {
 
+	// 方法名称作为实例化后Bean的名称
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
