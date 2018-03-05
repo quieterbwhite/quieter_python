@@ -3,6 +3,7 @@
 > https://blog.tonyseek.com/post/notes-about-ioc-and-di/  
 > https://www.reddit.com/r/Python/comments/3xtcmg/inversion_of_control_dependency_injection_in/  
 > https://lostechies.com/ryansvihla/2009/11/16/i-recant-my-ioc-ioc-containers-in-dynamic-languages-are-silly/  
+> https://news.ycombinator.com/item?id=2200722  
 
 ## Why is IoC / DI not common in Python?
 ```
