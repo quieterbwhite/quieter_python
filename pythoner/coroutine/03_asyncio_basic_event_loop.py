@@ -3,6 +3,8 @@
 # File Name: 03_asyncio_basic_event_loop.py
 
 """
+https://zhuanlan.zhihu.com/p/25228075
+
 当事件循环开始运行时，它会在Task中寻找coroutine来执行调度，
 因为事件循环注册了print_sum()，因此print_sum()被调用，
 执行result = await compute(x, y)这条语句（等同于result = yield from compute(x, y)），
