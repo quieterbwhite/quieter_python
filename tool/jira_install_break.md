@@ -1,5 +1,6 @@
 # Jira安装破解
 > https://www.jianshu.com/p/0da8a0a615da  
+> https://www.jianshu.com/p/52656bbc1757  Confluence安装破解  
 
 ## 环境
 ```
