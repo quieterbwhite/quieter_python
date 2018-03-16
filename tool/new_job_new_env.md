@@ -59,6 +59,8 @@ typora
 
 vlc
 
+krita  类似 photoshop
+
 坚果云
 
 网易云音乐

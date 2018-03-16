@@ -5,9 +5,8 @@
 git@github.com:junglelord/spider-course-2.git
 ```
 
-## 安装说明
-```
-```
+## article
+> https://segmentfault.com/a/1190000013561054  Java程序员需要突破的技术要点  
 
 ## BOOK
 ```
