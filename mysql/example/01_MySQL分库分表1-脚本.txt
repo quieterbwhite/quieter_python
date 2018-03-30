@@ -1,0 +1,325 @@
+-- ref: http://www.ttlsa.com/wp-content/uploads/2016/02/MySQL%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A81-%E8%84%9A%E6%9C%AC.txt
+-- 创建用户表-user
+DROP TABLE user;
+CREATE TABLE user(
+  user_id INT unsigned AUTO_INCREMENT COMMENT '用户ID',
+  username VARCHAR(30) NOT NULL COMMENT '用户名',
+  password VARCHAR(32) NOT NULL COMMENT '密码',
+  PRIMARY KEY(user_id),
+  UNIQUE KEY(username)
+);
+DROP PROCEDURE re_insert_user;
+DELIMITER //
+CREATE PROCEDURE re_insert_user()
+BEGIN
+  DECLARE num INT;
+  SET num=1;
+  SET sql_log_bin=0;
+  SET autocommit=0;
+  TRUNCATE TABLE user;
+  WHILE num <= 100 DO
+    INSERT INTO user
+    VALUES(NULL, CONCAT('username', num), CONCAT('password', num));
+    SET num=num+1;
+  END WHILE;
+  COMMIT;
+  SET autocommit=1;
+  SET sql_log_bin=1;
+END //
+
+DELIMITER ;
+CALL re_insert_user();
+-- 创建店铺表-store
+DROP TABLE store;
+CREATE TABLE store(
+  store_id INT unsigned AUTO_INCREMENT COMMENT '店铺ID',
+  store_name VARCHAR(30) NOT NULL COMMENT '店铺名',
+  user_id INT unsigned DEFAULT NULL COMMENT '店铺所有者ID',
+  PRIMARY KEY(store_id),
+  KEY idx$store$user_id(user_id)
+);
+TRUNCATE TABLE store;
+INSERT INTO store VALUES(NULL, CONCAT('store', 1), 1);
+INSERT INTO store VALUES(NULL, CONCAT('store', 2), 2);
+INSERT INTO store VALUES(NULL, CONCAT('store', 3), 3);
+-- 创建商品表-goods
+drop table goods;
+CREATE TABLE goods(
+  goods_id INT unsigned AUTO_INCREMENT COMMENT '商品ID',
+  goods_name VARCHAR(30) NOT NULL COMMENT '商品名',
+  price DECIMAL(11, 2) COMMENT '商品价格',
+  store_id INT unsigned COMMENT '店铺ID',
+  PRIMARY KEY(goods_id),
+  KEY idx$goods$store_id(store_id)
+);
+DROP PROCEDURE re_insert_goods;
+DELIMITER //
+CREATE PROCEDURE re_insert_goods()
+BEGIN
+  DECLARE num INT;
+  DECLARE inner_num INT;
+  SET num=1;
+  SET sql_log_bin=0;
+  SET autocommit=0;
+  TRUNCATE TABLE goods;
+  WHILE num <= 3 DO
+    SET inner_num=1;
+    WHILE inner_num <= 100 DO
+      INSERT INTO goods
+      VALUES(NULL, CONCAT('goods', inner_num), FLOOR(RAND() * 10000), num);
+      SET inner_num=inner_num+1;
+    END WHILE;
+    SET num=num+1;
+  END WHILE;
+  COMMIT;
+  SET autocommit=1;
+  SET sql_log_bin=1;
+END //
+
+DELIMITER ;
+CALL re_insert_goods();
+-- 创建导购表-user_guide
+drop table user_guide;
+CREATE TABLE user_guide(
+  user_guide_id INT unsigned AUTO_INCREMENT COMMENT '导购ID',
+  store_id INT unsigned COMMENT '店铺ID',
+  user_id INT unsigned COMMENT '用户ID',
+  PRIMARY KEY(user_guide_id),
+  KEY idx$user_guide$store_id(store_id),
+  KEY idx$user_guide$user_id(user_id)
+);
+TRUNCATE TABLE user_guide;
+INSERT INTO user_guide VALUES(NULL, 1, 1);
+INSERT INTO user_guide VALUES(NULL, 1, 4);
+INSERT INTO user_guide VALUES(NULL, 1, 5);
+INSERT INTO user_guide VALUES(NULL, 2, 2);
+INSERT INTO user_guide VALUES(NULL, 2, 6);
+INSERT INTO user_guide VALUES(NULL, 2, 7);
+INSERT INTO user_guide VALUES(NULL, 3, 3);
+INSERT INTO user_guide VALUES(NULL, 3, 8);
+INSERT INTO user_guide VALUES(NULL, 3, 9);
+-- 创建订单表-order
+drop table orders;
+CREATE TABLE orders(
+  orders_id INT unsigned AUTO_INCREMENT COMMENT '订单ID',
+  user_guide_id INT unsigned COMMENT '导购ID',
+  user_id INT unsigned COMMENT '下单用户ID',
+  price DECIMAL(11, 2) COMMENT '订单价格',
+  status TINYINT unsigned COMMENT '订单状态',
+  PRIMARY KEY(orders_id),
+  KEY idx$orders$user_guide_id(user_guide_id),
+  KEY idx$orders$user_id(user_id)
+);
+DROP PROCEDURE re_insert_orders;
+DELIMITER //
+CREATE PROCEDURE re_insert_orders()
+BEGIN
+  DECLARE num INT;
+  DECLARE inner_num INT;
+  SET num=10;
+  SET sql_log_bin=0;
+  SET autocommit=0;
+  TRUNCATE TABLE orders;
+  WHILE num <= 100 DO
+    SET inner_num=1;
+    WHILE inner_num <= 100 DO
+      INSERT INTO orders
+      VALUES(NULL, FLOOR(RAND() * 9) + 1, num, FLOOR(RAND() * 10000), 1);
+      SET inner_num=inner_num+1;
+    END WHILE;
+    SET num=num+1;
+  END WHILE;
+  
+  -- 买家id = 1
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(2, 3, 6, 7, 8, 9)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    1,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 4
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(2, 3, 6, 7, 8, 9)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    4,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 5
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(2, 3, 6, 7, 8, 9)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    5,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 2
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(1, 3, 4, 5, 8, 9)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    2,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 6
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(1, 3, 4, 5, 8, 9)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    6,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 7
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(1, 3, 4, 5, 8, 9)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    7,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 3
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(1, 2, 4, 5, 6, 7)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    3,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 8
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(1, 2, 4, 5, 6, 7)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    8,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  -- 买家id = 9
+  INSERT INTO orders
+  SELECT NULL,
+    (
+      SELECT user_guide_id
+      FROM user_guide
+      WHERE user_guide_id IN(1, 2, 4, 5, 6, 7)
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS user_guide_id,
+    9,
+    FLOOR(RAND() * 10000), 1
+  FROM user;
+  
+  COMMIT;
+  SET autocommit=1;
+  SET sql_log_bin=1;
+END //
+
+DELIMITER ;
+CALL re_insert_orders();
+
+-- 订单商品表-order_goods
+drop table order_goods;
+CREATE TABLE order_goods(
+  order_goods_id INT unsigned AUTO_INCREMENT COMMENT '订单商品表ID',
+  orders_id INT unsigned COMMENT '订单ID',
+  goods_id INT unsigned COMMENT '商品ID',
+  user_guide_id INT unsigned COMMENT '导购ID',
+  price DECIMAL(11, 2) COMMENT '商品购买价格价格',
+  num TINYINT unsigned COMMENT '商品数量',
+  PRIMARY KEY(order_goods_id),
+  KEY idx$order_goods$orders_id(orders_id),
+  KEY idx$order_goods$goods_id(goods_id),
+  KEY idx$order_goods$user_guide_id(user_guide_id)
+);
+
+-- 为每一笔订单生成第一个商品
+INSERT INTO order_goods
+SELECT tmp_order.empty,
+  tmp_order.orders_id,
+  tmp_order.goods_id,
+  tmp_order.user_guide_id,  
+  goods.price,
+  tmp_order.num
+FROM (
+  SELECT NULL AS empty,
+    o.orders_id AS orders_id,
+    (
+      SELECT g.goods_id
+      FROM orders AS o_in
+        LEFT JOIN user_guide AS sg USING(user_guide_id)
+        LEFT JOIN store AS s USING(store_id)
+        LEFT JOIN goods AS g USING(store_id)
+      WHERE o_in.orders_id = o.orders_id
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS goods_id,
+    o.user_guide_id AS user_guide_id,
+    FLOOR(RAND() * 2) + 1 AS num
+  FROM orders AS o
+) AS tmp_order
+  LEFT JOIN goods USING(goods_id);
+-- 为每一笔订单生成第二个商品
+INSERT INTO order_goods
+SELECT tmp_order.empty,
+  tmp_order.orders_id,
+  tmp_order.goods_id,
+  tmp_order.user_guide_id,  
+  goods.price,
+  tmp_order.num
+FROM (
+  SELECT NULL AS empty,
+    o.orders_id AS orders_id,
+    (
+      SELECT g.goods_id
+      FROM orders AS o_in
+        LEFT JOIN user_guide AS sg USING(user_guide_id)
+        LEFT JOIN store AS s USING(store_id)
+        LEFT JOIN goods AS g USING(store_id)
+      WHERE o_in.orders_id = o.orders_id
+      ORDER BY RAND()
+      LIMIT 0, 1
+    ) AS goods_id,
+    o.user_guide_id AS user_guide_id,
+    FLOOR(RAND() * 2) + 1 AS num
+  FROM orders AS o
+) AS tmp_order
+  LEFT JOIN goods USING(goods_id);

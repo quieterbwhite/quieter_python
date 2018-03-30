@@ -99,6 +99,8 @@ PyJWT
 apscheduler
 
 python-hwinfo  python 获取硬件信息
+
+pysnowflake
 ```
 
 ## other
