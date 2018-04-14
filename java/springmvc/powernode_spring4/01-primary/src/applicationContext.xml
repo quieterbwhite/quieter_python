@@ -40,6 +40,23 @@
 
 
     <!-- 注册 bean 后处理器 容器初始化, bean 实例化 时 执行 -->
-    <!-- 这里没懂? -->
+    <!-- 是继承的BeanPostProcessor,会被自动调用 -->
     <bean class="com.bjpowernode.service.MyBeanPostProcessor" />
+
+    <!-- 设值注入 -->
+    <bean id="mySchool" class="com.bjpowernode.service.School">
+        <property name="name" value="科成" />
+    </bean>
+    <bean id="student" class="com.bjpowernode.service.Student">
+        <!-- 会调用Student类的 set() 方法 -->
+        <property name="name" value="libobo" />
+        <property name="age" value="22" />
+        <property name="school" ref="mySchool" />
+    </bean>
+
+    <!-- 构造注入 -->
+    <bean id="teacher" class="com.bjpowernode.service.Teacher">
+        <constructor-arg name="name" value="teacher li"/>
+    </bean>
+
 </beans>

@@ -1,8 +1,6 @@
 package com.bjpowernode.test;
 
-import com.bjpowernode.service.ISomeService;
-import com.bjpowernode.service.SomeFactory;
-import com.bjpowernode.service.SomeServiceImpl;
+import com.bjpowernode.service.*;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -84,5 +82,20 @@ public class MyTest {
 
         ISomeService service = (SomeServiceImpl)ac.getBean("someServiceByFactoryStatic");
         service.doSome();
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void test07() {
+        // 创建容器
+        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        Student student = (Student)ac.getBean("student");
+        System.out.println(student);
+
+        Teacher teacher = (Teacher)ac.getBean("teacher");
+        System.out.println(teacher);
     }
 }

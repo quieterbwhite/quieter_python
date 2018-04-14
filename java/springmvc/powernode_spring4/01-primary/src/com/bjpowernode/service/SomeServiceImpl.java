@@ -17,6 +17,8 @@ public class SomeServiceImpl implements ISomeService {
      */
     @Override
     public void doSome() {
+
         System.out.println("执行 doSome. ");
+        // return "China";
     }
 }

@@ -9,14 +9,6 @@
     基于 xml 的注解
 
     等
-
-    │   ├── commons-logging-1.2.jar
-    │   ├── junit-4.10.jar
-    │   ├── log4j-1.2.17.jar
-    │   ├── spring-beans-4.3.4.RELEASE.jar
-    │   ├── spring-context-4.3.4.RELEASE.jar
-    │   ├── spring-core-4.3.4.RELEASE.jar
-    │   └── spring-expression-4.3.4.RELEASE.jar
 ```
 
 ## 第二次学习这个视频 2018-4-14
@@ -88,4 +80,39 @@
             <bean id="someService_another_object" class="com.bjpowernode.service.SomeServiceImpl" scope="singleton" />
 
         Bean的装配 - Bean后处理器
+
+            <!-- 注册 bean 后处理器 容器初始化, bean 实例化 时 执行 -->
+            <!-- 是继承的BeanPostProcessor,会被自动调用 -->
+            <bean class="com.bjpowernode.service.MyBeanPostProcessor" />
+
+        Bean的装配 - 定制Bean的生命周期(了解)
+
+            bean 的生命周期有很多步骤,非常复杂,每个步骤我们都是可以插入代码来进行控制的,了解即可一共有 11 个步骤, 每个步骤都可以插入代码
+
+            这两个参数对应接口的两个方法, 管理 bean 的生命周期
+            值是类中定义的方法, 会在各个指定的阶段执行
+            <!-- init-method="" destroy-method="" -->
+
+            若要看到销毁方法的执行，需要两个条件:
+            1. Bean 需要是 Singleton 的
+            2. 手动关闭容器
+                ((ClassPathXmlApplicationContext)ac).close()
+```
+
+## 基于 XML 的 DI
+```
+1. 设值注入
+
+    <!-- 设值注入 -->
+    <bean id="mySchool" class="com.bjpowernode.service.School">
+        <property name="name" value="科成" />
+    </bean>
+    <bean id="student" class="com.bjpowernode.service.Student">
+        <!-- 会调用Student类的 set() 方法 -->
+        <property name="name" value="libobo" />
+        <property name="age" value="22" />
+        <property name="school" ref="mySchool" />
+    </bean>
+
+2. 构造注入
 ```
