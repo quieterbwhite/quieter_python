@@ -9,7 +9,7 @@ public class Teacher {
 
     // 没有执行
     public Teacher() {
-
+        // 构造注入是不调用无参构造器的(不要记住这句话)
     }
 
     public Teacher(String name) {

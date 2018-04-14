@@ -1,6 +1,8 @@
 
 # 北京动力节点 Spring4 视频教程
 
+> cp -r 01-primary/ /home/bwhite/mygithub/quieter_python/java/springmvc/powernode_spring4  
+
 ## 第一次学习 2016/12/3
 ```
 练习项目 01
@@ -115,4 +117,21 @@
     </bean>
 
 2. 构造注入
+
+    <!-- 构造注入 -->
+    <!-- 设值注入用得最多，构造注入基本不用 -->
+    <bean id="teacher" class="com.bjpowernode.service.Teacher">
+        <constructor-arg name="name" value="teacher li"/>
+    </bean>
+
+3. 命名空间注入(了解)
+
+    p 命名空间设值注入
+    c 命名空间构造注入
+
+4. 为应用指定多个 Spring 配置文件
+
+    平等关系的配置文件
+
+    包含关系的配置文件
 ```

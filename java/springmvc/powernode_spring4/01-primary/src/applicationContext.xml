@@ -55,6 +55,7 @@
     </bean>
 
     <!-- 构造注入 -->
+    <!-- 设值注入用得最多，构造注入基本不用 -->
     <bean id="teacher" class="com.bjpowernode.service.Teacher">
         <constructor-arg name="name" value="teacher li"/>
     </bean>
