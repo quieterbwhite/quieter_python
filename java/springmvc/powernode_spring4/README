@@ -1,0 +1,8 @@
+# 北京动力节点 Spring4 课程
+> https://www.cnblogs.com/yjmyzz/p/3847364.html 下载离线包
+> http://repo.springsource.org/libs-release-local/org/springframework/spring/
+
+## Spring
+```
+Spring 是个容器，最核心的概念是 IOC & AOP。
+```

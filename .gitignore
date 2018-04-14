@@ -72,6 +72,8 @@ target/
 *.swp
 
 # java
+*.jar
+out/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 

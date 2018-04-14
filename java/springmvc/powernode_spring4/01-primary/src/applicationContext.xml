@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 
+        实际上可以从逻辑上认为这个文件就是一个容器
+
+        注册Bean: 下面的注册, 相当于在代码中写的
+        ISomeService someService = new SomeServiceImpl();
+
+        默认是单例的, 通过scope变量来指定，可以是 prototype, request, session
+
+        prototype: 原型模式, 使用时才由容器创建,每次使用时创建
+        singleton: 单例模式(默认)，容器初始化时由容器创建
+
+        id就相当于容器为我们创建的对象的名字，标识。
+    -->
+    <bean id="someService" class="com.bjpowernode.service.SomeServiceImpl" />
+
+    <!-- init-method="" destroy-method="" 这两个参数对应接口的两个方法, 管理 bean 的生命周期 -->
+    <!--
+        bean 的生命周期有很多步骤,非常复杂,每个步骤我们都是可以插入代码来进行控制的,了解即可
+        一共有 11 个步骤, 每个步骤都可以插入代码
+    -->
+
+    <!-- 一样的class, 不一样的id, 容器会创建两个对象 -->
+    <bean id="someService_another_object" class="com.bjpowernode.service.SomeServiceImpl" scope="singleton" />
+
+    <!-- Bean的装配 - 动态工厂Bean 例子 -->
+    <bean id="someFactory" class="com.bjpowernode.service.SomeFactory" />
+    <!-- 在容器中指定用来创建最终对象的工厂，并指定工厂中创建该对象的方法. 就将工厂与最终代码分开 -->
+    <!-- 表明someServiceByFactory对象是由someFactory这个工厂Bean的getSomeService()方法创建的 -->
+    <bean id="someServiceByFactory" factory-bean="someFactory" factory-method="getSomeService" />
+
+    <!-- 静态工厂 -->
+    <bean id="someServiceByFactoryStatic" class="com.bjpowernode.service.SomeFactory" factory-method="getSomeServiceStatic" />
+
+
+    <!-- 注册 bean 后处理器 容器初始化, bean 实例化 时 执行 -->
+    <!-- 这里没懂? -->
+    <bean class="com.bjpowernode.service.MyBeanPostProcessor" />
+</beans>
