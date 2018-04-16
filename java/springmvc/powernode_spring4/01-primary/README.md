@@ -29,13 +29,24 @@
         Spring 第一个程序 - 配置文件的创建
         Spring 第一个程序 - Bean的定义和注册
         Spring 第一个程序 - 不使用Spring容器的问题
+
+            代码耦合
+
         Spring 第一个程序 - 从Spring容器中获取Bean
 
             实际上可以从逻辑上认为这个文件就是一个容器
+
             注册Bean: 下面的注册, 相当于在代码中写的
             ISomeService someService = new SomeServiceImpl();
-            默认是单例的, 也可以其他 prototype, request, session
+
+            默认是单例的, 通过scope变量来指定，可以是 prototype, request, session
+
+            prototype: 原型模式, 使用时才由容器创建,每次使用时创建
+            singleton: 单例模式(默认)，容器初始化时由容器创建
+
             id就相当于容器为我们创建的对象的名字，标识。
+            id 和 name 的相同: 要实现的功能是一样的
+            id 和 name 的不同: 支持的字符范围不同，用id就行了
             <bean id="someService" class="com.bjpowernode.service.SomeServiceImpl" />
 
         Spring 第一个程序 - 从文件系统加载Spring配置文件

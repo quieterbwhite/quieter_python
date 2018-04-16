@@ -17,6 +17,9 @@
         singleton: 单例模式(默认)，容器初始化时由容器创建
 
         id就相当于容器为我们创建的对象的名字，标识。
+        id 和 name 的相同: 要实现的功能是一样的
+        id 和 name 的不同: 支持的字符范围不同，用id就行了
+        <bean id="someService" class="com.bjpowernode.service.SomeServiceImpl" />
     -->
     <bean id="someService" class="com.bjpowernode.service.SomeServiceImpl" />
 

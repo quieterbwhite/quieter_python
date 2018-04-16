@@ -86,6 +86,7 @@ target/
 .springBeans
 
 ### IntelliJ IDEA ###
+.gradle/
 .idea
 *.iws
 *.iml
