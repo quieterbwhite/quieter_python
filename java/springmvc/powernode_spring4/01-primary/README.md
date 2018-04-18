@@ -1,8 +1,6 @@
 
 # 北京动力节点 Spring4 视频教程
 
-> cp -r 01-primary/ /home/bwhite/mygithub/quieter_python/java/springmvc/powernode_spring4  
-
 ## 第一次学习 2016/12/3
 ```
 练习项目 01
@@ -29,24 +27,13 @@
         Spring 第一个程序 - 配置文件的创建
         Spring 第一个程序 - Bean的定义和注册
         Spring 第一个程序 - 不使用Spring容器的问题
-
-            代码耦合
-
         Spring 第一个程序 - 从Spring容器中获取Bean
 
             实际上可以从逻辑上认为这个文件就是一个容器
-
             注册Bean: 下面的注册, 相当于在代码中写的
             ISomeService someService = new SomeServiceImpl();
-
-            默认是单例的, 通过scope变量来指定，可以是 prototype, request, session
-
-            prototype: 原型模式, 使用时才由容器创建,每次使用时创建
-            singleton: 单例模式(默认)，容器初始化时由容器创建
-
+            默认是单例的, 也可以其他 prototype, request, session
             id就相当于容器为我们创建的对象的名字，标识。
-            id 和 name 的相同: 要实现的功能是一样的
-            id 和 name 的不同: 支持的字符范围不同，用id就行了
             <bean id="someService" class="com.bjpowernode.service.SomeServiceImpl" />
 
         Spring 第一个程序 - 从文件系统加载Spring配置文件
@@ -145,4 +132,84 @@
     平等关系的配置文件
 
     包含关系的配置文件
+```
+
+## 基于注解的DI
+```java
+/*
+搭建环境 2018-04-18
+
+1. 依赖包: spring-aop-4.3.4.RELEASE.jar
+
+2. 添加 context 约束
+*/
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+<!-- 除了扫描指定的包，还会扫描子包 -->
+<!-- com.bjpowernode.* 这种写法，只扫描子包，不扫描当前包:com.bjpowernode -->
+<!-- com.bjpowernode 这种写法，先扫描当前包，没有再扫描子包 -->
+<context:component-scan base-package="com.bjpowernode.annotationdi" />
+
+//////////////////////////////////////////////////////////////////////////////
+
+package com.bjpowernode.annotationdi;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+/**
+ * Created by bwhite on 18-4-18.
+ *
+ * @Component 注解，表明这个类是个组件, 容器创建的这个组件对象名称为 myStudent, 相当于 <bean></bean> 的id属性
+ * 与本注解具有相同功能的注解还有三个
+ * @Repository:    注解在 Dao 接口的实现类上，表示当前 Dao 类为组件
+ * @Service:       注解在 Service 接口的实现类上，表示当前 Service 类为组件
+ * @Controller:    注解在 Controller 类上，表示当前 Controller 类为组件
+ */
+@Component("myAnimal")
+@Scope("singleton")     // 设置 Bean 的作用范围[singleton, prototype]，默认是 singleton
+public class Animal {
+
+    @Value("李四")       // 为 name 属性赋值
+    private String name;
+
+    private int age;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        System.out.println("执行 setName()");
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Value("38")      // 可以将该注解放到 setter 上
+    public void setAge(int age) {
+        System.out.println("执行 setAge()");
+        this.age = age;
+    }
+
+}
+
+TODO, class 43
 ```

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
 
-    <!-- 
+
+    <!--
         实际上可以从逻辑上认为这个文件就是一个容器
 
         注册Bean: 下面的注册, 相当于在代码中写的
@@ -17,9 +18,6 @@
         singleton: 单例模式(默认)，容器初始化时由容器创建
 
         id就相当于容器为我们创建的对象的名字，标识。
-        id 和 name 的相同: 要实现的功能是一样的
-        id 和 name 的不同: 支持的字符范围不同，用id就行了
-        <bean id="someService" class="com.bjpowernode.service.SomeServiceImpl" />
     -->
     <bean id="someService" class="com.bjpowernode.service.SomeServiceImpl" />
 
@@ -62,5 +60,10 @@
     <bean id="teacher" class="com.bjpowernode.service.Teacher">
         <constructor-arg name="name" value="teacher li"/>
     </bean>
+
+    <!-- 除了扫描指定的包，还会扫描子包 -->
+    <!-- com.bjpowernode.* 这种写法，只扫描子包，不扫描当前包:com.bjpowernode -->
+    <!-- com.bjpowernode 这种写法，先扫描当前包，没有再扫描子包 -->
+    <context:component-scan base-package="com.bjpowernode.annotationdi" />
 
 </beans>
