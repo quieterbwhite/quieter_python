@@ -38,17 +38,17 @@
     
     output:
         Topic:mytest	PartitionCount:1	ReplicationFactor:1	Configs:
-	    Topic: mytest	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
+        Topic: mytest	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
 	    
 	第一行会显示出所有分区的一个总结信息。后续每一行则给出一个分区的信息。
 	
 	前情概要, mytest 的创建命令:
 	
-	    ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytest
+        ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytest
         可以清楚地看到,分区数设定为了1。
 	
 	第一行信息为:
-	    • 主题名:mytest
+        • 主题名:mytest
         • 分区数:1
         • 副本数:1
         
