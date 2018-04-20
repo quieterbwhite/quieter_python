@@ -47,7 +47,7 @@
         ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytest
         可以清楚地看到,分区数设定为了1。
 	
-	第一行信息为:
+    第一行信息为:
         • 主题名:mytest
         • 分区数:1
         • 副本数:1
