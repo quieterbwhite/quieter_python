@@ -16,8 +16,8 @@ public class JavaConfig {
         return new House("野鸡大学");
     }
 
-    @Bean(name = "myAnimal", autowire = Autowire.BY_TYPE)  // byType 方式自动注入
-    public Animal myAnimalCreator() {
-        return new Animal("hah", 26);
-    }
+//    @Bean(name = "myAnimal", autowire = Autowire.BY_TYPE)  // byType 方式自动注入
+//    public Animal myAnimalCreator() {
+//        return new Animal("hah", 26);
+//    }
 }

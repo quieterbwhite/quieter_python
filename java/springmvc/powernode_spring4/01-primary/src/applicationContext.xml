@@ -64,6 +64,55 @@
     <!-- 除了扫描指定的包，还会扫描子包 -->
     <!-- com.bjpowernode.* 这种写法，只扫描子包，不扫描当前包:com.bjpowernode -->
     <!-- com.bjpowernode 这种写法，先扫描当前包，没有再扫描子包 -->
-    <context:component-scan base-package="com.bjpowernode.annotationdi" />
+    <context:component-scan base-package="com.bjpowernode" />
+
+    <!-- 目标对象 -->
+    <bean id="handService" class="com.bjpowernode.handaop.HandServiceImpl" />
+    <!-- 通知：前置通知 -->
+    <bean id="beforeAdvice" class="com.bjpowernode.handaop.MyMethodBeforeAdvice" />
+
+    <!--切面： 名称匹配方法切入点顾问-->
+    <bean id="beforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="beforeAdvice" />
+        <!-- 指定方法名 -->
+        <property name="mappedNames" value="doLeft,doRight" />
+        <!--
+        <property name="mappedName" value="doLeft" />
+        <property name="mappedNames">
+            <array>
+                <value>doLeft</value>
+                <value>doRight</value>
+            </array>
+        </property>
+        -->
+    </bean>
+
+    <!--切面： 正则表达式方法切入点顾问-->
+    <bean id="regAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="beforeAdvice" />
+        <!-- 正则表达式匹配的对象是： 权限定方法名,而不仅仅是简单方法名(包含完整的包名) -->
+        <property name="pattern" value=".*S.*" />
+    </bean>
+
+
+    <!-- 代理对象的生成，注意这里的 ProxyFactoryBean不是代理类，而是代理对象生成器 -->
+    <!-- 代理工厂bean有两个问题，1.每次只能代理一个，导致这里需要配置多个，代码冗余 -->
+    <!-- 用自动代理生成器解决 -->
+    <bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="handService" />
+        <property name="interceptorNames" value="beforeAdvice" />
+        <!--<property name="interfaces" value="com.bjpowernode.handaop.IHandService" />-->
+        <!--<property name="targetName" value="handService" />-->
+    </bean>
+
+    <!-- 自动代理生成器, 底层是bean后处理器 -->
+    <!-- 只处理advisor, 不处理advice，只能是切面，没办法挑选目标对象 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+    <!-- Bean名称 自动代理生成器, 不仅能指定目标对象，还能指定切面，并且切面可以是顾问和通知 -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="someService1" />
+        <property name="interceptorNames" value="beforeAdvisor" />
+    </bean>
 
 </beans>
