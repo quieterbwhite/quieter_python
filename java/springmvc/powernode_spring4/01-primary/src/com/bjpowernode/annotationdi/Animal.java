@@ -1,8 +1,14 @@
 package com.bjpowernode.annotationdi;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 
 /**
  * Created by bwhite on 18-4-18.
@@ -17,17 +23,32 @@ import org.springframework.stereotype.Component;
 @Scope("singleton")     // 设置 Bean 的作用范围[singleton, prototype]，默认是 singleton
 public class Animal {
 
-    @Value("李四")       // 为 name 属性赋值
+    @Value("李四")       // 为 name 属性赋值, @Value, 给的是普通属性的值
     private String name;
 
     private int age;
 
+//    @Resource(name = "myHouse")   // byName 方式自动注入
+//    @Resource  // byType 方式自动注入
+    @Autowired  // byType 方式自动注入
+//    @Qualifier("myHouse")   // byName 方式自动注入, 这个需要和 Autowired 一起使用
+    private House house;
+
     @Override
     public String toString() {
-        return "Student{" +
+        return "Animal{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", house=" + house +
                 '}';
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public String getName() {
@@ -47,6 +68,19 @@ public class Animal {
     public void setAge(int age) {
         System.out.println("执行 setAge()");
         this.age = age;
+    }
+
+    // 初始化完毕之后
+    @PostConstruct
+    public void postInit() {
+        System.out.println("初始化完毕之后");
+    }
+
+    // 销毁之前
+    // singleton scope 才行, 容器要关闭, 才会有效果
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("销毁之前");
     }
 
 }
