@@ -16,6 +16,8 @@ git@github.com:junglelord/spider-course-2.git
 ## article
 > https://segmentfault.com/a/1190000013561054  Java程序员需要突破的技术要点  
 
+> https://www.jianshu.com/p/3f3c0f5b13f6  spring 打包部署
+
 ## BOOK
 ```
 高可用架构
