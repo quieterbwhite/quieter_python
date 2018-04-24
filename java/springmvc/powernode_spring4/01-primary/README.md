@@ -182,6 +182,12 @@ public class Animal {
 
     private int age;
 
+    @Resource(name = "myHouse")   // byName 方式自动注入
+    @Resource  // byType 方式自动注入
+    @Autowired  // byType 方式自动注入
+    @Qualifier("myHouse")   // byName 方式自动注入, 这个需要和 Autowired 一起使用
+    private House house;
+
     @Override
     public String toString() {
         return "Student{" +
@@ -209,7 +215,179 @@ public class Animal {
         this.age = age;
     }
 
+    // 初始化完毕之后
+    @PostConstruct
+    public void postInit() {
+        System.out.println("初始化完毕之后");
+    }
+
+    // 销毁之前
+    // singleton scope 才行, 容器要关闭, 才会有效果
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("销毁之前");
+    }
+
 }
 
-TODO, class 43
+使用 @Resource 为域属性自动注入值
+使用 @Autowired 为域属性自动注入值
+
+
+Bean的生命周期始末注解
+
+    @PostConstruct
+    @PreDestroy
+
+
+JavaConfig 注解
+/**
+ * Created by bwhite on 18-4-21.
+ * 相当于 Spring 的配置文件
+ */
+@Configuration  // 表明当前POJO类将会被当做配置文件使用, 即Spring容器
+public class JavaConfig {
+
+    @Bean(name = "myHouse")   // 表明当前方法的返回值为一个Bean对象
+    public House myHouseCreator() {
+        return new House("野鸡大学");
+    }
+
+    @Bean(name = "myAnimal", autowire = Autowire.BY_TYPE)  // byType 方式自动注入
+    public Animal myAnimalCreator() {
+        return new Animal("hah", 26);
+    }
+}
+
+xml配置文件的优先级要高
+
+配置文件在服务器上改了重启就行，注解的话还要重新编译打包上传。
+```
+
+## AOP
+```
+**前置通知
+
+    <!-- 目标对象 -->
+    <bean id="handService" class="com.bjpowernode.handaop.HandServiceImpl" />
+    <!-- 通知：前置通知 -->
+    <bean id="beforeAdvice" class="com.bjpowernode.handaop.MyMethodBeforeAdvice" />
+    <!-- 代理对象的生成，注意这里的 ProxyFactoryBean不是代理类，而是代理对象生成器 -->
+    <bean id="serviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="handService" />
+        <property name="interceptorNames" value="beforeAdvice" />
+        <!--<property name="interfaces" value="com.bjpowernode.handaop.IHandService" />-->
+        <!--<property name="targetName" value="handService" />-->
+    </bean>
+
+**后置通知**
+/**
+ * Created by bwhite on 18-4-21.
+ * 后置通知, 能获取到目标方法的返回值，但是不能改变
+ */
+public class MyAfterReturningAdvice implements AfterReturningAdvice {
+
+    @Override
+    public void afterReturning(Object returnValue, Method method, Object[] objects, Object o1) throws Throwable {
+
+        System.out.println("目标方法执行之后，目标方法返回值为: " + returnValue);
+
+        if (returnValue != null) {
+
+        }
+
+    }
+}
+
+**环绕通知**
+/**
+ * Created by bwhite on 18-4-21.
+ * 环绕通知
+ */
+public class MyMethodInterceptor implements MethodInterceptor {
+
+    @Override
+    public Object invoke(MethodInvocation methodInvocation) throws Throwable {
+
+        System.out.println("目标方法执行之前");
+        // 调用目标方法
+        Object result = methodInvocation.proceed();
+        System.out.println("目标方法执行之后");
+
+        if (result != null) {
+            System.out.println("修改结果值");
+        }
+
+        return result;
+
+    }
+}
+
+**异常通知**
+/**
+ * Created by bwhite on 18-4-21.
+ * 切面
+ * 异常处理通知
+ */
+public class MyThrowsAdvice implements ThrowsAdvice {
+
+    // 若发生 UserNameException， 则该方法会被自动调用执行
+    public void afterThrowing(UserNameException ex) {
+        System.out.println("用户名异常， 异常信息: " + ex.getMessage());
+    }
+
+    // 若发生 PasswordException， 则该方法会被自动调用执行
+    public void afterThrowing(PasswordException ex) {
+        System.out.println("密码异常， 异常信息: " + ex.getMessage());
+    }
+}
+
+**名称匹配方法切入点顾问**
+
+    之前解决的是通知时机问题，但是是无差别的通知，如果想要对部分内容进行增强，就要用到切入点。
+
+    顾问Advisor, PointcutAdvisor
+
+    <!--切面： 名称匹配方法切入点顾问-->
+    <bean id="beforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="beforeAdvice" />
+        <!-- 指定方法名 -->
+        <property name="mappedNames" value="doLeft,doRight" />
+        <!--
+        <property name="mappedName" value="doLeft" />
+        <property name="mappedNames">
+            <array>
+                <value>doLeft</value>
+                <value>doRight</value>
+            </array>
+        </property>
+        -->
+    </bean>
+
+**正则表达式方法切入点顾问**
+
+    <!--切面： 正则表达式方法切入点顾问-->
+    <bean id="regAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="beforeAdvice" />
+        <!-- 正则表达式匹配的对象是： 权限定方法名,而不仅仅是简单方法名(包含完整的包名) -->
+        <property name="pattern" value=".*S.*" />
+    </bean>
+
+** 默认 Advisor 自动代理生成器 **
+
+    <!-- 自动代理生成器, 底层是bean后处理器 -->
+    <!-- 只处理advisor, 不处理advice，只能是切面，没办法挑选目标对象 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+** Bean名称 自动代理生成器 **
+
+    就可以挑选我们想要增强的 Bean
+
+    <!-- Bean名称 自动代理生成器, 不仅能指定目标对象，还能指定切面 -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="someService1" />
+        <property name="interceptorNames" value="beforeAdvisor" />
+    </bean>
+
+** class 61 **
 ```
