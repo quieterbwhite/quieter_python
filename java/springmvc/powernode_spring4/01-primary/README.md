@@ -388,6 +388,60 @@ public class MyThrowsAdvice implements ThrowsAdvice {
         <property name="beanNames" value="someService1" />
         <property name="interceptorNames" value="beforeAdvisor" />
     </bean>
+```
 
-** class 61 **
+## AspectJ 对 AOP 的支持
+```
+AOP 是一种思想，Spring 实现了他，AspectJ也实现了他
+
+AspectJ 中常用的通知有五种类型:
+
+    (1)前置通知
+    (2)后置通知
+    (3)环绕通知
+    (4)异常通知
+    (5)最终通知
+
+其中最终通知是指,无论程序执行是否正常,该通知都会执行。类似于 try..catch 中的finally 代码块。
+
+execution ( [modifiers-pattern] 访问权限类型
+    ret-type-pattern 返回值类型
+    [declaring-type-pattern] 全限定性类名
+    name-pattern(param-pattern) 方法名(参数名)
+    [throws-pattern] 抛出异常类型
+)
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+```
+
+## DAO JdbcTemplate 访问数据库
+```
+        访问数据库层次结构
+        GirlServiceImpl girlService
+        GirlDaoImpl     girlDao
+        myJdbcTemplate  jdbcTemplate
+        myDataSource
+        jdbc.properties
+        jdbc.driver
+        mysql
+```
+
+## 事务
+```
+五个事务隔离级别
+
+七个事务传播行为
+
+默认事务超时时限
+
+TODO: class 98
 ```

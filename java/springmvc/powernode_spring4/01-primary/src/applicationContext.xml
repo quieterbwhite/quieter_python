@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <!-- 除了扫描指定的包，还会扫描子包 -->
+    <!-- com.bjpowernode.* 这种写法，只扫描子包，不扫描当前包:com.bjpowernode -->
+    <!-- com.bjpowernode 这种写法，先扫描当前包，没有再扫描子包 -->
+    <context:component-scan base-package="com.bjpowernode" />
 
     <!--
         实际上可以从逻辑上认为这个文件就是一个容器
@@ -34,7 +40,7 @@
     <bean id="someFactory" class="com.bjpowernode.service.SomeFactory" />
     <!-- 在容器中指定用来创建最终对象的工厂，并指定工厂中创建该对象的方法. 就将工厂与最终代码分开 -->
     <!-- 表明someServiceByFactory对象是由someFactory这个工厂Bean的getSomeService()方法创建的 -->
-    <bean id="someServiceByFactory" factory-bean="someFactory" factory-method="getSomeService" />
+    <!--<bean id="someServiceByFactory" factory-bean="someFactory" factory-method="getSomeService" />-->
 
     <!-- 静态工厂 -->
     <bean id="someServiceByFactoryStatic" class="com.bjpowernode.service.SomeFactory" factory-method="getSomeServiceStatic" />
@@ -48,23 +54,18 @@
     <bean id="mySchool" class="com.bjpowernode.service.School">
         <property name="name" value="科成" />
     </bean>
-    <bean id="student" class="com.bjpowernode.service.Student">
-        <!-- 会调用Student类的 set() 方法 -->
-        <property name="name" value="libobo" />
-        <property name="age" value="22" />
-        <property name="school" ref="mySchool" />
-    </bean>
+    <!--<bean id="student" class="com.bjpowernode.service.Student">-->
+        <!--&lt;!&ndash; 会调用Student类的 set() 方法 &ndash;&gt;-->
+        <!--<property name="name" value="libobo" />-->
+        <!--<property name="age" value="22" />-->
+        <!--<property name="school" ref="mySchool" />-->
+    <!--</bean>-->
 
     <!-- 构造注入 -->
     <!-- 设值注入用得最多，构造注入基本不用 -->
     <bean id="teacher" class="com.bjpowernode.service.Teacher">
         <constructor-arg name="name" value="teacher li"/>
     </bean>
-
-    <!-- 除了扫描指定的包，还会扫描子包 -->
-    <!-- com.bjpowernode.* 这种写法，只扫描子包，不扫描当前包:com.bjpowernode -->
-    <!-- com.bjpowernode 这种写法，先扫描当前包，没有再扫描子包 -->
-    <context:component-scan base-package="com.bjpowernode" />
 
     <!-- 目标对象 -->
     <bean id="handService" class="com.bjpowernode.handaop.HandServiceImpl" />
@@ -114,5 +115,79 @@
         <property name="beanNames" value="someService1" />
         <property name="interceptorNames" value="beforeAdvisor" />
     </bean>
+
+    <!-- AspectJ   -->
+    <!-- 目标对象 -->
+    <bean id="theService" class="com.bjpowernode.myaspectj.TheServiceImpl" />
+
+    <!-- 切面 -->
+    <bean id="myAspect" class="com.bjpowernode.myaspectj.MyAspect" />
+
+    <!-- AspectJ 自动代理 -->
+    <aop:aspectj-autoproxy/>
+
+    <!--
+        访问数据库层次结构
+        GirlDaoImpl girlDao
+        myJdbcTemplate jdbcTemplate
+        myDataSource
+        jdbc.properties
+        jdbc.driver
+        mysql
+    -->
+
+    <!-- 注册jdbc模板对象 不用注册 -->
+    <!--
+    <bean id="myJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="myDataSource"/> 用 JdbcTemplate 访问数据库，那么JdbcTemplate就需要连接数据库
+    </bean>
+    -->
+
+    <!-- 注册 DAO -->
+    <bean id="girlDao" class="com.bjpowernode.beans.GirlDaoImpl">
+        <property name="dataSource" ref="myDataSource"/>
+    </bean>
+    <!-- 注册 Service -->
+    <bean id="girlService" class="com.bjpowernode.beans.GirlServiceImpl">
+        <!-- 设值注入 -->
+        <property name="dao" ref="girlDao"/>    
+    </bean>
+
+    <!-- 注册数据源 spring 默认数据源 这个一般不用 -->
+    <!--
+    <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://192.168.31.239:3306/world" />
+        <property name="username" value="bwhite" />
+        <property name="password" value="tiger" />
+    </bean>
+    -->
+
+    <!-- dbcp 第三方数据源 -->
+    <!--
+    <bean id="myDataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://192.168.31.239:3306/world" />
+        <property name="username" value="bwhite" />
+        <property name="password" value="tiger" />
+    </bean>
+    -->
+
+    <!-- c3p0 数据源 -->
+    <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClass}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+    <!-- 注册jdbc属性文件 这中方式不常用 -->
+    <!--
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties" /> 类路径下
+    </bean>
+    -->
+
+    <!-- 注册jdbc属性文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
 
 </beans>

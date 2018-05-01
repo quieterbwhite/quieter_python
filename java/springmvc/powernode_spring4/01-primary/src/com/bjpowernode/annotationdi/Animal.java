@@ -1,14 +1,12 @@
 package com.bjpowernode.annotationdi;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 
 /**
  * Created by bwhite on 18-4-18.
@@ -19,7 +17,7 @@ import javax.annotation.Resource;
  * @Service:       注解在 Service 接口的实现类上，表示当前 Service 类为组件
  * @Controller:    注解在 Controller 类上，表示当前 Controller 类为组件
  */
-@Component("myAnimal")
+//@Component("myAnimal")
 @Scope("singleton")     // 设置 Bean 的作用范围[singleton, prototype]，默认是 singleton
 public class Animal {
 
