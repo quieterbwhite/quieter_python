@@ -22,6 +22,13 @@ docker -v
 
 2. 镜像加速器
 
+```
+打开/etc/default/docker文件（需要sudo权限），在文件的底部加上一行。
+DOCKER_OPTS="--registry-mirror=https://registry.docker-cn.com"
+然后，重启 Docker 服务。
+$ sudo service docker restart
+```
+
 阿里云加速器  http://cr.console.aliyun.com/#/accelerator
 
 注册用户并且申请加速器，会获得如 https://571cbuth.mirror.aliyuncs.com 这样的地址。
