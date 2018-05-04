@@ -443,5 +443,45 @@ execution ( [modifiers-pattern] 访问权限类型
 
 默认事务超时时限
 
-TODO: class 98
+使用Spring事务代理工厂管理事务
+    <!--  事务  -->
+    <!-- 注册事务管理器 -->
+    <bean id="myTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="myDataSource"/>
+    </bean>
+    <!-- 生成事务代理 切面就是事务，所以这个不用配切面了 -->
+    <bean id="stockServiceProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="target" ref="stockService"/>
+        <property name="transactionManager" ref="myTxManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="open*">ISOLATION_DEFAULT,PROPAGATION_REQUIRED</prop>
+                <!-- -回滚 +提交 -->
+                <prop key="buyStock">ISOLATION_DEFAULT,PROPAGATION_REQUIRED,-StockException</prop>
+            </props>
+        </property>
+    </bean>
+
+使用Spring的事务注解管理事务
+    <!-- 事务注解 -->
+    <tx:annotation-driven transaction-manager="myTxManager"/>
+
+使用Sprig的AOP配置管理事务(重点)
+    <!-- 注解都不用写了,直接就可以处理事务 -->
+    <!-- 事务 使用Sprig的AOP配置管理事务(重点)-->
+    <!-- 注册事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="myTxManager">
+        <tx:attributes>
+            <!-- 指定在连接点方法上应用的事务属性 -->
+            <tx:method name="open*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="buyStock" isolation="DEFAULT" propagation="REQUIRED" rollback-for="StockException"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- Aop配置 -->
+    <aop:config>
+        <aop:pointcut id="stockPointCut" expression="execution(* *..stock.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="stockPointCut" />
+    </aop:config>
+
+TODO class 105
 ```
