@@ -482,6 +482,14 @@ execution ( [modifiers-pattern] 访问权限类型
         <aop:pointcut id="stockPointCut" expression="execution(* *..stock.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="stockPointCut" />
     </aop:config>
+```
 
-TODO class 105
+## Spring + Hibernate
+```
+
+```
+
+## springmvc
+```
+
 ```

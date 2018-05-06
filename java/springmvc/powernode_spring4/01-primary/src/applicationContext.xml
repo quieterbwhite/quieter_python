@@ -237,8 +237,31 @@
     </tx:advice>
     <!-- Aop配置 -->
     <aop:config>
+        <!--指定切入点-->
         <aop:pointcut id="stockPointCut" expression="execution(* *..stock.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="stockPointCut" />
     </aop:config>
+
+    <!-- Hibernate -->
+
+    <!--注册SessionFactory-->
+    <!--
+    <bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource" />
+        <property name="mappingDirectoryLocations" value="com/bjpowernode/beans" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">true</prop>
+                <prop key="hibernate.dialect">true</prop>
+                <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="myTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    </bean>
+    -->
 
 </beans>
