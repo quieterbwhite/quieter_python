@@ -100,3 +100,6 @@ dist/
 nbdist/
 .nb-gradle/
 .mvn/
+
+### node ###
+node_modules/
