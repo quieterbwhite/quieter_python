@@ -1,5 +1,6 @@
 # MongoDB 权限
->> https://zhuanlan.zhihu.com/p/26215701  mongodb操作之用户篇  
+> https://zhuanlan.zhihu.com/p/26215701  mongodb操作之用户篇  
+> http://www.cnblogs.com/hanyinglong/p/5704320.html  MongoDB学习笔记—权限管理  
 
 ## 安装运行
 ```
