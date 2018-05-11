@@ -101,7 +101,7 @@ zookeeper
 
         效率高,
 
-        get frist ？ 效率高
+        get frist
 
 # 同步 & 异步 创建节点
 
