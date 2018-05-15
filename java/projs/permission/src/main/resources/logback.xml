@@ -2,11 +2,11 @@
 <configuration scan="true" scanPeriod="60 seconds">
 
     <!--可以用多个appender，每一个定义输出形式-->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyy-MM-dd HH:mm:ss.SSS} {$thread} %-5level - %msg%n</pattern>
-        </encoder>
-    </appender>
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<encoder>-->
+            <!--<pattern>%d{yyy-MM-dd HH:mm:ss.SSS} {$thread} %-5level - %msg%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
 
     <!--<appender name="permission" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
         <!--<file>${catalina.home}/logs/permission.log</file>-->
@@ -24,6 +24,31 @@
     <!--</logger>-->
 
     <!--只能有一个root, 告诉appender以什么级别记录日志-->
+    <!--<root level="INFO">-->
+        <!--<appender-ref ref="STDOUT" />-->
+    <!--</root>-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="permission" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--<file>${catalina.home}/logs/permission.log</file>-->
+    <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--<FileNamePattern>${catalina.home}/logs/permission.%d{yyyy-MM-dd}.log.gz</FileNamePattern>-->
+    <!--</rollingPolicy>-->
+    <!--<layout class="ch.qos.logback.classic.PatternLayout">-->
+    <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>-->
+    <!--</layout>-->
+    <!--</appender>-->
+    <!---->
+    <!--<logger name="xxx" level="INFO">-->
+    <!--<appender-ref ref="permission"/>-->
+    <!--</logger>-->
+
+    <!-- TRACE < DEBUG < INFO < WARN < ERROR -->
     <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>

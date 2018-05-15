@@ -61,6 +61,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
+      <version>3.4.0</version>
     </dependency>
     <dependency>
       <groupId>org.mybatis</groupId>
@@ -112,7 +113,6 @@
       <artifactId>slf4j-api</artifactId>
       <version>1.7.22</version>
     </dependency>
-
 
   </dependencies>
 
