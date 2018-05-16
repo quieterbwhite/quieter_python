@@ -17,8 +17,10 @@
     <context:component-scan base-package="com.mmall.controller" />
     <context:component-scan base-package="com.mmall.service" />
 
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> -->
+
     <!--将 RequestMapping("/haha") 注解与处理方法绑定-->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />-->
     <!--处理每个请求的返回 返回一般是下面配置的两种，json & 视图页面 -->
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
     <!--处理json返回-->
@@ -28,8 +30,5 @@
         <property name="prefix" value="/views/" />
         <property name="suffix" value=".jsp" />
     </bean>
-
-
-
 
 </beans>
