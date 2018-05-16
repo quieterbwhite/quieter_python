@@ -1,11 +1,13 @@
 package com.mmall.common;
 
 import com.mmall.exception.PermissionException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by bwhite on 18-5-16.
+ * 需要配置来使其被 spring 管理
  */
 public class SpringExceptionResolver implements HandlerExceptionResolver {
 
