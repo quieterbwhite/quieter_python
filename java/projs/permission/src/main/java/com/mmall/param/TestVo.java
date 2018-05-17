@@ -26,5 +26,5 @@ public class TestVo {
     private Integer id;
 
 //    @NotEmpty
-//    private List<String> name;
+    private List<String> name;
 }

@@ -16,7 +16,22 @@
 ## 异常处理封装
 
 ## 参数校验工具 validator
+```python
+请求进来的时候对参数的处理
+```
 
 ## Json转换工具 jackson convert
+```python
+obj@String
+string@Obj
+```
 
-## 获取 Spring 上下文 - applicationContext
+## 获取 Spring 上下文 - ApplicationContextHelper
+```
+通过 applicationContext 获取 spring 管理的 bean
+```
+
+## Http 请求前后监听 interceptor
+```
+http://localhost:8080/test/validate.json?msg=fasdf&id=22
+```
