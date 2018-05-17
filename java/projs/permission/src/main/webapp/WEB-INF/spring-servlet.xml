@@ -20,6 +20,8 @@
 
     <bean class="com.mmall.common.SpringExceptionResolver" />
 
+    <bean class="com.mmall.common.ApplicationContextHelper" lazy-init="false" />
+
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/> -->
 
     <!--将 RequestMapping("/haha") 注解与处理方法绑定-->
