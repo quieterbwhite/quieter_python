@@ -1,5 +1,6 @@
 package com.mmall.common;
 
+import com.mmall.exception.ParamException;
 import com.mmall.exception.PermissionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -21,7 +22,7 @@ public class SpringExceptionResolver implements HandlerExceptionResolver {
         // .json .page
         // 这里要求项目中所有请求json数据的都使用 .json 结尾
         if (url.endsWith(".json")) {
-            if (e instanceof PermissionException) {
+            if (e instanceof PermissionException || e instanceof ParamException) {
                 JsonData result = JsonData.fail(e.getMessage());
                 // 使用 spring-servlet.xml 中配置的 jsonView 来处理
                 mv = new ModelAndView("jsonView", result.toMap());
