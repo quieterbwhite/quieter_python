@@ -1,6 +1,9 @@
 package com.mmall.dao;
 
 import com.mmall.model.SysDept;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SysDeptMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +19,11 @@ public interface SysDeptMapper {
     int updateByPrimaryKeySelective(SysDept record);
 
     int updateByPrimaryKey(SysDept record);
+
+    // 获取当前用户的部门列表
+    List<SysDept> getAllDept();
+
+    List<SysDept> getChildDeptListByLevel(@Param("level") String level);
+
+    void batchUpdateLevel(@Param("sysDeptList") List<SysDept> sysDeptList);
 }
