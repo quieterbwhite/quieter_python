@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by bwhite on 18-5-16.
  * 需要配置来使其被 spring 管理
  */
+@Slf4j
 public class SpringExceptionResolver implements HandlerExceptionResolver {
 
     @Override
@@ -27,14 +28,17 @@ public class SpringExceptionResolver implements HandlerExceptionResolver {
                 // 使用 spring-servlet.xml 中配置的 jsonView 来处理
                 mv = new ModelAndView("jsonView", result.toMap());
             } else {
+                log.info(e.getMessage());
                 JsonData result = JsonData.fail(defaultMsg);
                 mv = new ModelAndView("jsonView", result.toMap());
             }
         } else if (url.endsWith(".page")){ // 这里要求项目中所有请求page数据的都使用 .page 结尾
+            log.info(e.getMessage());
             JsonData result = JsonData.fail(defaultMsg);
             // 自动读取 exception.jsp 文件并返回
             mv = new ModelAndView("exception", result.toMap());
         } else {
+            log.info(e.getMessage());
             JsonData result = JsonData.fail(defaultMsg);
             mv = new ModelAndView("jsonView", result.toMap());
         }

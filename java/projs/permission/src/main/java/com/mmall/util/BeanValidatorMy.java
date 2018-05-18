@@ -10,20 +10,24 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class BeanValidator {
+/**
+ * Created by bwhite on 18-5-17.
+ */
+public class BeanValidatorMy {
 
+    // 全局的校验工厂
     private static ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
+    // 普通的校验方法
+    // <T> 代表传入的类型，可以传入很多种类型
+    // Map<String, String>, 返回值，<字段，错误信息>
     public static <T> Map<String, String> validate(T t, Class... groups) {
+        // 获得一个验证器
         Validator validator = validatorFactory.getValidator();
         Set validateResult = validator.validate(t, groups);
+
         if (validateResult.isEmpty()) {
             return Collections.emptyMap();
         } else {
@@ -38,7 +42,9 @@ public class BeanValidator {
     }
 
     public static Map<String, String> validateList(Collection<?> collection) {
+
         Preconditions.checkNotNull(collection);
+
         Iterator iterator = collection.iterator();
         Map errors;
 
@@ -47,13 +53,14 @@ public class BeanValidator {
                 return Collections.emptyMap();
             }
             Object object = iterator.next();
-            errors = validate(object, new Class[0]);
+            errors = validate(object, new Class[0]);  // new Class[0] 占位, 符合函数调用
         } while (errors.isEmpty());
 
         return errors;
     }
 
     public static Map<String, String> validateObject(Object first, Object... objects) {
+
         if (objects != null && objects.length > 0) {
             return validateList(Lists.asList(first, objects));
         } else {
@@ -61,10 +68,12 @@ public class BeanValidator {
         }
     }
 
-    public static void check(Object param) throws ParamException {
-        Map<String, String> map = BeanValidator.validateObject(param);
-        if (MapUtils.isNotEmpty(map)) {
+    public static void check(Object object) throws ParamException {
+        Map<String, String> map = BeanValidatorMy.validateObject(object);
+        if (MapUtils.isEmpty(map)) {
             throw new ParamException(map.toString());
         }
     }
+
+
 }

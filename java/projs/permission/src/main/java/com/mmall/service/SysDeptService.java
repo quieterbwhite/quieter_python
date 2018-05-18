@@ -7,6 +7,7 @@ import com.mmall.model.SysDept;
 import com.mmall.param.DeptParam;
 import com.mmall.util.BeanValidator;
 import com.mmall.util.LevelUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.List;
  * Created by bwhite on 18-5-18.
  */
 @Service
+@Slf4j
 public class SysDeptService {
 
     @Resource
@@ -26,12 +28,16 @@ public class SysDeptService {
 
     public void save(DeptParam deptParam) {
 
+        log.info("aaaaaaaaa");
+
         BeanValidator.check(deptParam);
+        log.info("bbbbbbbbb");
 
         if (checkExists(deptParam.getParentId(), deptParam.getName(), deptParam.getId())) {
             throw new ParamException("同一层级下存在相同名称的部门");
         }
 
+        log.info("1111111");
         // 使用 lombok 的 build 功能就能生成类
         SysDept debt = SysDept.builder()
                             .name(deptParam.getName())
@@ -44,7 +50,9 @@ public class SysDeptService {
         debt.setOperator("system");
         debt.setOperateTime(new Date());
         debt.setOperateIp("127.0.0.1");
+        log.info("2222222222");
         sysDeptMapper.insert(debt);
+        log.info("3333333333");
     }
 
     public void update(DeptParam deptParam) {

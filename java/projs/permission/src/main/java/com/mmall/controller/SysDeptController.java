@@ -30,7 +30,9 @@ public class SysDeptController {
     @RequestMapping("/save.json")
     @ResponseBody
     public JsonData saveDept(DeptParam deptParam) {
+        log.info("00000000000");
         sysDeptService.save(deptParam);
+        log.info("99999999999");
         return JsonData.success();
     }
 
