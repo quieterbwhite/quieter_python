@@ -103,8 +103,7 @@ public class SysDeptService {
 
     private boolean checkExists(Integer parentId, String deptName, Integer deptId) {
 
-        // TODO
-        return true;
+        return sysDeptMapper.countByNameAndParentId(parentId, deptName, deptId) > 0;
     }
 
     private String getLevel(Integer deptId) {

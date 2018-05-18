@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>菜鸟</title>
+</head>
+<body>
+
+<video id="myVideo" width="2100" height="1300" controls>
+  <source src="file:///home/bwhite/Downloads/7-3+更新部门接口开发.mp4" type="video/mp4">
+  您的浏览器不支持 video 标签。
+</video><br>
+
+<button onclick="getPlaySpeed()" type="button">播放速度为?</button>
+<button onclick="setDefaultSpeed()" type="button">普通播放</button>
+<button onclick="setPlaySpeed()" type="button">快速播放</button>
+<button onclick="playPause()">播放/暂停</button>
+
+<script>
+var x = document.getElementById("myVideo");
+function getPlaySpeed() {
+    alert(x.defaultPlaybackRate);
+}
+
+function setDefaultSpeed() {
+    x.defaultPlaybackRate = 1.0;
+    x.load();
+}
+
+function setPlaySpeed() {
+    x.defaultPlaybackRate = 1.5;
+    x.load();
+}
+
+function playPause(){   
+        if (myVideo.paused)   
+            myVideo.play();   
+        else   
+            myVideo.pause();   
+    }   
+</script>
+
+</body>
+</html>

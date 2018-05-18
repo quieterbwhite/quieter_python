@@ -152,6 +152,22 @@
     WHERE LEVEL LIKE #{level} || '.%' -- level like '-.%'
   </select>
   
-  <update id="batchUpdateLevel"
+  <update id="batchUpdateLevel" parameterType="map">
+    <foreach collection="sysDeptList" item="sysDept" separator=";">
+     UPDATE sys_dept
+      SET level = #{dept.level}
+      WHERE id = #{dept.id}
+    </foreach>
+  </update>
+
+  <select id="countByNameAndParentId" parameterType="map" resultMap="int">
+    SELECT count(1)
+    FROM sys_dept
+    WHERE parent_id = #{parentId}
+    AND name = #{name}
+    <if test="id != null">
+      AND id != #{id}
+    </if>
+  </select>
 
 </mapper>

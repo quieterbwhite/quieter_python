@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface SysDeptMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(@Param("id") Integer id);
 
     // 全量插入所有字段
     int insert(SysDept record);
@@ -14,7 +14,7 @@ public interface SysDeptMapper {
     // 只插入有值的字段
     int insertSelective(SysDept record);
 
-    SysDept selectByPrimaryKey(Integer id);
+    SysDept selectByPrimaryKey(@Param("id") Integer id);
 
     int updateByPrimaryKeySelective(SysDept record);
 
@@ -26,4 +26,6 @@ public interface SysDeptMapper {
     List<SysDept> getChildDeptListByLevel(@Param("level") String level);
 
     void batchUpdateLevel(@Param("sysDeptList") List<SysDept> sysDeptList);
+
+    int countByNameAndParentId(@Param("parentId") int parentId, @Param("name") String name, @Param("id") Integer id);
 }
