@@ -51,6 +51,23 @@ public class SysUserService {
         sysUserMapper.insert(user);
     }
 
+    public void update(UserParam param) {
+        BeanValidator.check(param);
+        if(checkTelephoneExists(param.getTelephone(), param.getId())) {
+            throw new ParamException("电话已被占用");
+        }
+        if(checkEmailExists(param.getMail(), param.getId())) {
+            throw new ParamException("邮箱已被占用");
+        }
+        SysUser before = sysUserMapper.selectByPrimaryKey(param.getId());
+
+        SysUser after = SysUser.builder().id(param.getId()).username(param.getUsername()).telephone(param.getTelephone()).mail(param.getMail())
+                .deptId(param.getDeptId()).status(param.getStatus()).remark(param.getRemark()).build();
+        after.setOperator("system");
+        after.setOperateTime(new Date());
+        sysUserMapper.updateByPrimaryKeySelective(after);
+    }
+
     public boolean checkEmailExists(String mail, Integer userId) {
         return false;
     }
