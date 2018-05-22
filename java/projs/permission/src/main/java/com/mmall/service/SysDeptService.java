@@ -1,11 +1,13 @@
 package com.mmall.service;
 
 import com.google.common.base.Preconditions;
+import com.mmall.common.RequestHolder;
 import com.mmall.dao.SysDeptMapper;
 import com.mmall.exception.ParamException;
 import com.mmall.model.SysDept;
 import com.mmall.param.DeptParam;
 import com.mmall.util.BeanValidator;
+import com.mmall.util.IpUtil;
 import com.mmall.util.LevelUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
@@ -43,9 +45,12 @@ public class SysDeptService {
                             .build();
 
         debt.setLevel(LevelUtil.calculateLevel(getLevel(deptParam.getParentId()), deptParam.getParentId()));
-        debt.setOperator("system");
+
+        // debt.setOperator("system");
+        debt.setOperator(RequestHolder.getCurrentUser().getUsername());
         debt.setOperateTime(new Date());
-        debt.setOperateIp("127.0.0.1");
+        // debt.setOperateIp("127.0.0.1");
+        debt.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         sysDeptMapper.insert(debt);
     }
 

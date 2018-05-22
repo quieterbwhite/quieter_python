@@ -41,6 +41,8 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
         long end = System.currentTimeMillis();
 //        log.info("request - finish - url:{}, time_cost:{}", url, JsonMapper.obj2String(parameterMap));
         log.info("request - finish - url:{}, time_cost:{}", url, end - start);
+
+        removeThreadLocalInfo();
     }
 
     // 所有请求结束时
@@ -49,5 +51,11 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
         String url = request.getRequestURI().toString();
         Map parameterMap = request.getParameterMap();
         log.info("request - complete - url:{}, params:{}", url, JsonMapper.obj2String(parameterMap));
+
+        removeThreadLocalInfo();
+    }
+
+    public void removeThreadLocalInfo() {
+        RequestHolder.remove();;
     }
 }
