@@ -1,7 +1,17 @@
 package com.mmall.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Builder
+@NoArgsConstructor   // 不需要参数的构造方法
+@AllArgsConstructor  // 所有参数的构造方法
+@ToString
 public class SysAclModule {
     private Integer id;
 
