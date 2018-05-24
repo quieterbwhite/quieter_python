@@ -31,6 +31,7 @@ public class SysAclModuleController {
     @RequestMapping("/save.json")
     @ResponseBody
     public JsonData saveAclModule(AclModuleParam param) {
+        log.info("44444");
         sysAclModuleService.save(param);
         return JsonData.success();
     }
