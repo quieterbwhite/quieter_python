@@ -2,7 +2,9 @@ package com.mmall.dao;
 
 import com.mmall.model.SysLog;
 import com.mmall.model.SysLogWithBLOBs;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface SysLogMapper {
     int deleteByPrimaryKey(Integer id);
 
