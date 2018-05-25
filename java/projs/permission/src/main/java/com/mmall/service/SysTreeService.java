@@ -3,6 +3,7 @@ package com.mmall.service;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import com.mmall.dao.SysAclMapper;
 import com.mmall.dao.SysAclModuleMapper;
 import com.mmall.dao.SysDeptMapper;
 import com.mmall.dto.AclDto;
@@ -33,6 +34,12 @@ public class SysTreeService {
 
     @Resource
     private SysAclModuleMapper sysAclModuleMapper;
+
+    @Resource
+    private SysAclMapper sysAclMapper;
+
+    @Resource
+    private SysCoreService sysCoreService;
 
     // 返回部门树
     public List<DeptLevelDto> deptTree() {

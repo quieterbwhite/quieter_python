@@ -1,9 +1,6 @@
 package com.mmall.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -12,6 +9,7 @@ import java.util.Date;
 @NoArgsConstructor   // 不需要参数的构造方法
 @AllArgsConstructor  // 所有参数的构造方法
 @ToString
+@EqualsAndHashCode(of = {"id"})  // equals 和 hashcode 方法判断的时候根据 id 来判断是否是相同的
 public class SysAcl {
     private Integer id;
 
