@@ -13,6 +13,7 @@ import com.mmall.model.SysAcl;
 import com.mmall.model.SysAclModule;
 import com.mmall.model.SysDept;
 import com.mmall.util.LevelUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
  * Created by bwhite on 18-5-18.
  */
 @Service
+@Slf4j
 public class SysTreeService {
 
     @Resource
@@ -162,17 +164,25 @@ public class SysTreeService {
     };
 
     public List<AclModuleLevelDto> roleTree(int roleId) {
-        // 1、当前用户已分配的权限点
+
+        // 1、当前用户已分配的权限点 user_id -> role_id_list -> acl_id_list -> acl_detail_list
         List<SysAcl> userAclList = sysCoreService.getCurrentUserAclList();
-        // 2、当前角色分配的权限点
+
+        // 2、当前角色分配的权限点 role_id -> acl_detail_list
         List<SysAcl> roleAclList = sysCoreService.getRoleAclList(roleId);
+
         // 3、当前系统所有权限点
         List<AclDto> aclDtoList = Lists.newArrayList();
 
+        // user acl_id set
         Set<Integer> userAclIdSet = userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+        // role acl_id set
         Set<Integer> roleAclIdSet = roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
 
+        // 获取所有权限点详情
         List<SysAcl> allAclList = sysAclMapper.getAll();
+
+        // 标记用户的权限 - 标记角色的权限
         for (SysAcl acl : allAclList) {
             AclDto dto = AclDto.adapt(acl);
             if (userAclIdSet.contains(acl.getId())) {
@@ -183,6 +193,7 @@ public class SysTreeService {
             }
             aclDtoList.add(dto);
         }
+
         return aclListToTree(aclDtoList);
     }
 

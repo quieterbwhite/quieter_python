@@ -7,12 +7,10 @@ import com.mmall.model.SysRole;
 import com.mmall.model.SysUser;
 import com.mmall.param.RoleParam;
 //import com.mmall.service.SysRoleAclService;
-import com.mmall.service.SysRoleService;
+import com.mmall.service.*;
 //import com.mmall.service.SysRoleUserService;
-import com.mmall.service.SysRoleUserService;
-import com.mmall.service.SysTreeService;
-import com.mmall.service.SysUserService;
-//import com.mmall.util.StringUtil;
+import com.mmall.util.StringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,14 +25,15 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/sys/role")
+@Slf4j
 public class SysRoleController {
 
     @Resource
     private SysRoleService sysRoleService;
     @Resource
     private SysTreeService sysTreeService;
-//    @Resource
-//    private SysRoleAclService sysRoleAclService;
+    @Resource
+    private SysRoleAclService sysRoleAclService;
     @Resource
     private SysRoleUserService sysRoleUserService;
     @Resource
@@ -71,7 +70,6 @@ public class SysRoleController {
         return JsonData.success(sysTreeService.roleTree(roleId));
     }
 
-    /*
     @RequestMapping("/changeAcls.json")
     @ResponseBody
     public JsonData changeAcls(@RequestParam("roleId") int roleId, @RequestParam(value = "aclIds", required = false, defaultValue = "") String aclIds) {
@@ -87,21 +85,28 @@ public class SysRoleController {
         sysRoleUserService.changeRoleUsers(roleId, userIdList);
         return JsonData.success();
     }
-    */
 
     @RequestMapping("/users.json")
     @ResponseBody
     public JsonData users(@RequestParam("roleId") int roleId) {
+        // 获取角色下用户详情列表
         List<SysUser> selectedUserList = sysRoleUserService.getListByRoleId(roleId);
+        // 获取所有用户详情列表
         List<SysUser> allUserList = sysUserService.getAll();
+        // 没有选择的用户
         List<SysUser> unselectedUserList = Lists.newArrayList();
 
+        // 被选中用户id列表
         Set<Integer> selectedUserIdSet = selectedUserList.stream().map(sysUser -> sysUser.getId()).collect(Collectors.toSet());
+
+        // 没有被选中的用户的详情列表
         for(SysUser sysUser : allUserList) {
             if (sysUser.getStatus() == 1 && !selectedUserIdSet.contains(sysUser.getId())) {
                 unselectedUserList.add(sysUser);
             }
         }
+
+        // 返回被选中和未被选中的用户
         // selectedUserList = selectedUserList.stream().filter(sysUser -> sysUser.getStatus() != 1).collect(Collectors.toList());
         Map<String, List<SysUser>> map = Maps.newHashMap();
         map.put("selected", selectedUserList);

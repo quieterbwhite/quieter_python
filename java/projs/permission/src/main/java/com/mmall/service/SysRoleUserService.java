@@ -31,6 +31,11 @@ public class SysRoleUserService {
     @Resource
     private SysLogMapper sysLogMapper;
 
+    /**
+     * 获取角色下用户详情列表
+     * @param roleId
+     * @return
+     */
     public List<SysUser> getListByRoleId(int roleId) {
         List<Integer> userIdList = sysRoleUserMapper.getUserIdListByRoleId(roleId);
         if (CollectionUtils.isEmpty(userIdList)) {

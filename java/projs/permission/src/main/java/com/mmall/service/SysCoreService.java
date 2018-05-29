@@ -45,17 +45,24 @@ public class SysCoreService {
     }
 
     public List<SysAcl> getUserAclList(int userId) {
+        // 超级用户返回所有权限点
         if (isSuperAdmin()) {
             return sysAclMapper.getAll();
         }
+
+        // 一个用户可以是多个角色, 通过用户id获取角色id列表
         List<Integer> userRoleIdList = sysRoleUserMapper.getRoleIdListByUserId(userId);
         if (CollectionUtils.isEmpty(userRoleIdList)) {
             return Lists.newArrayList();
         }
+
+        // 通过角色id列表获取权限点id列表
         List<Integer> userAclIdList = sysRoleAclMapper.getAclIdListByRoleIdList(userRoleIdList);
         if (CollectionUtils.isEmpty(userAclIdList)) {
             return Lists.newArrayList();
         }
+
+        // 获取所有权限点的所有信息
         return sysAclMapper.getByIdList(userAclIdList);
     }
 
