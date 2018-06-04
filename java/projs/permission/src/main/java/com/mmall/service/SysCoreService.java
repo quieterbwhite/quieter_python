@@ -76,7 +76,6 @@ public class SysCoreService {
         return false;
     }
 
-    /*
     public boolean hasUrlAcl(String url) {
         if (isSuperAdmin()) {
             return true;
@@ -107,6 +106,7 @@ public class SysCoreService {
         return false;
     }
 
+    /*
     public List<SysAcl> getCurrentUserAclListFromCache() {
         int userId = RequestHolder.getCurrentUser().getId();
         String cacheValue = sysCacheService.getFromCache(CacheKeyConstants.USER_ACLS, String.valueOf(userId));
@@ -119,5 +119,6 @@ public class SysCoreService {
         }
         return JsonMapper.string2Obj(cacheValue, new TypeReference<List<SysAcl>>() {
         });
-    }*/
+    }
+    */
 }
