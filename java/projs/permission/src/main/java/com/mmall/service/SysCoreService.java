@@ -2,6 +2,7 @@ package com.mmall.service;
 
 import com.google.common.collect.Lists;
 //import com.mmall.beans.CacheKeyConstants;
+import com.mmall.beans.CacheKeyConstants;
 import com.mmall.common.RequestHolder;
 import com.mmall.dao.SysAclMapper;
 import com.mmall.dao.SysRoleAclMapper;
@@ -28,8 +29,8 @@ public class SysCoreService {
     private SysRoleUserMapper sysRoleUserMapper;
     @Resource
     private SysRoleAclMapper sysRoleAclMapper;
-//    @Resource
-//    private SysCacheService sysCacheService;
+    @Resource
+    private SysCacheService sysCacheService;
 
     public List<SysAcl> getCurrentUserAclList() {
         int userId = RequestHolder.getCurrentUser().getId();
@@ -106,7 +107,6 @@ public class SysCoreService {
         return false;
     }
 
-    /*
     public List<SysAcl> getCurrentUserAclListFromCache() {
         int userId = RequestHolder.getCurrentUser().getId();
         String cacheValue = sysCacheService.getFromCache(CacheKeyConstants.USER_ACLS, String.valueOf(userId));
@@ -120,5 +120,5 @@ public class SysCoreService {
         return JsonMapper.string2Obj(cacheValue, new TypeReference<List<SysAcl>>() {
         });
     }
-    */
+
 }

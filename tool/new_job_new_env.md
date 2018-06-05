@@ -100,7 +100,9 @@ apscheduler
 
 python-hwinfo  python 获取硬件信息
 
-pysnowflake
+pysnowflake  发号器
+
+pytesser     简单验证码识别
 ```
 
 ## other
