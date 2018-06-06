@@ -158,7 +158,7 @@ www-data 22239  0.0  0.2 282420 17116 ?        S    6月05   0:00 php-fpm: pool 
 	生成 www-data 用户的 ssh key
 		$ ssh-keygen
 		
-	将 ~/.ssh/id_rsa.pub 中的内容添加到 gitlab 中，测试可以拉取代码即可。	
+	将 ~/.ssh/id_rsa.pub 中的内容添加到 gitlab 项目的 Deploy Keys 中，测试可以拉取代码即可。	
 ```
 
 
