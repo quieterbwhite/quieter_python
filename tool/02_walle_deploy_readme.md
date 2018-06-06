@@ -127,7 +127,38 @@ server {
 	通过WEB系统（基于PHP）操作git，也要建立PHP进程用户和Gitlab机器的ssh信任。
 	
 	有两种方式查看当前PHP进程用什么用户在运行:
-		1. 
+		1. 查看配置文件中 user 的值。
+			vim /etc/php/7.0/fpm/pool.d/www.conf
+				user = www-data
+				group = www-data
+				
+		2. 查看进程
+			bwhite@os:/etc/php/7.0/fpm/pool.d$ ps aux | grep php
+root     15168  0.0  0.2 279852 21600 ?        Ss   6月05   0:06 php-fpm: master process (/etc/php/7.0/fpm/php-fpm.conf)
+www-data 15171  0.0  0.2 286800 19052 ?        S    6月05   0:05 php-fpm: pool www
+bwhite   20837  0.0  0.0  15964   968 pts/1    S+   11:01   0:00 grep --color=auto php
+www-data 22233  0.0  0.2 282404 16912 ?        S    6月05   0:00 php-fpm: pool www
+www-data 22239  0.0  0.2 282420 17116 ?        S    6月05   0:00 php-fpm: pool www
+
+	所以就需要将 www-data 的 public key 添加到 gitlab 中以拉取代码。
+	那么我们就要切换到 www-data 用户，在用ssh-keygen生成 key。
+	
+	修改 /etc/passwd 文件:
+        www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+        修改为:
+        www-data:x:33:33:www-data:/home/www-data:/bin/bash
+        
+    创建 /home/www-data 目录并将拥有者修改为 www-data:
+    	$ sudo mkdir /home/www-data
+    	$ sudo chown -R www-data:www-data /home/www-data
+	
+	切换用户:
+		$ su - www-data
+	
+	生成 www-data 用户的 ssh key
+		$ ssh-keygen
+		
+	将 ~/.ssh/id_rsa.pub 中的内容添加到 gitlab 中，测试可以拉取代码即可。	
 ```
 
 
