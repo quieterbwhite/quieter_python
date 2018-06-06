@@ -59,7 +59,11 @@ typora
 
 vlc
 
+wps    处理文档
+
 krita  类似 photoshop
+
+rdesktop  ubuntu 远程连接 windows
 
 坚果云
 

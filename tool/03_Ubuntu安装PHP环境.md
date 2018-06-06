@@ -14,15 +14,25 @@ $ sudo aptitude install php7.0-mysql
 源码编译扩展
 
     1. 首先下载[mysql扩展](https://git.php.net/?p=pecl/database/mysql.git;a=summary)
+    
+    	打开页面，选择最新的 .tar.gz 包下载
 
     2. 解压
 
         $ tar zxvf mysql.tar.gz
 
     3. 编译
-
-        $ phpize
+    
+		$ cd mysql 
+		
+        bwhite@os:~/work/walle/mysql-647c933$ phpize
+            Configuring for:
+            PHP Api Version:         20151012
+            Zend Module Api No:      20151012
+            Zend Extension Api No:   320151012
+            
         $ ./configure
+        
         $ make
 
         在 modules 目录下生成了一个 mysql.so 文件
