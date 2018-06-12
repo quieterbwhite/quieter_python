@@ -1,4 +1,5 @@
 ## Vysor 破解
+> https://blog.csdn.net/qq_21793463/article/details/61919151  
 
 ```
 分析源代码可知软件在uglify-list.js文件内通过_il变量判断是否注册成功, 
@@ -10,4 +11,4 @@ pwd: /home/bwhite/.config/google-chrome/Default/Extensions/gidgenkbbabolejbgbpnh
 将上文中提到的 _il:() 处都替换为 _il:true, 就可以完成破解了。
 
 uglify.js文件在chrome的Extensions文件夹下，可以用开发者模式先找到扩展的id。
-```
+```  
