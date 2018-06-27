@@ -86,6 +86,8 @@ rundeck   -   后台任务
     http://tech.oyster.com/rundeck-vs-crontab-why-rundeck-won/
 
 crontab-ui
+
+后台进程管理工具Supervisor + superlance（Supervisor 的增强插件工具集）
 ```
 
 ## pip install
