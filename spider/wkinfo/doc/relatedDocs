@@ -1,0 +1,57 @@
+http://law.wkinfo.com.cn/csi/document/html/relatedDocs?limit=20&docId=MjAyMzcwMDI4Mjk=&indexId=law.case
+
+[
+    {
+        "index": "CASE_RELATED_CASE",
+        "list": []
+    },
+    {
+        "index": "CASE_ANALYZES",
+        "list": []
+    },
+    {
+        "index": "IN_OUR_HOSPITAL_BY_THE_RELATED_CONNECTION_WITH_THE_CASE",
+        "list": [
+            {
+                "docId": "MjAyMjc4OTE2NzQ=",
+                "title": "原告中国农业银行股份有限公司新绛县支行与被告邵爱芳信用卡纠纷一审民事判决书",
+                "docType": "case",
+                "lang": null,
+                "date": null,
+                "caseNumber": null
+            },
+            {
+                "docId": "MjAyMjI2NDU1MDU=",
+                "title": "原告中国农业银行股份有限公司新绛县支行与被告付嘉信用卡纠纷一审民事判决书",
+                "docType": "case",
+                "lang": null,
+                "date": null,
+                "caseNumber": null
+            },
+            {
+                "docId": "MjAwOTYwMjI3NzM=",
+                "title": "中国邮政储蓄银行股份有限公司新绛县支行与吴某信用卡纠纷一审民事判决书",
+                "docType": "case",
+                "lang": null,
+                "date": null,
+                "caseNumber": null
+            },
+            {
+                "docId": "MjAwODY0MDIyODI=",
+                "title": "中国农业银行股份有限公司新绛县支行与康某信用卡纠纷一审民事判决书",
+                "docType": "case",
+                "lang": null,
+                "date": null,
+                "caseNumber": null
+            },
+            {
+                "docId": "MjAwNzQwODAyNTY=",
+                "title": "中国农业银行股份有限公司新绛县支行与赵某信用卡纠纷一审民事判决书",
+                "docType": "case",
+                "lang": null,
+                "date": null,
+                "caseNumber": null
+            }
+        ]
+    }
+]

@@ -1,0 +1,24 @@
+http://law.wkinfo.com.cn/api/autoLogin
+
+{
+    "login": true,
+    "userInfo": {
+        "id": "",
+        "username": "lhjk",
+        "password": "0x0100000047d3ade62988311a4175867effd2e65372c3bb73c79af56a",
+        "email": "hongyx@lhjk.com.cn",
+        "userLang": "cn",
+        "userPageSize": 25,
+        "isSend": true,
+        "sendLang": "cn-en",
+        "recieveEmails": [],
+        "userType": "normal",
+        "groupName": "law",
+        "libraryCode": "",
+        "licences": 1,
+        "telephone": "13537741106",
+        "conf": "{\"legislationViewType\":\"group\",\"lawExpressViewType\":\"list\",\"mLegislationViewType\":\"list\",\"mLawExpressViewType\":\"list\"}"
+    },
+    "type": "exist",
+    "version": "1.0.0"
+}
