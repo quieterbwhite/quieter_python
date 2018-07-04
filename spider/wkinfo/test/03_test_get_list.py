@@ -2,9 +2,9 @@
 # Created Time: 2018年06月25日 星期一 14时11分59秒
 # File Name: 03_test_get_list.py
 
-import time
 import requests
-from service_mongo import mongo_service
+
+from service.service_mongo import mongo_service
 
 url = "http://law.wkinfo.com.cn/csi/search"
 
@@ -14,9 +14,10 @@ reason_payload = {
     "indexId": "law.case",
     "query": {
         "queryString": " (( causeOfAction:01000000000000民事/01040000000000合同、无因管理、不当得利纠纷/01040010000000合同纠纷/01040010240000借款合同纠纷/01040010240010金融借款合同纠纷 )) ",
+        # "queryString" : "",
         "filterQueries": [],
         "filterDates": [
-            # "judgmentDate:[2018.06.01 TO 2018.06.01]"
+            "judgmentDate:[2018.06.01 TO 2018.06.01]"
         ]
     },
     "searchScope": {
@@ -51,22 +52,21 @@ reason_payload = {
 
 judgements_conn = mongo_service.get_collection("wk01")
 
-for i in range(2):
-    time.sleep(5)
+for i in range(1):
     print "Going to page: {}".format(i)
     reason_payload["pageInfo"].update({"offset":i*100})
     r = requests.post(url, headers=headers, json=reason_payload)
     if not r:
         print "No Results"
         break
-    
-    print "Save me"
+
     data = r.json()
     docCount = data["searchMetadata"]["docCount"]
+    print "docCount == %s" % docCount
     if docCount > 5000:
-        
-        break
-    
+        pass
+
+    print "Save me"
     documentList = data["documentList"]
     for doc in documentList:
         # judgements_conn.insert(doc)

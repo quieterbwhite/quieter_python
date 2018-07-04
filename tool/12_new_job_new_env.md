@@ -35,6 +35,8 @@ jdk
 
 node
 
+mitmproxy
+
 postman
 
 sublime
