@@ -1,0 +1,40 @@
+{
+    "indexId": "law.case",
+    "query": {
+        "queryString": " (( causeOfAction:01000000000000民事/01040000000000合同、无因管理、不当得利纠纷/01040010000000合同纠纷/01040010240000借款合同纠纷/01040010240010金融借款合同纠纷 )) ",
+        "filterQueries": [],
+        "filterDates": [
+            "judgmentDate:[2018.06.02 TO 2018.06.02]"
+        ]
+    },
+    "searchScope": {
+        "treeNodeIds": [
+            "courtǁ003000000北京市/002040000北京市第二中级人民法院辖区ǁǂ"
+        ]
+    },
+    "relatedIndexQueries": [],
+    "sortOrderList": [
+        {
+            "sortKey": "judgmentDate",
+            "sortDirection": "DESC"
+        }
+    ],
+    "pageInfo": {
+        "limit": 100,
+        "offset": 0
+    },
+    "otherOptions": {
+        "requireLanguage": "cn",
+        "relatedIndexEnabled": false,
+        "groupEnabled": false,
+        "smartEnabled": true,
+        "buy": false,
+        "summaryLengthLimit": 100,
+        "advanced": true,
+        "synonymEnabled": true,
+        "isHideBigLib": 0
+    },
+    "chargingInfo": {
+        "useBalance": true
+    }
+}

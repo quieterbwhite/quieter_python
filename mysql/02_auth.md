@@ -42,10 +42,20 @@ MySQL 为了数据库的安全性，设置了对数据的存取进行控制的�
 假设，需要让超级管理员管理所有数据库的权限，赋予远程权限。
 
     grant all on *.* to 'dba'@'192.168.244.142' identified by 'mypassword' with grant option;
+
+    grant all privileges on *.* to 'jtsec'@'192.168.8.123' identified by 'jtsec' with grant option;
+
+    select user,host from mysql.user;
+
+    show grants for 'root'@'192.168.8.123';
+
+    show grants for 'root'@'%';
 ```
 
 ## REVOKE 收回用户权限
 ```
+撤销已经赋予给 MySQL 用户权限的权限。
+
 回收用户权限，和授予用户权限类似，只需要把关键字 to 改成 from 即可。
 
     REVOKE <权限>
@@ -57,6 +67,29 @@ MySQL 为了数据库的安全性，设置了对数据的存取进行控制的�
 假设，需要收回普通 DBA 某个数据库的删除权限。
 
     revoke delete on db_name.* from 'dba'@'localhost';
+
+revoke 跟 grant 的语法差不多, 只需要把关键字 "to" 换成 "from" 即可:
+
+    revoke all on *.* from 'root'@'192.168.0.197';
+
+REVOKE语句只能取消用户的权限，而不可以删除用户。
+即使取消了所有的权限，用户仍然可以连接到服务器。
+要想彻底的删除用户，必须使用DELETE语句将该用户的记录从MySQL数据库中的user表中删除。
+该语句的语法格式如下： 
+
+    Delete from user where user = "user_name" and host = "host_name" ; 
+
+例子：
+
+    mysql; use mysql;
+    Database changed
+
+    delete from user where user='sss' and host='localhost';
+    flush privileges;
+
+    Query OK, 1 row affected (0.02 sec)
+
+不要让懒惰占据你的大脑，不让要妥协拖跨你的人生。青春就是一张票，能不能赶上时代的快车，你的步伐掌握在你的脚下。
 ```
 
 ## 数据库安全原则

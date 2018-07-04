@@ -1,0 +1,386 @@
+{
+    "treeId": "court",
+    "nodeId": null,
+    "title": "审理法院",
+    "nHits": 0,
+    "children": [
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ003000000北京市ǁǂ",
+            "title": "北京市",
+            "nHits": 4,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ003000000北京市/002040000北京市第二中级人民法院辖区ǁǂ",
+                    "title": "北京市第二中级人民法院辖区",
+                    "nHits": 4,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ003000000北京市/002040000北京市第二中级人民法院辖区/002040010北京市东城区人民法院ǁǂ",
+                            "title": "北京市东城区人民法院",
+                            "nHits": 4,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ028000000天津市ǁǂ",
+            "title": "天津市",
+            "nHits": 1,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ028000000天津市/003030000天津市第一中级人民法院辖区ǁǂ",
+                    "title": "天津市第一中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ028000000天津市/003030000天津市第一中级人民法院辖区/003030010天津市和平区人民法院ǁǂ",
+                            "title": "天津市和平区人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ019000000吉林省ǁǂ",
+            "title": "吉林省",
+            "nHits": 25,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ019000000吉林省/010020000吉林省长春市中级人民法院辖区ǁǂ",
+                    "title": "吉林省长春市中级人民法院辖区",
+                    "nHits": 12,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ019000000吉林省/010020000吉林省长春市中级人民法院辖区/010020100吉林省长春市双阳区人民法院ǁǂ",
+                            "title": "吉林省长春市双阳区人民法院",
+                            "nHits": 12,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ019000000吉林省/010060000吉林省辽源市中级人民法院辖区ǁǂ",
+                    "title": "吉林省辽源市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ019000000吉林省/010060000吉林省辽源市中级人民法院辖区/010060010吉林省辽源市龙山区人民法院ǁǂ",
+                            "title": "吉林省辽源市龙山区人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ019000000吉林省/010070000吉林省通化市中级人民法院辖区ǁǂ",
+                    "title": "吉林省通化市中级人民法院辖区",
+                    "nHits": 2,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ019000000吉林省/010070000吉林省通化市中级人民法院辖区/010070060吉林省辉南县人民法院ǁǂ",
+                            "title": "吉林省辉南县人民法院",
+                            "nHits": 2,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ019000000吉林省/010080000吉林省白山市中级人民法院辖区ǁǂ",
+                    "title": "吉林省白山市中级人民法院辖区",
+                    "nHits": 10,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ019000000吉林省/010080000吉林省白山市中级人民法院辖区/010080040吉林省抚松县人民法院ǁǂ",
+                            "title": "吉林省抚松县人民法院",
+                            "nHits": 10,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ017000000江苏省ǁǂ",
+            "title": "江苏省",
+            "nHits": 9,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ017000000江苏省/012050000江苏省常州市中级人民法院辖区ǁǂ",
+                    "title": "江苏省常州市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ017000000江苏省/012050000江苏省常州市中级人民法院辖区/012050010江苏省常州市天宁区人民法院ǁǂ",
+                            "title": "江苏省常州市天宁区人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ017000000江苏省/012060000江苏省苏州市中级人民法院辖区ǁǂ",
+                    "title": "江苏省苏州市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ017000000江苏省/012060000江苏省苏州市中级人民法院辖区/901600440江苏省苏州市吴江区人民法院（原江苏省吴江市人民法院）ǁǂ",
+                            "title": "江苏省苏州市吴江区人民法院（原江苏省吴江市人民法院）",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ017000000江苏省/012070000江苏省南通市中级人民法院辖区ǁǂ",
+                    "title": "江苏省南通市中级人民法院辖区",
+                    "nHits": 2,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ017000000江苏省/012070000江苏省南通市中级人民法院辖区/012070040江苏省如皋市人民法院ǁǂ",
+                            "title": "江苏省如皋市人民法院",
+                            "nHits": 2,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ017000000江苏省/012090000江苏省淮安市中级人民法院（原江苏省淮阴市中级人民法院）辖区ǁǂ",
+                    "title": "江苏省淮安市中级人民法院（原江苏省淮阴市中级人民法院）辖区",
+                    "nHits": 4,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ017000000江苏省/012090000江苏省淮安市中级人民法院（原江苏省淮阴市中级人民法院）辖区/012090030江苏省淮安市淮安区人民法院（原江苏省淮安市楚州区人民法院）ǁǂ",
+                            "title": "江苏省淮安市淮安区人民法院（原江苏省淮安市楚州区人民法院）",
+                            "nHits": 4,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ017000000江苏省/012100000江苏省盐城市中级人民法院辖区ǁǂ",
+                    "title": "江苏省盐城市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ017000000江苏省/012100000江苏省盐城市中级人民法院辖区/012100050江苏省滨海县人民法院ǁǂ",
+                            "title": "江苏省滨海县人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ002000000安徽省ǁǂ",
+            "title": "安徽省",
+            "nHits": 7,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ002000000安徽省/014090000安徽省安庆市中级人民法院辖区ǁǂ",
+                    "title": "安徽省安庆市中级人民法院辖区",
+                    "nHits": 5,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ002000000安徽省/014090000安徽省安庆市中级人民法院辖区/014090090安徽省宿松县人民法院ǁǂ",
+                            "title": "安徽省宿松县人民法院",
+                            "nHits": 5,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ002000000安徽省/014100000安徽省黄山市中级人民法院辖区ǁǂ",
+                    "title": "安徽省黄山市中级人民法院辖区",
+                    "nHits": 2,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ002000000安徽省/014100000安徽省黄山市中级人民法院辖区/014100040安徽省歙县人民法院ǁǂ",
+                            "title": "安徽省歙县人民法院",
+                            "nHits": 1,
+                            "children": null
+                        },
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ002000000安徽省/014100000安徽省黄山市中级人民法院辖区/014100070安徽省祁门县人民法院ǁǂ",
+                            "title": "安徽省祁门县人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ005000000福建省ǁǂ",
+            "title": "福建省",
+            "nHits": 1,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ005000000福建省/015100000福建省宁德市中级人民法院辖区ǁǂ",
+                    "title": "福建省宁德市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ005000000福建省/015100000福建省宁德市中级人民法院辖区/015100060福建省屏南县人民法院ǁǂ",
+                            "title": "福建省屏南县人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ018000000江西省ǁǂ",
+            "title": "江西省",
+            "nHits": 2,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ018000000江西省/016090000江西省宜春市中级人民法院辖区ǁǂ",
+                    "title": "江西省宜春市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ018000000江西省/016090000江西省宜春市中级人民法院辖区/016090020江西省丰城市人民法院ǁǂ",
+                            "title": "江西省丰城市人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ018000000江西省/016100000江西省上饶市（地区）中级人民法院辖区ǁǂ",
+                    "title": "江西省上饶市（地区）中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ018000000江西省/016100000江西省上饶市（地区）中级人民法院辖区/016100005江西省上饶市（地区）中级人民法院ǁǂ",
+                            "title": "江西省上饶市（地区）中级人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "treeId": "court",
+            "nodeId": "courtǁ023000000山东省ǁǂ",
+            "title": "山东省",
+            "nHits": 16,
+            "children": [
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ023000000山东省/017030000山东省青岛市中级人民法院辖区ǁǂ",
+                    "title": "山东省青岛市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ023000000山东省/017030000山东省青岛市中级人民法院辖区/017030080山东省即墨市人民法院ǁǂ",
+                            "title": "山东省即墨市人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ023000000山东省/017040000山东省淄博市中级人民法院辖区ǁǂ",
+                    "title": "山东省淄博市中级人民法院辖区",
+                    "nHits": 2,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ023000000山东省/017040000山东省淄博市中级人民法院辖区/017040020山东省淄博市张店区人民法院ǁǂ",
+                            "title": "山东省淄博市张店区人民法院",
+                            "nHits": 1,
+                            "children": null
+                        },
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ023000000山东省/017040000山东省淄博市中级人民法院辖区/017040060山东省桓台县人民法院ǁǂ",
+                            "title": "山东省桓台县人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ023000000山东省/017070000山东省烟台市中级人民法院辖区ǁǂ",
+                    "title": "山东省烟台市中级人民法院辖区",
+                    "nHits": 12,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ023000000山东省/017070000山东省烟台市中级人民法院辖区/017070080山东省莱州市人民法院ǁǂ",
+                            "title": "山东省莱州市人民法院",
+                            "nHits": 12,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "treeId": "court",
+                    "nodeId": "courtǁ023000000山东省/017100000山东省济宁市中级人民法院辖区ǁǂ",
+                    "title": "山东省济宁市中级人民法院辖区",
+                    "nHits": 1,
+                    "children": [
+                        {
+                            "treeId": "court",
+                            "nodeId": "courtǁ023000000山东省/017100000山东省济宁市中级人民法院辖区/017100060山东省微山县人民法院ǁǂ",
+                            "title": "山东省微山县人民法院",
+                            "nHits": 1,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
