@@ -61,6 +61,8 @@ vlc
 
 wps    处理文档
 
+Zathura: 轻巧好用的 PDF 查看器
+
 krita  类似 photoshop
 
 rdesktop  ubuntu 远程连接 windows
