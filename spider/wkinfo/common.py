@@ -4,13 +4,12 @@
 公共方法
 """
 
-import requests
 import traceback
-
+from logs.mylog import flogger
 from constant.constant_request import RequestConstant
 
 
-def request_data(url, headers, payload=None, method="post"):
+def request_data(session, url, payload=None, method="post"):
     """ 发起请求获取数据
 
     :param url
@@ -22,24 +21,54 @@ def request_data(url, headers, payload=None, method="post"):
 
     try:
         if method == "get":
-            res = requests.get(url, headers=headers, timeout=RequestConstant.REQUEST_TIMEOUT)
+            res = session.get(url, timeout=RequestConstant.REQUEST_TIMEOUT)
         else:
-            res = requests.post(url, headers=headers, json=payload, timeout=RequestConstant.REQUEST_TIMEOUT)
+            res = session.post(url, json=payload, timeout=RequestConstant.REQUEST_TIMEOUT)
     except Exception as e:
-        print(traceback.format_exc())
+        flogger.info(traceback.format_exc())
         return None
+
+    if res.status_code == 502:
+        return None
+
+    if res.status_code == 400:
+        flogger.info("返回错误码: {}".format(res.status_code))
+        flogger.info(res.json())
+        return "relogin"
 
     if not res:
-        print("No Results")
-        return None
+        flogger.info("No Results")
+        return "relogin"
+
+    json_data = res.json()
+    return json_data
+
+
+def request_login(session, url, payload):
+    """ 发起登录 """
 
     try:
-        json_data = res.json()
+        res = session.post(url, json=payload, timeout=RequestConstant.REQUEST_TIMEOUT)
     except Exception as e:
-        print(traceback.format_exc())
-        return None
+        flogger.info(traceback.format_exc())
+        return "Exception"
 
-    return json_data
+    if res.status_code != 200:
+        flogger.info("返回错误码: {}".format(res.status_code))
+        flogger.info(res.json())
+        return "relogin"
+
+    if not res:
+        flogger.info("No Results")
+        return "relogin"
+
+    try:
+        user_data = res.json()
+    except Exception as e:
+        flogger.info(traceback.format_exc())
+        return "Exception"
+
+    return user_data
 
 
 def handle_page(nHits):
