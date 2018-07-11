@@ -6,7 +6,6 @@ import execjs
 import json
 import time
 from checkcode import distinguish
-import re
 import random
 import traceback
 from search_param import generate_param
@@ -358,15 +357,23 @@ def getCourtInfo(DocID):
         'Origin': 'http://wenshu.court.gov.cn',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
     }
-    req = session.get(url, headers=headers)
+
+    try:
+        req = session.get(url, headers=headers, timeout=18)
+    except Exception as e:
+        flogger.info(traceback.format_exc())
+        return None
+
     req.encoding = 'uttf-8'
     return_data = req.text.replace('\\', '')
-    flogger.info(return_data)
-    read_count = re.findall(r'"浏览\：(\d*)次"', return_data)[0]
-    court_title = re.findall(r'\"Title\"\:\"(.*?)\"', return_data)[0]
-    court_date = re.findall(r'\"PubDate\"\:\"(.*?)\"', return_data)[0]
-    court_content = re.findall(r'\"Html\"\:\"(.*?)\"', return_data)[0]
-    return [court_title, court_date, read_count, court_content]
+    # flogger.info(return_data)
+    # read_count = re.findall(r'"浏览\：(\d*)次"', return_data)[0]
+    # court_title = re.findall(r'\"Title\"\:\"(.*?)\"', return_data)[0]
+    # court_date = re.findall(r'\"PubDate\"\:\"(.*?)\"', return_data)[0]
+    # court_content = re.findall(r'\"Html\"\:\"(.*?)\"', return_data)[0]
+    # return [court_title, court_date, read_count, court_content]
+
+    return return_data
 
 
 def download(DocID):

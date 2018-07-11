@@ -97,6 +97,45 @@
 
     db.animal.find().pretty()
 
+    # 模糊查询，以xx开头的
+    db.wsd201801.find({"data_flaw":/^<!DOC/})
+
+    db.user.find({"name":/ab/})
+    这样，可以查出所有包含有"ab"字符串的数据了。
+    等同于select * from user where name like "ab"
+
+    语句是：{"title":/F5\\(v/}
+    我加双斜杠的原因是所查字段里面有括号，要转义一下。不然查不到。
+
+    ---
+
+    That would have to be:
+
+        db.users.find({"name": /.*m.*/})
+
+        or, similar:
+
+        db.users.find({"name": /m/})
+
+    ---
+
+    db.users.insert({name: 'paulo'})
+    db.users.insert({name: 'patric'})
+    db.users.insert({name: 'pedro'})
+
+    db.users.find({name: /a/})  //like '%a%'
+    out: paulo, patric
+
+    db.users.find({name: /^pa/}) //like 'pa%'
+    out: paulo, patric
+
+    db.users.find({name: /ro$/}) //like '%ro'
+    out: pedro
+
+    ---
+
+    db.users.find({'name': {'$regex': 'sometext'}})
+
 运算符:
 
     <    $lt
