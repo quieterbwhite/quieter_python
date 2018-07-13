@@ -21,6 +21,9 @@ from shame import (
 
 from purify import (
     extract_accept_date,
+    extract_exe_date,
+    extract_exe_ref_case_no,
+    extract_exe_rule,
     extract_program_type,
     extract_verdict,
     extract_hear_date,
@@ -56,7 +59,7 @@ def extract(content):
     if res_varcaseinfo:
         varcaseinfo = simplejson.loads(res_varcaseinfo[0])
         varcaseinfo_res = handle_varcaseinfo(varcaseinfo)
-        print(varcaseinfo_res)
+        # print(varcaseinfo_res)
         res_dict.update(varcaseinfo_res)
 
     res_dir_data = re.findall(r'dirData = (.*)if', content)
@@ -88,7 +91,7 @@ def extract(content):
     res_dict.update({"trial_date" : trial_date})
 
     print(res_dict)
-    # wenshu_detail_a_conn.insert(res_dict)
+    wenshu_detail_a_conn.insert(res_dict)
 
 
 def handle_varcaseinfo(varcaseinfo):
@@ -124,8 +127,11 @@ def handle_word(res_dict, word):
 
     flogger.info("用正则提取正文内容")
 
+    exe_rule = ""
     accept_date = extract_accept_date(word)
     hear_date = extract_hear_date(word)
+    exe_date  = extract_exe_date(word)
+    exe_ref_case_no = extract_exe_ref_case_no(word)
     program_type = extract_program_type(word)
     loan_principal = extract_loan_principal(word)
     credit_principal = extract_credit_principal(word)
@@ -135,9 +141,15 @@ def handle_word(res_dict, word):
     dispute = extract_dispute(word)
     exe_evidence = extract_exe_evidence(word)
 
+    if "执行裁定书" in res_dict["title"]:
+        exe_rule = extract_exe_rule(word)
+
     word_res = {
         "accept_date" : accept_date,
         "hear_date" : hear_date,
+        "exe_date" : exe_date,
+        "exe_ref_case_no" : exe_ref_case_no,
+        "exe_rule" : exe_rule,
         "program_type" : program_type,
         "loan_principal" : loan_principal,
         "credit_principal" : credit_principal,
@@ -158,7 +170,7 @@ def handle_content(res_dict, html):
     content_list = doc('div')
     content_res = {}
 
-    print(res_dict["trial_round"])
+    # print(res_dict["trial_round"])
 
     if res_dict["trial_round"] == "一审":
         flogger.info("一审案件 - 处理原告被告")
@@ -184,7 +196,7 @@ def handle_content(res_dict, html):
 
 def main():
 
-    doc_list = wenshu_detail_conn.find({}).limit(90)
+    doc_list = wenshu_detail_conn.find({}).limit(180)
     doc_detail_list = []
 
     flogger.info("Getting doc id")
@@ -199,7 +211,7 @@ def main():
         except Exception as e:
             traceback.format_exc()
 
-        time.sleep(2)
+        # time.sleep(2)
 
 def test_one():
 
@@ -226,6 +238,6 @@ def test_one():
 
 if __name__ == "__main__":
 
-    # main()
+    main()
 
-    test_one()
+    # test_one()

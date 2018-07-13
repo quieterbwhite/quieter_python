@@ -104,7 +104,7 @@ def first_round_defendant(content_list, index):
 
         if bar.startswith("被告"):
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["defendant"].append(you)
         elif bar.startswith("委托"):
             if "律师" in bar:
@@ -196,29 +196,29 @@ def second_round_plaintiff(content_list):
 
         if bar.startswith("上诉人（原审被告）"):
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["appellant"].append(you)
         if bar.startswith("上诉人（原审原告）"):
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["appellant"].append(you)
         elif bar.startswith("被上诉人（原审原告）"):
             agency_type = "appellee"
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["appellee"].append(you)
         elif bar.startswith("被上诉人（原审被告）"):
             agency_type = "appellee"
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["appellee"].append(you)
         elif bar.startswith("原审原告"):
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["plaintiff_original"].append(you)
         elif bar.startswith("原审被告"):
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["defendant_original"].append(you)
         elif bar.startswith("委托"):
             if agency_type == "appellant":
@@ -262,12 +262,12 @@ def extract_executor_info(content_list):
 
         if bar.startswith("申请执行人"):
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["executor"].append(you)
         elif bar.startswith("被执行人"):
             agency_type = "executed"
             you = {"title" : bar, "stype" : "公司"}
-            if "族" in bar and "出生" in bar: you["stype"] = "个人"
+            if ("族" in bar or "出生" in bar) and ("男" in bar or "女" in bar): you["stype"] = "个人"
             res["executed"].append(you)
         elif bar.startswith("委托"):
             if agency_type == "executor":

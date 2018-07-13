@@ -31,7 +31,7 @@ def get_detail(docid):
 
 def loop():
 
-    doc_list = wenshu_conn.find({}).limit(100)
+    doc_list = wenshu_conn.find({}).limit(100).skip(100)
     doc_id_list = []
 
     flogger.info("Getting doc id")

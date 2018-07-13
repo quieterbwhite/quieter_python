@@ -24,6 +24,9 @@ class DetailConstant(object):
 
         "accept_date" : "",                    # 受理日期
         "hear_date" : "",                      # 审理日期
+        "exe_date" : "",                       # 立案执行日期
+        "exe_ref_case_no" : "",                # 执行依据的案号
+        "exe_rule" : "",                       # 执行裁定
         "program_type" : "",                   # 程序类型
         "loan_principal" : [],                 # 借款本金
         "credit_principal" : [],               # 贷款本金

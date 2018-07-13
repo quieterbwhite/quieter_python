@@ -351,6 +351,7 @@ def save_data(data_list):
 def getCourtInfo(DocID):
     """ 根据文书DocID获取相关信息：标题、时间、浏览次数、内容等详细信息 """
 
+    return_data = None
     url = 'http://wenshu.court.gov.cn/CreateContentJS/CreateContentJS.aspx?DocID={0}'.format(DocID)
     headers = {
         'Host': 'wenshu.court.gov.cn',
@@ -358,20 +359,30 @@ def getCourtInfo(DocID):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
     }
 
-    try:
-        req = session.get(url, headers=headers, timeout=18)
-    except Exception as e:
-        flogger.info(traceback.format_exc())
-        return None
+    for i in range(5):
+        try:
+            req = session.get(url, headers=headers, timeout=18)
+        except requests.ReadTimeout as e:
+            flogger.info(traceback.format_exc())
+            flogger.info("Timeout Exception - Dont Panic - Situation is under control.")
+            time.sleep(3)
+            continue
+        except Exception as e:
+            flogger.info(traceback.format_exc())
+            flogger.info("Unknown Exception - Retry...")
+            time.sleep(3)
+            continue
 
-    req.encoding = 'uttf-8'
-    return_data = req.text.replace('\\', '')
-    # flogger.info(return_data)
-    # read_count = re.findall(r'"浏览\：(\d*)次"', return_data)[0]
-    # court_title = re.findall(r'\"Title\"\:\"(.*?)\"', return_data)[0]
-    # court_date = re.findall(r'\"PubDate\"\:\"(.*?)\"', return_data)[0]
-    # court_content = re.findall(r'\"Html\"\:\"(.*?)\"', return_data)[0]
-    # return [court_title, court_date, read_count, court_content]
+        req.encoding = 'uttf-8'
+        return_data = req.text.replace('\\', '')
+
+        if return_data == "服务不可用。":
+            flogger.info("China-Judgements-Online returns 服务不可用。")
+            flogger.info("Retry...")
+            time.sleep(3)
+            continue
+
+        break
 
     return return_data
 
