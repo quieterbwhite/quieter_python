@@ -12,13 +12,13 @@
 
 最短匹配应用于：假如有一段文本，你只想匹配最短的可能，而不是最长。
 
-[回到顶部](https://www.cnblogs.com/jhao/p/5989241.html#_labelTop)
+
 
 ## 例子
 
 比如有一段html片段，'<a>this is first label</a><a>the second label</a>',如何匹配出每个a标签中的内容，下面来看下最短与最长的区别。
 
-[回到顶部](https://www.cnblogs.com/jhao/p/5989241.html#_labelTop)
+
 
 ## 代码
 
@@ -33,7 +33,7 @@
 ['this is first label</a><a>the second label']
 ```
 
-[回到顶部](https://www.cnblogs.com/jhao/p/5989241.html#_labelTop)
+
 
 ## 解释
 

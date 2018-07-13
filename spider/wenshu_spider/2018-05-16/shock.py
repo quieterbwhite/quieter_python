@@ -12,6 +12,7 @@ from search_param import generate_param
 from util.date_list import dateRange
 from util.service_mongo import mongo_service
 from logs.mylog import flogger
+from proxy import process
 
 session = requests.Session()
 
@@ -278,8 +279,15 @@ def get_data(Param, Page, Order, Direction, the_date):
             "guid": guid
         }
 
+        proxy = process()
+        flogger.info(proxy)
         try:
-            req = session.post(url, headers=headers, data=data, timeout=18)
+            req = session.post(url, headers=headers, data=data, timeout=20, proxies=proxy)
+            # req = session.post(url, headers=headers, data=data, timeout=20)
+        except requests.ReadTimeout as e:
+            flogger.info(traceback.format_exc())
+        except requests.exceptions.InvalidHeader as e:
+            flogger.info(traceback.format_exc())
         except Exception as e:
             flogger.info(traceback.format_exc())
             guid = get_guid()
@@ -291,9 +299,11 @@ def get_data(Param, Page, Order, Direction, the_date):
 
         if "remind" in return_data:
             flogger.info('出现验证码')
+
             check_code()
 
             guid = get_guid()
+
             number = get_number(guid)
         else:
             # [{'Count': '721'}]
@@ -342,7 +352,7 @@ def get_data(Param, Page, Order, Direction, the_date):
 def save_data(data_list):
     """ 数据存储逻辑 """
 
-    conn_name = "ws201801"
+    conn_name = "ws201802"
     wenshu_conn = mongo_service.get_collection(conn_name)
     wenshu_conn.insert_many(data_list)
     flogger.info("成功插入数据库")
@@ -361,7 +371,7 @@ def getCourtInfo(DocID):
 
     for i in range(5):
         try:
-            req = session.get(url, headers=headers, timeout=18)
+            req = session.get(url, headers=headers, timeout=20)
         except requests.ReadTimeout as e:
             flogger.info(traceback.format_exc())
             flogger.info("Timeout Exception - Dont Panic - Situation is under control.")
@@ -418,13 +428,19 @@ def download(DocID):
 
 def main():
 
-    start_date = "2018-01-01"
-    end_date = "2018-01-10"
+    start_date = "2018-02-01"
+    end_date = "2018-02-10"
 
     datetime_range_list = dateRange(start_date, end_date)
+    flogger.info(datetime_range_list)
+
     for the_date in datetime_range_list:
+        flogger.info(the_date)
+
         Param, Page, Order, Direction = generate_param(the_date)
+
         get_data(Param, Page, Order, Direction, the_date)
+
         time.sleep(5)
 
 
