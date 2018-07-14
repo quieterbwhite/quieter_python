@@ -64,16 +64,21 @@ def get_number(guid):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'
     }
     while 1:
-        time.sleep(1)
-        flogger.info("GETTING-NUMBER")
+        flogger.info(">>>> GETTING_NUMBER")
         try:
             req1 = session.post(codeUrl, data=data, headers=headers, timeout=18)
+        except requests.ReadTimeout as e:
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_NUMBER ReadTimeout - Try Again")
+            time.sleep(1)
+            continue
         except Exception as e:
             flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_NUMBER ReadTimeout - Try Again")
             time.sleep(1)
             continue
 
-        flogger.info("GOT-NUMBER!")
+        flogger.info(">>>> GOT-NUMBER!")
         break
 
     number = req1.text
@@ -96,23 +101,33 @@ def get_vjkl5(guid, number, Param):
     }
 
     while 1:
-        time.sleep(1)
-        flogger.info("GETTING - vjkl5")
+        flogger.info(">>>> GETTING - vjkl5")
         try:
             req1 = session.get(url=url1, headers=headers1, timeout=18)
+        except requests.ReadTimeout as e:
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING - vjkl5 ReadTimeout - Try Again")
+            time.sleep(1)
+            continue
         except Exception as e:
             flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING - vjkl5 Exception - Try Again")
             time.sleep(1)
             continue
 
-        flogger.info("GOT - vjk15")
+        flogger.info(">>>> GOT - vjk15")
         break
 
     try:
+        flogger.info(req1.cookies)
+        flogger.info(req1.text)
         vjkl5 = req1.cookies["vjkl5"]
         return vjkl5
-    except:
-        return get_vjkl5(guid, number, Param)
+    except Exception as e:
+        flogger.info(traceback.format_exc())
+        # return get_vjkl5(guid, number, Param)
+
+    return ""
 
 
 def get_vl5x(vjkl5):
@@ -137,11 +152,17 @@ def check_code(checkcode='', isFirst=True):  # 是否传入验证码,是否第�
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
         }
         while 1:
-            flogger.info("GETTING CHECKCODE IMG...")
+            flogger.info(">>>> GETTING_CHECKCODE_IMG")
             try:
                 req = session.get(check_code_url, headers=headers, timeout=18)
+            except requests.ReadTimeout as e:
+                # flogger.info(traceback.format_exc())
+                flogger.info(">>>> GETTING_CHECKCODE_IMG -  ReadTimeout - Try Again")
+                time.sleep(1)
+                continue
             except Exception as e:
                 traceback.format_exc()
+                flogger.info(">>>> GETTING_CHECKCODE_IMG - Exception - Try Again")
                 time.sleep(1)
                 continue
 
@@ -181,6 +202,8 @@ def check_code(checkcode='', isFirst=True):  # 是否传入验证码,是否第�
         else:
             check_code()
 
+    return
+
 
 def get_tree_content(Param):
     """ 获取左侧类目分类 """
@@ -211,15 +234,21 @@ def get_tree_content(Param):
     }
 
     while 1:
-        flogger.info("GETTING TREE CONTENT...")
+        flogger.info(">>>> GETTING_TREE_CONTENT")
         try:
-            req = session.post(url, headers=headers, data=data)
+            req = session.post(url, headers=headers, data=data, timeout=18)
+        except requests.ReadTimeout as e:
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_TREE_CONTENT -  ReadTimeout - Try Again")
+            time.sleep(1)
+            continue
         except Exception as e:
             flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_TREE_CONTENT -  Exception - Try Again")
             time.sleep(1)
             continue
 
-        flogger.info("GOT TREE CONTENT")
+        flogger.info(">>>> GOT_TREE_CONTENT")
         break
 
     json_data = json.loads(req.text.replace('\\', '').replace('"[', '[').replace(']"', ']'))
@@ -248,7 +277,7 @@ def get_data(Param, Page, Order, Direction, the_date):
 
     while (True):
 
-        time.sleep(4)
+        time.sleep(5)
 
         flogger.info('{} ###### 第{}页 ######'.format(the_date, Index))
 
@@ -279,17 +308,26 @@ def get_data(Param, Page, Order, Direction, the_date):
             "guid": guid
         }
 
-        proxy = process()
-        flogger.info(proxy)
+        proxies = process()
+        flogger.info(proxies)
         try:
-            req = session.post(url, headers=headers, data=data, timeout=20, proxies=proxy)
+            req = session.post(url, headers=headers, data=data, timeout=20, proxies=proxies)
             # req = session.post(url, headers=headers, data=data, timeout=20)
         except requests.ReadTimeout as e:
-            flogger.info(traceback.format_exc())
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> get_data ReadTimeout - Try Again")
+            guid = get_guid()
+            number = get_number(guid)
+            continue
         except requests.exceptions.InvalidHeader as e:
-            flogger.info(traceback.format_exc())
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> get_data InvalidHeader - Try Again")
+            guid = get_guid()
+            number = get_number(guid)
+            continue
         except Exception as e:
             flogger.info(traceback.format_exc())
+            flogger.info(">>>> get_data Exception - Try Again")
             guid = get_guid()
             number = get_number(guid)
             continue
@@ -299,16 +337,14 @@ def get_data(Param, Page, Order, Direction, the_date):
 
         if "remind" in return_data:
             flogger.info('出现验证码')
-
             check_code()
-
             guid = get_guid()
-
             number = get_number(guid)
         else:
             # [{'Count': '721'}]
             json_data = json.loads(return_data)
-
+            print(json_data)
+            flogger.info(json_data)
             count = json_data[0]["Count"]
             flogger.info("{} - Total Count: {}".format(the_date, count))
 
@@ -441,7 +477,7 @@ def main():
 
         get_data(Param, Page, Order, Direction, the_date)
 
-        time.sleep(5)
+        break
 
 
 if __name__ == '__main__':
