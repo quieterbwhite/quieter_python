@@ -67,6 +67,12 @@ Zathura: 轻巧好用的 PDF 查看器
 
 krita  类似 photoshop
 
+bookworm  - ebook reader
+https://babluboy.github.io/bookworm/
+
+calibre - 电脑上看电子书
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
 rdesktop  ubuntu 远程连接 windows
 
 坚果云
