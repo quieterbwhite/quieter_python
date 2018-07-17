@@ -10,8 +10,8 @@ from shock import getCourtInfo
 
 import time
 
-conn_name = "ws201801"
-conn_detail_name = "wsd201801_abu_2"
+conn_name = "ws_201806_foshan"
+conn_detail_name = "ws_201806_foshan_d"
 wenshu_conn = mongo_service.get_collection(conn_name)
 wenshu_detail_conn = mongo_service.get_collection(conn_detail_name)
 
@@ -32,7 +32,7 @@ def get_detail(docid):
 
 def loop():
 
-    doc_list = wenshu_conn.find({}).limit(500)
+    doc_list = wenshu_conn.find({})
     doc_id_list = []
 
     flogger.info("Getting doc id")
@@ -44,7 +44,7 @@ def loop():
     for docid in doc_id_list:
         flogger.info("DOCID: {}".format(docid))
         get_detail(docid)
-        time.sleep(1)
+        time.sleep(3)
 
 
 def main():

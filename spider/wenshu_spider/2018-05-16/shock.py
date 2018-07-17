@@ -478,7 +478,7 @@ def get_data(Param, Page, Order, Direction, the_date):
 def save_data(data_list):
     """ 数据存储逻辑 """
 
-    conn_name = "ws_201801_foshan"
+    conn_name = "ws_201803_foshan"
     wenshu_conn = mongo_service.get_collection(conn_name)
     wenshu_conn.insert_many(data_list)
     flogger.info("成功插入数据库")
@@ -487,7 +487,7 @@ def save_data(data_list):
 def getCourtInfo(DocID):
     """ 根据文书DocID获取相关信息：标题、时间、浏览次数、内容等详细信息 """
 
-    return_data = None
+    return_data = ""
     url = 'http://wenshu.court.gov.cn/CreateContentJS/CreateContentJS.aspx?DocID={0}'.format(DocID)
     headers = {
         'Host': 'wenshu.court.gov.cn',
@@ -496,11 +496,25 @@ def getCourtInfo(DocID):
     }
 
     for i in range(5):
+
+        proxies = get_proxy()
+        flogger.info("Using proxy: {}".format(proxies))
+        if not proxies:
+            flogger.info("No proxy available...")
+            time.sleep(2)
+            continue
+
         try:
             req = session.get(url, headers=headers, timeout=20)
+            if not req: raise ValueError("req None")
+            if req.status_code != 200:raise ValueError("status code error")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info("Timeout Exception - Dont Panic - Situation is under control.")
+            time.sleep(1)
+            continue
+        except requests.ConnectTimeout as e:
+            flogger.info(">>>> ConnectTimeout - Try Again")
             time.sleep(1)
             continue
         except Exception as e:
@@ -515,7 +529,7 @@ def getCourtInfo(DocID):
         if return_data == "服务不可用。":
             flogger.info("China-Judgements-Online returns 服务不可用。")
             flogger.info("Retry...")
-            time.sleep(3)
+            time.sleep(2)
             continue
 
         break
@@ -554,8 +568,8 @@ def download(DocID):
 
 def main():
 
-    start_date = "2018-01-01"
-    end_date = "2018-01-31"
+    start_date = "2018-03-17"
+    end_date = "2018-03-31"
 
     datetime_range_list = dateRange(start_date, end_date)
     flogger.info(datetime_range_list)

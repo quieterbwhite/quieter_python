@@ -12,8 +12,11 @@ def get_proxy():
     len_data = len(data)
     if len_data > 0:
         index = random.randint(0, len(data))
-        ip = data[index][0]
-        port = data[index][1]
+        try:
+            ip = data[index][0]
+            port = data[index][1]
+        except Exception as e:
+            return ""
     else:
         flogger.info("### Run out of proxy ip:port")
         return ""
