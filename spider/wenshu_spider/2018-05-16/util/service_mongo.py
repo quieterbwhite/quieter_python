@@ -35,7 +35,7 @@ class MongoServiceBak(object):
 mongo_service = MongoService(
     "127.0.0.1",
     27017,
-    database_name="judgements"
+    database_name="judge"
 )
 
 

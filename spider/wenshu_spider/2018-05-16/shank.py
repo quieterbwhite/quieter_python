@@ -554,7 +554,7 @@ def download(DocID):
 
 def main():
 
-    start_date = "2018-01-01"
+    start_date = "2018-01-11"
     end_date = "2018-01-31"
 
     datetime_range_list = dateRange(start_date, end_date)
