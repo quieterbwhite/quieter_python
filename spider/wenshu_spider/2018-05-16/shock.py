@@ -53,10 +53,9 @@ def get_guid():
 
 def get_number(guid, proxies):
 
+    req1 = None
     codeUrl = "http://wenshu.court.gov.cn/ValiCode/GetCode"
-    data = {
-        'guid': guid
-    }
+    data = {'guid': guid}
     headers = {
         'Host': 'wenshu.court.gov.cn',
         'Origin': 'http://wenshu.court.gov.cn',
@@ -64,10 +63,11 @@ def get_number(guid, proxies):
         'X-Requested-With': 'XMLHttpRequest',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'
     }
-    while 1:
+    for i in range(5):
         flogger.info(">>>> GETTING_NUMBER")
         try:
             req1 = session.post(codeUrl, data=data, headers=headers, timeout=20, proxies=proxies)
+            if not req1: raise ValueError("GETTING_NUMBER None req1")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> GETTING_NUMBER ReadTimeout - Try Again")
@@ -83,16 +83,17 @@ def get_number(guid, proxies):
             time.sleep(1)
             continue
 
-        flogger.info(">>>> GOT-NUMBER!")
         break
 
-    number = req1.text
-    return number
+    if req1:
+        flogger.info(">>>> GOT-NUMBER!")
+        return req1.text
 
 
 def get_vjkl5(guid, number, Param, proxies):
     """ 获取cookie中的vjkl5 """
 
+    req1 = None
     url1 = "http://wenshu.court.gov.cn/list/list/?sorttype=1&number=" + number + "&guid=" + guid + "&conditions=searchWord+QWJS+++" + parse.quote(Param)
 
     headers1 = {
@@ -105,10 +106,11 @@ def get_vjkl5(guid, number, Param, proxies):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"
     }
 
-    while 1:
+    for i in range(5):
         flogger.info(">>>> GETTING - vjkl5")
         try:
             req1 = session.get(url=url1, headers=headers1, timeout=18, proxies=proxies)
+            if not req1: raise ValueError("GETTING - vjkl5 - None req1")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> GETTING - vjkl5 ReadTimeout - Try Again")
@@ -124,11 +126,12 @@ def get_vjkl5(guid, number, Param, proxies):
             time.sleep(1)
             continue
 
-        flogger.info(">>>> GOT - vjk15")
         break
 
-    flogger.info(req1.cookies)
-    return req1.cookies.get("vjkl5", "")
+    if req1:
+        flogger.info(req1.cookies)
+        flogger.info(">>>> GOT - vjk15")
+        return req1.cookies.get("vjkl5", "")
 
 
 def get_vl5x(vjkl5):
@@ -154,6 +157,7 @@ def check_code(checkcode='',isFirst=True):  # 是否传入验证码,是否第一
 
         try:
             req = session.get(check_code_url,headers=headers,timeout=20)
+            if not req: raise ValueError("ValidateCode - None req")
         except Exception as e:
             flogger.info(traceback.format_exc())
             flogger.info("ValidateCode Request Error")
@@ -328,7 +332,7 @@ def get_data(Param, Page, Order, Direction, the_date):
 
     Index = 1  # 第几页
 
-    while (True):
+    while 1:
 
         time.sleep(5)
 
@@ -343,7 +347,15 @@ def get_data(Param, Page, Order, Direction, the_date):
 
         guid = get_guid()
         number = get_number(guid, proxies)
+        if not number:
+            flogger.info("None number - continue")
+            continue
+
         vjkl5 = get_vjkl5(guid, number, Param, proxies)
+        if not vjkl5:
+            flogger.info("None vjkl5 - continue")
+            continue
+
         vl5x = get_vl5x(vjkl5)
 
         # 获取数据
@@ -528,19 +540,21 @@ def download(DocID):
 
 def main():
 
-    start_date = "2018-02-01"
-    end_date = "2018-02-05"
+    start_date = "2018-02-06"
+    end_date = "2018-02-28"
 
     datetime_range_list = dateRange(start_date, end_date)
     flogger.info(datetime_range_list)
 
     for the_date in datetime_range_list:
-        flogger.info(the_date)
-
-        Param, Page, Order, Direction = generate_param(the_date)
-
-        get_data(Param, Page, Order, Direction, the_date)
-
+        try:
+            flogger.info(the_date)
+            Param, Page, Order, Direction = generate_param(the_date)
+            get_data(Param, Page, Order, Direction, the_date)
+        except Exception as e:
+            flogger.info(traceback.format_exc())
+            flogger.info("MAIN")
+            pass
 
 
 if __name__ == '__main__':
