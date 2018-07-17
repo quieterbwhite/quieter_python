@@ -46,8 +46,8 @@ def generate_param(the_date):
     court_loc_list = ['全部']
     court_loc = court_loc_list[0]
 
-    param_list = []
-    # param_list = ["中级法院:广东省佛山市中级人民法院"]
+    # param_list = []
+    param_list = ["中级法院:广东省佛山市中级人民法院"]
     param_list.append("{0}:{1}".format(search_type, keyword))
     if case != '全部':
         param_list.append("案由:{}".format(case))

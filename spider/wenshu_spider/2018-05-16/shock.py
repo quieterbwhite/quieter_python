@@ -12,7 +12,8 @@ from search_param import generate_param
 from util.date_list import dateRange
 from util.service_mongo import mongo_service
 from logs.mylog import flogger
-from proxy import process
+from myproxy import get_proxy
+
 
 session = requests.Session()
 
@@ -50,7 +51,7 @@ def get_guid():
     )
 
 
-def get_number(guid):
+def get_number(guid, proxies):
 
     codeUrl = "http://wenshu.court.gov.cn/ValiCode/GetCode"
     data = {
@@ -66,15 +67,19 @@ def get_number(guid):
     while 1:
         flogger.info(">>>> GETTING_NUMBER")
         try:
-            req1 = session.post(codeUrl, data=data, headers=headers, timeout=18)
+            req1 = session.post(codeUrl, data=data, headers=headers, timeout=20, proxies=proxies)
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> GETTING_NUMBER ReadTimeout - Try Again")
             time.sleep(1)
             continue
+        except requests.ConnectTimeout as e:
+            flogger.info(">>>> GETTING_NUMBER ConnectTimeout - Try Again")
+            time.sleep(1)
+            continue
         except Exception as e:
             flogger.info(traceback.format_exc())
-            flogger.info(">>>> GETTING_NUMBER ReadTimeout - Try Again")
+            flogger.info(">>>> GETTING_NUMBER Exception - Try Again")
             time.sleep(1)
             continue
 
@@ -85,7 +90,7 @@ def get_number(guid):
     return number
 
 
-def get_vjkl5(guid, number, Param):
+def get_vjkl5(guid, number, Param, proxies):
     """ 获取cookie中的vjkl5 """
 
     url1 = "http://wenshu.court.gov.cn/list/list/?sorttype=1&number=" + number + "&guid=" + guid + "&conditions=searchWord+QWJS+++" + parse.quote(Param)
@@ -103,10 +108,14 @@ def get_vjkl5(guid, number, Param):
     while 1:
         flogger.info(">>>> GETTING - vjkl5")
         try:
-            req1 = session.get(url=url1, headers=headers1, timeout=18)
+            req1 = session.get(url=url1, headers=headers1, timeout=18, proxies=proxies)
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> GETTING - vjkl5 ReadTimeout - Try Again")
+            time.sleep(1)
+            continue
+        except requests.ConnectTimeout as e:
+            flogger.info(">>>> GETTING - vjkl5 ConnectTimeout - Try Again")
             time.sleep(1)
             continue
         except Exception as e:
@@ -118,16 +127,8 @@ def get_vjkl5(guid, number, Param):
         flogger.info(">>>> GOT - vjk15")
         break
 
-    try:
-        flogger.info(req1.cookies)
-        flogger.info(req1.text)
-        vjkl5 = req1.cookies["vjkl5"]
-        return vjkl5
-    except Exception as e:
-        flogger.info(traceback.format_exc())
-        # return get_vjkl5(guid, number, Param)
-
-    return ""
+    flogger.info(req1.cookies)
+    return req1.cookies.get("vjkl5", "")
 
 
 def get_vl5x(vjkl5):
@@ -137,7 +138,64 @@ def get_vl5x(vjkl5):
     return vl5x
 
 
-def check_code(checkcode='', isFirst=True):  # 是否传入验证码,是否第一次验证码错误
+def check_code(checkcode='',isFirst=True):  # 是否传入验证码,是否第一次验证码错误
+    """
+    验证码识别，参数为checkcode和isFirst，用于标识是否为第一次验证码识别，
+    第一次识别需要下载验证码，由于文书验证码验证经常出现验证码正确但
+    但会验证码错误情况，所以第一次验证码错误时不会下载新的验证码.
+    """
+    if checkcode == '':
+        check_code_url = 'http://wenshu.court.gov.cn/User/ValidateCode'
+        headers = {
+            'Host':'wenshu.court.gov.cn',
+            'Origin':'http://wenshu.court.gov.cn',
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
+        }
+
+        try:
+            req = session.get(check_code_url,headers=headers,timeout=20)
+        except Exception as e:
+            flogger.info(traceback.format_exc())
+            flogger.info("ValidateCode Request Error")
+            return
+
+        fp = open('./checkCode.jpg','wb')
+        fp.write(req.content)
+        fp.close()
+
+        try:
+            checkcode = distinguish('checkCode.jpg')
+        except Exception as e:
+            traceback.format_exc()
+            checkcode = "8888"
+
+    print('识别验证码为：{0}'.format(checkcode))
+
+    check_url = 'http://wenshu.court.gov.cn/Content/CheckVisitCode'
+    headers = {
+        'Host':'wenshu.court.gov.cn',
+        'Origin':'http://wenshu.court.gov.cn',
+        'Referer':'http://wenshu.court.gov.cn/Html_Pages/VisitRemind.html',
+        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
+    }
+    data = {'ValidateCode':checkcode}
+    try:
+        req = session.post(check_url,data=data,headers=headers,timeout=20)
+        if not req: raise ValueError("ValidateCode Response None")
+    except Exception as e:
+        flogger.info(traceback.format_exc())
+        flogger.info("ValidateCode Request Error")
+        return
+
+    if req.text == '2':
+        print('验证码错误')
+        if isFirst:
+            check_code(checkcode,False)
+        else:
+            check_code()
+
+
+def check_code_me(checkcode='', isFirst=True):  # 是否传入验证码,是否第一次验证码错误
     """
     验证码识别，参数为checkcode和isFirst，用于标识是否为第一次验证码识别，
     第一次识别需要下载验证码，由于文书验证码验证经常出现验证码正确但
@@ -270,16 +328,23 @@ def get_data(Param, Page, Order, Direction, the_date):
 
     Index = 1  # 第几页
 
-    guid = get_guid()
-    number = get_number(guid)
-    vjkl5 = get_vjkl5(guid, number, Param)
-    vl5x = get_vl5x(vjkl5)
-
     while (True):
 
         time.sleep(5)
 
+        proxies = get_proxy()
+        flogger.info("Using proxy: {}".format(proxies))
+        if not proxies:
+            flogger.info("No proxy available...")
+            time.sleep(10)
+            continue
+
         flogger.info('{} ###### 第{}页 ######'.format(the_date, Index))
+
+        guid = get_guid()
+        number = get_number(guid, proxies)
+        vjkl5 = get_vjkl5(guid, number, Param, proxies)
+        vl5x = get_vl5x(vjkl5)
 
         # 获取数据
         url = "http://wenshu.court.gov.cn/List/ListContent"
@@ -296,7 +361,7 @@ def get_data(Param, Page, Order, Direction, the_date):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36",
             "X-Requested-With": "XMLHttpRequest"
         }
-        # flogger.info(headers["Referer"])
+
         data = {
             "Param": Param,
             "Index": Index,
@@ -308,45 +373,45 @@ def get_data(Param, Page, Order, Direction, the_date):
             "guid": guid
         }
 
-        proxies = process()
-        flogger.info(proxies)
         try:
+            flogger.info("开始获取文书列表")
             req = session.post(url, headers=headers, data=data, timeout=20, proxies=proxies)
             # req = session.post(url, headers=headers, data=data, timeout=20)
+            if not req: raise ValueError(">>>> None req response")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> get_data ReadTimeout - Try Again")
-            guid = get_guid()
-            number = get_number(guid)
             continue
         except requests.exceptions.InvalidHeader as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> get_data InvalidHeader - Try Again")
-            guid = get_guid()
-            number = get_number(guid)
             continue
         except Exception as e:
             flogger.info(traceback.format_exc())
             flogger.info(">>>> get_data Exception - Try Again")
-            guid = get_guid()
-            number = get_number(guid)
+            continue
+
+        if req.status_code != 200:
+            flogger.info(">>>> Bad status code: {}".format(req.status_code))
             continue
 
         req.encoding = 'utf-8'
         return_data = req.text.replace('\\', '').replace('"[', '[').replace(']"', ']')
 
         if "remind" in return_data:
-            flogger.info('出现验证码')
+            flogger.info(return_data)
+            flogger.info(">>>> 悲剧~ 遭遇验证码~")
             check_code()
-            guid = get_guid()
-            number = get_number(guid)
         else:
             # [{'Count': '721'}]
-            json_data = json.loads(return_data)
-            print(json_data)
-            flogger.info(json_data)
-            count = json_data[0]["Count"]
-            flogger.info("{} - Total Count: {}".format(the_date, count))
+            try:
+                json_data = json.loads(return_data)
+                count = json_data[0]["Count"]
+                flogger.info("{} - Total Count: {}".format(the_date, count))
+            except Exception as e:
+                flogger.info(traceback.format_exc())
+                flogger.info(return_data)
+                continue
 
             if len(json_data) <= 1:
                 flogger.info('{} - 采集完成'.format(the_date))
@@ -373,7 +438,9 @@ def get_data(Param, Page, Order, Direction, the_date):
                         original   = original,
                         type       = type,
                         docid      = docid,
-                        name       = name
+                        name       = name,
+                        time       = int(time.time()),
+                        seq        = 1
                     )
                     data_list.append(data_dict)
 
@@ -381,14 +448,11 @@ def get_data(Param, Page, Order, Direction, the_date):
 
             Index += 1
 
-            guid = get_guid()
-            number = get_number(guid)
-
 
 def save_data(data_list):
     """ 数据存储逻辑 """
 
-    conn_name = "ws201802"
+    conn_name = "ws201801_fo"
     wenshu_conn = mongo_service.get_collection(conn_name)
     wenshu_conn.insert_many(data_list)
     flogger.info("成功插入数据库")
@@ -407,16 +471,16 @@ def getCourtInfo(DocID):
 
     for i in range(5):
         try:
-            req = session.get(url, headers=headers, timeout=20)
+            req = session.get(url, headers=headers, timeout=20, proxies=abu_proxies)
         except requests.ReadTimeout as e:
-            flogger.info(traceback.format_exc())
+            # flogger.info(traceback.format_exc())
             flogger.info("Timeout Exception - Dont Panic - Situation is under control.")
-            time.sleep(3)
+            time.sleep(1)
             continue
         except Exception as e:
             flogger.info(traceback.format_exc())
             flogger.info("Unknown Exception - Retry...")
-            time.sleep(3)
+            time.sleep(1)
             continue
 
         req.encoding = 'uttf-8'
@@ -465,7 +529,7 @@ def download(DocID):
 def main():
 
     start_date = "2018-02-01"
-    end_date = "2018-02-10"
+    end_date = "2018-02-05"
 
     datetime_range_list = dateRange(start_date, end_date)
     flogger.info(datetime_range_list)
@@ -477,7 +541,6 @@ def main():
 
         get_data(Param, Page, Order, Direction, the_date)
 
-        break
 
 
 if __name__ == '__main__':

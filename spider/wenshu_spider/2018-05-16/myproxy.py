@@ -2,20 +2,24 @@
 
 import requests
 import random
+from logs.mylog import flogger
+
 
 def get_proxy():
-    seq = random.randint(0, 20)
+
     res = requests.get("http://127.0.0.1:8000/?types=0&count=50&protocol=0")
     data = res.json()
+    len_data = len(data)
+    if len_data > 0:
+        index = random.randint(0, len(data))
+        ip = data[index][0]
+        port = data[index][1]
+    else:
+        flogger.info("### Run out of proxy ip:port")
+        return ""
 
-    try:
-        ip = data[seq][0]
-        port = data[seq][1]
-    except:
-        ip = "127.0.0.1"
-        port = "8888"
+    return {"http": "http://{}:{}".format(ip, port)}
 
-    return ip+":"+str(port)
 
 def delete_proxy(proxy):
     requests.get("http://127.0.0.1:5010/delete/?proxy={}".format(proxy))
