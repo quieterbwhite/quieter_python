@@ -39,8 +39,8 @@ from copy import deepcopy
 
 from logs.mylog import flogger
 
-conn_detail_name = "wsd201801"
-conn_detail_a_name = "wsda201801"
+conn_detail_name = "ws_201806_foshan_d"
+conn_detail_a_name = "ws_201806_foshan_d_pure"
 wenshu_detail_conn = mongo_service.get_collection(conn_detail_name)
 wenshu_detail_a_conn = mongo_service.get_collection(conn_detail_a_name)
 
@@ -196,10 +196,10 @@ def handle_content(res_dict, html):
 
 def main():
 
-    doc_list = wenshu_detail_conn.find({}).limit(180)
+    doc_list = wenshu_detail_conn.find({})
     doc_detail_list = []
 
-    flogger.info("Getting doc id")
+    flogger.info("Getting doc")
     for doc in doc_list:
         doc_detail_list.append(doc)
 
@@ -211,7 +211,7 @@ def main():
         except Exception as e:
             traceback.format_exc()
 
-        # time.sleep(2)
+        time.sleep(1)
 
 def test_one():
 

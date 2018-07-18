@@ -478,7 +478,7 @@ def get_data(Param, Page, Order, Direction, the_date):
 def save_data(data_list):
     """ 数据存储逻辑 """
 
-    conn_name = "ws_201803_foshan"
+    conn_name = "ws_2017_01_05_foshan"
     wenshu_conn = mongo_service.get_collection(conn_name)
     wenshu_conn.insert_many(data_list)
     flogger.info("成功插入数据库")
@@ -568,8 +568,8 @@ def download(DocID):
 
 def main():
 
-    start_date = "2018-03-17"
-    end_date = "2018-03-31"
+    start_date = "2017-01-01"
+    end_date = "2017-05-31"
 
     datetime_range_list = dateRange(start_date, end_date)
     flogger.info(datetime_range_list)

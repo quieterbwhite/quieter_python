@@ -37,7 +37,7 @@ class DetailConstant(object):
         "exe_evidence" : "",                   # 执行依据
 
         "appellant" : [],                      # 上诉人
-        "appellant_law_agency" : [],           # 上诉委托代理
+        "appellant_law_agency" : {},           # 上诉委托代理
 
         "appellee" : [],                       # 被上诉人
         "appellee_law_agency" : [],            # 被上诉人委托代理
@@ -46,8 +46,8 @@ class DetailConstant(object):
         "defendant_original" : [],             # 原审被告
 
         "executor" : [],                       # 申请执行人
-        "executor_law_agency" : [],            # 申请执行人代理
+        "executor_law_agency" : {},            # 申请执行人代理
 
         "executed" : [],                       # 被执行人
-        "executed_law_agency" : []             # 被执行人代理
+        "executed_law_agency" : {}             # 被执行人代理
     }
