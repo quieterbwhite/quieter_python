@@ -64,8 +64,8 @@ def get_number(guid, proxies):
         'X-Requested-With': 'XMLHttpRequest',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'
     }
-    for i in range(5):
-        flogger.info(">>>> GETTING_NUMBER")
+    for i in range(10):
+        flogger.info(">>>> GETTING_NUMBER - index: {}".format(i+1))
         try:
             req1 = session.post(codeUrl, data=data, headers=headers, timeout=20, proxies=proxies)
             if not req1: raise ValueError("GETTING_NUMBER None req1")
@@ -109,8 +109,8 @@ def get_vjkl5(guid, number, Param, proxies):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"
     }
 
-    for i in range(5):
-        flogger.info(">>>> GETTING - vjkl5")
+    for i in range(10):
+        flogger.info(">>>> GETTING - vjkl5 - index: {}".format(i+1))
         try:
             req1 = session.get(url=url1, headers=headers1, timeout=20, proxies=proxies)
             if not req1: raise ValueError("GETTING - vjkl5 - None req1")
@@ -202,74 +202,6 @@ def check_code(checkcode='',isFirst=True):  # 是否传入验证码,是否第一
             check_code(checkcode,False)
         else:
             check_code()
-
-
-def check_code_me(checkcode='', isFirst=True):  # 是否传入验证码,是否第一次验证码错误
-    """
-    验证码识别，参数为checkcode和isFirst，用于标识是否为第一次验证码识别，
-    第一次识别需要下载验证码，由于文书验证码验证经常出现验证码正确但
-    但会验证码错误情况，所以第一次验证码错误时不会下载新的验证码.
-    """
-
-    if checkcode == '':
-        check_code_url = 'http://wenshu.court.gov.cn/User/ValidateCode'
-        headers = {
-            'Host': 'wenshu.court.gov.cn',
-            'Origin': 'http://wenshu.court.gov.cn',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
-        }
-        while 1:
-            flogger.info(">>>> GETTING_CHECKCODE_IMG")
-            try:
-                req = session.get(check_code_url, headers=headers, timeout=20)
-            except requests.ReadTimeout as e:
-                # flogger.info(traceback.format_exc())
-                flogger.info(">>>> GETTING_CHECKCODE_IMG -  ReadTimeout - Try Again")
-                time.sleep(1)
-                continue
-            except Exception as e:
-                traceback.format_exc()
-                flogger.info(">>>> GETTING_CHECKCODE_IMG - Exception - Try Again")
-                time.sleep(1)
-                continue
-
-            flogger.info("GOT CHECKCODE IMG")
-            break
-
-        fp = open('./checkCode.jpg', 'wb')
-        fp.write(req.content)
-        fp.close()
-
-        try:
-            checkcode = distinguish('checkCode.jpg')
-        except Exception as e:
-            traceback.format_exc()
-            checkcode = "8888"
-
-    flogger.info('识别验证码为：{0}'.format(checkcode))
-
-    check_url = 'http://wenshu.court.gov.cn/Content/CheckVisitCode'
-    headers = {
-        'Host': 'wenshu.court.gov.cn',
-        'Origin': 'http://wenshu.court.gov.cn',
-        'Referer': 'http://wenshu.court.gov.cn/Html_Pages/VisitRemind.html',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
-    }
-    data = {'ValidateCode': checkcode}
-    try:
-        req = session.post(check_url, data=data, headers=headers, timeout=20)
-    except Exception as e:
-        flogger.info(traceback.format_exc())
-        check_code(checkcode, False)
-
-    if req.text == '2':
-        flogger.info('验证码错误')
-        if isFirst:
-            check_code(checkcode, False)
-        else:
-            check_code()
-
-    return
 
 
 def get_tree_content(Param):
@@ -478,7 +410,7 @@ def get_data(Param, Page, Order, Direction, the_date):
 def save_data(data_list):
     """ 数据存储逻辑 """
 
-    conn_name = "ws_2017_06_12_foshan"
+    conn_name = "ws_2016_07_12"
     wenshu_conn = mongo_service.get_collection(conn_name)
     wenshu_conn.insert_many(data_list)
     flogger.info("成功插入数据库")
@@ -554,8 +486,8 @@ def download(DocID):
 
 def main():
 
-    start_date = "2017-06-01"
-    end_date = "2017-12-31"
+    start_date = "2016-07-01"
+    end_date = "2016-12-31"
 
     datetime_range_list = dateRange(start_date, end_date)
     flogger.info(datetime_range_list)
