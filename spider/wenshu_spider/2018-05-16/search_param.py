@@ -4,7 +4,7 @@
 
 """
 
-def generate_param(the_date):
+def generate_param(the_date, province=None, firm=None):
 
     #### 构造检索条件 ####
     # 检索关键词
@@ -46,6 +46,8 @@ def generate_param(the_date):
     court_loc_list = ['全部']
     court_loc = court_loc_list[0]
 
+    if province: court_loc = province
+
     param_list = []
     # param_list = ["中级法院:广东省佛山市中级人民法院"]
     param_list.append("{0}:{1}".format(search_type, keyword))
@@ -63,8 +65,10 @@ def generate_param(the_date):
     if court_loc != '全部':
         param_list.append("法院地域:{}".format(court_loc))
 
+    if firm: param_list.append(firm)
+
     Param = ','.join(param_list)
-    Page = 20  # 每页几条
+    Page = 5  # 每页几条
     Order = "法院层级"  # 排序标准
     Direction = "asc"  # asc正序 desc倒序
 

@@ -1,0 +1,16 @@
+[[source]]
+name = "aliyun"
+url = "http://mirrors.aliyun.com/pypi/simple/"
+verify_ssl = false
+
+[packages]
+requests = "*"
+redis = "*"
+envoy = "*"
+tornado = "*"
+django = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.4"

@@ -7,21 +7,13 @@ from logs.mylog import flogger
 
 def get_proxy():
 
-    res = requests.get("http://127.0.0.1:8000/?types=0&count=50&protocol=0")
-    data = res.json()
-    len_data = len(data)
-    if len_data > 0:
-        index = random.randint(0, len(data))
-        try:
-            ip = data[index][0]
-            port = data[index][1]
-        except Exception as e:
-            return ""
-    else:
-        flogger.info("### Run out of proxy ip:port")
+    try:
+        res = requests.get("http://120.79.139.89:8001/proxy/send?pwd=tiger")
+        data = res.json()
+    except Exception as e:
         return ""
 
-    return {"http": "http://{}:{}".format(ip, port)}
+    return data
 
 
 def delete_proxy(proxy):

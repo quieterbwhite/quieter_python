@@ -1,7 +1,8 @@
 # Gitlab
 
-## Install gitlab:
-```
+#### Install gitlab:
+
+```shell
     first of all, it's very easy...
 
     follow the lead
@@ -11,9 +12,10 @@
     no mail service yet :(
 ```
 
-## 修改gitlab访问端口
+#### 修改gitlab访问端口
+
 > https://segmentfault.com/a/1190000011266124  
-```
+```shell
 修改默认的gitlab 相关端口
 
 修改/etc/gitlab/gitlab.rb
@@ -48,13 +50,15 @@
     gitlab-ctl restart
 ```
 
-## 修改gitlab生成的项目的地址host
+#### 修改gitlab生成的项目的地址host
+
 ```
 
 ## 配置邮件发送
 ```
 $ sudo vi /etc/gitlab/gitlab.rb                            
-# Change the external_url to the address your users will type in their browser
+#### Change the external_url to the address your users will type in their browser
+
 external_url 'http://xxhost.com'
 
 #Sending application email via SMTP
@@ -70,7 +74,7 @@ gitlab_rails['smtp_enable_starttls_auto'] = true
 ##修改gitlab配置的发信人
 gitlab_rails['gitlab_email_from'] = "xxuser@163.com"
 user["git_user_email"] = "xxuser@163.com"
-```
+```shell
 
 遇到的问题是:
     一开始已经安装好了，可以正常使用
@@ -99,13 +103,13 @@ https://blog.haohtml.com/archives/16940
 ## Command line instructions
 
 Git global setup
-```
+```shell
     git config --global user.name "libo"
     git config --global user.email "b__white@163.com"
 ```
 
 Create a new repository
-```
+```shell
     git clone git@192.168.8.197:libo/debt.git
     cd debt
     touch README.md
@@ -115,17 +119,18 @@ Create a new repository
 ```
 
 Existing folder
-```
+```shell
     cd existing_folder
     git init
     git remote add origin git@192.168.8.197:libo/debt.git
     git add .
     git commit -m "Initial commit"
     git push -u origin master
+    >>> or git push -u origin master -f 
 ```
 
 Existing Git repository
-```
+```shell
     cd existing_repo
     git remote rename origin old-origin
     git remote add origin git@192.168.8.197:libo/debt.git

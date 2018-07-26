@@ -52,7 +52,7 @@ def get_guid():
     )
 
 
-def get_number(guid, proxies):
+def get_number(guid, proxies=None):
 
     req1 = None
     codeUrl = "http://wenshu.court.gov.cn/ValiCode/GetCode"
@@ -64,19 +64,24 @@ def get_number(guid, proxies):
         'X-Requested-With': 'XMLHttpRequest',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'
     }
-    for i in range(10):
-        flogger.info(">>>> GETTING_NUMBER - index: {}".format(i+1))
+    for i in range(5):
+        flogger.info(">>>> GETTING_NUMBER - index: {}".format(i + 1))
         try:
-            req1 = session.post(codeUrl, data=data, headers=headers, timeout=20, proxies=proxies)
+            # req1 = session.post(codeUrl, data=data, headers=headers, timeout=20, proxies=proxies)
+            req1 = session.post(codeUrl, data=data, headers=headers, timeout=20)
             if not req1: raise ValueError("GETTING_NUMBER None req1")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> GETTING_NUMBER ReadTimeout - Try Again")
-            time.sleep(1)
+            time.sleep(2)
             continue
         except requests.ConnectTimeout as e:
             flogger.info(">>>> GETTING_NUMBER ConnectTimeout - Try Again")
-            time.sleep(1)
+            time.sleep(2)
+            continue
+        except requests.exceptions.ProxyError as e:
+            flogger.info(">>>> GETTING_NUMBER ProxyError - Try Again")
+            time.sleep(2)
             continue
         except Exception as e:
             flogger.info(traceback.format_exc())
@@ -93,7 +98,7 @@ def get_number(guid, proxies):
     return None
 
 
-def get_vjkl5(guid, number, Param, proxies):
+def get_vjkl5(guid, number, Param, proxies=None):
     """ 获取cookie中的vjkl5 """
 
     req1 = None
@@ -112,16 +117,21 @@ def get_vjkl5(guid, number, Param, proxies):
     for i in range(10):
         flogger.info(">>>> GETTING - vjkl5 - index: {}".format(i+1))
         try:
-            req1 = session.get(url=url1, headers=headers1, timeout=20, proxies=proxies)
+            # req1 = session.get(url=url1, headers=headers1, timeout=20, proxies=proxies)
+            req1 = session.get(url=url1, headers=headers1, timeout=20)
             if not req1: raise ValueError("GETTING - vjkl5 - None req1")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> GETTING - vjkl5 ReadTimeout - Try Again")
-            time.sleep(1)
+            time.sleep(2)
             continue
         except requests.ConnectTimeout as e:
             flogger.info(">>>> GETTING - vjkl5 ConnectTimeout - Try Again")
-            time.sleep(1)
+            time.sleep(2)
+            continue
+        except requests.exceptions.ProxyError as e:
+            flogger.info(">>>> GETTING - vjkl5 ProxyError - Try Again")
+            time.sleep(2)
             continue
         except Exception as e:
             flogger.info(traceback.format_exc())
@@ -234,46 +244,140 @@ def get_tree_content(Param):
 
     while 1:
         flogger.info(">>>> GETTING_TREE_CONTENT")
+        time.sleep(1)
         try:
             req = session.post(url, headers=headers, data=data, timeout=20)
+            if not req: raise ValueError("GETTING_TREE_CONTENT - req is None")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
-            flogger.info(">>>> GETTING_TREE_CONTENT -  ReadTimeout - Try Again")
-            time.sleep(1)
+            flogger.info(">>>> GETTING_TREE_CONTENT ReadTimeout - Try Again")
+            continue
+        except requests.ConnectTimeout as e:
+            flogger.info(">>>> GETTING_TREE_CONTENT ConnectTimeout - Try Again")
+            continue
+        except requests.exceptions.InvalidHeader as e:
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_TREE_CONTENT InvalidHeader - Try Again")
+            continue
+        except requests.exceptions.ProxyError as e:
+            flogger.info(">>>> GETTING_TREE_CONTENT ProxyError - Try Again")
             continue
         except Exception as e:
             flogger.info(traceback.format_exc())
-            flogger.info(">>>> GETTING_TREE_CONTENT -  Exception - Try Again")
-            time.sleep(1)
+            flogger.info(">>>> GETTING_TREE_CONTENT Exception - Try Again")
             continue
 
-        flogger.info(">>>> GOT_TREE_CONTENT")
         break
 
-    json_data = json.loads(req.text.replace('\\', '').replace('"[', '[').replace(']"', ']'))
-    tree_dict = {}
-    for type_data in json_data:
-        type_name = type_data['Key']
-        type_dict = {
-            'IntValue': type_data['IntValue'],
-            'ParamList': []
-        }
-        for data in type_data['Child']:
-            if data['IntValue']:
-                type_dict['ParamList'].append({'Key': data['Key'], 'IntValue': data['IntValue']})
-        tree_dict[type_name] = type_dict
-    return tree_dict
+    flogger.info(">>>> GOT_TREE_CONTENT")
 
+    try:
+        json_data = json.loads(req.text.replace('\\', '').replace('"[', '[').replace(']"', ']'))
+        if not json_data: return None
 
-def get_data(Param, Page, Order, Direction, the_date):
+        tree_dict = {}
+        for type_data in json_data:
+            type_name = type_data['Key']
+            type_dict = {
+                'IntValue': type_data['IntValue'],
+                'ParamList': []
+            }
+            for data in type_data['Child']:
+                if data['IntValue']:
+                    type_dict['ParamList'].append({'Key': data['Key'], 'IntValue': data['IntValue']})
+            tree_dict[type_name] = type_dict
+
+            param_list = tree_dict["法院地域"]["ParamList"]
+    except Exception as e:
+        flogger.info(traceback.format_exc())
+        flogger.info(">>>> HANDLE TREE CONTENT Exception")
+        return None
+
+    return param_list
+
+def get_court_tree_content(Param, province):
+    """ 获取省下面的法院数据 """
+
+    guid = get_guid()
+    number = get_number(guid)
+    url = "http://wenshu.court.gov.cn/List/CourtTreeContent"
+    headers = {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept-Language": "zh-CN,zh;q=0.8",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Host": "wenshu.court.gov.cn",
+        "Origin": "http://wenshu.court.gov.cn",
+        "Proxy-Connection": "keep-alive",
+        "Referer": "http://wenshu.court.gov.cn/list/list/?sorttype=1&number={0}&guid={1}&conditions=searchWord+QWJS+++{2}".format(
+            number, guid, parse.quote(Param)),
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36",
+        "X-Requested-With": "XMLHttpRequest"
+    }
+    data = {
+        "Param": Param,
+        "parval" : province
+    }
+
+    while 1:
+        flogger.info(">>>> GETTING_COURT_TREE_CONTENT")
+        time.sleep(1)
+        try:
+            req = session.post(url, headers=headers, data=data, timeout=20)
+            if not req: raise ValueError("GETTING_COURT_TREE_CONTENT req is None")
+        except requests.ReadTimeout as e:
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_COURT_TREE_CONTENT ReadTimeout - Try Again")
+            continue
+        except requests.ConnectTimeout as e:
+            flogger.info(">>>> GETTING_COURT_TREE_CONTENT ConnectTimeout - Try Again")
+            continue
+        except requests.exceptions.InvalidHeader as e:
+            # flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_COURT_TREE_CONTENT InvalidHeader - Try Again")
+            continue
+        except requests.exceptions.ProxyError as e:
+            flogger.info(">>>> GETTING_COURT_TREE_CONTENT ProxyError - Try Again")
+            continue
+        except Exception as e:
+            flogger.info(traceback.format_exc())
+            flogger.info(">>>> GETTING_COURT_TREE_CONTENT Exception - Try Again")
+            continue
+
+        break
+
+    flogger.info(">>>> GOT_COURT_TREE_CONTENT")
+
+    try:
+        json_data = json.loads(req.text.replace('\\', '').replace('"[', '[').replace(']"', ']'))
+        print(json_data)
+        if not json_data: return None
+
+        court_list = []
+        for data in json_data[0]["Child"]:
+            if data["IntValue"] > 0:
+                court_list.append({
+                    "Key" : data["key"],
+                    "Field" : data["Field"],
+                    "IntValue" : data["IntValue"]
+                })
+        print(court_list)
+    except Exception as e:
+        flogger.info(traceback.format_exc())
+        flogger.info(">>>> HANDLE_COURT_TREE_CONTENT Exception")
+        return None
+
+    return court_list
+
+def get_data(Param, Page, Order, Direction, the_date, count):
 
     Index = 1  # 第几页
-    page_total = 999
+    page_total = handle_page(count)
     vl5x = ""
 
     while 1:
 
-        time.sleep(3)
+        time.sleep(4)
 
         proxies = get_proxy()
         flogger.info("Using proxy: {}".format(proxies))
@@ -333,9 +437,15 @@ def get_data(Param, Page, Order, Direction, the_date):
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> get_data ReadTimeout - Try Again")
             continue
+        except requests.ConnectTimeout as e:
+            flogger.info(">>>> get_data ConnectTimeout - Try Again")
+            continue
         except requests.exceptions.InvalidHeader as e:
             # flogger.info(traceback.format_exc())
             flogger.info(">>>> get_data InvalidHeader - Try Again")
+            continue
+        except requests.exceptions.ProxyError as e:
+            flogger.info(">>>> get_data ProxyError - Try Again")
             continue
         except Exception as e:
             flogger.info(traceback.format_exc())
@@ -349,10 +459,12 @@ def get_data(Param, Page, Order, Direction, the_date):
         req.encoding = 'utf-8'
         return_data = req.text.replace('\\', '').replace('"[', '[').replace(']"', ']')
 
+        # print(return_data)
+
         if "remind" in return_data:
             flogger.info(return_data)
-            flogger.info(">>>> 悲剧~ 遭遇验证码~")
-            check_code()
+            flogger.info(">>>> 验证码~")
+            # check_code()
         else:
             # [{'Count': '721'}]
             try:
@@ -364,14 +476,12 @@ def get_data(Param, Page, Order, Direction, the_date):
                 flogger.info(return_data)
                 continue
 
-            if page_total == 999:
-                page_total = handle_page(int(count))
-
             if len(json_data) <= 1:
-                flogger.info('{} - 采集完成'.format(the_date))
+                flogger.info('{} - 采集完成 - 无数据 - page={}'.format(the_date, Index))
                 break
             else:
                 data_list = []
+                flogger.info(">>>> Result length: {}".format(len(json_data)-1))
                 for i in range(1, len(json_data)):
                     trial_seq   = json_data[i]['审判程序'] if '审判程序' in json_data[i] else ''
                     court       = json_data[i]['法院名称'] if '法院名称' in json_data[i] else ''
@@ -401,7 +511,7 @@ def get_data(Param, Page, Order, Direction, the_date):
                 save_data(data_list)
 
             if Index == page_total:
-                flogger.info("采集完成 - Index: {} - page_total: {} - Task Done".format(Index, page_total))
+                flogger.info("正常采集完成 - Index: {} - page_total: {} - Task Done".format(Index, page_total))
                 break
 
             Index += 1
@@ -410,7 +520,7 @@ def get_data(Param, Page, Order, Direction, the_date):
 def save_data(data_list):
     """ 数据存储逻辑 """
 
-    conn_name = "ws_2016_07_12"
+    conn_name = "ws_2015_07_12"
     wenshu_conn = mongo_service.get_collection(conn_name)
     wenshu_conn.insert_many(data_list)
     flogger.info("成功插入数据库")
@@ -419,7 +529,7 @@ def save_data(data_list):
 def getCourtInfo(DocID):
     """ 根据文书DocID获取相关信息：标题、时间、浏览次数、内容等详细信息 """
 
-    return_data = None
+    return_data = ""
     url = 'http://wenshu.court.gov.cn/CreateContentJS/CreateContentJS.aspx?DocID={0}'.format(DocID)
     headers = {
         'Host': 'wenshu.court.gov.cn',
@@ -428,11 +538,25 @@ def getCourtInfo(DocID):
     }
 
     for i in range(5):
+
+        proxies = get_proxy()
+        flogger.info("Using proxy: {}".format(proxies))
+        if not proxies:
+            flogger.info("No proxy available...")
+            time.sleep(2)
+            continue
+
         try:
             req = session.get(url, headers=headers, timeout=20)
+            if not req: raise ValueError("req None")
+            if req.status_code != 200:raise ValueError("status code error")
         except requests.ReadTimeout as e:
             # flogger.info(traceback.format_exc())
             flogger.info("Timeout Exception - Dont Panic - Situation is under control.")
+            time.sleep(1)
+            continue
+        except requests.ConnectTimeout as e:
+            flogger.info(">>>> ConnectTimeout - Try Again")
             time.sleep(1)
             continue
         except Exception as e:
@@ -447,7 +571,7 @@ def getCourtInfo(DocID):
         if return_data == "服务不可用。":
             flogger.info("China-Judgements-Online returns 服务不可用。")
             flogger.info("Retry...")
-            time.sleep(3)
+            time.sleep(2)
             continue
 
         break
@@ -486,8 +610,8 @@ def download(DocID):
 
 def main():
 
-    start_date = "2016-07-01"
-    end_date = "2016-12-31"
+    start_date = "2015-07-01"
+    end_date = "2015-12-31"
 
     datetime_range_list = dateRange(start_date, end_date)
     flogger.info(datetime_range_list)
@@ -496,11 +620,37 @@ def main():
         try:
             flogger.info(the_date)
             Param, Page, Order, Direction = generate_param(the_date)
-            get_data(Param, Page, Order, Direction, the_date)
+            tree_content_list = get_tree_content(Param)
+
+            # 第一层
+            for content in tree_content_list:
+                try:
+                    first_param = "{},法院地域:{}".format(Param,content["Key"])
+                    first_floor_count = content["IntValue"]
+                    # 第二层 TODO
+                    if first_floor_count > 100:
+                        flogger.info("该天省市数据大于100 - 继续细分到律所")
+                        tree_content_list_2 = get_tree_content(first_param)
+                        print(tree_content_list_2)
+                        for data in tree_content_list_2:
+                            try:
+                                second_param = "{},中级法院:{}".format(first_param,data["Key"])
+                                second_floor_count = data["IntValue"]
+
+                                flogger.info("{} count: {} - second_param: {}".format(the_date, second_floor_count, second_param))
+                                get_data(second_param, Page, Order, Direction, the_date, second_floor_count)
+                            except Exception as e:
+                                flogger.info(traceback.format_exc())
+                                flogger.info("SECOND")
+                    else:
+                        flogger.info("{} count: {} - first_param: {}".format(the_date, content["IntValue"], first_param))
+                        get_data(first_param, Page, Order, Direction, the_date, first_floor_count)
+                except Exception as e:
+                    flogger.info(traceback.format_exc())
+                    flogger.info("FIRST")
         except Exception as e:
             flogger.info(traceback.format_exc())
             flogger.info("MAIN")
-            pass
 
 
 if __name__ == '__main__':
