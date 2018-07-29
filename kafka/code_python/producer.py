@@ -28,5 +28,5 @@ try:
     print(record_metadata)
 except KafkaError as e:
     print(e)
-    
+
 print("done")
