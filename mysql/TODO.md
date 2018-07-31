@@ -1,4 +1,4 @@
-# TODO
+#### TODO
 
 ## http://blog.720ui.com
 
@@ -6,13 +6,6 @@
 ```
 git@github.com:junglelord/spider-course-2.git
 ```
-
-## 安装说明
-```
-RTX 安装说明
-```
-
-![mole](https://github.com/linwh8/ModernWebPrograming/raw/master/My_image/puzzle.png)
 
 ## BOOK
 ```
