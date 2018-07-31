@@ -1,6 +1,8 @@
 ## 自建 ngrok 内网穿透服务
 
 > http://www.zhaojun.im/ngrok/
+>
+> http://linfuyan.com/ubuntu-ngrok/
 
  发表于 2018-04-14 |  更新于 2018-07-08 | 
 

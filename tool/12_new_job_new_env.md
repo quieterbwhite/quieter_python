@@ -19,7 +19,7 @@
 
 3. 安装系统软件
 
-    sudo apt install build-essential dpkg-dev python-dev python3-dev python-pip python3-pip nginx supervisor terminator vim git redis-server mysql-server mysql-client libmysqlclient-dev openssl libssl-dev zookeeperd docker.io
+    sudo apt install build-essential dpkg-dev openssh-server openssh-client python-dev python3-dev python-pip python3-pip nginx supervisor terminator vim git redis-server mysql-server mysql-client libmysqlclient-dev openssl libssl-dev zookeeperd docker.io
 ```
 
 ## 其他软件
