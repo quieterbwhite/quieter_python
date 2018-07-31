@@ -52,7 +52,22 @@ MySQL 为了数据库的安全性，设置了对数据的存取进行控制的�
     show grants for 'root'@'%';
 ```
 
+### 赋予远程访问权限
+
+```
+mysql listen on 0.0.0.0
+
+mysql> grant all privileges on *.* to 'root'@'%' identified by 'yunhe' with grant option;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+```
+
 ## REVOKE 收回用户权限
+
 ```
 撤销已经赋予给 MySQL 用户权限的权限。
 
