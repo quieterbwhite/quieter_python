@@ -2,7 +2,7 @@
 # Created Time: 2017年08月04日 星期五 23时42分48秒
 # File Name: 01_init.py
 
-1. instal
+1. install
 
 使用脚本自动安装
 
