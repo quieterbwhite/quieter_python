@@ -1,0 +1,13 @@
+[Unit]
+Description=zoo1.service
+After=network.target
+[Service]
+Type=forking
+Environment=ZOO_LOG_DIR=/home/bwhite/software/zookeeper-3.4.13/data/zk1
+Environment=PATH=/home/bwhite/software/jdk1.8.0_152/bin:/home/bwhite/software/jdk1.8.0_152/jre/bin:/home/bwhite/bin:/home/bwhite/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+ExecStart=/home/bwhite/software/zookeeper-3.4.13/bin/zkServer.sh start /home/bwhite/software/zookeeper-3.4.13/conf/zoo1.cfg
+ExecStop=/home/bwhite/software/zookeeper-3.4.13/bin/zkServer.sh stop /home/bwhite/software/zookeeper-3.4.13/conf/zoo1.cfg
+ExecReload=/home/bwhite/software/zookeeper-3.4.13/bin/zkServer.sh restart /home/bwhite/software/zookeeper-3.4.13/conf/zoo1.cfg
+User=bwhite
+[Install]
+WantedBy=multi-user.target
