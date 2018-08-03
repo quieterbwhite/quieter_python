@@ -9,7 +9,7 @@ pwd: tiger
 
 from raven import Client
 
-client = Client('http://c13f7e81e7d94d14a27435cdaa2c0af1:a2230e359afc4f8aa458fb8f4ad3c4e0@localhost:9000/1')
+client = Client('http://1e1fe90d82bd4980868b84948e8ff885@sentry.shijiyunhe.com/1')
 
 try:
     1 / 0

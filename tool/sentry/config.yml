@@ -7,14 +7,16 @@
 # Mail Server #
 ###############
 
-mail.backend: 'dummy'  # Use dummy if you want to disable email entirely
-# mail.host: 'localhost'
-# mail.port: 25
-# mail.username: ''
-# mail.password: ''
-# mail.use-tls: false
+mail.backend: 'smtp'  # Use dummy if you want to disable email entirely
+#mail.backend: 'django_smtp_ssl.SSLEmailBackend'
+mail.host: 'smtp.qq.com'
+mail.port: 587
+mail.username: '707295770@qq.com'
+mail.password: ''
+mail.use-tls: true
 # The email address to send on behalf of
-# mail.from: 'root@localhost'
+mail.from: '707295770@qq.com'
+mail.list-namespace: 'sentry.shijiyunhe.com'
 
 # If you'd like to configure email replies, enable this.
 # mail.enable-replies: false
@@ -33,7 +35,7 @@ mail.backend: 'dummy'  # Use dummy if you want to disable email entirely
 # If this file ever becomes compromised, it's important to regenerate your a new key
 # Changing this value will result in all current sessions being invalidated.
 # A new key can be generated with `$ sentry config generate-secret-key`
-system.secret-key: 'p+n7asi-*&*2t8c*1(rw%3wm6xv2#he_^)=9p*0h*rfjuxp&gd'
+system.secret-key: '#n%nbb)gjhq-cboq7tz+ev@fkz^iic7qy_)qa45&+gi+eo%a+l'
 
 # The ``redis.clusters`` setting is used, unsurprisingly, to configure Redis
 # clusters. These clusters can be then referred to by name when configuring

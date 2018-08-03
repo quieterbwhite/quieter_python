@@ -1,4 +1,4 @@
-# MongoDB 权限
+# MongoDB 权限,远程访问,用户名密码
 > https://zhuanlan.zhihu.com/p/26215701  mongodb操作之用户篇  
 > http://www.cnblogs.com/hanyinglong/p/5704320.html  MongoDB学习笔记—权限管理  
 
@@ -19,7 +19,7 @@ Install mongodb on ubuntu
 
 全新安装的MongoDB绑定的本地IP且没有开启用户验证。  
 我们需要在没有开启验证时创建用户，然后再开启验证即可。  
-  
+
 MongoDB 权限系统比较灵活，可以通过各种权限设置方便地进行权限管理。  
 ## mongodb用户权限列表
 ```
@@ -76,6 +76,10 @@ MongoDB Enterprise > db.createUser({
 修改配置文件
 
     > vim /etc/mongod.conf
+    
+    net:
+  		port: 27017     # 阿里云的话记得开放端口
+  		bindIp: 0.0.0.0
 
     添加:
         #security:
@@ -90,7 +94,7 @@ MongoDB Enterprise > db.createUser({
 
 ## 访问
 ```
-$ mongo --port 27017 -u "root" -p "tiger" --authenticationDatabase "admin"
+$ mongo --host x.x.x.x --port 27017 -u "root" -p "tiger" --authenticationDatabase "admin"
 
 $ mongo admin -u root -p tiger
 

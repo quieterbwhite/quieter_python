@@ -14,6 +14,7 @@ $ sudo apt install python-setuptools python-dev libxslt1-dev gcc libffi-dev libj
 $ mkdir /home/bwhite/software/sentry && cd /home/bwhite/software/sentry
 $ pipenv --two
 $ pipenv install sentry
+## 如果虚拟环境安装不成功，有可能会报依赖错误，这个解决不了。可以直接在宿主机pip安装。
 
 # 配置文件
 $ pipenv run sentry init /home/bwhite/software/sentry/
@@ -28,8 +29,8 @@ $ sudo apt install postgresql-client-9.5
 $ pipenv run createdb -E utf-8 -h 127.0.0.1 -p 54321 -U postgres -W sentry
 #创建表结构
 $ pipenv run sentry --config /home/bwhite/software/sentry/ upgrade
-707295770@qq.com
-tiger
+707295770@qq.com & b__white@163.com
+tiger & yunhe5
 superuser
 
 # 开启web
