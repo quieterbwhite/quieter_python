@@ -72,6 +72,7 @@ Ubuntu 16.04、Debian 8 Jessie、CentOS 7
     编辑 /etc/systemd/system/multi-user.target.wants/docker.service 文件，
     找到 ExecStart= 这一行，在这行最后添加加速器地址 --registry-mirror=<加速器地址>，如：
 
+    ## 这种方式是有效的
     ExecStart=/usr/bin/dockerd --registry-mirror=https://jxus37ad.mirror.aliyuncs.com
 
 检查加速器是否生效
