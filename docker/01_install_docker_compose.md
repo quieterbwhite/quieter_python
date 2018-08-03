@@ -4,6 +4,8 @@
 
 > https://www.centos.bz/2017/08/ubuntu-16-04-install-docker-compose/
 
+> https://docs.docker.com/compose/install/#uninstallation
+
 UpdatedDecember 21, 2017
 
 248.3kviews 
