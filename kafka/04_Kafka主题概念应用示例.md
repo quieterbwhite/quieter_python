@@ -7,7 +7,7 @@
 ```
 
 ## 启动服务
-```
+```shell
 启动zookeeper
 
     ./zkServer.sh start-foreground
@@ -20,14 +20,15 @@
 ```
 
 ## 操作主题
-```
+```shell
 查看主题:
 
-    ./kafka-topics.sh --list --zookeeper localhost:2181
-    
-    output:
-        __consumer_offsets
-        mytest
+$ ./kafka-topics.sh --list --zookeeper localhost:2181,localhost:2182,localhost:2183
+    __consumer_offsets
+    user-event
+    wenshu_all_content
+    wenshu_all_listcontent
+    wenshu_all_param
         
     __consumer_offsets是Kafka Server所创建的用于标识消费者偏移量的主题(Kafka中的消息都是顺序保存在磁盘上的,通过offset偏移量来标识消息的顺序),它由Kafka Server内部使用;
     mytest 是我们创建的主题
