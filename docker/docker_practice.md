@@ -318,6 +318,14 @@ $ docker  diff    webserver
 * 清理所有处于终止状态的容器
 
     $ docker container prune
+    
+* 如果创建时未指定 --restart=always ,可通过update 命令设置
+
+	$ docker update --restart=always xxx
+	
+* 推荐使用docker inspect来获取信息，这个命令会返回一个json字符串，里面以key-value的格式准备了该容器相关的信息，内容十分丰富，可以一次性取得全部内容，也可以返回指定key对应的信息；
+	
+	$ docker inspect tomcat001
 ```
 
 ## 访问仓库

@@ -37,6 +37,8 @@ node
 
 mitmproxy
 
+lazygit - https://github.com/jesseduffield/lazygit
+
 postman
 
 sublime
