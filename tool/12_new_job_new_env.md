@@ -37,7 +37,15 @@ node
 
 mitmproxy
 
-lazygit - https://github.com/jesseduffield/lazygit
+RedisDesktopManager
+
+    - https://github.com/uglide/RedisDesktopManager
+
+    - sudo snap install redis-desktop-manager
+
+lazygit
+
+    - https://github.com/jesseduffield/lazygit
 
 postman
 
