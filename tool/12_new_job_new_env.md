@@ -119,6 +119,8 @@ python-hwinfo  python 获取硬件信息
 pysnowflake  发号器
 
 pytesser     简单验证码识别
+
+fake-useragent　User-Agent池
 ```
 
 ## other
