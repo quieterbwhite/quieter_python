@@ -38,7 +38,7 @@ for i in data["cookies"]:
         vjkl5 = i["value"]
 
 if vjkl5 and vl5x:
-    return {"vjkl5":vjkl5, "vl5x":vl5x}
+    print({"vjkl5":vjkl5, "vl5x":vl5x})
 
 return None
 
