@@ -79,6 +79,10 @@
 
     db.animal.update({name:'tiger'}, {$set:{name:'dog'}}, {multi:true})
 
+    改变数据类型:
+
+        db.data.update({'name': 'zero'}, {'$set': {'value': NumberInt(0)}}, {"multi":true})
+
 保存:
 
     db.animal.save(document)
