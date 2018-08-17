@@ -581,13 +581,4 @@ $unwind
 
     例2
     mongorestore -h 192.168.196.128:27017 -d test2 --dir ~/Desktop/test1bak/test1
-
-
-
-
-
-
-
-
-
 """

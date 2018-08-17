@@ -1,0 +1,59 @@
+db.getCollection('wsd').createIndex({"docid":1}})
+
+mongoexport -h localhost --port 27017 -d judge -c wsf_2015_07_10 -o /tmp/wsf_2015_07_10.json
+
+mongoexport -h localhost --port 27017 -d judge -c wsf_2015_07_11 -o /tmp/wsf_2015_07_11.json
+
+mongoexport -h localhost --port 27017 -d judge -c wsf_2017_12_01 -o /tmp/wsf_2017_12_01.json
+
+mongoexport -h localhost --port 27017 -d judge -c wsf_2017_12_02 -o /tmp/wsf_2017_12_02.json
+
+mongoexport -h localhost --port 27017 -d judge -c wsf_2017_12_05 -o /tmp/wsf_2017_12_05.json
+
+mongoexport -h localhost --port 27017 -d judge -c wsf_2017_12_06 -o /tmp/wsf_2017_12_06.json
+
+
+mongoimport -h localhost --port 27017 -u user -p pwd --authenticationDatabase admin -d judge -c wsf_2017_12_02 /tmp/wsf_2017_12_02.json
+
+mongoimport -h localhost --port 27017 -u user -p pwd --authenticationDatabase admin -d judge -c wsf_2017_12_01 /tmp/wsf_2017_12_01.json
+
+mongoimport -h localhost --port 27017 -u user -p pwd --authenticationDatabase admin -d judge -c wsf_2015_07_11 /tmp/wsf_2015_07_11.json
+
+mongoimport -h localhost --port 27017 -u user -p pwd --authenticationDatabase admin -d judge -c wsf_2015_07_10 /tmp/wsf_2015_07_10.json
+
+
+
+mongoexport -h localhost --port 27017 -d judge -c ws_201801_foshan_d_pure -o /tmp/foshan/wsf_2018_01.json
+mongoexport -h localhost --port 27017 -d judge -c ws_201802_foshan_d_pure -o /tmp/foshan/wsf_2018_02.json
+mongoexport -h localhost --port 27017 -d judge -c ws_201803_foshan_d_pure -o /tmp/foshan/wsf_2018_03.json
+mongoexport -h localhost --port 27017 -d judge -c ws_201804_foshan_d_pure -o /tmp/foshan/wsf_2018_04.json
+mongoexport -h localhost --port 27017 -d judge -c ws_201805_foshan_d_pure -o /tmp/foshan/wsf_2018_05.json
+mongoexport -h localhost --port 27017 -d judge -c ws_201806_foshan_d_pure -o /tmp/foshan/wsf_2018_06.json
+
+
+{"status":3, "coll_name":"wsf_2018_01_foshan"}
+{"status":3, "coll_name":"wsf_2018_02_foshan"}
+{"status":3, "coll_name":"wsf_2018_03_foshan"}
+{"status":3, "coll_name":"wsf_2018_04_foshan"}
+{"status":3, "coll_name":"wsf_2018_05_foshan"}
+{"status":3, "coll_name":"wsf_2018_06_foshan"}
+
+{"status":2, "coll_name":"wsf_2015_07_10"}
+{"status":2, "coll_name":"wsf_2015_07_11"}
+{"status":2, "coll_name":"wsf_2017_12_01"}
+{"status":2, "coll_name":"wsf_2017_12_02"}
+{"status":2, "coll_name":"wsf_2017_12_05"}
+{"status":2, "coll_name":"wsf_2017_12_06"}
+
+
+db.getCollection('wsd').find({"docid":"d77b5bd1-4c9d-4cb4-8310-a896000fb871"})
+
+http://www.cnblogs.com/yjmyzz/p/dubbox-demo.html
+
+https://www.cnblogs.com/codejackanapes/p/5539265.html
+
+https://github.com/wechat-group/weixin-java-tools/wiki
+
+http://www.souvc.com/?p=2083
+
+https://www.cnblogs.com/liuhongfeng/p/4846441.html
