@@ -79,6 +79,10 @@
 
     db.animal.update({name:'tiger'}, {$set:{name:'dog'}}, {multi:true})
 
+    改变数据类型:
+
+        db.data.update({'name': 'zero'}, {'$set': {'value': NumberInt(0)}}, {"multi":true})
+
 保存:
 
     db.animal.save(document)
@@ -581,13 +585,4 @@ $unwind
 
     例2
     mongorestore -h 192.168.196.128:27017 -d test2 --dir ~/Desktop/test1bak/test1
-
-
-
-
-
-
-
-
-
 """
