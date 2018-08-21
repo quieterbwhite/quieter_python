@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>demo_6 循环数组</title>
+        <script src="angular.min.js"></script>
+        <script>
+            // 建立模块
+            var app=angular.module("myAppName", []); // 当前模块名，引用的其他模块
+            // 创建控制器, 相当于一个类一样，类名称，类实现
+            // $scope 就是控制层与视图层之间交换数据的桥梁
+            app.controller("myControllerName", function($scope){
+            // 控制器内容
+                // 把$scope看作一个大的对象，可以添加属性，如: add
+                // $scope 的属性可以在视图调用，非$scope的方法只能在控制器内部使用
+
+                $scope.list = [11, 2, 3, 44];
+
+            });
+        </script>
+    </head>
+
+    <body ng-app="myAppName" ng-controller="myControllerName">
+
+        <table>
+            <tr ng-repeat="x in list">
+                <td>
+                    {{x}}
+                </td>
+            </tr>
+        </table>
+
+    </body>
+</html>

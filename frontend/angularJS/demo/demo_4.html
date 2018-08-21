@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>demo_4 控制器</title>
+        <script src="angular.min.js"></script>
+        <script>
+            // 建立模块
+            var app=angular.module("myAppName", []); // 当前模块名，引用的其他模块
+            // 创建控制器, 相当于一个类一样，类名称，类实现
+            // $scope 就是控制层与视图层之间交换数据的桥梁
+            app.controller("myControllerName", function($scope){
+            // 控制器内容
+                // 把$scope看作一个大的对象，可以添加属性，如: add
+                // $scope 的属性可以在视图调用，非$scope的方法只能在控制器内部使用
+                $scope.add = function() {
+                    //return $scope.first + $scope.second;
+                    return parseInt($scope.first) + parseInt($scope.second);
+                }
+            });
+        </script>
+    </head>
+
+    <body ng-app="myAppName" ng-controller="myControllerName">
+
+        first: <input ng-model="first">
+        
+        <br>
+
+        second: <input ng-model="second">
+
+        <br>
+
+        total: {{add()}}
+    </body>
+</html>
