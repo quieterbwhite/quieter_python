@@ -61,6 +61,8 @@ sogoupinyin
 
 zookeeper
 
+ActiveMQ
+
 kafka
 
 intellij idea
@@ -76,6 +78,14 @@ robomongo
 typora
 
 vlc
+
+Anbox 
+	Run Android applications on any GNU/Linux operating system.
+	https://anbox.io/
+
+upterm
+  A terminal emulator for the 21st century.
+  https://github.com/railsware/upterm
 
 wps    处理文档
 
