@@ -22,8 +22,26 @@
     sudo apt install build-essential dpkg-dev openssh-server openssh-client python-dev python3-dev python-pip python3-pip nginx supervisor terminator vim git redis-server mysql-server mysql-client libmysqlclient-dev openssl libssl-dev zookeeperd docker.io
 ```
 
-## 其他软件
+#### 技术软件
+```
+ecar_team/apimonitor
 
+    https://gitee.com/ecar_team/apimonitor
+    api监控系统，有api探测、api监控、http请求模拟、系统接口监控等功能，可以模拟http页面操作过程，并根据请求耗时和响应结果监控系统接口可用性和正确性
+
+qidianliusong/redis-shared-lock
+
+    https://gitee.com/lsongiu/redis-shared-lock
+    基于redis的分布式共享锁，使用注解的方式对方法加锁
+
+buaazp/zimg
+
+    https://github.com/buaazp/zimg
+    A lightweight and high performance image storage and processing system. http://zimg.buaa.us
+    Zimg—轻量级图片服务器搭建利器 - https://mp.weixin.qq.com/s/O4qNmeIEYIryIzSEPxspaQ
+```
+
+#### 其他软件
 ```
 chrome
 
