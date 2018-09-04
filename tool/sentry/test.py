@@ -9,10 +9,10 @@ pwd: tiger
 
 from raven import Client
 
-client = Client('http://16d58f62e28e4e1b8d5c1f2a6bc8d384:4d99f0871b104cb9b926e15ba86e904c@localhost:9000/1')
+client = Client('http://ac895c3258454b51ad0d9f95f3a7e9db:dde5a524fb224b51866ba23a6153007a@sentry.shijiyunhe.com/2')
 
 try:
-    a = int([])
+    a = 1/0
 #except ZeroDivisionError:
 except Exception:
     client.captureException()

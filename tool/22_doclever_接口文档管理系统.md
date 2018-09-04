@@ -3,6 +3,8 @@
 
 
 ```shell
+http://www.doclever.cn/controller/index/index.html
+
 $ sudo apt install phantomjs
 
 $ cnpm install doclever -g
