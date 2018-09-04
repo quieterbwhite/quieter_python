@@ -39,6 +39,11 @@ buaazp/zimg
     https://github.com/buaazp/zimg
     A lightweight and high performance image storage and processing system. http://zimg.buaa.us
     Zimg—轻量级图片服务器搭建利器 - https://mp.weixin.qq.com/s/O4qNmeIEYIryIzSEPxspaQ
+
+Geet/central-platform
+
+    https://gitee.com/GeekPerson/central-platform
+    为企业级打造最全面的微服务开发解决方案; http://47.94.252.160:8066
 ```
 
 #### 其他软件
