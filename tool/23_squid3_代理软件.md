@@ -4,10 +4,22 @@
 >
 > https://www.linode.com/docs/web-servers/squid/squid-http-proxy-ubuntu-12-04/
 
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install squid
 
+sudo cp /etc/squid3/squid.conf /etc/squid3/squid.conf.default
+```
 
-配置允许所有连接:
+##### 修改端口
+```
+cd /etc/squid3
 
+http_port 3128
+```
+
+##### 配置允许所有连接:
 ```shell
 You need to edit the squid config file to enable access. The default location for the squid file on ubuntu is : /etc/squid3/squid.conf
 
