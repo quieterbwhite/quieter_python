@@ -26,24 +26,29 @@
 ```
 ecar_team/apimonitor
 
-    https://gitee.com/ecar_team/apimonitor
-    api监控系统，有api探测、api监控、http请求模拟、系统接口监控等功能，可以模拟http页面操作过程，并根据请求耗时和响应结果监控系统接口可用性和正确性
+    - https://gitee.com/ecar_team/apimonitor
+
+    - api监控系统，有api探测、api监控、http请求模拟、系统接口监控等功能，可以模拟http页面操作过程，并根据请求耗时和响应结果监控系统接口可用性和正确性
 
 qidianliusong/redis-shared-lock
 
-    https://gitee.com/lsongiu/redis-shared-lock
-    基于redis的分布式共享锁，使用注解的方式对方法加锁
+    - https://gitee.com/lsongiu/redis-shared-lock
+
+    - 基于redis的分布式共享锁，使用注解的方式对方法加锁
 
 buaazp/zimg
 
     https://github.com/buaazp/zimg
+
     A lightweight and high performance image storage and processing system. http://zimg.buaa.us
+
     Zimg—轻量级图片服务器搭建利器 - https://mp.weixin.qq.com/s/O4qNmeIEYIryIzSEPxspaQ
 
 Geet/central-platform
 
-    https://gitee.com/GeekPerson/central-platform
-    为企业级打造最全面的微服务开发解决方案; http://47.94.252.160:8066
+    - https://gitee.com/GeekPerson/central-platform
+
+    - 为企业级打造最全面的微服务开发解决方案; http://47.94.252.160:8066
 ```
 
 #### 其他软件
@@ -54,11 +59,25 @@ lantern
 
 pycharm
 
+natapp
+
+    - 开启您的内网穿透之旅
+
+    - https://natapp.cn/
+
+    - https://natapp.cn/article/nohup
+
 jdk
 
 node
 
 mitmproxy
+
+torproject
+
+    - https://www.torproject.org/index.html.en
+
+    - Tor is free software and an open network that helps you defend against traffic analysis
 
 anyproxy
 
@@ -66,11 +85,33 @@ anyproxy
 
     - npm install -g anyproxy
 
+    AnyProxy是一个开放式的HTTP代理服务器。
+
+    Github主页：https://github.com/alibaba/anyproxy
+
+    主要特性包括：
+
+        基于Node.js，开放二次开发能力，允许自定义请求处理逻辑
+        支持Https的解析
+        提供GUI界面，用以观察请求
+
+snail007/goproxy
+
+    - Proxy是golang实现的高性能http,https,websocket,tcp,防污染DNS,socks5代理服务器,支持内网穿透,链式代理,通讯加密,智能HTTP,SOCKS5代理,域名黑白名单,跨平台,KCP协议支持,集成外部API。
+
+    - https://github.com/snail007/goproxy
+
 RedisDesktopManager
 
     - https://github.com/uglide/RedisDesktopManager
 
     - sudo snap install redis-desktop-manager
+
+RedisPlus
+
+    - https://gitee.com/MaxBill/RedisPlus
+
+    - RedisPlus是为Redis管理开发的桌面客户端软件
 
 lazygit
 
@@ -102,13 +143,23 @@ typora
 
 vlc
 
+doodooke/doodoo
+
+    - 多多小程序开源版
+
+    - https://gitee.com/doodooke/doodoo
+
 Anbox 
-	Run Android applications on any GNU/Linux operating system.
-	https://anbox.io/
+
+	- Run Android applications on any GNU/Linux operating system.
+
+	- https://anbox.io/
 
 upterm
-  A terminal emulator for the 21st century.
-  https://github.com/railsware/upterm
+
+    - A terminal emulator for the 21st century.
+
+    - https://github.com/railsware/upterm
 
 wps    处理文档
 
@@ -117,23 +168,28 @@ Zathura: 轻巧好用的 PDF 查看器
 krita  类似 photoshop
 
 bookworm  - ebook reader
-https://babluboy.github.io/bookworm/
+
+    https://babluboy.github.io/bookworm/
 
 calibre - 电脑上看电子书
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
+    - sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
 rdesktop  ubuntu 远程连接 windows
 
 坚果云
 
 网易云音乐
-http://music.163.com/#/download
+
+    - http://music.163.com/#/download
 
 爱壁纸
-http://www.lovebizhi.com/linux.html
+
+    - http://www.lovebizhi.com/linux.html
 
 有道词典
-http://cidian.youdao.com/index-linux.html
+
+    - http://cidian.youdao.com/index-linux.html
 
 上面这些deb包安装的时候如果报错没有依赖，解决方法: sudo apt-get install -f
 因为deb包安装不会自动解决依赖
@@ -142,11 +198,12 @@ http://cidian.youdao.com/index-linux.html
 http://blog.csdn.net/fuchaosz/article/details/51882935
 
 rundeck   -   后台任务
-    http://tech.oyster.com/rundeck-vs-crontab-why-rundeck-won/
+
+    - http://tech.oyster.com/rundeck-vs-crontab-why-rundeck-won/
 
 crontab-ui
 
-后台进程管理工具Supervisor + superlance（Supervisor 的增强插件工具集）
+    - 后台进程管理工具Supervisor + superlance（Supervisor 的增强插件工具集）
 ```
 
 ## pip install
