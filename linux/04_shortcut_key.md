@@ -84,3 +84,24 @@ CTRL-Y 粘贴已删除的文本(例如粘贴CTRL-U所删除的内容)
 当前方法展开、折叠    Ctrl +  +/-
 全部展开、折叠           Ctrl+Shift + +/-
 ```
+
+| 操作               | Eclipse           | IDEA                  |
+| ------------------ | ----------------- | --------------------- |
+| 删除一行           | Ctrl+D            | Ctrl+Y                |
+| 关闭当前窗口       | Ctrl+W            | Ctrl+F4               |
+| 上移、下移一行     | Alt+↑、↓          | Ctrl+Alt+↑、↓         |
+| 回退操作           | Ctrl+Z            | Ctrl+Z                |
+| 反向回退           | Ctrl+Y            | Ctrl+Shift+Z          |
+| 回到上一处编辑     | Alt+←             | Ctrl+Alt+←            |
+| 提取变量           | Ctrl+1 And Ctrl+L | Ctrl+Alt+V            |
+| 添加或取消注释     | Ctrl+/            | Ctrl+/                |
+| 生成Getter、Setter | Alt+Shift+S       | Alt+Insert            |
+| 光标移到相同的变量 | Ctrl+K            | F3或Ctrl+F7           |
+| 打开类结构         | Ctrl+O            | Ctrl+F12              |
+| 显示类继承层次     | Ctrl+T            | Ctrl+H                |
+| 查看方法调用链     | Ctrl+Shift+H      | Ctrl+Alt+H            |
+| 文件内容搜索       | Ctrl+H            | Ctrl+Shift+F          |
+| 按文件名搜索       | Ctrl+Shift+R      | Ctrl+Shift+N          |
+| 格式化代码         | Ctrl+Shift+F      | Ctrl+Alt+L            |
+| 代码折叠与打开     | Ctrl+Shift+*、/   | Ctrl+Shift+加号、减号 |
+| try-catch包围      | Alt+Shift+S       | Ctrl+Shift+T          |
