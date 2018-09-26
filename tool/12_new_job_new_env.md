@@ -59,6 +59,12 @@ lantern
 
 pycharm
 
+PDMan
+
+    - PDMan是一款开源免费的数据库模型建模工具，支持Windows,Mac,Linux等操作系统，是PowerDesigner之外，更好的免费的替代方案。
+
+    - https://gitee.com/robergroup/pdman
+
 natapp
 
     - 开启您的内网穿透之旅
