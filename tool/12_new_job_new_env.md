@@ -65,6 +65,16 @@ PDMan
 
     - https://gitee.com/robergroup/pdman
 
+Portainer
+
+    - Portainer是一个开源、轻量级Docker管理用户界面
+
+Icework
+
+    - 飞冰是一套基于 React 的中后台应用解决方案
+
+    - https://alibaba.github.io/ice/docs/about
+
 natapp
 
     - 开启您的内网穿透之旅
@@ -122,6 +132,10 @@ RedisPlus
 lazygit
 
     - https://github.com/jesseduffield/lazygit
+    
+VMware vSphere
+
+	- VMware vSphere集成容器（VIC）建立了一个在轻量级虚拟机内部署并管理容器的环境。
 
 postman
 
