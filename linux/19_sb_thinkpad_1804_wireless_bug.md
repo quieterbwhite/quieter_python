@@ -11,5 +11,8 @@ Makefile文件中把 "export TopDIR ?= ..." 改成 "export TopDIR ?= PATH TO EXT
 第二个 ，无线网rtl8821ce的压缩包：链接：https://pan.baidu.com/s/1sneDK8d 密码：8930
 
 https://blog.csdn.net/fljhm/article/details/79281655
+
+https://www.jianshu.com/p/90ff6c10f64e
+
 参考这个
 
