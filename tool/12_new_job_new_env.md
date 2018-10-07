@@ -59,6 +59,10 @@ lantern
 
 pycharm
 
+mysql
+
+    - https://blog.csdn.net/qq_38737992/article/details/81090373
+
 PDMan
 
     - PDMan是一款开源免费的数据库模型建模工具，支持Windows,Mac,Linux等操作系统，是PowerDesigner之外，更好的免费的替代方案。
@@ -143,6 +147,8 @@ sublime
 
 sogoupinyin
 
+    - https://blog.csdn.net/lupengCSDN/article/details/80279177
+
 zookeeper
 
 ActiveMQ
@@ -163,6 +169,12 @@ typora
 
 vlc
 
+aria2
+
+    - aria2 is a lightweight multi-protocol & multi-source, cross platform download utility operated in command-line.
+
+    - https://github.com/aria2/aria2
+
 doodooke/doodoo
 
     - 多多小程序开源版
@@ -171,9 +183,11 @@ doodooke/doodoo
 
 Anbox 
 
-	- Run Android applications on any GNU/Linux operating system.
+    - Run Android applications on any GNU/Linux operating system.
 
-	- https://anbox.io/
+    - https://anbox.io/
+
+    - 亲测没啥用，安装两个apk就包缺少本地包。
 
 upterm
 
@@ -184,6 +198,22 @@ upterm
 wps    处理文档
 
 Zathura: 轻巧好用的 PDF 查看器
+
+    - sudo apt install zathura
+
+	操作总结:
+
+	基本操作与vim一致,对于熟悉vim快捷键的十分方便:
+
+	向下移动一页是J(Ctrl+f),向上移动一页是K(Ctrl+b).上下左右移动分别是k/j/h/l
+
+	gg 跳到文章首页
+	G 跳到文末
+
+	a 放大页面到合适大小
+	s 放大页面到窗口宽度
+
+	Ctrl+R 反色,inverted color
 
 krita  类似 photoshop
 
@@ -202,6 +232,8 @@ rdesktop  ubuntu 远程连接 windows
 网易云音乐
 
     - http://music.163.com/#/download
+
+    - https://www.cnblogs.com/linga/p/9133415.html
 
 爱壁纸
 
