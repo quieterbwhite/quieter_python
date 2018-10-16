@@ -53,6 +53,12 @@ Geet/central-platform
 
 #### 其他软件
 ```
+gnome-tweak-tool
+
+    - https://itsfoss.com/gnome-tricks-ubuntu/
+
+    - sudo apt install gnome-tweak-tool
+
 chrome
 
 lantern
@@ -62,6 +68,10 @@ pycharm
 mysql
 
     - https://blog.csdn.net/qq_38737992/article/details/81090373
+
+DataGrip
+
+    - 
 
 PDMan
 
@@ -156,6 +166,16 @@ ActiveMQ
 kafka
 
 intellij idea
+
+datagrip
+
+EasyPDF
+
+    - 我们想向你推荐 EasyPDF —— 一款可以胜任所有场合的在线 PDF 软件。
+
+    - https://easypdf.com/
+
+    - https://linux.cn/article-10102-1.html
 
 vscode
 
@@ -283,6 +303,8 @@ fake-useragent　User-Agent池
 
 ## other
 ```
+sudo apt-get install sox libsox-fmt-all
+
 Deluge BitTorrent Client
 
 aMule
