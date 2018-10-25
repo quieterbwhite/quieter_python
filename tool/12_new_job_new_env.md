@@ -71,7 +71,25 @@ mysql
 
 DataGrip
 
-    - 
+    - 数据库图形界面软件
+
+jenkins
+
+    - 持续集成
+
+nexus
+
+    - 搭建maven私服
+
+frp
+
+    - 内网穿透
+
+    - 外部通过 ssh, http 访问内部服务
+
+rancher
+
+    - docker 图形化管理界面
 
 PDMan
 
@@ -102,6 +120,10 @@ jdk
 node
 
 mitmproxy
+
+    - 跨平台代理软件
+
+    - 开发调试用, 命令行,界面都有
 
 torproject
 
