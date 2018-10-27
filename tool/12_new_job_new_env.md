@@ -304,6 +304,24 @@ crontab-ui
     - 后台进程管理工具Supervisor + superlance（Supervisor 的增强插件工具集）
 ```
 
+##### idea 插件
+```
+JRebel for IntelliJ
+热部署插件，Java WEB 开发必备，节省生命。
+
+Grep Console
+高亮log不同级别日志，看日志的时候一目了然。
+
+GenerateSerialVersionUID
+Alt + Insert 生成serialVersionUID
+
+Rainbow Brackets
+彩虹括号。自动给代码块内花括号和括号加色，让视野更加注意在代码上。
+
+Maven Helper
+Maven插件，安装后可查看依赖以及冲突，一目了然。
+```
+
 ## pip install
 ```
 arrow   时间处理
