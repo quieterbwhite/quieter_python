@@ -53,11 +53,59 @@ Geet/central-platform
 
 #### 其他软件
 ```
+gnome-tweak-tool
+
+    - https://itsfoss.com/gnome-tricks-ubuntu/
+
+    - sudo apt install gnome-tweak-tool
+
 chrome
 
 lantern
 
 pycharm
+
+mysql
+
+    - https://blog.csdn.net/qq_38737992/article/details/81090373
+
+DataGrip
+
+    - 数据库图形界面软件
+
+jenkins
+
+    - 持续集成
+
+nexus
+
+    - 搭建maven私服
+
+frp
+
+    - 内网穿透
+
+    - 外部通过 ssh, http 访问内部服务
+
+rancher
+
+    - docker 图形化管理界面
+
+PDMan
+
+    - PDMan是一款开源免费的数据库模型建模工具，支持Windows,Mac,Linux等操作系统，是PowerDesigner之外，更好的免费的替代方案。
+
+    - https://gitee.com/robergroup/pdman
+
+Portainer
+
+    - Portainer是一个开源、轻量级Docker管理用户界面
+
+Icework
+
+    - 飞冰是一套基于 React 的中后台应用解决方案
+
+    - https://alibaba.github.io/ice/docs/about
 
 natapp
 
@@ -72,6 +120,10 @@ jdk
 node
 
 mitmproxy
+
+    - 跨平台代理软件
+
+    - 开发调试用, 命令行,界面都有
 
 torproject
 
@@ -116,12 +168,18 @@ RedisPlus
 lazygit
 
     - https://github.com/jesseduffield/lazygit
+    
+VMware vSphere
+
+	- VMware vSphere集成容器（VIC）建立了一个在轻量级虚拟机内部署并管理容器的环境。
 
 postman
 
 sublime
 
 sogoupinyin
+
+    - https://blog.csdn.net/lupengCSDN/article/details/80279177
 
 zookeeper
 
@@ -130,6 +188,16 @@ ActiveMQ
 kafka
 
 intellij idea
+
+datagrip
+
+EasyPDF
+
+    - 我们想向你推荐 EasyPDF —— 一款可以胜任所有场合的在线 PDF 软件。
+
+    - https://easypdf.com/
+
+    - https://linux.cn/article-10102-1.html
 
 vscode
 
@@ -143,6 +211,12 @@ typora
 
 vlc
 
+aria2
+
+    - aria2 is a lightweight multi-protocol & multi-source, cross platform download utility operated in command-line.
+
+    - https://github.com/aria2/aria2
+
 doodooke/doodoo
 
     - 多多小程序开源版
@@ -151,9 +225,11 @@ doodooke/doodoo
 
 Anbox 在Ubuntu上运行Android应用
 
-	- Run Android applications on any GNU/Linux operating system.
+    - Run Android applications on any GNU/Linux operating system.
 
-	- https://anbox.io/
+    - https://anbox.io/
+
+    - 亲测没啥用，安装两个apk就包缺少本地包。
 
 Android Studio
 
@@ -168,6 +244,22 @@ upterm
 wps    处理文档
 
 Zathura: 轻巧好用的 PDF 查看器
+
+    - sudo apt install zathura
+
+	操作总结:
+
+	基本操作与vim一致,对于熟悉vim快捷键的十分方便:
+
+	向下移动一页是J(Ctrl+f),向上移动一页是K(Ctrl+b).上下左右移动分别是k/j/h/l
+
+	gg 跳到文章首页
+	G 跳到文末
+
+	a 放大页面到合适大小
+	s 放大页面到窗口宽度
+
+	Ctrl+R 反色,inverted color
 
 krita  类似 photoshop
 
@@ -186,6 +278,8 @@ rdesktop  ubuntu 远程连接 windows
 网易云音乐
 
     - http://music.163.com/#/download
+
+    - https://www.cnblogs.com/linga/p/9133415.html
 
 爱壁纸
 
@@ -235,6 +329,8 @@ fake-useragent　User-Agent池
 
 ## other
 ```
+sudo apt-get install sox libsox-fmt-all
+
 Deluge BitTorrent Client
 
 aMule

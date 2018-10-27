@@ -37,7 +37,7 @@
     http://www.runoob.com/redis/redis-install.html
 
     $sudo apt-get install redis-server
-    ```
+```
 
 ## 运行
 ```
@@ -146,6 +146,12 @@ redis是key-value的数据，所以每个数据都是一个键值对
     有序集合zset
 
 数据操作的全部命令，可以查看中文网站 http://redis.cn/commands.html
+
+清除所有库所有key数据: flushall
+
+清除单个库所有key数据: flushdb - Redis Flushdb 命令用于清空当前数据库中的所有 key
+
+查看数据量: dbsize
 ```
 
 ## string
