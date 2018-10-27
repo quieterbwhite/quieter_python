@@ -149,11 +149,15 @@ doodooke/doodoo
 
     - https://gitee.com/doodooke/doodoo
 
-Anbox 
+Anbox 在Ubuntu上运行Android应用
 
 	- Run Android applications on any GNU/Linux operating system.
 
 	- https://anbox.io/
+
+Android Studio
+
+    - Android 开发
 
 upterm
 
