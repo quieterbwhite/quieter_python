@@ -199,6 +199,12 @@ EasyPDF
 
     - https://linux.cn/article-10102-1.html
 
+速盘
+
+    - https://www.speedpan.com/
+
+    - 全速下载度盘资源，免受限速困扰！
+
 vscode
 
 mysql-workbench
