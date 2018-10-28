@@ -8,6 +8,7 @@
 ```
 {
 "registry-mirrors": [
+"https://571cbuth.mirror.aliyuncs.com",  我的镜像加速器
 "https://2lqq34jg.mirror.aliyuncs.com",
 "https://pee6w651.mirror.aliyuncs.com",
 "https://registry.docker-cn.com",
