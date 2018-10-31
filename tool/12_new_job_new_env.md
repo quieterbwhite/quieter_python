@@ -65,6 +65,18 @@ lantern
 
 pycharm
 
+Flameshot
+
+    - Flameshot 在去年发布到 GitHub，并成为一个引人注目的工具。
+
+    - https://github.com/lupoDharkael/flameshot
+
+    - sudo apt install flameshot
+
+    - 全局搜索启动 flameshot 后, 双击托盘图标即可截图
+
+    - https://linux.cn/article-10070-1.html
+
 mysql
 
     - https://blog.csdn.net/qq_38737992/article/details/81090373
