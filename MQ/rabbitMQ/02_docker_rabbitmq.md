@@ -3,6 +3,6 @@
 
 
 ```shell
-docker run -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3.7.3-management
+docker run -d --name rabbit -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=bwhite -e RABBITMQ_DEFAULT_PASS=olivia rabbitmq:3.7.3-management
 ```
 

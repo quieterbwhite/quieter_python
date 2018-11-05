@@ -205,3 +205,51 @@ WHERE sn.`entid` = qae.`grp_id`
 GROUP BY months,
   prov ;
 ```
+
+
+##### 我自己写的
+
+```mysql
+@Select("select IFNULL(DATE_FORMAT(create_time,'%c'), '') months, IFNULL(sum(bad_balance), 0) badBalanceCountMonth, IFNULL(sum(debit_interest), 0) debitInterestCountMonth, IFNULL(sum(recovered_amount), 0) recycleCountMonth from v_case_proxy where bank_user_id = #{bank_user_id} and is_deleted=1 and create_time between date_sub(now(),interval #{month_range} month) and now() group by months")
+
+@Select("select IFNULL(DATE_FORMAT(create_time, '%c'), '') months, IFNULL(sum(bad_balance), 0) badBalanceCountMonth, IFNULL(sum(debit_interest), 0) debitInterestCountMonth, IFNULL(sum(recovered_amount), 0) recycleCountMonth from v_case_proxy where bank_id = #{bank_id} and is_deleted=1 and YEAR(create_time) = #{year} group by months")
+```
+
+```java
+/**
+ * 获取完整月份跨度数据列表
+ * @param caseMonthRange
+ * @return
+ */
+private ArrayList<String> getMonthRange(Integer caseMonthRange) {
+    ArrayList<String> dateArray = new ArrayList<>();
+    Date now = new Date();
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(now);
+    for (int i = 0; i < caseMonthRange; i++) {
+        dateArray.add(DateUtil.formateMonth(cal.getTime()));
+        cal.add(Calendar.MONTH, -1);
+    }
+    Collections.reverse(dateArray);
+    return dateArray;
+}
+
+/**
+ * 统计相关常量
+ */
+public interface StatisticsConstants {
+
+    /**
+     * 月份
+     */
+    ArrayList<String> monthArrayList = new ArrayList<>(
+            Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"));
+}
+
+/**
+ * 年份, 默认值: 当前年份
+ */
+@ApiModelProperty(value = "年份")
+private String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+```
+
