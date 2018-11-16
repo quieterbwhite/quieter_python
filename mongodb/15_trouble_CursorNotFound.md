@@ -1,0 +1,39 @@
+#### pymongo.errors.CursorNotFound: Cursor not found
+
+[Jason_Simple](https://www.jianshu.com/u/10eb36aedc7b)
+
+pymongo 3.2.2
+
+先从数据库中取得所有数据 db['test'].find（{}，{_id:0}），然后对结果进行for循环
+
+> demos = db['demo'].find({},{"_id": 0})
+>
+> for cursor in demos:
+>
+> ​         do_something()
+
+但是当do_something函数耗时过长，在cursor上长时间没有进行操作，引发cursor在mongodb服务端超时
+
+解决方案
+
+1、设置*no_cursor_timeout = True，永不超时，游标连接不会主动关闭，需要手动关闭*
+
+> *demos = db['demo'].find({},{"_id": 0},no_cursor_timeout = True)*
+>
+> for cursor in demos:
+>
+> ​        do_something()
+>
+> demo.close() # 关闭游标
+
+2、设置batch_size返回文档数，默认应该是20个文档（记不清了233333），可以设置小一些
+
+> *#每次只返回一个文档*
+>
+> *demos = db['demo'].find({},{"_id": 0}).batch_size(1)*
+>
+> for cursor in demos:
+>
+> ​        do_something()
+
+注意：这种方法仍然会出现可能超过10分钟任然没有返回，比如你在do_something里进行一些十分耗时的操作，具体采用哪种方法按实际情况而定
