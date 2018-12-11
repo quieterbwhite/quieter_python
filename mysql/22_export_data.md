@@ -1,6 +1,8 @@
 # Mysql 备份，导出数据
 > http://c.biancheng.net/cpp/html/1458.html Mysql命令mysqldump：备份数据库  
 > https://www.jianshu.com/p/b77dfd6d998b  MySQL数据库备份&还原-LINUX  
+>
+> https://www.cnblogs.com/liaokaichang/p/8177691.html
 
 ## mysqldump命令用来备份数据库
 ```
