@@ -193,6 +193,22 @@ sogoupinyin
 
     - https://blog.csdn.net/lupengCSDN/article/details/80279177
 
+netease cloud music
+
+    # 修改网易云音乐的启动图标：
+    sudo gedit /usr/share/applications/netease-cloud-music.desktop
+
+    # 修改 Exec 这一行内容为：
+    Exec=sh -c "unset SESSION_MANAGER && netease-cloud-music %U"
+
+    # 附录：网易云音乐配置及缓存目录：
+    ~/.config/netease-cloud-music
+    ~/.cache/netease-cloud-music
+
+    ref: https://www.zhihu.com/question/277330447/answer/478510195
+
+    ref: https://my.oschina.net/editorial-story/blog/2938423
+
 zookeeper
 
 ActiveMQ
