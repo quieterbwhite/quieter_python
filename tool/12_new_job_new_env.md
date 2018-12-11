@@ -119,6 +119,52 @@ Icework
 
     - https://alibaba.github.io/ice/docs/about
 
+FrontJS
+
+    - 它是一个前端错误的监控平台，可以监控 Web 和小程序页面的性能，以及收集异常信息。
+
+    - https://www.frontjs.com/
+
+wired-elements
+
+    - Collection of elements that appear hand drawn. Great for wireframes. 
+
+    - https://wiredjs.com
+
+    - https://github.com/wiredjs/wired-elements
+
+deck.gl
+
+    - http://deck.gl/#/
+
+    - Uber 开源的基于地图的数据可视化框架。
+
+    - https://github.com/uber/deck.gl
+
+Lottie
+
+    - Airbnb 推出的动画效果库，可以把 Adobe After Effects 制作的动画用于 Web、安卓和 iOS。
+
+    - http://airbnb.io/lottie/
+
+Gource
+
+    - Gource 是一个很好玩的可视化工具，可以将代码仓库的历史变成视频，支持 Git 和 SVN 等多种格式。只要在仓库目录执行 gource 命令，就能看到提交历史的视频。
+
+    - https://gource.io/
+
+Puppeteer
+
+    - Puppeteer 是谷歌推出的 Chrome 无头浏览器，是目前的浏览器自动化首选工具。本文介绍了作者的使用经验。
+
+    - https://docs.browserless.io/blog/2018/06/04/puppeteer-best-practices.html
+
+faceai
+
+    - 一款入门级的人脸、视频、文字检测以及识别的项目。
+
+    - https://github.com/vipstone/faceai
+
 natapp
 
     - 开启您的内网穿透之旅
