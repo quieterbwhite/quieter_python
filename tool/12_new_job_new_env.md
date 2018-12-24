@@ -177,6 +177,14 @@ jdk
 
 node
 
+TIKA
+
+    - Tika 是一个内容抽取的工具集合, pdf, doc
+
+    - https://www.yiibai.com/tika
+
+    - http://tika.apache.org/
+
 mitmproxy
 
     - 跨平台代理软件

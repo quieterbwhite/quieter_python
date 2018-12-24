@@ -56,6 +56,28 @@ MySQL 索引可以分为单列索引、复合索引、唯一索引、主键索�
 同时，也可以通过修改表结构的方式添加索引，例如：
 
     alter table tbl_name add unique index index_name on (index_col_name,...);
+
+搜索重复的数据:
+    SELECT trail_no, count(*) FROM wenshu_maid
+    GROUP BY trial_seq, trail_no, case_name
+    HAVING COUNT(*) > 1;
+    
+删除重复的数据:
+    DELETE FROM wenshu_maid WHERE
+    trail_no IN (SELECT trail_no
+                 FROM (SELECT trail_no, COUNT(*)
+                       FROM wenshu_maid
+                       GROUP BY trial_seq, trail_no, case_name
+                       HAVING COUNT(*) > 1) as a);
+                       
+创建唯一索引:
+    alter table wenshu_maid add unique index uni_record(trial_seq, trail_no, case_name);
+    
+ref: 
+
+    https://blog.csdn.net/Alice_qixin/article/details/73163570
+    
+    http://www.runoob.com/mysql/mysql-handling-duplicates.html
 ```
 
 ## 主键索引

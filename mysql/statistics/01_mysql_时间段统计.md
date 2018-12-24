@@ -210,8 +210,10 @@ GROUP BY months,
 ##### 我自己写的
 
 ```mysql
+# 倒数几个月份的统计数据
 @Select("select IFNULL(DATE_FORMAT(create_time,'%c'), '') months, IFNULL(sum(bad_balance), 0) badBalanceCountMonth, IFNULL(sum(debit_interest), 0) debitInterestCountMonth, IFNULL(sum(recovered_amount), 0) recycleCountMonth from v_case_proxy where bank_user_id = #{bank_user_id} and is_deleted=1 and create_time between date_sub(now(),interval #{month_range} month) and now() group by months")
 
+# 某年的月份统计数据
 @Select("select IFNULL(DATE_FORMAT(create_time, '%c'), '') months, IFNULL(sum(bad_balance), 0) badBalanceCountMonth, IFNULL(sum(debit_interest), 0) debitInterestCountMonth, IFNULL(sum(recovered_amount), 0) recycleCountMonth from v_case_proxy where bank_id = #{bank_id} and is_deleted=1 and YEAR(create_time) = #{year} group by months")
 ```
 
