@@ -147,6 +147,44 @@ Lottie
 
     - http://airbnb.io/lottie/
 
+Plotly
+
+    - 这是一个开源的 JavaScript 图表库
+
+    - Plotly.js 是一个高层次的、描述性的图表库，自带超过30种图表类型，包括 3D 图表、统计图表、SVG 地图等。
+
+    - https://github.com/plotly/plotly.js
+
+    - https://plot.ly/javascript/
+
+    - https://github.com/Plotly  有不少python原生的内容
+
+ICEC
+
+    - springboot应用生态圈
+
+    - https://gitee.com/weiweicode/icec
+
+    - 可以参考 java 对某些功能的实现, 比如: 文件管理
+
+O2OA
+
+    - Java 全功能开源办公软件
+
+    - http://www.o2oa.net/indexpc.html
+
+MAME
+
+    - 重温童年的街机模拟器
+
+    - https://github.com/mamedev/mame
+
+wav2letter++
+
+    - Facebook 开源首个全卷积语音识别工具包 wav2letter++
+
+    - https://github.com/facebookresearch/wav2letter/
+
 Gource
 
     - Gource 是一个很好玩的可视化工具，可以将代码仓库的历史变成视频，支持 Git 和 SVN 等多种格式。只要在仓库目录执行 gource 命令，就能看到提交历史的视频。
