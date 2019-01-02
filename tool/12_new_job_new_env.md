@@ -109,6 +109,12 @@ PDMan
 
     - https://gitee.com/robergroup/pdman
 
+fish
+
+    - fish shell 3.0.0 发布了，fish 是一个智能且用户友好的命令行 shell，适用于 macOS、Linux 等平台。fish 在无需配置的情况下支持语法高亮与智能联想等功能。
+
+    - https://github.com/fish-shell/fish-shell/
+
 Portainer
 
     - Portainer是一个开源、轻量级Docker管理用户界面
