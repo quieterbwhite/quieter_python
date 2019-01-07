@@ -115,6 +115,12 @@ fish
 
     - https://github.com/fish-shell/fish-shell/
 
+TeaWeb
+
+    - TeaWeb-可视化的Web代理服务。 DEMO: http://meloy.cn:7777
+
+    - https://gitee.com/liuxiangchao/build
+
 Portainer
 
     - Portainer是一个开源、轻量级Docker管理用户界面
@@ -130,6 +136,24 @@ FrontJS
     - 它是一个前端错误的监控平台，可以监控 Web 和小程序页面的性能，以及收集异常信息。
 
     - https://www.frontjs.com/
+
+tamguo
+
+    - 探果网（简称tamguo）是基于java开发的在线题库系统
+
+    - https://gitee.com/smiletocandy/tamguo
+
+Doctor
+
+    - 基于知识图谱的分布式智能医疗诊断系统
+
+    - https://gitee.com/zyzpp/Doctor
+
+CodeMirror
+
+    - CodeMirror 是一款“Online Source Editor”，基于 Javascript，短小精悍，实时在线代码高亮显示
+
+    - https://gitee.com/mirrors/CodeMirror
 
 wired-elements
 
@@ -147,11 +171,29 @@ deck.gl
 
     - https://github.com/uber/deck.gl
 
+ip2region
+
+    - ip2region - 最自由的ip地址查询库，ip到地区的映射库，提供Binary,B树和纯内存三种查询算法，妈妈再也不用担心我的ip地址定位。
+
+    - https://gitee.com/lionsoul/ip2region
+
+ExcelUtil
+
+    - ExcelUtil借助反射和POI对Excel读取,省略了以往读取Excel的繁琐步骤
+
+    - https://gitee.com/likaixuan0/ExcelUtil
+
 Lottie
 
     - Airbnb 推出的动画效果库，可以把 Adobe After Effects 制作的动画用于 Web、安卓和 iOS。
 
     - http://airbnb.io/lottie/
+
+python-eureka-client
+
+    - 一个 Python 编写的 eureka 客户端，可以使得你的代码非常方便地接入 spring cloud 中。
+
+    - https://gitee.com/keijack/python-eureka-client
 
 Plotly
 
@@ -262,6 +304,14 @@ snail007/goproxy
     - Proxy是golang实现的高性能http,https,websocket,tcp,防污染DNS,socks5代理服务器,支持内网穿透,链式代理,通讯加密,智能HTTP,SOCKS5代理,域名黑白名单,跨平台,KCP协议支持,集成外部API。
 
     - https://github.com/snail007/goproxy
+
+    - Why need these?
+    当由于某某原因,我们不能访问我们在其它地方的服务,我们可以通过多个相连的proxy节点建立起一个安全的隧道访问我们的服务.
+    微信接口本地开发,方便调试.
+    远程访问内网机器.
+    和小伙伴一起玩局域网游戏.
+    以前只能在局域网玩的,现在可以在任何地方玩.
+    替代圣剑内网通，显IP内网通，花生壳之类的工具.
 
 RedisDesktopManager
 
