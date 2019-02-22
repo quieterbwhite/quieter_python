@@ -17,6 +17,30 @@ MySQL 权限控制，分为两个步骤。
 MySQL 为了数据库的安全性，设置了对数据的存取进行控制的语句，对用户授权使用 GRANT 语句，收回所授的权限使用 REVOKE 语句。
 ```
 
+## windows下开启mysql远程访问
+> https://www.cnblogs.com/shihaiming/p/6244305.html
+``` 
+USE mysql;
+SELECT * FROM USER ;
+
+直接修改user=root host=127.0.0.1为%
+
+FLUSH PRIVILEGES;
+```
+
+## windows下远程连接Mysql
+> https://www.cnblogs.com/fnlingnzb-learner/p/5848405.html
+```
+1. 使用“Ctrl + R”组合键快速打开cmd窗口，并输入“cmd”命令，打开cmd窗口。
+2. 使用“mysql -uroot -proot”命令可以连接到本地的mysql服务。
+3. 使用“use mysql”命令，选择要使用的数据库，修改远程连接的基本信息，保存在mysql数据库中，因此使用mysql数据库。
+4. 使用“GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;”命令可以更改远程连接的设置。
+5. 使用“flush privileges;”命令刷新刚才修改的权限，使其生效。
+6. 使用“select host,user from user;”查看修改是否成功。
+
+更多: 解决远程连接时防火墙阻止访问
+```
+
 ## GRANT 授予用户权限
 ```
 授予用户权限，简单格式可概括如下。

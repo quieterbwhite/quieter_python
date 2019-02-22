@@ -53,6 +53,9 @@ Geet/central-platform
 
 #### 其他软件
 ```
+2018 年度新增开源软件排行榜之国产新秀榜
+https://www.oschina.net/news/103781/2018-oschina-new-opensource-software-cn-top30
+
 gnome-tweak-tool
 
     - https://itsfoss.com/gnome-tricks-ubuntu/
@@ -93,6 +96,24 @@ nexus
 
     - 搭建maven私服
 
+新浪微博图床
+
+    - 感谢新浪微博提供的免费图床（对外链无限制），以及吊炸天的 cdn 图片加速服务，从此妈妈再也不用担心我的图床不能用了，另外还支持在网页图片右键菜单中一键上传。
+
+    - chrome 扩展
+    - https://4ark.me/post/549a6198.html
+
+分布式事务
+
+    - FESCAR（Fast & Easy Commit And Rollback）
+
+        - https://gitee.com/mirrors/FESCAR
+        - FESCAR（Fast & Easy Commit And Rollback） 是一个用于微服务架构的分布式事务解决方案，它的特点是高性能且易于使用，旨在实现简单并快速的事务提交与
+
+    - EasyTransaction
+
+        - https://gitee.com/mirrors/EasyTransaction
+
 frp
 
     - 内网穿透
@@ -109,17 +130,39 @@ PDMan
 
     - https://gitee.com/robergroup/pdman
 
+Redisson
+
+    - Redisson是架设在Redis基础上的一个Java驻内存数据网格（In-Memory Data Grid）。【Redis官方推荐】
+
+    - https://github.com/redisson/redisson
+
+    - lock-spring-boot-starter 轻松实现分布式锁
+
+    - https://gitee.com/yizhigui/lock-spring-boot-starter
+
 fish
 
     - fish shell 3.0.0 发布了，fish 是一个智能且用户友好的命令行 shell，适用于 macOS、Linux 等平台。fish 在无需配置的情况下支持语法高亮与智能联想等功能。
 
     - https://github.com/fish-shell/fish-shell/
 
+giojs
+
+    - Gio.js 是一个基于Three.js的web 3D地球数据可视化的开源组件库。
+
+    - https://github.com/syt123450/giojs/blob/master/README_zh.md
+
 TeaWeb
 
     - TeaWeb-可视化的Web代理服务。 DEMO: http://meloy.cn:7777
 
     - https://gitee.com/liuxiangchao/build
+
+神箭云市场
+
+    - https://www.shenjian.io/index.php?r=home/index
+
+    - 爬虫软件, 数据市场
 
 Portainer
 
