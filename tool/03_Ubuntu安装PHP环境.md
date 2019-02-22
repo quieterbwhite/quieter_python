@@ -7,6 +7,15 @@
     $ sudo aptitude install php7.0 php7.0-fpm php7.0-dev
 ```
 
+## ref
+```
+一文彻底解决Ubuntu上PHP的安装以及版本切换
+https://www.cnblogs.com/feifeifanye/p/8660737.html
+
+Ubuntu16.04安装Nginx+PHP5.6+MySQL5.6
+https://www.cnblogs.com/liuyu2014/p/6733731.html
+```
+
 ## 安装扩展 mysql
 ```
 $ sudo aptitude install php7.0-mysql

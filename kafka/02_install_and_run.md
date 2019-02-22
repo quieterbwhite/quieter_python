@@ -15,6 +15,8 @@ kafka 严重依赖 zookeeper。所以，运行kafka之前，先安装并运行zo
 进入解压后的目录，执行如下命令:
 
 bin/kafka-server.start.sh config/server.properties
+
+$ nohup kafka-server-start.sh /home/espai/kafka/config/server.properties 1>/dev/null 2>&1 &
 ```
 
 ## 测试

@@ -1,0 +1,17 @@
+
+https://www.cnblogs.com/xiaopotian/p/7056583.html
+thymeleaf Exception parsing document: template="xxxx"错误
+Thymeleaf模板引擎，遇到不闭合标签会报这个错误，很是蛋疼啊。最后发现是自动生成的meta标签没有关闭，也是醉了。
+
+解决方案：
+
+1. 添加maven依赖
+
+<dependency>
+    <groupId>net.sourceforge.nekohtml</groupId>
+    <artifactId>nekohtml</artifactId>
+    <version>1.9.22</version>
+</dependency>
+2. 更改application.properties属性
+
+spring.thymeleaf.mode=LEGACYHTML5
