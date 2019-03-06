@@ -1,5 +1,6 @@
 # Mysql 索引
 > http://blog.720ui.com/2017/mysql_core_03_how_use_index/  如何设计索引  
+> https://www.cnblogs.com/zz-tt/p/6609828.html
 
 改善性能最好的方式，就是通过数据库中合理地使用索引，换句话说，索引是提高 MySQL 数据库查询性能的主要手段。
 在下面的章节中，介绍了索引类型、强制索引、全文索引。  
