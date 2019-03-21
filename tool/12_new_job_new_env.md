@@ -96,6 +96,14 @@ nexus
 
     - 搭建maven私服
 
+leaf
+
+    - leaf 美团分布式ID生成服务
+
+    - https://github.com/Meituan-Dianping/Leaf
+
+    - https://tech.meituan.com/2017/04/21/mt-leaf.html
+
 新浪微博图床
 
     - 感谢新浪微博提供的免费图床（对外链无限制），以及吊炸天的 cdn 图片加速服务，从此妈妈再也不用担心我的图床不能用了，另外还支持在网页图片右键菜单中一键上传。
