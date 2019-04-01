@@ -111,6 +111,12 @@ leaf
     - chrome 扩展
     - https://4ark.me/post/549a6198.html
 
+UML图
+
+    - http://haha98k.com/
+
+    - http://plantuml.com/zh/
+
 分布式事务
 
     - FESCAR（Fast & Easy Commit And Rollback）

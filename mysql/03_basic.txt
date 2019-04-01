@@ -228,7 +228,4 @@
         create index titleIndex on area(title(20));
 
 
-
-
-
-
+16. 查看mysql数据库占用磁盘空间

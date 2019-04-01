@@ -1,13 +1,5 @@
 # TODO
 
-```
-book
-
-    一个投资家的20年
-
-    国富论
-```
-
 ## gist todo
 ```
 git@github.com:junglelord/spider-course-2.git

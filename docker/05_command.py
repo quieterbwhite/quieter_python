@@ -1,7 +1,7 @@
-# -*- coding=utf-8 -*-
-# Created Time: 2017年08月05日 星期六 10时57分21秒
-# File Name: 05_command.py
+#### docker 相关命令
+Created Time: 2017年08月05日 星期六 10时57分21秒
 
+```shell
 COPY 复制文件
 
     格式：
@@ -101,9 +101,38 @@ WORKDIR 指定工作目录
     注意 docker rm 命令是删除容器，不要混淆。
 
     用 ID、镜像名、摘要删除镜像
+```
 
 
+---- 命令实战 -----
+```
+1. 查看资源：
 
+kubectl get pods
+
+2. 进入节点：
+
+kubectl exec -it 节点名 bash
+
+kubectl exec -it v20190329-162832-ullx5 bash
+
+1、查看指定pod的日志
+
+kubectl logs <pod_name>
+
+kubectl logs -f <pod_name> #类似tail -f的方式查看(tail -f 实时查看日志文件 tail -f 日志文件log)
+
+2、查看指定pod中指定容器的日志
+
+kubectl logs <pod_name> -c <container_name>
+
+PS：查看Docker容器日志 
+docker logs <container_id>
+
+docker commit 4dccab3c1ba3 smart-oss-base
+
+sudo docker commit -m "add oss support" -a "oss" 4dccab3c1ba3 a80:5000/smart_oss_base
+```
 
 
 
