@@ -1,0 +1,17 @@
+[Unit]
+Description=ZooKeeper Service
+Documentation=http://zookeeper.apache.org
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+User=bwhite
+Group=bwhite
+ExecStart=/home/bwhite/software/zookeeper-3.4.13/bin/zkServer.sh start /home/bwhite/software/zookeeper-3.4.13/conf/zoo1.cfg
+ExecStop=/home/bwhite/software/zookeeper-3.4.13/bin/zkServer.sh stop /home/bwhite/software/zookeeper-3.4.13/conf/zoo1.cfg
+ExecReload=/home/bwhite/software/zookeeper-3.4.13/bin/zkServer.sh restart /home/bwhite/software/zookeeper-3.4.13/conf/zoo1.cfg
+WorkingDirectory=/home/bwhite/software/zookeeper-3.4.13/data/zoom
+
+[Install]
+WantedBy=default.target
