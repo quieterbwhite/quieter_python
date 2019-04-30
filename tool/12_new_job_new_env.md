@@ -36,6 +36,12 @@ qidianliusong/redis-shared-lock
 
     - 基于redis的分布式共享锁，使用注解的方式对方法加锁
 
+ranger
+
+    命令行浏览文件系统
+
+    sudo apt install ranger
+
 buaazp/zimg
 
     https://github.com/buaazp/zimg
