@@ -74,6 +74,10 @@ lantern
 
 pycharm
 
+ip2region
+
+    - https://github.com/lionsoul2014/ip2region
+
 Flameshot
 
     - Flameshot 在去年发布到 GitHub，并成为一个引人注目的工具。
