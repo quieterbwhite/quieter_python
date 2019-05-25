@@ -94,6 +94,30 @@ mysql
 
     - https://blog.csdn.net/qq_38737992/article/details/81090373
 
+roncoo-education
+
+    - https://gitee.com/roncoocom/roncoo-education
+
+    - 领课教育 - 领课网络在线教育系统
+
+RemixIcon
+ 
+    - https://gitee.com/mirrors/RemixIcon
+
+    - Remix Icon 是一套面向设计师和开发者的开源图标库
+
+pixi.js
+
+    - https://gitee.com/mirrors/pixijs
+
+    - Pixi.js 使用 WebGL ，是一个超快的 HTML5 2D 渲染引擎
+
+xuanxuan
+
+    - https://gitee.com/wwccss/xuanxuan
+
+    - 喧喧是一个轻量级的企业聊天软件。由然之协同办公团队开发。http://xuan.im
+
 DataGrip
 
     - 数据库图形界面软件
