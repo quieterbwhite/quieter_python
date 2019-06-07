@@ -1,9 +1,13 @@
 #### spark 日志清晰项目笔记
 
-[hadoop&hdfs 环境搭建](#hadoop&hdfs 环境搭建)
-[环境变量](#环境变量)
+[hadoop&hdfs环境搭建](#hadoop&hdfs环境搭建)  
+[环境变量](#环境变量)  
+[资源调度框架Yarn](#资源调度框架Yarn)  
+  [Yarn产生背景](#Yarn产生背景)  
+  [Yarn架构](#Yarn架构)  
+  [Yarn执行流程](#Yarn执行流程)  
 
-##### hadoop&hdfs 环境搭建
+##### hadoop&hdfs环境搭建
 ```
 参考搭建单机环境官方文档:
 http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html
@@ -88,7 +92,7 @@ hdfs-site.xml 修改
         11617 Jps
         11495 SecondaryNameNode
         11161 NameNode
-        11309 
+        11309 DataNode
         
     浏览器访问 http://localhost:50070
 
@@ -123,6 +127,55 @@ dfs命令
 
     删除文件
     $ hadoop fs -rm /test/srcfile
+    $ hadoop fs -rmr /test/srcfile
+```
+
+##### 资源调度框架Yarn
+###### Yarn产生背景
+```
+1. MapReduce1.x 存在的问题
+2. 资源利用率和运维成本
+3. 催生了Yarn的诞生
+```
+
+###### Yarn架构
+```
+Client:
+    pass
+
+Resource Manager:
+    一个集群Active状态的RM只有一个
+    负责整个集群的资源管理和调度
+    处理客户端的请求(启动/关闭)
+    启动/监控ApplicationMaster(一个作业对应一个AM)
+    监控Node Manager, 通过心跳
+    一个Resource Manager对多个Node Manager
+
+Node Manager:
+    整个集群中有N个，负责单个节点的资源管理和使用以及task的运行情况
+    接收并处理RM的container启动停止的各种命令
+    单个节点的资源管理和任务管理
+
+Application Manager:
+    每个应用/作业对应一个, 负责应用程序的管理
+    数据切分
+    为应用程序向RM申请资源, 并分配给内部任务
+    与NM通信以启停task, task是运行在container中的
+    task的监控和容错
+
+Container:
+    pass
+```
+
+###### Yarn执行流程
+```
+1. 用户向Yarn提交作业
+2. RM为该作业分配第一个container(AM)
+3. RM会与对应的NM通信，要求NM在这个container上启动应用程序的AM
+4. AM首先像RM注册，然后AM将为各个任务申请资源，并监控运行情况
+5. AM采用轮训方式通过RPC协议向RM申请和领取资源
+6. AM申请到资源以后，便和相应的NM通信，要求NM启动任务
+7. NM启动我们作业对应的task
 ```
 
 ##### 环境变量
