@@ -1,11 +1,14 @@
 #### spark 日志清晰项目笔记
 
 [hadoop&hdfs环境搭建](#hadoop&hdfs环境搭建)  
-[环境变量](#环境变量)  
+    
 [资源调度框架Yarn](#资源调度框架Yarn)  
-  [Yarn产生背景](#Yarn产生背景)  
-  [Yarn架构](#Yarn架构)  
-  [Yarn执行流程](#Yarn执行流程)  
+__[Yarn产生背景](#Yarn产生背景)  
+__[Yarn架构](#Yarn架构)  
+__[Yarn执行流程](#Yarn执行流程)  
+__[Yarn环境搭建](#Yarn环境搭建)
+    
+[环境变量](#环境变量)  
 
 ##### hadoop&hdfs环境搭建
 ```
@@ -176,6 +179,61 @@ Container:
 5. AM采用轮训方式通过RPC协议向RM申请和领取资源
 6. AM申请到资源以后，便和相应的NM通信，要求NM启动任务
 7. NM启动我们作业对应的task
+```
+
+###### Yarn环境搭建
+```
+使用版本: hadoop-2.6.0-cdh5.7.0
+
+yarn-site.xml修改
+
+    <configuration>
+        <property>
+            <name>yarn.nodemanager.aux-services</name>
+            <value>mapreduce_shuffle</value>
+        </property>
+    </configuration>
+
+mapred-site.xml修改
+
+    <configuration>
+        <property>
+            <name>mapreduce.framework.name</name>
+            <value>yarn</value>
+        </property>
+    </configuration>
+
+启动yarn
+
+    $ sbin/start-yarn.sh
+
+停止yarn
+
+    $ sbin/stop-yarn.sh
+
+检查启动是否成功
+
+    $ jps
+        26907 ResourceManager
+        27263 NodeManager
+
+    访问网页: http://localhost:8088
+
+MapReduce作业提交到YARN上运行
+
+    hadoop jar 的使用
+        使用自带的例子:
+        # hadoop jar /home/bwhite/software/hadoop-2.5.0-cdh5.3.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.5.0-cdh5.3.6.jar wordcount /spark.txt /new
+        注意: 输出目录必须是空目录
+
+        到 http://localhost:8088 查看任务运行情况
+        到 http://localhost:50070 查看文件系统时候有输出结果
+
+        查看输出内容:
+        $ hadoop fs -ls /new/
+        $ hadoop fs -text /new/part-r-00000
+
+    
 ```
 
 ##### 环境变量
