@@ -1,5 +1,8 @@
 #### spark 日志清晰项目笔记
 
+[hadoop&hdfs 环境搭建](#hadoop&hdfs 环境搭建)
+[环境变量](#环境变量)
+
 ##### hadoop&hdfs 环境搭建
 ```
 参考搭建单机环境官方文档:
@@ -12,6 +15,7 @@ http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleClu
 5. hdfs-site.xml 修改
 6. 格式化hdfs,只需安装时执行一次
 7. 起停hdfs
+8. dfs命令
 
 cd /home/bwhite/software/hadoop-2.5.0-cdh5.3.6/etc/hadoop
 
@@ -98,4 +102,46 @@ hdfs-site.xml 修改
 停止hdfs
 
     $ ./stop-dfs.sh
+
+dfs命令
+
+    创建文件夹
+    $ hadoop fs -mkdir /test/
+
+    递归查看目录
+    $ hadoop fs -ls -R /
+
+    上传目录
+    $ hadoop fs -put srcfile /test/
+
+    查看内容
+    $ hadoop fs -text /test/srcfile
+    $ hadoop fs -cat /test/srcfile
+
+    下载文件
+    $ hadoop fs -get /test/srcfile /tmp/srcfile
+
+    删除文件
+    $ hadoop fs -rm /test/srcfile
+```
+
+##### 环境变量
+```
+GRADLE_HOME=/home/bwhite/software/gradle-4.0.1
+PATH=$GRADLE_HOME/bin:$PATH
+
+PROTOC_HOME=/home/bwhite/software/protoc-3.3.0-linux-x86_64/bin
+PATH=$PROTOC_HOME:$PATH
+
+JAVA_HOME=/home/bwhite/software/jdk1.8.0_131
+HADOOP_HOME=/home/bwhite/software/hadoop-2.5.0-cdh5.3.6
+HIVE_HOME=/home/bwhite/software/hive-0.13.1-cdh5.3.6
+ZOOKEEPER_HOME=/home/bwhite/software/zookeeper-3.4.10
+SCALA_HOME=/home/bwhite/software/scala-2.11.4
+SPARK_HOME=/home/bwhite/software/spark-1.3.0-bin-hadoop2.4
+
+PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$HIVE_HOME/bin:$ZOOKEEPER_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/
+bin:$PATH
+
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$JAVA_HOME/jre/lib/rt.jar:$CLASSPATH
 ```
