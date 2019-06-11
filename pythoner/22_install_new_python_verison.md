@@ -1,10 +1,49 @@
 ### 安装其他版本的 Python 到系统
 
 
+#### centos 源码安装 python3.6.5
+```
+https://www.cnblogs.com/simuhunluo/p/7704765.html
+https://blog.csdn.net/qq_40134903/article/details/88760852
+
+1. 安装 wget
+    yum -y install wget
+
+2. 安装编译环境
+
+    yum -y install make gcc gcc-c++ 
+
+    yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+
+3. 下载python源码 & 解压 & 编译
+
+    wget https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
+
+    tar -xvf Python-3.6.3.tgz 
+
+    ./configure --prefix=/home/hadoop/app/python3 --enable-optimizations
+
+    makd && make install
+
+    就安装到 /home/hadoop/app/python3 目录下了
+
+4. 配置环境变量
+
+    vim .bashrc
+
+    PYTHON_HOME=/bigdata/python3
+    PATH=$PYTHON_HOME/bin:$PATH
+
+    source .bashrc
+
+5. 打完收工
+```
 
 #### 从源代码编译安装python
 
 ```shell
+https://www.python.org/ftp/python
+
 1. $ wget -c https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz  
 2. $ tar -xzvf Python-2.7.9.tgz  
 3. $ cd Python-2.7.9/  

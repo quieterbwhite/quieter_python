@@ -9,7 +9,24 @@
 
     https://wiki.ubuntu.com.cn/%E6%BA%90%E5%88%97%E8%A1%A8
 
+    https://www.jianshu.com/p/126d51514097
+
     apt edit-sources
+
+    Ubuntu 18.04 TLS版本阿里云镜像源：
+    # https://opsx.alibaba.com/mirror
+    deb https://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse 
+    deb https://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse 
+    deb https://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse 
+    deb https://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse 
+    deb https://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse 
+
+    # 仿照清华镜像源，注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+    # deb-src https://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse 
+    # deb-src https://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse 
+    # deb-src https://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse 
+    # deb-src https://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse 
+    # deb-src https://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
 
 2. 更新系统
 
