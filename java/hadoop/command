@@ -1,0 +1,41 @@
+/bigdata/spark-2.3.3-bin-hadoop2.6/bin/spark-submit \
+--master spark://172.16.0.81:7077 \
+--class com.ufm.dp.analysis.ods2dw.ods2dw \
+--driver-memory 4G \
+--executor-memory 2G \
+--total-executor-cores 2 /root/app/sifa.jar 100000
+
+/bigdata/spark-2.3.3-bin-hadoop2.6/bin/spark-submit \
+--class com.ufm.dp.analysis.ods2dw.SiFaProcess \
+--driver-memory 4G \
+--executor-memory 2G \
+--total-executor-cores 2 /root/app/sifa.jar 100000
+
+load data local inpath '/root/datas/sifa/wenshu_5300000.json' into table ods_sifa partition(ct='2019-06-24');
+
+hadoop fs -cat hdfs://dp/libo/part-00000-bb631358-5a64-4811-b23f-017032915bfc-c000.json
+
+hadoop fs -rm -r hdfs://dp/test_sifa/
+
+scp /home/bwhite/lhjksaas/dp/data-analysis/target/data-analysis-1.0-SNAPSHOT.jar root@172.16.0.83:/root/app/sifa.jar
+
+
+
+
+def processSiFaOds(hiveSparkSession: SparkSession, data_nums: String) = {
+import hiveSparkSession.sql
+sql("use dp")
+
+val sifaDF: Array[Row] = sql("select data,ct from ods_sifa where ct = \"" + DateUtil.getDayBeforeString() + "\"" +
+  " limit " + data_nums.toInt).distinct().collect()
+
+val dd: Array[Row] = sifaDF.map(x => {
+  SiFaService.getSiFaField(x.getAs[String]("data"))
+})
+
+hiveSparkSession.createDataFrame(hiveSparkSession.sparkContext.makeRDD(dd), SifaStructType.resultStruct)
+  .coalesce(1)
+  .write.format("json")
+//      .save("file:////tmp/sifa/5")
+  .save("hdfs://dp/test_sifa_20w")
+}
