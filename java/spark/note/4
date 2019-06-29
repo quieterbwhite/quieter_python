@@ -1,0 +1,115 @@
+RDD Operation
+	transformations: create a new dataset from an existing one
+		RDDA ---transformation--> RDDB
+
+		y = f(x)
+		rddb = rdda.map(....)
+
+
+		lazy(*****)
+
+		rdda.map().filter()......collect
+
+		map/filter/group by/distinct/.....
+
+	actions: 
+		return a value to the driver program after running a computation on the dataset
+		count/reduce/collect......
+
+
+	1) transformation are lazy, nothing actually happens until an action is called;
+	2) action triggers the computation;
+	3) action returns values to driver or writes data to external storage;
+
+
+
+map: 
+	map(func)
+	将func函数作用到数据集的每一个元素上，生成一个新的分布式的数据集返回
+
+	word => (word,1)
+
+
+filter:
+	filter(func)
+	选出所有func返回值为true的元素，生成一个新的分布式的数据集返回
+
+flatMap
+	flatMap(func)
+	输入的item能够被map到0或者多个items输出，返回值是一个Sequence
+
+
+groupByKey：把相同的key的数据分发到一起
+	['hello', 'spark', 'hello', 'world', 'hello', 'world']
+	('hello',1) ('spark',1)........
+
+
+reduceByKey: 把相同的key的数据分发到一起并进行相应的计算
+	 mapRdd.reduceByKey(lambda a,b:a+b)
+	 [1,1]  1+1
+	 [1,1,1]  1+1=2+1=3
+	 [1]    1
+
+
+需求: 请按wc结果中出现的次数降序排列  sortByKey
+	('hello', 3), ('world', 2),  ('spark', 1)
+
+
+union：
+
+join： 
+	inner join
+	outer join:left/right/full
+
+
+
+
+词频案例:wc
+	1) input: 1/n文件  文件夹  后缀名
+		hello spark    
+		hello hadoop
+		hello welcome
+	2) 开发步骤分析
+		文本内容的每一行转成一个个的单词 : flatMap
+		单词 ==> (单词, 1):  map
+		把所有相同单词的计数相加得到最终的结果: reduceByKey
+
+
+
+TopN
+	1) input : 1/n文件  文件夹  后缀名
+	2) 求某个维度的topn
+	3）开发步骤分析
+		文本内容的每一行根据需求提取出你所需要的字段： map
+		单词 ==> (单词, 1):  map
+		把所有相同单词的计数相加得到最终的结果: reduceByKey
+		取最多出现次数的降序： sortByKey
+
+
+
+平均数：统计平均年龄
+id age
+3 96
+4 44
+5 67
+6 4
+7 98
+	开发步骤分析：
+	1) 取出年龄  map
+	2）计算年龄综合 reduce
+	3）计算记录总数 count
+	4）求平均数  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

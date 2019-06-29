@@ -1,0 +1,32 @@
+Hive在Azkaban中的使用
+
+
+create table emp(
+empno int, ename string, job string,
+mgr int, hiredate string, sal double,
+comm double, deptno int
+)row format delimited fields terminated by '\t'
+
+load data local inpath '/home/hadoop/data/emp.txt' overwrite into table emp
+
+
+SLA：某个作业必须要在某个时间范围内要执行完成
+	互联网公司
+	99.99% 
+	99.999%
+	99.9%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

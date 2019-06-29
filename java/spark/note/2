@@ -1,0 +1,32 @@
+python依赖安装:
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+
+
+Spark
+./dev/make-distribution.sh --name 2.6.0-cdh5.7.0 --tgz  -Pyarn -Phadoop-2.6 -Phive -Phive-thriftserver -Dhadoop.version=2.6.0-cdh5.7.0
+
+
+spark-2.3.0-bin-2.6.0-cdh5.7.0.tgz
+
+TARDIR_NAME=spark-$VERSION-bin-$NAME
+TARDIR="$SPARK_HOME/$TARDIR_NAME"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

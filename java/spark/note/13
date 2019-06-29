@@ -1,0 +1,216 @@
+大数据项目开发流程
+1) 调研
+	业务
+2) 需求分析
+	项目的需求
+		显示
+		隐式
+	甘特图：项目周期管理	
+3) 方案设计
+	概要设计
+	详细设计
+		基本要求
+		系统要求：扩展性、容错性、高可用(HDFS YARN HA???)、定制化
+4) 功能开发
+	开发
+	单元测试  junit
+5) 测试
+	测试环境 QA 
+	功能、性能、压力
+	用户测试
+6) 部署上线
+	试运行   DIFF  “双活”
+	正式上线
+7) 运维
+	7*24
+8) 后期迭代开发
+
+
+大数据企业级应用
+1) 数据分析
+	商业
+	自研
+2）搜索/引擎
+	Lucene/Solr/ELK
+3）机器学习
+4) 精准营销
+5) 人工智能
+
+
+
+
+
+
+企业级大数据分析平台
+1) 商业
+
+2) 自研
+	Apache
+	CDH
+	HDP
+
+
+
+数据量预估及集群规划
+Q: 一条日志多大、多少个字段、一天多少数据
+300~500字节 * 1000W * 5 * 5  =  100G
+HDFS 3副本 * 100G * (2~3年)
+
+服务器一台：磁盘多少？ ==> Node数量
+	集群规模：数据量 + 存储周期
+
+
+集群机器规模：
+	DN: 数据量大小/每个Node的磁盘大小
+	NN: 2
+	RM: 2
+	NM: DN
+	ZK: 3/5/7/9
+	GATEWAY: 
+
+资源设置：cpu/memory/disk/network
+	
+作业规划：
+	MapReduce/Hive/Spark
+	Server: ***** 
+	调度：AZ、OOZIE
+
+
+
+
+数据来源：http://stateair.net/web/historical/1/1.html
+
+根据北京的数据进行统计分析
+
+同时间：北京 vs 广州 vs 成都
+
+
+空气质量指数     pm2.5 健康建议
+0-50          健康
+51-100    中等
+101-150  对敏感人群不健康
+151-200   不健康
+201-300 非常不健康
+301-500 危险
+>500   爆表
+
+数据分析==>es==>kibana
+
+
+data2017 = spark.read.format("csv").option("header","true").option("inferSchema","true").load("file:///home/hadoop/data/Beijing_2017_HourlyPM25_created20170803.csv").select("Year","Month","Day","Hour","Value","QC Name")
+data2016 = spark.read.format("csv").option("header","true").option("inferSchema","true").load("file:///home/hadoop/data/Beijing_2016_HourlyPM25_created20170201.csv").select("Year","Month","Day","Hour","Value","QC Name")
+data2015 = spark.read.format("csv").option("header","true").option("inferSchema","true").load("file:///home/hadoop/data/Beijing_2015_HourlyPM25_created20160201.csv").select("Year","Month","Day","Hour","Value","QC Name")
+data2017.show()
+data2016.show()
+data2015.show()
+def get_grade(value):
+    if value <=50 and value >=0:
+        return "健康"
+    elif value <= 100:
+        return "中等"
+    elif value <= 150:
+        return "对敏感人群不健康"
+    elif value <= 200:
+        return "不健康"
+    elif value <= 300:
+        return "非常不健康"
+    elif value <= 500:
+        return "危险"
+    elif value > 500:
+        return "爆表"
+    else:
+        return None
+
+    # 进来一个Value，出去一个Grade
+group2017 = data2017.withColumn("Grade",grade_function_udf(data2017['Value'])).groupBy("Grade").count()
+group2016 = data2016.withColumn("Grade",grade_function_udf(data2016['Value'])).groupBy("Grade").count()
+group2015 = data2015.withColumn("Grade",grade_function_udf(data2015['Value'])).groupBy("Grade").count()
+
+group2017.show()
+group2016.show()
+group2015.show()
+
+使用SparkSQL将统计结果写入到ES中去
+
+from pyspark.sql.functions import *
+from pyspark.sql.types import *
+
+
+def get_grade(value):
+    if value <= 50:
+        return "健康"
+    elif value <= 100:
+        return "中等"
+    elif value <= 150:
+        return "对敏感人群不健康"
+    elif value <= 200:
+        return "不健康"
+    elif value <= 300:
+        return "非常不健康"
+    elif value <= 500:
+        return "危险"
+    elif value > 500:
+        return "爆表"
+    else:
+        return None
+
+
+data2017 = spark.read.format("csv").option("header","true").option("inferSchema","true").load("/data/Beijing_2017_HourlyPM25_created20170803.csv").select("Year","Month","Day","Hour","Value","QC Name")
+grade_function_udf = udf(get_grade, StringType())
+group2017 = data2017.withColumn("Grade", grade_function_udf(data2017['Value'])).groupBy("Grade").count()
+result2017_2 = group2017.select("Grade", "count", group2017['count'] / data2017.count()*100)
+
+result2017_2=group2017.select("Grade", "count").withColumn("precent",group2017['count'] / data2017.count()*100)
+
+result2017_2.selectExpr("Grade as grade", "count", "precent").write.format("org.elasticsearch.spark.sql").option("es.nodes","192.168.199.102:9200").mode("overwrite").save("weaes/weather")
+
+
+练习：
+1) 同一个城市不同年份的对比
+2）相同年份的不同城市的对比
+
+3) 月份为统计维度：3-1 3-2
+4) 小时为统计维度
+
+
+
+
+
+
+小小总结
+
+
+下门课程展望：
+	下半年希望大家关注我们慕课网，
+	我会给大家带来更详细的更牛逼的生产项目(数据中心的数据平台的功能)解决方案
+
+
+
+
+
+
+
+
+
+
+
+
+
+curl -XPOST 'http://hadoop000:9200/imooc_es/student/1' -H 'Content-Type: application/json' -d '{
+"name":"imooc",
+"age":5,
+"interests":["Spark","Hadoop"]	
+}'
+
+ek后台启动： nohup .... & 
+
+
+
+
+
+
+
+
+
+
+

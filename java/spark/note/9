@@ -1,0 +1,65 @@
+Spark Streaming 
+	is an extension of the core Spark API 
+	enables scalable, high-throughput, fault-tolerant 
+	stream processing of live data streams
+
+流： Java SE  IO
+	输入: 山沟沟、下水道...    Kafka, Flume, Kinesis, or TCP sockets
+	// TODO...  业务逻辑处理
+	输出: 痛、瓶子....   filesystems, databases, and live dashboards
+
+在线机器学习
+
+Q:安装完Spark之后能否直接使用Spark Streaming?
+A:NO
+
+
+常用实时流处理框架对比
+	Storm：真正的实时流处理  Tuple   Java
+	Spark Streaming：并不是真正的实时流处理，而是一个mini batch操作
+		Scala、Java、Python  使用Spark一栈式解决问题
+	Flink
+	Kafka Stream
+
+
+
+
+Spark Streaming它的职责所在 
+	receives live input data streams
+	divides the data into batches
+	batches are then processed by the Spark engine 
+	to generate the final stream of results in batches.
+
+
+Spark Core的核心抽象叫做：RDD  5大特性、对应源码中的5个方法是什么
+Spark Streaming的核心抽象叫做：DStream
+	represents a continuous stream of data
+	DStreams can be created either from input data streams from sources such as Kafka, Flume, and Kinesis
+	or by applying high-level operations on other DStreams. 
+	Internally, a DStream is represented as a sequence of RDDs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

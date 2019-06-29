@@ -1,0 +1,74 @@
+Spark SQL
+	SQL:  MySQL、Oracle、DB2、SQLServer
+	很多小伙伴熟悉SQL语言
+	数据量越来越大 ==> 大数据(Hive、Spark Core)
+	直接使用SQL语句来对大数据进行分析：这是大家所追逐的梦想
+
+	person.txt ==> 存放在HDFS
+	1,zhangsan,30
+	2,lisi,31
+	3,wangwu,32
+
+	hive表：person
+		id:int   name:string  age:int
+	导入数据：
+		load .....
+	统计分析：
+		select ... from person	
+
+SQL on Hadoop
+	Hive
+	Shark 
+	Impala: Cloudera
+	Presto
+	Drill
+	.....
+
+Hive: on MapReduce
+	SQL ==> MapReduce ==> Hadoop Cluster
+
+Shark: on Spark
+	基于Hive源码进行改造
+
+Spark SQL: on Spark
+
+
+Hive on Spark
+
+共同点： metastore  mysql
+
+
+Spark SQL不仅仅是SQL这么简单的事情，它还能做更多的事情
+	Hive: SQL
+	Spark SQL: SQL
+
+Spark SQL提供的操作数据的方式
+	SQL
+	DataFrame API
+	Dataset API
+
+一个用于处理结构化数据的Spark组件，强调的是“结构化数据”，而非“SQL”
+
+
+
+Spark RDD  VS  MapReduce
+R/Pandas :  one machine  
+	==> DataFrame：让小伙伴们感觉像开发单机版应用程序一样来开发分布式应用程序
+
+
+A DataFrame is a Dataset organized into named columns
+以列(列名、列类型、列值)的形式构成分布式的数据集
+
+面试题：RDD与DataFrame的区别 12345
+
+
+ 
+
+
+
+
+
+
+
+
+

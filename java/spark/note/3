@@ -1,0 +1,114 @@
+Spark源码所在的地方：https://github.com/apache/spark
+
+官网：xxxx.apache.org
+源码：https://github.com/apache/xxxx
+
+
+abstract class RDD[T: ClassTag](
+    @transient private var _sc: SparkContext,
+    @transient private var deps: Seq[Dependency[_]]
+) extends Serializable with Logging
+
+1）RDD是一个抽象类
+2）带泛型的，可以支持多种类型： String、Person、User
+
+
+RDD：Resilient Distributed Dataset   弹性 分布式 数据集
+
+Represents an 
+	immutable：不可变
+	partitioned collection of elements ：分区
+		Array(1,2,3,4,5,6,7,8,9,10)  3个分区： (1,2,3) (4,5,6) (7,8,9,10)
+	that can be operated on in parallel： 并行计算的问题
+
+
+
+
+单机存储/计算==>分布式存储/计算
+1）数据的存储: 切割    HDFS的Block
+2）数据的计算: 切割(分布式并行计算)   MapReduce/Spark
+3）存储+计算 :   HDFS/S3+MapReduce/Spark
+	
+	==> OK 
+
+
+RDD的特性：	
+Internally, each RDD is characterized by five main properties:
+- A list of partitions
+	一系列的分区/分片
+
+- A function for computing each split/partition
+	y = f(x)
+	rdd.map(_+1)  
+
+- A list of dependencies on other RDDs
+	rdd1 ==> rdd2 ==> rdd3 ==> rdd4
+	dependencies: *****
+
+	rdda = 5个partition
+	==>map
+	rddb = 5个partition
+
+- Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)
+
+- Optionally, a list of preferred locations to compute each split on (e.g. 
+block locations for an HDFS file)
+
+	数据在哪优先把作业调度到数据所在的节点进行计算：移动数据不如移动计算
+	为什么location有s？
+
+
+五大特性源码体现：
+def compute(split: Partition, context: TaskContext): Iterator[T] 特性二
+def getPartitions: Array[Partition]  特性一
+def getDependencies: Seq[Dependency[_]] = deps  特性三
+def getPreferredLocations(split: Partition): Seq[String] = Nil  特性五
+val partitioner: Option[Partitioner] = None  特性四
+
+
+
+
+第一要务：创建SparkContext
+	连接到Spark“集群”：local、standalone、yarn、mesos
+	通过SparkContext来创建RDD、广播变量到集群
+
+在创建SparkContext之前还需要创建一个SparkConf对象
+
+
+RDD创建方式
+	Parallelized Collections
+	External Datasets
+
+If using a path on the local filesystem, the file must also be accessible at the same path on worker nodes
+	1）我们上课是在单节点上的：一个节点， hello.txt只要在这台机器上有就行了
+	2）standalone: Spark集群： 3个节点  local path 都是从节点的本地读取数据  不建议
+
+
+
+开发pyspark应用程序
+	1) IDE: IDEA  pycharm
+	2) 设置基本参数: python interceptor    PYTHONPATH   SPARK_HOME   2zip包
+	3）开发
+	4）使用local进行本地测试
+
+提交pyspark应用程序($SPARK_HOME)
+	./spark-submit --master local[2] --name spark0301 /home/hadoop/script/spark0301.py
+	具体提交的详细说明参见：http://spark.apache.org/docs/latest/submitting-applications.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

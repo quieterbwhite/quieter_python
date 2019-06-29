@@ -1,0 +1,80 @@
+Local模式：
+	开发
+
+	--master
+	--name
+	--py-files
+
+
+./spark-submit --master local[2] --name spark-local /home/hadoop/script/spark0402.py file:///home/hadoop/data/hello.txt file:///home/hadoop/wc/output
+
+
+standalone 
+	hdfs: NameNode  DataNode
+	yarn: ResourceManager NodeManager
+
+	master:
+	worker:
+
+	$SPARK_HOME/conf/slaves
+		hadoop000
+
+		假设你有5台机器，就应该进行如下slaves的配置
+		hadoop000
+		hadoop001
+		hadoop002
+		hadoop003
+		hadoop005
+		如果是多台机器，那么每台机器都在相同的路径下部署spark
+
+	启动spark集群
+		$SPARK_HOME/sbin/start-all.sh
+		ps: 要在spark-env.sh中添加JAVA_HOME，否则会报错
+		检测： 
+			jps： Master和Worker进程，就说明我们的standalone模式安装成功
+			webui：
+
+./spark-submit --master spark://hadoop000:7077 --name spark-standalone /home/hadoop/script/spark0402.py hdfs://hadoop000:8020/wc.txt hdfs://hadoop000:8020/wc/output
+
+	如果使用standalone模式，而且你的节点个数大于1的时候，如果你使用本地文件测试，必须要保证每个节点上都有本地测试文件
+	
+	
+yarn
+	mapreduce yarn
+	spark on yarn 70%
+	spark作业客户端而已，他需要做的事情就是提交作业到yarn上去执行
+	yarn vs standalone
+		yarn： 你只需要一个节点，然后提交作业即可   这个是不需要spark集群的（不需要启动master和worker的）
+		standalone：你的spark集群上每个节点都需要部署spark，然后需要启动spark集群（需要master和worker）
+
+
+./spark-submit --master yarn --name spark-yarn /home/hadoop/script/spark0402.py hdfs://hadoop000:8020/wc.txt hdfs://hadoop000:8020/wc/output
+
+When running with master 'yarn' either HADOOP_CONF_DIR or YARN_CONF_DIR must be set in the environment
+
+
+
+作业：试想：为什么需要指定HADOOP_CONF_DIR或者YARN_CONF_DIR
+
+如何使得这个信息规避掉
+Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME
+
+yarn支持client和cluster模式：driver运行在哪里
+	client：提交作业的进程是不能停止的，否则作业就挂了
+	cluster：提交完作业，那么提交作业端就可以断开了，因为driver是运行在am里面的
+
+
+Error: Cluster deploy mode is not applicable to Spark shells
+
+	pyspark/spark-shell : 交互式运行程序  client
+	spark-sql
+
+如何查看已经运行完的yarn的日志信息： yarn logs -applicationId <applicationId>
+Log aggregation has not completed or is not enabled.
+参见：https://coding.imooc.com/class/chapter/128.html#Anchor  JobHistory使用
+
+
+不管你的spark应用程序运行在哪里，你的spark代码都是一样的，不需要做任何的修改和调整，所以spark使用起来是非常方便的！！！！！！
+
+
+

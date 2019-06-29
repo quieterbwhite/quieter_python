@@ -1,0 +1,90 @@
+工作流概述
+	请假  OA
+		1 ：部门经理审批
+		3 ：部门经理审批 ==> HR
+		5 ：部门经理审批 ==> HR ==> 老大
+		10：.....
+	借款： 涉及金额
+
+
+Spark SQL/Hadoop用于做离线统计处理
+ETL
+1) 数据抽取： 
+	Sqoop把RDBMS中的数据抽取到Hadoop
+	Flume进行日志、文本数据的采集，采集到Hadoop
+2) 数据处理
+	Hive/MapReduce/Spark/......
+3) 统计结果入库
+	数据就存放到HDFS(Hive/Spark SQL/文件)
+		启动一个Server: HiveServer2 / ThriftServer
+		jdbc的方式去访问统计结果
+	使用Sqoop把结果导出到RDBMS中
+
+这些作业之间是存在时间先后依赖关系的
+Step A ==> Step B ==> Step C 
+
+crontab定时调度
+为了更好的组织起这样的复杂执行计算的关系===> 这就需要一个工作流调度系统来进行依赖关系作业的调度
+
+
+Linux crontab + shell
+	优点：简单、易用
+	缺点：
+		维护
+		依赖
+			step a:  01:30  30分钟
+			step b:  02:10  30分钟
+			step c:  02:50  30分钟
+			.....
+			资源利用率
+			集群在0130压力非常大，资源没有申请到
+
+常用的调度框架
+	Azkaban：轻量级
+	Oozie：重量级
+		cm hue
+		xml
+	宙斯(Zeus)
+
+
+
+Azkaban概述
+	Open-source Workflow Manager
+	批处理工作流，用于跑Hadoop的job
+	提供了一个易于使用的用户界面来维护和跟踪你的工作流程
+
+Azkaban架构
+	Relational Database (MySQL)
+	AzkabanWebServer
+	AzkabanExecutorServer
+
+
+Azkaban运行模式
+	solo-server
+		数据信息存储在H2==>MySQL
+		webserver和execserver是运行在同一个进程中
+	the heavier weight two server mode
+		数据信息存储在MySQL，在生产上一定要做主备 
+		webserver和execserver是运行在不同的进程中的
+	distributed multiple-executor mode
+
+
+Azkaban编译：万世开头难，务必要保证你的网络速度不错
+	1） 去github上下载源码包
+	2） ./gradlew build installDist
+	3） 建议搭建先去下载gradle-4.1-all.zip 然后整合到azkaban源码中来，避免在编译的过程中去网络上下载，导致编译速度非常慢
+	4） 编译成功之后，去对应的目录下找到对应模式的安装包即可
+
+
+
+Azkaban环境搭建
+	1) 解压编译后的安装包到~/app
+	2）启动azkaban   $AZKABAN_HOME/bin/azkaban-solo-start.sh
+		验证：jps  AzkabanSingleServer
+		ip:8081
+
+
+
+
+
+
