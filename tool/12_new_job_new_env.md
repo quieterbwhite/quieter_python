@@ -59,6 +59,18 @@ ranger
 
     sudo apt install ranger
 
+HanLP
+ 
+    - https://github.com/hankcs/HanLP
+
+    - 自然语言处理 中文分词 词性标注 命名实体识别 依存句法分析 新词发现 关键词短语提取 自动摘要 文本分类聚类 拼音简繁 http://hanlp.com/
+
+funNLP
+
+    - https://github.com/fighting41love/funNLP
+
+    - 中英文敏感词、语言检测、中外手机/电话归属地/运营商查询、名字推断性别、手机号抽取、身份证抽取等
+
 buaazp/zimg
 
     https://github.com/buaazp/zimg
@@ -90,6 +102,12 @@ chrome
 lantern
 
 pycharm
+
+AreaCity-JsSpider-StatsGov
+
+    - https://github.com/xiangyuecn/AreaCity-JsSpider-StatsGov
+
+    - 国家统计局中的省市区镇行政区划数据带拼音标注，高德地图的坐标和行政区域边界范围
 
 ip2region
 
