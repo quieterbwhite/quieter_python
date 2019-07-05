@@ -182,6 +182,19 @@ Azkaban 单机部署及快速入门
 
   解压，编译成安装包
 
+  JCE报错:
+    https://yq.aliyun.com/articles/648399
+
+    解决方法：
+    下载JCE
+    https://www.oracle.com/technetwork/cn/java/javase/downloads/jce8-download-2133166-zhs.html
+    我这边使用的JDK8，包含了JCE所需要的jre8
+    解压搜下载好的文件，放置到以下目录：
+    放置到jdk所在目录下的：
+    cp UnlimitedJCEPolicyJDK8/* /usr/local/jdk1.8.0_74/jre/lib/security
+    对原有的文件进行覆盖
+    然后在进行重新编译
+
   $ ./azkaban-solo-server/bin/azkaban-solo-start.sh
 
   http://localhost:8081
