@@ -180,7 +180,9 @@ Azkaban 源码编译
 
 Azkaban 单机部署及快速入门
 
-  解压，编译成安装包
+  安装 gradle, maven
+  
+  下载，解压，编译成安装包
 
   JCE报错:
     https://yq.aliyun.com/articles/648399
@@ -195,15 +197,56 @@ Azkaban 单机部署及快速入门
     对原有的文件进行覆盖
     然后在进行重新编译
 
-  $ ./azkaban-solo-server/bin/azkaban-solo-start.sh
+  【npm ERR】cb() never called!解决方案
+    https://blog.csdn.net/TalonZhang/article/details/88538361
+    解决方案：
+    安装node, 再执行下面的命令:
+    清理 npm缓存就可以了
+    sudo npm cache clean --force
+    
+  编译成功
+  
+  去对应了模式的目录下找到安装包即可:
+  $ cd /home/bwhite/software/azkaban-master/azkaban-solo-server/build/distributions
+  
+  $ tar xzvf azkaban-solo-server-0.1.0-SNAPSHOT.tar.gz -C /home/bwhite/software/
 
-  http://localhost:8081
+  $ cd /home/bwhite/software/azkaban-solo-server-0.1.0-SNAPSHOT
+  
+  # 奇葩啊，一定要在bin目录下执行才能正常启动，这些开源的东西真是要命
+  $ ./bin/start-solo.sh
+  	
+  jps查看有 AzkabanSingleServer 进程
+  
+  访问页面: http://localhost:8081
+  默认用户名密码: azkaban:azkaban
+  
+  修改配置文件:
+  /conf/azkaban-user.xml 修改用户信息
+  
+  <azkaban-users>
+    <user groups="azkaban" password="" roles="admin" username="root"/>
+    <!--<user password="metrics" roles="metrics" username="metrics"/>-->
 
+    <role name="admin" permissions="ADMIN"/>
+    <role name="metrics" permissions="METRICS"/>
+  </azkaban-users>
+ 
   jps 查看启动的进程
+  
+  修改时区:
+  	default.timezone.id=Asia/Shanghai
 
   用户名&密码: $ ./azkaban-solo-server/conf/
 
-  创建Job, 打包zip，上传，执行
+  创建Job
+  
+  打包zip
+  	zip -r foo.zip *
+  
+  上传
+  
+  执行
 ```
 
 #### Azkaban任务调度实战
