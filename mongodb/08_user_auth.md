@@ -59,11 +59,7 @@ $ mongo
 > db.system.users.find()
 
 // 创建用户
-MongoDB Enterprise > db.createUser({
-... user:"root",
-... pwd:"tiger",
-... roles:["root"]
-... })
+MongoDB Enterprise > db.createUser({user:"root",pwd:"tiger",roles:["root"]})
 
 // 创建管理员后，需要给管理员授权，否则无权限操作用户
 > db.auth("root", "tiger")
