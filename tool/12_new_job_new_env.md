@@ -59,6 +59,12 @@ ranger
 
     sudo apt install ranger
 
+EasyScheduler
+
+    易调度
+    https://github.com/analysys/EasyScheduler
+    Easy Scheduler是一个分布式工作流任务调度系统，主要解决"错综复杂的任务依赖关系，而不能直观监控任务健康状态等问题"。
+
 HanLP
  
     - https://github.com/hankcs/HanLP
@@ -102,6 +108,10 @@ chrome
 lantern
 
 pycharm
+
+MusicTools
+
+    - 免费下载各大平台无损音乐
 
 AreaCity-JsSpider-StatsGov
 

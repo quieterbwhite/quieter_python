@@ -325,16 +325,27 @@ kafka 实战
 
     Streaming Context http://spark.apache.org/docs/latest/streaming-programming-guide.html
 
-    Discretized Streams (DStreams)
+        import org.apache.spark._
+        import org.apache.spark.streaming._
+
+        val conf = new SparkConf().setAppName(appName).setMaster(master)
+        val ssc = new StreamingContext(conf, Seconds(1))
+
+    Discretized(离散化) Streams (DStreams)
         一个Dstream由多个RDD构成，底层就是处理一个个RDD
+        a DStream is represented by a continuous series of RDDs
+        对DStream操作算子，比如Map/flatMap,其实底层会被翻译为对DStream中的每个RDD都做相同的操作
 
-    Input Dstreams and Receivers
+    Input Dstreams and Receivers(接收器)
         上面两者是一一对应的，用于从源头接收数据并保存在spark的内存里面,供后续处理
-        
 
-    Transformations
 
-    Output Operations
+Transformations
+    和RDD里面操作非常类似，需要对接收到的数据进行转换和处理
+    这里就是业务逻辑的核心
+
+Output Operations
+    业务逻辑处理完之后需要输出到某个地方去
 
 实战案例
 
@@ -403,4 +414,15 @@ kafka 实战
 实战一： Flume-style Push-based Approach
 
 实战二: Pull-based Approach using a Custom Sink
+```
+
+##### 第十章_SparkStreaming整合Kafka实战
+```
+实战一: Receiver-based
+    1. 启动zookeeper
+    2. 启动kafka
+    3. 创建topic
+    4. 通过控制台测试本topic时候能够正常生产和消费数据
+
+实战二: Direct Approach
 ```
