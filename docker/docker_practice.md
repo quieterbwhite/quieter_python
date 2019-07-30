@@ -566,6 +566,9 @@ $ docker  diff    webserver
     sudo pip uninstall docker-compose
 ```
 
+#### 常用命令
+
+```shell
 查看运行容器
 docker ps
 
@@ -585,3 +588,48 @@ docker rm $(docker ps -aq)
 
 3.一条命令实现停用并删除容器：
 docker stop $(docker ps -q) & docker rm $(docker ps -aq)
+```
+
+
+
+> https://colobu.com/2018/05/15/Stop-and-remove-all-docker-containers-and-images/
+
+# 停止、删除所有的docker容器和镜像
+
+这些命令总是记不住，或者说不用心去记，所以记录在本文中，以便将来查询。
+
+## 列出所有的容器 ID
+
+```
+docker ps -aq
+```
+
+## 停止所有的容器
+
+```
+docker stop $(docker ps -aq)
+```
+
+## 删除所有的容器
+
+```
+docker rm $(docker ps -aq)
+```
+
+## 删除所有的镜像
+
+```
+docker rmi $(docker images -q)
+```
+
+## 复制文件
+
+```
+docker cp mycontainer:/opt/file.txt /opt/local/
+docker cp /opt/local/file.txt mycontainer:/opt/
+```
+
+**更新**: @snakeliwei 的提醒， 现在的docker有了专门清理资源(container、image、网络)的命令。 docker 1.13 中增加了 `docker system prune`的命令，针对container、image可以使用`docker container prune`、`docker image prune`命令。
+
+- `docker image prune --force --all`或者docker image prune -f -a` : 删除所有不使用的镜像
+- `docker container prune -f`: 删除所有停止的容器
