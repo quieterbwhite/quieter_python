@@ -53,11 +53,24 @@ qidianliusong/redis-shared-lock
 
     - 基于redis的分布式共享锁，使用注解的方式对方法加锁
 
+IJPay
+
+    - https://gitee.com/javen205/IJPay
+
+    - IJPay 让支付触手可及，封装了微信支付、支付宝支付、银联支付常用的支付方式以及各种常用的接口。
+
+
+imgcook
+
+    - imgcook 是专注以各种图像（Sketch/PSD/静态图片）为原材料一键生成可维护的 UI 视图代码
+
+    - 可以生成react代码,正是我熟悉的
+
 ranger
 
-    命令行浏览文件系统
+    - 命令行浏览文件系统
 
-    sudo apt install ranger
+    - sudo apt install ranger
 
 EasyScheduler
 
