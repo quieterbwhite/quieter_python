@@ -5,6 +5,12 @@
 ## 系统:
 
 ```
+0. 系统镜像地址
+
+    http://mirrors.aliyun.com/ubuntu-releases/
+
+    https://opsx.alibaba.com/?lang=zh-CN
+
 1. 换系统源
 
     https://wiki.ubuntu.com.cn/%E6%BA%90%E5%88%97%E8%A1%A8
@@ -41,6 +47,12 @@
 
 #### 技术软件
 ```
+MyExcel
+
+    MyExcel，是一个集导入、导出、加密Excel等多项功能的工具包
+
+    https://gitee.com/mirrors/MyExcel
+
 ecar_team/apimonitor
 
     - https://gitee.com/ecar_team/apimonitor
@@ -121,6 +133,12 @@ gnome-tweak-tool
     - https://itsfoss.com/gnome-tricks-ubuntu/
 
     - sudo apt install gnome-tweak-tool
+
+ATX
+
+    - ATX是一个安卓设备集群管理平台，可在线管理多台设备，实现远程操作，远程监控，获取手机元素信息等
+
+    - https://gitee.com/hagyao520/ATX
 
 chrome
 
