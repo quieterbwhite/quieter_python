@@ -1,0 +1,49 @@
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.0-linux-x86_64.tar.gz
+
+tar xzvf elasticsearch-7.3.0-linux-x86_64.tar.gz
+
+vim elasticsearch-7.3.0/config/elasticsearch.yml
+
+    # custom config
+    node.name: "node-1"
+    discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+    cluster.initial_master_nodes: ["node-1"]
+
+    # 开启跨域访问支持，默认为false
+    http.cors.enabled: true
+    # 跨域访问允许的域名地址，(允许所有域名)以上使用正则
+    http.cors.allow-origin: /.*/
+
+    参考: elasticsearch.yml
+    
+修改系统参数
+
+    修改/etc/security/limits.conf ,追加内容
+    * soft nofile 65536
+    * hard nofile 65536
+    nofile是单个进程允许打开的最大文件个数
+    soft nofile 是软限制 hard nofile是硬限制
+    
+    修改/etc/sysctl.conf,追加内容
+    vm.max_map_count=655360
+    限制一个进程可以拥有的VMA(虚拟内存区域)的数量
+    执行下面命令
+    修改内核参数马上生效
+    sysctl -p
+    
+下载分词器
+
+    https://github.com/medcl/elasticsearch-analysis-ik/releases
+
+
+
+http://localhost:8000/sifaElastic/search?key=%E5%86%AF%E9%87%91%E5%B2%B3%E4%B8%8E%E7%BD%97%E6%A1%A5&page=1&pageSize=10
+
+
+陈春光、冯政民间借贷纠纷二审民事判决书
+
+(2017)粤17民终1006号
+
+(2014)阿民一终字第153号
+
+http://localhost:8000/sifaElastic/search?title=%E4%BA%8C%E5%AE%A1%E6%B0%91%E4%BA%8B%E5%88%A4%E5%86%B3%E4%B9%A6&page=1&pageSize=10
