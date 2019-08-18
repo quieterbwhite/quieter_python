@@ -270,6 +270,12 @@ Redisson
 
     - https://gitee.com/yizhigui/lock-spring-boot-starter
 
+redisson-spring-boot-starter
+
+    - redisson的boot-starter.支持多实例集群,分布式锁,spring cache 整合,session集群,消息队列,对象存储
+
+    - https://gitee.com/ztp/redisson-spring-boot-starter
+
 fish
 
     - fish shell 3.0.0 发布了，fish 是一个智能且用户友好的命令行 shell，适用于 macOS、Linux 等平台。fish 在无需配置的情况下支持语法高亮与智能联想等功能。
