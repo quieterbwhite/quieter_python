@@ -140,3 +140,26 @@ docker restart <CONTAINER NAME>
 ```shell
 docker exec -it <CONTAINER NAME> mongo admin
 ```
+#### 通过docker安装MongoDB
+
+```shell
+#拉取镜像
+docker pull mongo:4.0.3
+
+#创建容器
+docker create --name mongodb -p 27017:27017 -v /data/mongodb:/data/db mongo:4.0.3
+
+#启动容器
+docker start mongodb
+
+#进入容器
+docker exec -it mongodb /bin/bash
+
+#使用MongoDB客户端进行操作
+mongo
+> show dbs  #查询所有的数据库
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+```
+
