@@ -40,6 +40,8 @@ Status: Downloaded newer image for redis:latest12345678910
 
 ```shell
 docker run --name redis-test -p 6379:6379 -d --restart=always redis:latest redis-server --appendonly yes --requirepass "your passwd"1
+
+docker run --name redis-bloom -p 6379:6379 -v $PWD/data:/data:rw -d --restart=always redis:latest redis-server --appendonly yes
 ```
 
 >   -p 6379:6379 :将容器内端口映射到宿主机端口(右边映射到左边) 
