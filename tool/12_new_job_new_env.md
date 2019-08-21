@@ -47,11 +47,17 @@
 
 #### 技术软件
 ```
+spring-boot-plus
+
+    - spring-boot-plus集成Spring Boot 2.1.6,Mybatis,Mybatis Plus,Druid,FastJson,Redis,Rabbit MQ,Kafka等，可使用代码生成器快速开发项目
+
+    - https://gitee.com/geekidea/spring-boot-plus
+
 MyExcel
 
-    MyExcel，是一个集导入、导出、加密Excel等多项功能的工具包
+    - MyExcel，是一个集导入、导出、加密Excel等多项功能的工具包
 
-    https://gitee.com/mirrors/MyExcel
+    - https://gitee.com/mirrors/MyExcel
 
 ecar_team/apimonitor
 
@@ -86,9 +92,11 @@ ranger
 
 EasyScheduler
 
-    易调度
-    https://github.com/analysys/EasyScheduler
-    Easy Scheduler是一个分布式工作流任务调度系统，主要解决"错综复杂的任务依赖关系，而不能直观监控任务健康状态等问题"。
+    - 易调度
+
+    - https://github.com/analysys/EasyScheduler
+
+    - Easy Scheduler是一个分布式工作流任务调度系统，主要解决"错综复杂的任务依赖关系，而不能直观监控任务健康状态等问题"。
 
 HanLP
  
@@ -139,6 +147,12 @@ ATX
     - ATX是一个安卓设备集群管理平台，可在线管理多台设备，实现远程操作，远程监控，获取手机元素信息等
 
     - https://gitee.com/hagyao520/ATX
+
+kiftd
+
+    - kiftd是一款便捷、开源、功能完善的 JAVA 网盘 / 云盘 系统。专门面向个人、团队或小型组织来搭建属于自己的网盘。
+
+    - https://kohgylw.gitee.io/
 
 chrome
 
