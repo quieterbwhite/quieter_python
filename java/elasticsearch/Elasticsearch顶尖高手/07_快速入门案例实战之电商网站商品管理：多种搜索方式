@@ -1,26 +1,26 @@
-¿Î³Ì´ó¸Ù
+è¯¾ç¨‹å¤§çº²
 
-1¡¢query string search
-2¡¢query DSL
-3¡¢query filter
-4¡¢full-text search
-5¡¢phrase search
-6¡¢highlight search
+1ã€query string search
+2ã€query DSL
+3ã€query filter
+4ã€full-text search
+5ã€phrase search
+6ã€highlight search
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-°ÑÓ¢ÎÄ·­Òë³ÉÖÐÎÄ£¬ÈÃÎÒ¾õµÃºÜ±ðÅ¤£¬term£¬´ÊÏî
+æŠŠè‹±æ–‡ç¿»è¯‘æˆä¸­æ–‡ï¼Œè®©æˆ‘è§‰å¾—å¾ˆåˆ«æ‰­ï¼Œtermï¼Œè¯é¡¹
 
-1¡¢query string search
+1ã€query string search
 
-ËÑË÷È«²¿ÉÌÆ·£ºGET /ecommerce/product/_search
+æœç´¢å…¨éƒ¨å•†å“ï¼šGET /ecommerce/product/_search
 
-took£ººÄ·ÑÁË¼¸ºÁÃë
-timed_out£ºÊÇ·ñ³¬Ê±£¬ÕâÀïÊÇÃ»ÓÐ
-_shards£ºÊý¾Ý²ð³ÉÁË5¸ö·ÖÆ¬£¬ËùÒÔ¶ÔÓÚËÑË÷ÇëÇó£¬»á´òµ½ËùÓÐµÄprimary shard£¨»òÕßÊÇËüµÄÄ³¸öreplica shardÒ²¿ÉÒÔ£©
-hits.total£º²éÑ¯½á¹ûµÄÊýÁ¿£¬3¸ödocument
-hits.max_score£ºscoreµÄº¬Òå£¬¾ÍÊÇdocument¶ÔÓÚÒ»¸ösearchµÄÏà¹Ø¶ÈµÄÆ¥Åä·ÖÊý£¬Ô½Ïà¹Ø£¬¾ÍÔ½Æ¥Åä£¬·ÖÊýÒ²¸ß
-hits.hits£º°üº¬ÁËÆ¥ÅäËÑË÷µÄdocumentµÄÏêÏ¸Êý¾Ý
+tookï¼šè€—è´¹äº†å‡ æ¯«ç§’
+timed_outï¼šæ˜¯å¦è¶…æ—¶ï¼Œè¿™é‡Œæ˜¯æ²¡æœ‰
+_shardsï¼šæ•°æ®æ‹†æˆäº†5ä¸ªåˆ†ç‰‡ï¼Œæ‰€ä»¥å¯¹äºŽæœç´¢è¯·æ±‚ï¼Œä¼šæ‰“åˆ°æ‰€æœ‰çš„primary shardï¼ˆæˆ–è€…æ˜¯å®ƒçš„æŸä¸ªreplica shardä¹Ÿå¯ä»¥ï¼‰
+hits.totalï¼šæŸ¥è¯¢ç»“æžœçš„æ•°é‡ï¼Œ3ä¸ªdocument
+hits.max_scoreï¼šscoreçš„å«ä¹‰ï¼Œå°±æ˜¯documentå¯¹äºŽä¸€ä¸ªsearchçš„ç›¸å…³åº¦çš„åŒ¹é…åˆ†æ•°ï¼Œè¶Šç›¸å…³ï¼Œå°±è¶ŠåŒ¹é…ï¼Œåˆ†æ•°ä¹Ÿé«˜
+hits.hitsï¼šåŒ…å«äº†åŒ¹é…æœç´¢çš„documentçš„è¯¦ç»†æ•°æ®
 
 
 {
@@ -85,28 +85,28 @@ hits.hits£º°üº¬ÁËÆ¥ÅäËÑË÷µÄdocumentµÄÏêÏ¸Êý¾Ý
   }
 }
 
-query string searchµÄÓÉÀ´£¬ÒòÎªsearch²ÎÊý¶¼ÊÇÒÔhttpÇëÇóµÄquery stringÀ´¸½´øµÄ
+query string searchçš„ç”±æ¥ï¼Œå› ä¸ºsearchå‚æ•°éƒ½æ˜¯ä»¥httpè¯·æ±‚çš„query stringæ¥é™„å¸¦çš„
 
-ËÑË÷ÉÌÆ·Ãû³ÆÖÐ°üº¬yagaoµÄÉÌÆ·£¬¶øÇÒ°´ÕÕÊÛ¼Û½µÐòÅÅÐò£ºGET /ecommerce/product/_search?q=name:yagao&sort=price:desc
+æœç´¢å•†å“åç§°ä¸­åŒ…å«yagaoçš„å•†å“ï¼Œè€Œä¸”æŒ‰ç…§å”®ä»·é™åºæŽ’åºï¼šGET /ecommerce/product/_search?q=name:yagao&sort=price:desc
 
-ÊÊÓÃÓÚÁÙÊ±µÄÔÚÃüÁîÐÐÊ¹ÓÃÒ»Ð©¹¤¾ß£¬±ÈÈçcurl£¬¿ìËÙµÄ·¢³öÇëÇó£¬À´¼ìË÷ÏëÒªµÄÐÅÏ¢£»µ«ÊÇÈç¹û²éÑ¯ÇëÇóºÜ¸´ÔÓ£¬ÊÇºÜÄÑÈ¥¹¹½¨µÄ
-ÔÚÉú²ú»·¾³ÖÐ£¬¼¸ºõºÜÉÙÊ¹ÓÃquery string search
+é€‚ç”¨äºŽä¸´æ—¶çš„åœ¨å‘½ä»¤è¡Œä½¿ç”¨ä¸€äº›å·¥å…·ï¼Œæ¯”å¦‚curlï¼Œå¿«é€Ÿçš„å‘å‡ºè¯·æ±‚ï¼Œæ¥æ£€ç´¢æƒ³è¦çš„ä¿¡æ¯ï¼›ä½†æ˜¯å¦‚æžœæŸ¥è¯¢è¯·æ±‚å¾ˆå¤æ‚ï¼Œæ˜¯å¾ˆéš¾åŽ»æž„å»ºçš„
+åœ¨ç”Ÿäº§çŽ¯å¢ƒä¸­ï¼Œå‡ ä¹Žå¾ˆå°‘ä½¿ç”¨query string search
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-2¡¢query DSL
+2ã€query DSL
 
-DSL£ºDomain Specified Language£¬ÌØ¶¨ÁìÓòµÄÓïÑÔ
-http request body£ºÇëÇóÌå£¬¿ÉÒÔÓÃjsonµÄ¸ñÊ½À´¹¹½¨²éÑ¯Óï·¨£¬±È½Ï·½±ã£¬¿ÉÒÔ¹¹½¨¸÷ÖÖ¸´ÔÓµÄÓï·¨£¬±Èquery string search¿Ï¶¨Ç¿´ó¶àÁË
+DSLï¼šDomain Specified Languageï¼Œç‰¹å®šé¢†åŸŸçš„è¯­è¨€
+http request bodyï¼šè¯·æ±‚ä½“ï¼Œå¯ä»¥ç”¨jsonçš„æ ¼å¼æ¥æž„å»ºæŸ¥è¯¢è¯­æ³•ï¼Œæ¯”è¾ƒæ–¹ä¾¿ï¼Œå¯ä»¥æž„å»ºå„ç§å¤æ‚çš„è¯­æ³•ï¼Œæ¯”query string searchè‚¯å®šå¼ºå¤§å¤šäº†
 
-²éÑ¯ËùÓÐµÄÉÌÆ·
+æŸ¥è¯¢æ‰€æœ‰çš„å•†å“
 
 GET /ecommerce/product/_search
 {
   "query": { "match_all": {} }
 }
 
-²éÑ¯Ãû³Æ°üº¬yagaoµÄÉÌÆ·£¬Í¬Ê±°´ÕÕ¼Û¸ñ½µÐòÅÅÐò
+æŸ¥è¯¢åç§°åŒ…å«yagaoçš„å•†å“ï¼ŒåŒæ—¶æŒ‰ç…§ä»·æ ¼é™åºæŽ’åº
 
 GET /ecommerce/product/_search
 {
@@ -120,7 +120,7 @@ GET /ecommerce/product/_search
     ]
 }
 
-·ÖÒ³²éÑ¯ÉÌÆ·£¬×Ü¹²3ÌõÉÌÆ·£¬¼ÙÉèÃ¿Ò³¾ÍÏÔÊ¾1ÌõÉÌÆ·£¬ÏÖÔÚÏÔÊ¾µÚ2Ò³£¬ËùÒÔ¾Í²é³öÀ´µÚ2¸öÉÌÆ·
+åˆ†é¡µæŸ¥è¯¢å•†å“ï¼Œæ€»å…±3æ¡å•†å“ï¼Œå‡è®¾æ¯é¡µå°±æ˜¾ç¤º1æ¡å•†å“ï¼ŒçŽ°åœ¨æ˜¾ç¤ºç¬¬2é¡µï¼Œæ‰€ä»¥å°±æŸ¥å‡ºæ¥ç¬¬2ä¸ªå•†å“
 
 GET /ecommerce/product/_search
 {
@@ -129,7 +129,7 @@ GET /ecommerce/product/_search
   "size": 1
 }
 
-Ö¸¶¨Òª²éÑ¯³öÀ´ÉÌÆ·µÄÃû³ÆºÍ¼Û¸ñ¾Í¿ÉÒÔ
+æŒ‡å®šè¦æŸ¥è¯¢å‡ºæ¥å•†å“çš„åç§°å’Œä»·æ ¼å°±å¯ä»¥
 
 GET /ecommerce/product/_search
 {
@@ -137,13 +137,13 @@ GET /ecommerce/product/_search
   "_source": ["name", "price"]
 }
 
-¸ü¼ÓÊÊºÏÉú²ú»·¾³µÄÊ¹ÓÃ£¬¿ÉÒÔ¹¹½¨¸´ÔÓµÄ²éÑ¯
+æ›´åŠ é€‚åˆç”Ÿäº§çŽ¯å¢ƒçš„ä½¿ç”¨ï¼Œå¯ä»¥æž„å»ºå¤æ‚çš„æŸ¥è¯¢
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-3¡¢query filter
+3ã€query filter
 
-ËÑË÷ÉÌÆ·Ãû³Æ°üº¬yagao£¬¶øÇÒÊÛ¼Û´óÓÚ25ÔªµÄÉÌÆ·
+æœç´¢å•†å“åç§°åŒ…å«yagaoï¼Œè€Œä¸”å”®ä»·å¤§äºŽ25å…ƒçš„å•†å“
 
 GET /ecommerce/product/_search
 {
@@ -165,7 +165,7 @@ GET /ecommerce/product/_search
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-4¡¢full-text search£¨È«ÎÄ¼ìË÷£©
+4ã€full-text searchï¼ˆå…¨æ–‡æ£€ç´¢ï¼‰
 
 GET /ecommerce/product/_search
 {
@@ -176,9 +176,9 @@ GET /ecommerce/product/_search
     }
 }
 
-¾¡Á¿£¬ÎÞÂÛÊÇÑ§Ê²Ã´¼¼Êõ£¬±ÈÈçËµÄãµ±³õÑ§java£¬Ñ§linux£¬Ñ§shell£¬Ñ§javascript£¬Ñ§hadoop¡£¡£¡£¡£Ò»¶¨×Ô¼º¶¯ÊÖ£¬ÌØ±ðÊÇÊÖ¹¤ÇÃ¸÷ÖÖÃüÁîºÍ´úÂë£¬ÇÐ¼ÇÇÐ¼Ç£¬¼õÉÙ¸´ÖÆÕ³ÌùµÄ²Ù×÷¡£Ö»ÓÐ×Ô¼º¶¯ÊÖÊÖ¹¤ÇÃ£¬Ñ§Ï°Ð§¹û²Å×îºÃ¡£
+å°½é‡ï¼Œæ— è®ºæ˜¯å­¦ä»€ä¹ˆæŠ€æœ¯ï¼Œæ¯”å¦‚è¯´ä½ å½“åˆå­¦javaï¼Œå­¦linuxï¼Œå­¦shellï¼Œå­¦javascriptï¼Œå­¦hadoopã€‚ã€‚ã€‚ã€‚ä¸€å®šè‡ªå·±åŠ¨æ‰‹ï¼Œç‰¹åˆ«æ˜¯æ‰‹å·¥æ•²å„ç§å‘½ä»¤å’Œä»£ç ï¼Œåˆ‡è®°åˆ‡è®°ï¼Œå‡å°‘å¤åˆ¶ç²˜è´´çš„æ“ä½œã€‚åªæœ‰è‡ªå·±åŠ¨æ‰‹æ‰‹å·¥æ•²ï¼Œå­¦ä¹ æ•ˆæžœæ‰æœ€å¥½ã€‚
 
-producerÕâ¸ö×Ö¶Î£¬»áÏÈ±»²ð½â£¬½¨Á¢µ¹ÅÅË÷Òý
+producerè¿™ä¸ªå­—æ®µï¼Œä¼šå…ˆè¢«æ‹†è§£ï¼Œå»ºç«‹å€’æŽ’ç´¢å¼•
 
 special		4
 yagao		4
@@ -187,7 +187,7 @@ gaolujie	1
 zhognhua	3
 jiajieshi	2
 
-yagao producer ---> yagaoºÍproducer
+yagao producer ---> yagaoå’Œproducer
 
 {
   "took": 4,
@@ -268,10 +268,10 @@ yagao producer ---> yagaoºÍproducer
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-5¡¢phrase search£¨¶ÌÓïËÑË÷£©
+5ã€phrase searchï¼ˆçŸ­è¯­æœç´¢ï¼‰
 
-¸úÈ«ÎÄ¼ìË÷Ïà¶ÔÓ¦£¬Ïà·´£¬È«ÎÄ¼ìË÷»á½«ÊäÈëµÄËÑË÷´®²ð½â¿ªÀ´£¬È¥µ¹ÅÅË÷ÒýÀïÃæÈ¥Ò»Ò»Æ¥Åä£¬Ö»ÒªÄÜÆ¥ÅäÉÏÈÎÒâÒ»¸ö²ð½âºóµÄµ¥´Ê£¬¾Í¿ÉÒÔ×÷Îª½á¹û·µ»Ø
-phrase search£¬ÒªÇóÊäÈëµÄËÑË÷´®£¬±ØÐëÔÚÖ¸¶¨µÄ×Ö¶ÎÎÄ±¾ÖÐ£¬ÍêÈ«°üº¬Ò»Ä£Ò»ÑùµÄ£¬²Å¿ÉÒÔËãÆ¥Åä£¬²ÅÄÜ×÷Îª½á¹û·µ»Ø
+è·Ÿå…¨æ–‡æ£€ç´¢ç›¸å¯¹åº”ï¼Œç›¸åï¼Œå…¨æ–‡æ£€ç´¢ä¼šå°†è¾“å…¥çš„æœç´¢ä¸²æ‹†è§£å¼€æ¥ï¼ŒåŽ»å€’æŽ’ç´¢å¼•é‡Œé¢åŽ»ä¸€ä¸€åŒ¹é…ï¼Œåªè¦èƒ½åŒ¹é…ä¸Šä»»æ„ä¸€ä¸ªæ‹†è§£åŽçš„å•è¯ï¼Œå°±å¯ä»¥ä½œä¸ºç»“æžœè¿”å›ž
+phrase searchï¼Œè¦æ±‚è¾“å…¥çš„æœç´¢ä¸²ï¼Œå¿…é¡»åœ¨æŒ‡å®šçš„å­—æ®µæ–‡æœ¬ä¸­ï¼Œå®Œå…¨åŒ…å«ä¸€æ¨¡ä¸€æ ·çš„ï¼Œæ‰å¯ä»¥ç®—åŒ¹é…ï¼Œæ‰èƒ½ä½œä¸ºç»“æžœè¿”å›ž
 
 GET /ecommerce/product/_search
 {
@@ -315,7 +315,7 @@ GET /ecommerce/product/_search
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-6¡¢highlight search£¨¸ßÁÁËÑË÷½á¹û£©
+6ã€highlight searchï¼ˆé«˜äº®æœç´¢ç»“æžœï¼‰
 
 GET /ecommerce/product/_search
 {
