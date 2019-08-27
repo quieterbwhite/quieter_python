@@ -3,6 +3,7 @@
 作者： [Aaron Kili](http://www.tecmint.com/convert-files-to-utf-8-encoding-in-linux/) 译者： [LCTT](https://linux.cn/lctt/) [David Dai](https://linux.cn/lctt/StdioA) | 2016-11-15 09:42   评论: [*2*](https://linux.cn/portal.php?mod=comment&id=7959&idtype=aid) 收藏: *10*    
 
 > https://linux.cn/article-7959-1.html
+> https://shockerli.net/post/linux-tool-iconv/
 
 在这篇教程中，我们将解释字符编码的含义，然后给出一些使用命令行工具将使用某种字符编码的文件转化为另一种编码的例子。最后，我们将一起看一看如何在 Linux 下将使用各种字符编码的文件转化为 UTF-8 编码。
 
