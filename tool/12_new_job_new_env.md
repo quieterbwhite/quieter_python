@@ -98,6 +98,13 @@ ripgrep
 
     - https://www.hi-linux.com/posts/29245.html
 
+jq
+    - jq is like sed for JSON data
+
+    - https://stedolan.github.io/jq/
+
+    - https://www.ibm.com/developerworks/cn/linux/1612_chengg_jq/index.html
+
 EasyScheduler
 
     - 易调度

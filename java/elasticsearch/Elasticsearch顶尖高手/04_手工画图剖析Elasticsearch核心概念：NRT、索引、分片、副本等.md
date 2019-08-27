@@ -30,6 +30,8 @@ elasticsearch，基于lucene，隐藏复杂性，提供简单易用的restful ap
 
 （4）Document&field：文档，es中的最小数据单元，一个document可以是一条客户数据，一条商品分类数据，一条订单数据，通常用JSON数据结构表示，每个index下的type中，都可以去存储多个document。一个document里面有多个field，每个field就是一个数据字段。
 
+![1](./image/04/Elasticsearch近实时概念的解释.png)
+
 product document
 
 {
@@ -77,6 +79,8 @@ type，日化商品type，电器商品type，生鲜商品type
 
 （7）shard：单台机器无法存储大量数据，es可以将一个索引中的数据切分为多个shard，分布在多台服务器上存储。有了shard就可以横向扩展，存储更多数据，让搜索和分析等操作分布到多台服务器上去执行，提升吞吐量和性能。每个shard都是一个lucene index。
 （8）replica：任何一个服务器随时可能故障或宕机，此时shard可能就会丢失，因此可以为每个shard创建多个replica副本。replica可以在shard故障时提供备用服务，保证数据不丢失，多个replica还可以提升搜索操作的吞吐量和性能。primary shard（建立索引时一次设置，不能修改，默认5个），replica shard（随时修改数量，默认1个），默认每个索引10个shard，5个primary shard，5个replica shard，最小的高可用配置，是2台服务器。
+
+![](./image/04/shard和replica的解释.png)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
