@@ -26,3 +26,4 @@ routing = _id，假设_id=1
 
 （4）primary shard数量不可变的谜底
 
+![1](./image/29/document路由原理.png)

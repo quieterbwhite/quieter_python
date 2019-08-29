@@ -5,3 +5,5 @@
 3、接收请求的node返回document给coordinate node
 4、coordinate node返回document给客户端
 5、特殊情况：document如果还在建立索引过程中，可能只有primary shard有，任何一个replica shard都没有，此时可能会导致无法读取到document，但是document完成索引建立之后，primary shard和replica shard就都有了
+
+![1](./image/32/读请求内部原理.png)
