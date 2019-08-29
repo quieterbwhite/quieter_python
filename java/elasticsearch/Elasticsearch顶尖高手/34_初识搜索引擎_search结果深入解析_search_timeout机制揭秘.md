@@ -43,3 +43,4 @@ timeout：默认无timeout，latency平衡completeness，手动指定timeout，t
 timeout=10ms，timeout=1s，timeout=1m
 GET /_search?timeout=10m
 
+![1](./image/34/timeout机制详解.png)

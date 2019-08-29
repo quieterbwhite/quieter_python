@@ -77,5 +77,4 @@ GET /test_index/test_type/_search?from=6&size=3
 
 deep paging性能问题，以及原理深度图解揭秘，很高级的知识点
 
-
-
+![1](./image/36/deep paging图解.png)
