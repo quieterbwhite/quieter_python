@@ -1,0 +1,67 @@
+璇剧▼澶х翰
+
+GET /tvs/sales/_search 
+{
+  "size": 0,
+  "query": {
+    "term": {
+      "brand": {
+        "value": "闀胯櫣"
+      }
+    }
+  },
+  "aggs": {
+    "recent_150d": {
+      "filter": {
+        "range": {
+          "sold_date": {
+            "gte": "now-150d"
+          }
+        }
+      },
+      "aggs": {
+        "recent_150d_avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        }
+      }
+    },
+    "recent_140d": {
+      "filter": {
+        "range": {
+          "sold_date": {
+            "gte": "now-140d"
+          }
+        }
+      },
+      "aggs": {
+        "recent_140d_avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        }
+      }
+    },
+    "recent_130d": {
+      "filter": {
+        "range": {
+          "sold_date": {
+            "gte": "now-130d"
+          }
+        }
+      },
+      "aggs": {
+        "recent_130d_avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        }
+      }
+    }
+  }
+}
+
+aggs.filter锛岄拡瀵圭殑鏄仛鍚堝幓鍋氱殑
+
+濡傛灉鏀緌uery閲岄潰鐨刦ilter锛屾槸鍏ㄥ眬鐨勶紝浼氬鎵

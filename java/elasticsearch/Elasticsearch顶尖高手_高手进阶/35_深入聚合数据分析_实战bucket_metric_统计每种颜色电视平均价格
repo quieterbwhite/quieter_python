@@ -1,0 +1,24 @@
+璇剧▼澶х翰
+
+GET /tvs/sales/_search
+{
+   "size" : 0,
+   "aggs": {
+      "colors": {
+         "terms": {
+            "field": "color"
+         },
+         "aggs": { 
+            "avg_price": { 
+               "avg": {
+                  "field": "price" 
+               }
+            }
+         }
+      }
+   }
+}
+
+鎸夌収color鍘诲垎bucket锛屽彲浠ユ嬁鍒版瘡涓猚olor bucket涓殑鏁伴噺锛岃繖涓粎浠呭彧鏄竴涓猙ucket鎿嶄綔锛宒oc_count鍏跺疄鍙槸es鐨刡ucket鎿嶄綔榛樿鎵ц鐨勪竴涓唴缃甿etric
+
+杩欎竴璁诧紝灏辨槸闄や簡bucket鎿嶄綔锛屽垎缁勶紝杩樿瀵规瘡涓猙ucket鎵ц涓
