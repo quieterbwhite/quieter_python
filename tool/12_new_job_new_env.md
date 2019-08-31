@@ -169,6 +169,12 @@ kiftd
 
     - https://kohgylw.gitee.io/
 
+CDK8S/tkey
+
+    - 以材料最全、示例最多为目标的单点登录系统（SSO）
+
+    - https://gitee.com/cdk8s/tkey
+
 yapi
 
     - YApi 是一个可本地部署的、打通前后端及QA的、可视化的接口管理平台
