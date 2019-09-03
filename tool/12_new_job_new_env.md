@@ -601,9 +601,11 @@ EasyPDF
 
     - 全速下载度盘资源，免受限速困扰！
 
-vscode
+dbeaver
 
-mysql-workbench
+    - Free universal database tool and SQL client http://dbeaver.io
+
+    - https://github.com/dbeaver/dbeaver
 
 mongodb
 

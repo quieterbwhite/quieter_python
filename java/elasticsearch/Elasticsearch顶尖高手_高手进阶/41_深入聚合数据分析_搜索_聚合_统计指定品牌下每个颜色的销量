@@ -1,0 +1,7 @@
+璇剧▼澶х翰
+
+瀹為檯涓婃潵璇达紝鎴戜滑涔嬪墠瀛︿範鐨勬悳绱㈢浉鍏崇殑鐭ヨ瘑锛屽畬鍏ㄥ彲浠ュ拰鑱氬悎缁勫悎璧锋潵浣跨敤
+
+select count(*)
+from tvs.sales
+where brand like "%闀
