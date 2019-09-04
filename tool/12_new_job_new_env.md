@@ -98,6 +98,22 @@ ripgrep
 
     - https://www.hi-linux.com/posts/29245.html
 
+addrparser
+
+    - Tool for parsing longitude/latitude to region info in china 根据经纬度解析省市区信息工具包
+
+    - 离线高效的解析中国范围内的经纬度为省市区信息，省市区信息包括: 行政区划编码、行政区划中文名称、行政区域的中心点经纬度，行政区域的边界点经纬度集合。
+
+    - https://github.com/hsp8712/addrparser
+
+yue-library
+
+    - yue-library是一个基于SpringBoot封装的基础库
+
+    - https://ylyue.cn/#/
+
+    - https://gitee.com/yl-yue/yue-library
+
 jq
     - jq is like sed for JSON data
 
