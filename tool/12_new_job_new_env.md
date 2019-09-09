@@ -98,6 +98,12 @@ ripgrep
 
     - https://www.hi-linux.com/posts/29245.html
 
+GGEditor
+
+    - GGEditor 是阿里巴巴开源的基于 G6 和 React 的可视化图编辑器
+
+    - https://github.com/alibaba/GGEditor
+
 addrparser
 
     - Tool for parsing longitude/latitude to region info in china 根据经纬度解析省市区信息工具包
