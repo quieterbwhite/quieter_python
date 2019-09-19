@@ -98,6 +98,12 @@ ripgrep
 
     - https://www.hi-linux.com/posts/29245.html
 
+spring-cloud-gray
+
+    - Spring Cloud版本控制和灰度starter
+
+    - https://github.com/SpringCloud/spring-cloud-gray
+
 GGEditor
 
     - GGEditor 是阿里巴巴开源的基于 G6 和 React 的可视化图编辑器
@@ -134,6 +140,12 @@ EasyScheduler
     - https://github.com/analysys/EasyScheduler
 
     - Easy Scheduler是一个分布式工作流任务调度系统，主要解决"错综复杂的任务依赖关系，而不能直观监控任务健康状态等问题"。
+
+database-dictionary
+
+    - 鉴于企业开发过程中数据字典难维护，我们团队参考阿里云数据库管理中的数据字典展示，进行了一个克隆。
+ 
+    - https://gitee.com/cdtrh_group/database-dictionary
 
 HanLP
  
