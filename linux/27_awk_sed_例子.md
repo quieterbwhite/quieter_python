@@ -1,5 +1,29 @@
 #### AWK 例子
 
+##### 分隔并提取
+```shell
+cat 32_aq | awk -F'|' '{print $1}'
+```
+
+```shell
+awk分割字符串
+想从目标字符串中，提取想要的字符，可以用awk命令。
+
+例如：
+
+从<version>1.3.1-SNAPSHOT</version>中提取版本号，则可以用命令：awk -F'[<>]' '{print $3}'
+
+# echo "<version>1.3.1-SNAPSHOT</version>"|awk -F'[<>]' '{print $3}'
+
+1.3.1-SNAPSHOT
+
+命令解析：
+
+-F定义了分隔符，默认以空格分割。此处定义了以<>两个分隔符进行分割
+
+print $3，打印分割后的第三列。$0为分割前的整个字符串
+```
+
 ##### 从json文件提取数据, 不用这种方式了, 有好用的工具 jq
 ```shell
 gawk '{print $2}' /media/server/Seagate_data/wenshu_src_original/wenshu_superfast_bw.json | gawk -F ',' '{print $1}' | gawk '{gsub("\"", "");print}' > /media/server/Seagate_data/docid/wenshu_superfast_bw.json
