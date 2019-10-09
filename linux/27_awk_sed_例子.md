@@ -2,7 +2,7 @@
 
 ##### 分隔并提取
 ```shell
-cat 32_aq | awk -F'|' '{print $1}'
+cat 32_aq | awk -F'|' '{print $1}' > /tmp/6kw_sifa_docid
 ```
 
 ```shell

@@ -147,6 +147,19 @@ database-dictionary
  
     - https://gitee.com/cdtrh_group/database-dictionary
 
+gh-ost
+
+    - https://github.com/github/gh-ost
+    - GitHub 的 MySQL 在线更改表定义工具
+    - https://www.infoq.cn/article/github-mysql-gh-ost-online-change-table-definition-tool
+    - https://blog.csdn.net/u012099869/article/details/88423222
+
+pt-online-schema-change
+
+    - 在线修改大表结构
+    - https://www.percona.com/doc/percona-toolkit/2.0/pt-online-schema-change.html
+    - https://segmentfault.com/a/1190000014924677
+
 HanLP
  
     - https://github.com/hankcs/HanLP
