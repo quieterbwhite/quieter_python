@@ -98,6 +98,34 @@ ripgrep
 
     - https://www.hi-linux.com/posts/29245.html
 
+spring-cloud-gray
+
+    - Spring Cloud版本控制和灰度starter
+
+    - https://github.com/SpringCloud/spring-cloud-gray
+
+GGEditor
+
+    - GGEditor 是阿里巴巴开源的基于 G6 和 React 的可视化图编辑器
+
+    - https://github.com/alibaba/GGEditor
+
+addrparser
+
+    - Tool for parsing longitude/latitude to region info in china 根据经纬度解析省市区信息工具包
+
+    - 离线高效的解析中国范围内的经纬度为省市区信息，省市区信息包括: 行政区划编码、行政区划中文名称、行政区域的中心点经纬度，行政区域的边界点经纬度集合。
+
+    - https://github.com/hsp8712/addrparser
+
+yue-library
+
+    - yue-library是一个基于SpringBoot封装的基础库
+
+    - https://ylyue.cn/#/
+
+    - https://gitee.com/yl-yue/yue-library
+
 jq
     - jq is like sed for JSON data
 
@@ -124,6 +152,12 @@ EasyScheduler
     - https://github.com/analysys/EasyScheduler
 
     - Easy Scheduler是一个分布式工作流任务调度系统，主要解决"错综复杂的任务依赖关系，而不能直观监控任务健康状态等问题"。
+
+database-dictionary
+
+    - 鉴于企业开发过程中数据字典难维护，我们团队参考阿里云数据库管理中的数据字典展示，进行了一个克隆。
+ 
+    - https://gitee.com/cdtrh_group/database-dictionary
 
 HanLP
  
