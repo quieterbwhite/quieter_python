@@ -133,6 +133,18 @@ jq
 
     - https://www.ibm.com/developerworks/cn/linux/1612_chengg_jq/index.html
 
+binlog2sql
+
+    - Parse MySQL binlog to SQL you want
+
+    - https://github.com/danfengcao/binlog2sql
+
+Sqoop
+
+    - Sqoop是一个用来将Hadoop和关系型数据库中的数据相互转移的开源工具，可以将一个关系型数据库中的数据导进到Hadoop的HDFS或者HBase等。
+
+    - http://sqoop.apache.org/
+
 EasyScheduler
 
     - 易调度
