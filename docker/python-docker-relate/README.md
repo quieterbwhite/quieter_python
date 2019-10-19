@@ -16,3 +16,14 @@ docker exec -it 1e8aa /bin/bash
     安装python依赖
     $ pip install thrift
 ```
+
+##### docker-compose
+```shell
+docker-compose up -d
+```
+
+##### jar命令
+```shell
+// 查看jar包里面的内容
+jar -tf app.jar
+```
