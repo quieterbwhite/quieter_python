@@ -2,6 +2,8 @@ let a ='                  <title></title><div style="TEXT-ALIGN: center; LINE-HE
 
 // console.log(a);
 
+
+
 let len = a.length;
 console.log(len);
 
@@ -9,6 +11,6 @@ let indexOfTitle = a.indexOf('<title></title>')+15;
 let indexOfExtra = a.indexOf('</div> </div> <div class="detail');
 console.log(indexOfExtra);
 
-let b = a.substring(indexOfTitle, indexOfExtra);
-console.log(b);
+// let b = a.substring(indexOfTitle, indexOfExtra);
+// console.log(b);
 
