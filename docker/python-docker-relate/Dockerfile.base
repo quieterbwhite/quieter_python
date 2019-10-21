@@ -1,0 +1,5 @@
+FROM python:3.6.8
+MAINTAINER xxoo科技有限公司 psky@xxoo.com
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' >/etc/timezone
+RUN pip install thrift -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
