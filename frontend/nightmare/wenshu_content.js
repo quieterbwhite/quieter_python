@@ -1,6 +1,10 @@
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({show: false});
 
+let searchResults = [];
+
+// get task
+
 
 nightmare
     .goto('http://wenshu.court.gov.cn/website/wenshu/181107ANFZ0BXSK4/index.html?docId=db20f235361046c68c7eaad500b0f513')
@@ -11,7 +15,7 @@ nightmare
             const results =  document.querySelectorAll('.PDF_title');
             results.forEach(function(result) {
                     let row = {
-                                    'title':result.innerText,
+                                    'title':result.innerHTML,
                               }
                     //searchResults.push(row);
             });
@@ -20,7 +24,7 @@ nightmare
             
             PDF_pox.forEach(function(result) {
                     let row = {
-                                    'title':result.innerText,
+                                    'title':result.innerHTML,
                               }
                     searchResults.push(row);
             });
@@ -32,6 +36,7 @@ nightmare
             result.forEach(function(r) {
                     console.log('Title: ' + r.title);
             })
+            // save
     })
     .catch(function(e)  {
             console.log(e);
