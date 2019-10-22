@@ -800,7 +800,39 @@ Maven插件，安装后可查看依赖以及冲突，一目了然。
     白鹿 www.bailuzhiku.com
 ```
 
-## pip install
+##### 面试简历
+```
+2019年最新总结，阿里，腾讯，百度，美团，头条等技术面试题目，以及答案，专家出题人分析汇总。
+https://github.com/0voice/interview_internal_reference
+
+关于python的面试题
+https://github.com/kenwoodjw/python_interview_question
+
+https://github.com/haiyusun/Interview-Notes/blob/master/面试问题总结.md
+
+秒杀系统设计与实现.互联网工程师进阶与分析
+https://github.com/qiurunze123/miaosha
+
+高并发-高可靠-高性能three-high-import导入系统-高并发多线程进阶
+https://github.com/qiurunze123/threadandjuc
+
+《互联网面试笔记》收集和分析互联网常见面试题
+https://github.com/zhengjianglong915/note-of-interview
+
+一份涵盖大部分Java程序员所需要掌握的核心知识
+https://github.com/Snailclimb/JavaGuide
+
+Java程序员简历模板
+https://github.com/geekcompany/ResumeSample/blob/master/java.md
+
+包含简历常用例句
+https://github.com/resumejob/awesome-resume
+
+Tech Interview Guide 技术面试必备基础知识
+https://github.com/CyC2018/CS-Notes
+```
+
+##### pip install
 ```
 arrow   时间处理
 
