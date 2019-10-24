@@ -110,6 +110,14 @@ GGEditor
 
     - https://github.com/alibaba/GGEditor
 
+jsdom
+
+    - A JavaScript implementation various web standards, for use with Node.js
+
+    - https://github.com/jsdom/jsdom
+
+    - JSDOM是用nodejs实现的用于测试的虚拟浏览器。
+
 addrparser
 
     - Tool for parsing longitude/latitude to region info in china 根据经纬度解析省市区信息工具包
