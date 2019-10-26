@@ -112,4 +112,32 @@ Swarm Node 加入工作节点 - 172.16.0.113
     (Not all processes could be identified, non-owned process info
     will not be shown, you would have to be root to see it all.)
     tcp6       0      0 :::8080                 :::*                    LISTEN      -
+
+网页访问 http://172.16.0.224:8080/ & http://172.16.0.113:8080/ 可以正常访问到 Nginx
+
+    这就看到我们的 Ingress 网络生效了, 在我们的每一个Node节点都暴露了8080端口, 通过虚拟IP的方式访问到最终提供服务的Nginx容器
+
+    但是现在是一个节点在提供服务,不高可用,应该在每个节点上都启动服务,保证服务高可用
+
+把Nginx变成3个节点
+
+    $ docker service scale swamnginx=2
+    swamnginx scaled to 2
+    overall progress: 2 out of 2 tasks 
+    1/2: running   [==================================================>] 
+    2/2: running   [==================================================>] 
+    verify: Service converged
+
+查看服务列表 - 可以看到Nginx服务已经有两个实例了, 这时候在访问服务的时候就会通过Vip的方式自动负载均衡
+
+    $ docker service ls
+    ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+    qscbto172w2s        swamnginx           replicated          2/2                 nginx:latest        *:8080->80/tcp
+    hhugk13lis4q        test1               replicated          1/1                 alpine:latest
+
+验证负载均衡
+
+    修改每个实例的Nginx页面,这样才能观察到负载均衡是否起作用
+
+    
 ```
