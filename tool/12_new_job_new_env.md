@@ -810,6 +810,9 @@ Maven插件，安装后可查看依赖以及冲突，一目了然。
 
 ##### 面试简历
 ```
+https://github.com/shishan100
+中华石杉--互联网Java进阶面试训练营
+
 2019年最新总结，阿里，腾讯，百度，美团，头条等技术面试题目，以及答案，专家出题人分析汇总。
 https://github.com/0voice/interview_internal_reference
 
