@@ -141,6 +141,10 @@ jq
 
     - https://www.ibm.com/developerworks/cn/linux/1612_chengg_jq/index.html
 
+pdfminer
+
+    - Python PDF Parser https://euske.github.io/pdfminer/
+
 binlog2sql
 
     - Parse MySQL binlog to SQL you want
