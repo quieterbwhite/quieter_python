@@ -1,5 +1,20 @@
 #### AWK 例子
 
+#### 文本文件中首尾增加字符
+```
+在每行的头添加字符，比如"HEAD"，命令如下：
+
+sed 's/^/HEAD&/g' test.file
+
+在每行的行尾添加字符，比如“TAIL”，命令如下：
+
+sed 's/$/&TAIL/g' test.file
+
+3.如果想导出文件，在命令末尾加"> outfile_name"；如果想在原文件上更改，添加选项"-i"，如
+
+4.也可以把两条命令和在一起，在test.file的每一行的行头和行尾分别添加字符"HEAD"、“TAIL”，命令：sed '/./{s/^/HEAD&/;s/$/&TAIL/}' test.file
+```
+
 ##### 分隔并提取
 ```shell
 cat 32_aq | awk -F'|' '{print $1}' > /tmp/6kw_sifa_docid
