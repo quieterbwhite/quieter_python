@@ -141,6 +141,10 @@ jq
 
     - https://www.ibm.com/developerworks/cn/linux/1612_chengg_jq/index.html
 
+http://mvnrepository.com/
+
+    - java mvn 仓库
+
 pdfminer
 
     - Python PDF Parser https://euske.github.io/pdfminer/
