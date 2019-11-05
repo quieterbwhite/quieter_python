@@ -566,6 +566,12 @@ TIKA
 
     - http://tika.apache.org/
 
+html-pdf
+
+    - html2pdf html2png
+
+    - cnpm install html-pdf -g
+
 mitmproxy
 
     - 跨平台代理软件
