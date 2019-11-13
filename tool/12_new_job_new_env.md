@@ -104,6 +104,12 @@ spring-cloud-gray
 
     - https://github.com/SpringCloud/spring-cloud-gray
 
+go-mysql-elasticsearch
+
+    - go-mysql-elasticsearch 实现数据同步
+
+    - https://github.com/siddontang/go-mysql-elasticsearch
+
 GGEditor
 
     - GGEditor 是阿里巴巴开源的基于 G6 和 React 的可视化图编辑器
