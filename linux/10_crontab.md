@@ -1,10 +1,15 @@
 #### crontab
 
+> https://crontab.guru/#0_*/2_*_*_*
+> https://tool.lu/crontab/
+
 ##### 编辑crontab文件
 ```
 crontab -e
 
 */1 * * * * sh /home/bwhite/tmp/b.sh
+
+0 */2 * * * echo `date` >> /tmp/crontab-test.log
 ```
 
 ##### b.sh
