@@ -2,3 +2,5 @@ nohup spark2-submit --master yarn --deploy-mode client --class com.ufm.dp.analys
 
 
 nohup spark2-submit --master yarn --deploy-mode client --class com.ufm.dp.analysis.ods2dw.SiFaProcess --driver-memory 4G --num-executors 4 --executor-memory 4g --executor-cores 4 --driver-class-path hdfs:///user/oozie/phoenix/phoenix-4.14.1-HBase-1.2-client.jar,hdfs:///user/oozie/phoenix/phoenix-spark-4.14.1-HBase-1.2.jar --jars hdfs:///user/oozie/phoenix/phoenix-4.14.1-HBase-1.2-client.jar,hdfs:///user/oozie/phoenix/phoenix-spark-4.14.1-HBase-1.2.jar /home/libo/jar/sifa-ods2dw-v3.jar 1>ods2dw_sfv3_success.log 2>ods2dw_sfv3_error.log &
+
+nohup spark2-submit --master yarn --deploy-mode client --class com.ufm.dp.analysis.dw2hbase.SiFaToHbase --driver-memory 2G --num-executors 1 --executor-memory 2g --executor-cores 2 --driver-class-path hdfs:///user/oozie/phoenix/phoenix-4.14.1-HBase-1.2-client.jar,hdfs:///user/oozie/phoenix/phoenix-spark-4.14.1-HBase-1.2.jar --jars hdfs:///user/oozie/phoenix/phoenix-4.14.1-HBase-1.2-client.jar,hdfs:///user/oozie/phoenix/phoenix-spark-4.14.1-HBase-1.2.jar /home/libo/jar/data-analysis-1.0-SNAPSHOT.jar 1>sifa_success.log 2>sifa_error.log &
