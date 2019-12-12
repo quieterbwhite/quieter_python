@@ -99,6 +99,8 @@ ranger
 
     - sudo apt install ranger
 
+    - screen
+
 ripgrep
 
     - Ripgrep 是命令行下一个基于行的搜索工具,RipGrep 官方号称比其它类似工具在搜索速度上快上 N 倍，VSCode 也从 1.11 版本开始默认将 RipGrep 做为其搜索工具，由此其功能强大可见一斑。
@@ -808,6 +810,10 @@ rundeck   -   后台任务
 crontab-ui
 
     - 后台进程管理工具Supervisor + superlance（Supervisor 的增强插件工具集）
+
+pm2
+
+    - node 进程管理工具
 ```
 
 ##### idea 插件
