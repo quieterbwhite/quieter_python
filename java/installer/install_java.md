@@ -7,6 +7,20 @@
 3. gradle
 ```
 
+## 配置环境变量
+```
+export JAVA_HOME=/home/bwhite/software/jdk1.8.0_231
+export CLASSPATH=$:CLASSPATH:$JAVA_HOME/lib/
+export PATH=$PATH:$JAVA_HOME/bin
+
+export M2_HOME=/home/bwhite/software/apache-maven-3.6.3
+export CLASSPATH=$CLASSPATH:$M2_HOME/lib
+export PATH=$PATH:$M2_HOME/bin
+
+export NODE_HOME=/home/bwhite/software/node-v6.11.5-linux-x64
+export PATH=$NODE_HOME/bin:$PATH
+```
+
 
 ##搭建java环境
 ```
@@ -24,6 +38,12 @@ http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.h
     JAVA_HOME=/opt/jdk1.8.0_112
     PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
     CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$JAVA_HOME/jre/lib/rt.jar:$CLASSPATH
+
+    或者:
+
+    export JAVA_HOME=/home/bwhite/software/jdk1.8.0_231
+    export CLASSPATH=$:CLASSPATH:$JAVA_HOME/lib/
+    export PATH=$PATH:$JAVA_HOME/bin
 
     source ~/.bashrc
 

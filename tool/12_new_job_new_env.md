@@ -77,6 +77,15 @@ IJPay
 
     - IJPay 让支付触手可及，封装了微信支付、支付宝支付、银联支付常用的支付方式以及各种常用的接口。
 
+BigDataParty
+
+    - https://github.com/iamabug/BigDataParty
+
+    - 大数据组件 All-in-One 的 Dockerfile
+
+electronic-wechat 
+
+    https://github.com/geeeeeeeeek/electronic-wechat/releases
 
 imgcook
 
@@ -166,6 +175,12 @@ Sqoop
     - Sqoop是一个用来将Hadoop和关系型数据库中的数据相互转移的开源工具，可以将一个关系型数据库中的数据导进到Hadoop的HDFS或者HBase等。
 
     - http://sqoop.apache.org/
+
+lmstfy
+
+    基于 Redis 实现的简单任务队列(Task Queue)服务
+
+    https://github.com/meitu/lmstfy
 
 EasyScheduler
 

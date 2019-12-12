@@ -28,7 +28,6 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted univer
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
-12345678910111213
 ```
 
 1. 添加完成后我们执行以下命令，重新同步包的索引文件。

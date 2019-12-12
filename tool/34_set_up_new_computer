@@ -1,0 +1,41 @@
+set up a new computer:
+
+sudo apt update
+
+sudo apt upgrade
+
+sudo apt install build-essential dpkg-dev vim openssh-server openssh-client python-dev python3-dev python-pip python3-pip terminator git libmysqlclient-dev openssl libssl-dev
+
+https://pinyin.sogou.com/linux/?r=pinyin
+
+  sudo apt install fcitx
+
+  double click pinyin.deb to install in software center
+
+  restart computer
+
+  click keybord on the title bar and select sogou pinyin
+
+  ctrl + space to switch to pinyin
+
+https://pan.baidu.com/download
+
+https://github.com/nashaofu/dingtalk
+
+wps
+
+    https://www.wps.cn/product/wpslinux#
+
+jdk
+
+
+maven
+    http://maven.apache.org/download.cgi
+
+ideaIU
+
+pycharm
+
+
+
+
