@@ -53,6 +53,18 @@ spring-boot-plus
 
     - https://gitee.com/geekidea/spring-boot-plus
 
+sealyun | kubernetes安装
+
+    - kubernetes高可用安装工具，一条命令，离线安装，包含所有依赖，内核负载不依赖haproxy keepalived,纯golang开发,99年证书,支持v1.16.3 v1.15.6 v1.14.9 v1.17.0! https://sealyun.com
+
+    - https://github.com/fanux/sealos
+
+codis
+
+    - Codis 是一个分布式 Redis 解决方案
+
+    - https://github.com/CodisLabs/codis/blob/release3.2/doc/tutorial_zh.md
+
 MyExcel
 
     - MyExcel，是一个集导入、导出、加密Excel等多项功能的工具包
@@ -70,6 +82,12 @@ qidianliusong/redis-shared-lock
     - https://gitee.com/lsongiu/redis-shared-lock
 
     - 基于redis的分布式共享锁，使用注解的方式对方法加锁
+
+skrshop.tech
+
+   - 电商设计手册 
+
+   - http://skrshop.tech/#/
 
 IJPay
 
