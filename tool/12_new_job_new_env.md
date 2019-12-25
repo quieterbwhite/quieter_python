@@ -119,6 +119,12 @@ ranger
 
     - screen
 
+alidns
+
+    - http://alidns.com/
+
+    - 国内首家支持IPv4/v6双栈的公共DNS
+
 ripgrep
 
     - Ripgrep 是命令行下一个基于行的搜索工具,RipGrep 官方号称比其它类似工具在搜索速度上快上 N 倍，VSCode 也从 1.11 版本开始默认将 RipGrep 做为其搜索工具，由此其功能强大可见一斑。
