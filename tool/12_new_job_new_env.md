@@ -169,6 +169,8 @@ yue-library
 
     - https://gitee.com/yl-yue/yue-library
 
+xmind
+
 jq
     - jq is like sed for JSON data
 
