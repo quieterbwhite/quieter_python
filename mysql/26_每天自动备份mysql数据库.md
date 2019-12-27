@@ -21,17 +21,17 @@
 ```bash
 #!/bin/bash
 #数据库IP
-dbserver='127.0.0.1'
+dbserver='192.168.0.137'
 #数据库用户名
 dbuser='root'
 #数据密码
-dbpasswd='********'
+dbpasswd='pwd'
 #数据库,如有多个库用空格分开
-dbname='back01'
+dbname='dbname'
 #备份时间
 backtime=`date +%Y%m%d`
 #备份输出日志路径
-logpath='/data/mysqlbak/'
+logpath='/home/psky/data/mysql_backup'
 
 
 echo "################## ${backtime} #############################" 
@@ -40,18 +40,19 @@ echo "开始备份"
 echo "" >> ${logpath}/mysqlback.log
 echo "-------------------------------------------------" >> ${logpath}/mysqlback.log
 echo "备份时间为${backtime},备份数据库表 ${dbname} 开始" >> ${logpath}/mysqlback.log
+echo "备份位置: ${logpath}/${backtime}.sql" >> ${logpath}/mysqlback.log
 #正式备份数据库
 for table in $dbname; do
 source=`mysqldump -h ${dbserver} -u ${dbuser} -p${dbpasswd} ${table} > ${logpath}/${backtime}.sql` 2>> ${logpath}/mysqlback.log;
 #备份成功以下操作
 if [ "$?" == 0 ];then
-cd $datapath
+cd $logpath
 #为节约硬盘空间，将数据库压缩
-tar zcf ${table}${backtime}.tar.gz ${backtime}.sql > /dev/null
+tar zcf ${table}_${backtime}.tar.gz ${backtime}.sql > /dev/null
 #删除原始文件，只留压缩后文件
-rm -f ${datapath}/${backtime}.sql
+rm -f ${logpath}/${backtime}.sql
 #删除七天前备份，也就是只保存7天内的备份
-find $datapath -name "*.tar.gz" -type f -mtime +7 -exec rm -rf {} \; > /dev/null 2>&1
+find $logpath -name "*.tar.gz" -type f -mtime +7 -exec rm -rf {} \; > /dev/null 2>&1
 echo "数据库表 ${dbname} 备份成功!!" >> ${logpath}/mysqlback.log
 else
 #备份失败则进行以下操作
@@ -65,15 +66,15 @@ echo "################## ${backtime} #############################"
 脚本写好了，你要记得为脚本加上执行权限：
 
 ```shell
-#chmod +x /data/mysqlbak/mysqlbak.sh
+# chmod +x /data/mysqlbak/mysqlbak.sh
 ```
 
 **4、配置定时任务执行脚本**
 
 ```shell
-#crontab -e
+# crontab -e
 
-59 23 * * * /data/mysqlbak/mysqlbak.sh
+59 23 * * * /home/psky/data/mysql_backup/mysqlbak.sh
 ```
 
 **参数说明：**
@@ -93,3 +94,18 @@ echo "################## ${backtime} #############################"
 ​    d: 一星期内的天（0~6，0为星期天）。
 
 ​    提示：最好你先执行一下脚本能不能跑通，然后在写到crontab中，等执行完了，进入/data/mysqlbak/目录查看一下有没有备份文件，如果有，则表示脚本执行成功，记得不要搞错了备份的用户和密码。
+
+**5、恢复数据**
+
+```shell
+$ sudo apt install mysql-client
+
+$ mysql --host 192.168.0.137 -uroot -ppwd
+
+# create database dbname default charset=utf8mb4;
+
+# use dbname;
+
+# source ./dbname_20191227.sql;
+```
+
