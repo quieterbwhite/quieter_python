@@ -104,11 +104,23 @@ spring-cloud-gray
 
     - https://github.com/SpringCloud/spring-cloud-gray
 
+DataSphereStudio
+
+    - DataSphere Studio（简称DSS）是微众银行大数据平台——WeDataSphere，自研的一站式数据应用开发管理门户。
+
+    - https://github.com/WeBankFinTech/DataSphereStudio/blob/master/README-ZH.md
+
 go-mysql-elasticsearch
 
     - go-mysql-elasticsearch 实现数据同步
 
     - https://github.com/siddontang/go-mysql-elasticsearch
+
+mysql_monitor
+
+    - MySQL Monitor面向研发人员图形可视化监控工具
+
+    - https://github.com/hcymysql/mysql_monitor
 
 GGEditor
 
