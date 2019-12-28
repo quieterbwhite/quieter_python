@@ -1,4 +1,11 @@
-# 安装最新版　node
+#### 安装最新版　node
+
+##### node 历史版本
+```
+https://npm.taobao.org/mirrors/node/
+
+https://nodejs.org/zh-cn/download/releases/
+```
 
 ```
 http://nodejs.cn/download/  

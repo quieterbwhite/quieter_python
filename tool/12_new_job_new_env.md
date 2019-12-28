@@ -53,6 +53,18 @@ spring-boot-plus
 
     - https://gitee.com/geekidea/spring-boot-plus
 
+sealyun | kubernetes安装
+
+    - kubernetes高可用安装工具，一条命令，离线安装，包含所有依赖，内核负载不依赖haproxy keepalived,纯golang开发,99年证书,支持v1.16.3 v1.15.6 v1.14.9 v1.17.0! https://sealyun.com
+
+    - https://github.com/fanux/sealos
+
+codis
+
+    - Codis 是一个分布式 Redis 解决方案
+
+    - https://github.com/CodisLabs/codis/blob/release3.2/doc/tutorial_zh.md
+
 MyExcel
 
     - MyExcel，是一个集导入、导出、加密Excel等多项功能的工具包
@@ -71,12 +83,27 @@ qidianliusong/redis-shared-lock
 
     - 基于redis的分布式共享锁，使用注解的方式对方法加锁
 
+skrshop.tech
+
+   - 电商设计手册 
+
+   - http://skrshop.tech/#/
+
 IJPay
 
     - https://gitee.com/javen205/IJPay
 
     - IJPay 让支付触手可及，封装了微信支付、支付宝支付、银联支付常用的支付方式以及各种常用的接口。
 
+BigDataParty
+
+    - https://github.com/iamabug/BigDataParty
+
+    - 大数据组件 All-in-One 的 Dockerfile
+
+electronic-wechat 
+
+    https://github.com/geeeeeeeeek/electronic-wechat/releases
 
 imgcook
 
@@ -89,6 +116,14 @@ ranger
     - 命令行浏览文件系统
 
     - sudo apt install ranger
+
+    - screen
+
+alidns
+
+    - http://alidns.com/
+
+    - 国内首家支持IPv4/v6双栈的公共DNS
 
 ripgrep
 
@@ -152,6 +187,8 @@ yue-library
 
     - https://gitee.com/yl-yue/yue-library
 
+xmind
+
 jq
     - jq is like sed for JSON data
 
@@ -178,6 +215,12 @@ Sqoop
     - Sqoop是一个用来将Hadoop和关系型数据库中的数据相互转移的开源工具，可以将一个关系型数据库中的数据导进到Hadoop的HDFS或者HBase等。
 
     - http://sqoop.apache.org/
+
+lmstfy
+
+    基于 Redis 实现的简单任务队列(Task Queue)服务
+
+    https://github.com/meitu/lmstfy
 
 EasyScheduler
 
@@ -805,6 +848,10 @@ rundeck   -   后台任务
 crontab-ui
 
     - 后台进程管理工具Supervisor + superlance（Supervisor 的增强插件工具集）
+
+pm2
+
+    - node 进程管理工具
 ```
 
 ##### idea 插件
