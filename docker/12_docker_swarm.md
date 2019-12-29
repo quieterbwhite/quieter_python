@@ -1,5 +1,10 @@
 #### Docker Swarm
 
+##### 参考
+```
+https://blog.51cto.com/ganbing/2090290
+```
+
 ##### 搭建集群
 ```shell
 

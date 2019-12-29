@@ -11,6 +11,8 @@
 
     https://opsx.alibaba.com/?lang=zh-CN
 
+    https://mirrors.pinganyun.com/
+
 1. 换系统源
 
     https://wiki.ubuntu.com.cn/%E6%BA%90%E5%88%97%E8%A1%A8
@@ -52,6 +54,14 @@ spring-boot-plus
     - spring-boot-plus集成Spring Boot 2.1.6,Mybatis,Mybatis Plus,Druid,FastJson,Redis,Rabbit MQ,Kafka等，可使用代码生成器快速开发项目
 
     - https://gitee.com/geekidea/spring-boot-plus
+
+kind | kubernetes安装
+
+    - Kubernetes IN Docker - local clusters for testing Kubernetes https://kind.sigs.k8s.io/
+
+    - https://github.com/kubernetes-sigs/kind
+
+    - https://cloud.tencent.com/developer/article/1512045
 
 sealyun | kubernetes安装
 
@@ -615,9 +625,13 @@ natapp
 
     - https://natapp.cn/article/nohup
 
-jdk
+serveo
 
-node
+    - 只使用ssh实现内网穿透
+
+    - https://serveo.net/
+
+    - https://cloud.tencent.com/developer/article/1507091
 
 TIKA
 

@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+docker_mysql_master_slave/
+docker_mysql_master_slave_2/
+
 # C extensions
 *.so
 
