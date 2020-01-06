@@ -55,6 +55,18 @@ spring-boot-plus
 
     - https://gitee.com/geekidea/spring-boot-plus
 
+lantern
+
+    - https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
+
+jetbrains 激活码
+
+    - http://www.medeming.com/
+
+    - https://www.ruanfun.com/313.html
+
+    - 雨梦coder
+
 kind | kubernetes安装
 
     - Kubernetes IN Docker - local clusters for testing Kubernetes https://kind.sigs.k8s.io/
@@ -225,6 +237,12 @@ Sqoop
     - Sqoop是一个用来将Hadoop和关系型数据库中的数据相互转移的开源工具，可以将一个关系型数据库中的数据导进到Hadoop的HDFS或者HBase等。
 
     - http://sqoop.apache.org/
+
+weasyprint
+
+    - https://weasyprint.org/
+
+    - html转pdf
 
 lmstfy
 

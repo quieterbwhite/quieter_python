@@ -37,6 +37,7 @@ docker-build-step
 Docker plugin
 Gitlab Hook Plugin
 GitLab Plugin
+SSH Plugin
 ```
 
 
