@@ -81,11 +81,23 @@ sealyun | kubernetes安装
 
     - https://github.com/fanux/sealos
 
+kk-anti-reptile
+
+    - 可快速接入的反爬虫、接口防盗刷spring boot stater组件
+
+    - https://gitee.com/kekingcn/kk-anti-reptile
+
 codis
 
     - Codis 是一个分布式 Redis 解决方案
 
     - https://github.com/CodisLabs/codis/blob/release3.2/doc/tutorial_zh.md
+
+WeTrident
+
+    - 包含开发框架、质量套件、基础运营能力的一站式金融App开发套件，帮助开发者快速开发可正式上线运营的App。
+
+    - https://gitee.com/WeBank/WeTrident
 
 MyExcel
 
@@ -105,6 +117,20 @@ qidianliusong/redis-shared-lock
 
     - 基于redis的分布式共享锁，使用注解的方式对方法加锁
 
+    - https://gitee.com/kekingcn/spring-boot-klock-starter
+
+kkFileView
+
+    - 使用spring boot打造文件文档在线预览项目解决方案
+
+    - https://gitee.com/kekingcn/file-online-preview
+
+kkbida
+
+    - 解决异构系统间消息通知时保证消息必达
+
+    - https://gitee.com/kekingcn/kkbida
+
 skrshop.tech
 
    - 电商设计手册 
@@ -116,6 +142,12 @@ IJPay
     - https://gitee.com/javen205/IJPay
 
     - IJPay 让支付触手可及，封装了微信支付、支付宝支付、银联支付常用的支付方式以及各种常用的接口。
+
+pay-java-parent
+
+    - 全能第三方支付对接Java开发工具包
+
+    - https://gitee.com/egzosn/pay-java-parent
 
 V-Mock
 
@@ -648,6 +680,8 @@ natapp
     - https://natapp.cn/
 
     - https://natapp.cn/article/nohup
+
+    - 魔法隧道 http://www.mofasuidao.cn/
 
 serveo
 
