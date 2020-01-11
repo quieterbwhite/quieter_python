@@ -67,7 +67,7 @@ jetbrains 激活码
 
     - 雨梦coder
 
-    - https://www.luymm.com/archives/332/  密码：idea20
+    - https://www.luymm.com/archives/332/  idea2020
 
 kind | kubernetes安装
 
