@@ -67,6 +67,8 @@ jetbrains 激活码
 
     - 雨梦coder
 
+    - https://www.luymm.com/archives/332/  密码：idea20
+
 kind | kubernetes安装
 
     - Kubernetes IN Docker - local clusters for testing Kubernetes https://kind.sigs.k8s.io/
