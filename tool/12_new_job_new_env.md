@@ -59,6 +59,20 @@ lantern
 
     - https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
 
+wine
+
+    - https://wiki.winehq.org/Ubuntu_zhcn
+
+wine-wechat
+
+    - https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu
+
+    - https://blog.csdn.net/qq_37624415/article/details/82228572  deepin-wine安装以及解决乱码问题
+
+    - https://zhuanlan.zhihu.com/p/68117556  Ubuntu上的QQ/TIM和微信究极方案
+
+    - https://blog.csdn.net/qq_39762401/article/details/98609633  Ubuntu 中安装deepin-wine 及 解决乱码问题
+
 jetbrains 激活码
 
     - http://www.medeming.com/
@@ -68,6 +82,8 @@ jetbrains 激活码
     - 雨梦coder
 
     - https://www.luymm.com/archives/332/  idea2020
+
+    - https://zhile.io/2018/08/17/jetbrains-license-server-crack.html
 
 kind | kubernetes安装
 
@@ -132,6 +148,12 @@ kkbida
     - 解决异构系统间消息通知时保证消息必达
 
     - https://gitee.com/kekingcn/kkbida
+
+reduce
+
+    - 短网址平台，Coody Framework首秀，自写IOC、MVC、ORM、TASK、JSON框架、自写Http服务器、0.5秒启动，全项目(带前端)仅5.5M（低配服可运行）
+
+    - https://gitee.com/coodyer/reduce
 
 skrshop.tech
 
@@ -271,6 +293,12 @@ binlog2sql
     - Parse MySQL binlog to SQL you want
 
     - https://github.com/danfengcao/binlog2sql
+
+kkbinlog
+
+    - 支持mysql、MongoDB数据变更订阅分发
+
+    - https://gitee.com/kekingcn/kkbinlog
 
 Sqoop
 
