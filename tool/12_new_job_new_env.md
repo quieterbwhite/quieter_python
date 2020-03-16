@@ -137,6 +137,12 @@ qidianliusong/redis-shared-lock
 
     - https://gitee.com/kekingcn/spring-boot-klock-starter
 
+Yearning
+
+    - Yearning Mysql SQL审核平台
+
+    - http://yearning.io
+
 kkFileView
 
     - 使用spring boot打造文件文档在线预览项目解决方案
@@ -161,11 +167,33 @@ skrshop.tech
 
    - http://skrshop.tech/#/
 
+Jenkins 中国定制发行版
+
+    - https://gitee.com/jenkins-zh/docker-zh
+
+实时风控引擎
+
+    - https://gitee.com/freshday/radar
+
+    - 实时风控引擎(Risk Engine)，自定义规则引擎(Rule Script)，完美支持中文，适用于反欺诈(Anti-fraud)应用场景，开箱即用！！！移动互联网时代的风险管理利器，你 Get 到了吗？
+
+easypoi
+
+    - POI 工具类,Excel的快速导入导出,Excel模板导出,Word模板导出,可以仅仅5行代码就可以完成Excel的导入导出,修改导出格式简单粗暴,快速有效,easypoi值得你尝试
+
+    - https://gitee.com/lemur/easypoi
+
 IJPay
 
     - https://gitee.com/javen205/IJPay
 
     - IJPay 让支付触手可及，封装了微信支付、支付宝支付、银联支付常用的支付方式以及各种常用的接口。
+
+spring-boot-pay
+
+    - https://gitee.com/52itstyle/spring-boot-pay
+
+    - 支付服务：支付宝，微信，银联详细代码案例；支付API文档、持续更新中
 
 pay-java-parent
 
