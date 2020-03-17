@@ -1046,6 +1046,11 @@ https://github.com/zhengjianglong915/note-of-interview
 一份涵盖大部分Java程序员所需要掌握的核心知识
 https://github.com/Snailclimb/JavaGuide
 
+Java工程师面试复习指南
+https://github.com/h2pl/Java-Tutorial
+https://www.javadoop.com/
+https://xilidou.com/
+
 Java程序员简历模板
 https://github.com/geekcompany/ResumeSample/blob/master/java.md
 
