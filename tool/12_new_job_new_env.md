@@ -183,6 +183,34 @@ easypoi
 
     - https://gitee.com/lemur/easypoi
 
+idea插件
+
+    - https://mp.weixin.qq.com/s/xMwGAL_7sGkmnFvWZroVPw
+
+    - Background Image Plus
+
+    - CodeGlance
+
+    - Translation
+
+    - Rainbow Brackets
+
+    - Grep Console
+
+    - Statistic
+
+    - Markdown Navigator
+
+    - RestfulToolkit
+
+    - GsonFormat
+
+    - MyBatis Log Plugin
+
+    - Free Mybatis plugin
+
+    - 
+
 IJPay
 
     - https://gitee.com/javen205/IJPay
