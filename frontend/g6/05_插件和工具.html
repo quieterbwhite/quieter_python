@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div id="mountNode"></div>
+    <div id="container"></div>
 
     <!-- 引入 G6 -->
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.1.0/build/g6.js"></script>
@@ -43,39 +43,66 @@
         // 实例化 grid 插件
         const grid = new Grid();
 
+        const width = document.getElementById('container').scrollWidth;
+        const height = document.getElementById('container').scrollHeight || 1000;
+
         const graph = new G6.Graph({
-            container: 'mountNode',
-            width: 800,
-            height: 600,
+            container: 'container',
+            width,
+            height,
+
+            animate: true,           // Boolean，可选，切换布局时是否使用动画过度
 
             plugins: [minimap, grid],          // 将 minimap, grid 实例配置到图上
 
             // 节点不同状态下的样式集合
             nodeStateStyles: {
+                active: {
+                    opacity: 1,
+                    fill: 'red',
+                },
+                inactive: {
+                    opacity: 0.6,
+                },
                 // 鼠标 hover 上节点，即 hover 状态为 true 时的样式
                 hover: {
-                    fill: 'lightsteelblue'
+                    fill: 'red',
+                    stroke: 'red'
                 },
                 // 鼠标点击节点，即 click 状态为 true 时的样式
                 click: {
-                    stroke: '#000',
+                    stroke: 'red',
                     lineWidth: 3
                 }
             },
             // 节点不同状态下的样式集合
             edgeStateStyles: {
+                active: {
+                    stroke: 'red',
+                },
                 // 鼠标点击边，即 click 状态为 true 时的样式
                 click: {
-                    stroke: 'steelblue'
+                    stroke: 'red'
                 }
             },
 
             modes: {
                 // 允许拖拽画布、放缩画布、拖拽节点
                 default: [
-                    'drag-canvas',
-                    'zoom-canvas',
-                    'drag-node',
+                    {
+                        type: 'activate-relations',   // 当鼠标移到某节点时，突出显示该节点以及与其直接关联的节点和连线；
+                        // resetSelected: true
+                    },
+                    'click-select',    // 点击选中节点，再次点击节点或点击 Canvas 取消选中状态, 按住 Shift 键可多选
+                    'drag-canvas',      // 拖拽画布
+                    {
+                        type: 'zoom-canvas',    // 缩放画布
+                        sensitivity: 8
+                    },
+                    {
+                        type: 'drag-node',    // 拖拽节点
+                        enableDelegate: false
+                    },
                     {
                         type: 'tooltip', // 节点提示框
                         formatText(model) {
@@ -98,9 +125,12 @@
             },
 
             layout: {                // Object，可选，布局的方法及其配置项，默认为 random 布局。
-                type: 'force',         // 指定为力导向布局
-                preventOverlap: true,  // 防止节点重叠
-                linkDistance: 250, // 指定边距离为100
+                type: 'dagre',         // 指定为力导向布局
+                preventOverlap: false,  // 防止节点重叠
+                rankdir: 'TB',
+                nodesep: 40,
+                ranksep: 120,
+                // linkDistance: 300, // 指定边距离为100
                 // nodeSize: 30        // 节点大小，用于算法中防止节点重叠时的碰撞检测。由于已经在上一节的元素配置中设置了每个节点的 size 属性，则不需要在此设置 nodeSize。
             },
 
@@ -111,16 +141,29 @@
                 size: 50, // 节点大小
                 // 节点样式配置
                 style: {
-                    fill: 'steelblue',   // 节点填充色
-                    stroke: '#666',      // 节点描边色
-                    lineWidth: 1         // 节点描边粗细
+                    // fill: 'steelblue',   // 节点填充色
+                    // stroke: '#666',      // 节点描边色
+                    fill: '#DEE9FF',
+                    stroke: '#5B8FF9',
+                    lineWidth: 5,         // 节点描边粗细
+                    radius: 10
                 },
                 // 节点上的标签文本配置
                 labelCfg: {
                     style: {
                         fill: '#fff'  // 节点标签文字颜色
                     }
+                },
+                /*
+                linkPoints: {
+                    top: true,
+                    bottom: true,
+                    left: true,
+                    right: true,
+                    fill: '#fff',
+                    size: 5
                 }
+                */
             },
             // 边在默认状态下的样式配置（style）和其他配置
             defaultEdge: {
@@ -135,8 +178,9 @@
             },
         });
         const main = async () => {
+            // 'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json'
             const response = await fetch(
-                'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json'
+                'http://127.0.0.1:8000/'
             );
             const remoteData = await response.json();
             const nodes = remoteData.nodes;
@@ -145,24 +189,44 @@
                 if (!node.style) {
                     node.style = {};
                 }
-                node.style.lineWidth = 1;
+                node.style.lineWidth = 2;
                 node.style.stroke = '#666';
                 node.style.fill = 'steelblue';
 
                 // 根据节点数据中的 class 属性配置图形
                 switch (node.class) {
                     case 'c0': {
-                        node.shape = 'circle';  // class = 'c0' 时节点图形为 circle
+                        node.shape = 'star';  // class = 'c0' 时节点图形为 circle
                         break;
                     }
                     case 'c1': {
                         node.shape = 'rect';   // class = 'c1' 时节点图形为 rect
-                        node.size = [35, 20]; // class = 'c1' 时节点大小
+                        node.size = [70, 40]; // class = 'c1' 时节点大小
                         break;
                     }
                     case 'c2': {
-                        node.shape = 'ellipse';  // class = 'c2' 时节点图形为 ellipse
-                        node.size = [35, 20];  // class = 'c2' 时节点大小
+                        node.shape = 'rect';  // class = 'c2' 时节点图形为 ellipse
+                        node.size = [120, 40];  // class = 'c2' 时节点大小
+                        break;
+                    }
+                    case 'db_project_class': {
+                        node.shape = 'circle';  // class = 'c2' 时节点图形为 ellipse
+                        node.size = 60;  // class = 'c2' 时节点大小
+                        break;
+                    }
+                    case 'db_user_class': {
+                        node.shape = 'diamond';  // class = 'c2' 时节点图形为 ellipse
+                        node.size = [120, 60];  // class = 'c2' 时节点大小
+                        break;
+                    }
+                    case 'db_approve_class': {
+                        node.shape = 'eclipse';  // class = 'c2' 时节点图形为 ellipse
+                        node.size = [120, 40];  // class = 'c2' 时节点大小
+                        break;
+                    }
+                    case 'db_customer_class': {
+                        node.shape = 'rect';  // class = 'c2' 时节点图形为 ellipse
+                        node.size = [60, 40];  // class = 'c2' 时节点大小
                         break;
                     }
                 }
