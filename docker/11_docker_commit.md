@@ -29,6 +29,8 @@ afcaf46e8305是产生的容器ID，前面运行的时候不要-d后台运行了�
 
 root@202 ~]# docker commit afcaf46e8305 centos-vim
 
+sudo docker commit -a "libo" -m "updated k4 stuff" 4ab80965d765 a80:5000/main:v20200315
+
 完成后docker images查看镜像就会发现centos-vim这个镜像了
 
 我们再用刚刚的方法进去centos-vim这个镜像,
