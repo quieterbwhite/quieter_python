@@ -2,6 +2,12 @@
 # Created Time: 2017年08月05日 星期六 16时18分46秒
 # File Name: 07_compose.py
 
+'''
+https://blog.51cto.com/ganbing/2083806
+
+https://github.com/docker/compose/releases/
+'''
+
 Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。从功能上看，跟 OpenStack 中的 Heat 十分类似。
 
 Compose 恰好满足了这样的需求。它允许用户通过一个单独的 docker-compose.yml 模板文件（YAML 格式）来定义一组相关联的应用容器为一个项目（project）。
@@ -22,7 +28,7 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 
         执行安装命令：
 
-        $ sudo pip install -U docker-compose
+        $ pip install -U docker-compose
 
         $ docker-compose -h
 

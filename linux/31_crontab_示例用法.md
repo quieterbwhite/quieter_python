@@ -1,5 +1,8 @@
 #### [crontab 详细用法 定时任务](http://blog.chinaunix.net/uid-25785357-id-3434344.html)
 
+每分钟
+*/1 * * * * cd /var/www/html/mysql_monitor/; /usr/bin/php/var/www/html/mysql_monitor/check_mysql_repl.php > /dev/null 2 >&1
+
 使用crontab你可以在指定的时间执行一个shell脚本或者一系列Linux命令。例如系统管理员安排一个备份任务使其每天都运行
 
 如何往 cron 中添加一个作业?

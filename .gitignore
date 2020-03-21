@@ -4,6 +4,7 @@ __pycache__/
 
 docker_mysql_master_slave/
 docker_mysql_master_slave_2/
+*.tar.gz
 
 # C extensions
 *.so

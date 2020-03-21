@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tutorial Demo 02</title>
+</head>
+
+<body>
+    <div id="mountNode"></div>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.1.0/build/g6.js"></script>
+    <script>
+        const graph = new G6.Graph({
+            container: 'mountNode',
+            width: 800,
+            height: 600,
+
+            layout: {                // Object，可选，布局的方法及其配置项，默认为 random 布局。
+                type: 'force',         // 指定为力导向布局
+                preventOverlap: true,  // 防止节点重叠
+                linkDistance: 100, // 指定边距离为100
+                // nodeSize: 30        // 节点大小，用于算法中防止节点重叠时的碰撞检测。由于已经在上一节的元素配置中设置了每个节点的 size 属性，则不需要在此设置 nodeSize。
+            },
+
+            // fitView: true,
+            // fitViewPadding: [20, 40, 50, 20],
+            // 节点在默认状态下的样式配置（style）和其他配置
+            defaultNode: {
+                size: 30, // 节点大小
+                // 节点样式配置
+                style: {
+                    fill: 'steelblue',   // 节点填充色
+                    stroke: '#666',      // 节点描边色
+                    lineWidth: 1         // 节点描边粗细
+                },
+                // 节点上的标签文本配置
+                labelCfg: {
+                    style: {
+                        fill: '#fff'  // 节点标签文字颜色
+                    }
+                }
+            },
+            // 边在默认状态下的样式配置（style）和其他配置
+            defaultEdge: {
+                // 边样式配置
+                style: {
+                    opacity: 0.6,        // 边透明度
+                    stroke: 'grey'       // 边描边颜色
+                },
+                labelCfg: {
+                    autoRotate: true   // 边上的标签文本根据边的方向旋转
+                }
+            },
+        });
+        const main = async () => {
+            const response = await fetch(
+                'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json'
+            );
+            const remoteData = await response.json();
+            const nodes = remoteData.nodes;
+            const edges = remoteData.edges;
+            nodes.forEach(node => {
+                if (!node.style) {
+                    node.style = {};
+                }
+                node.style.lineWidth = 1;
+                node.style.stroke = '#666';
+                node.style.fill = 'steelblue';
+
+                // 根据节点数据中的 class 属性配置图形
+                switch (node.class) {
+                    case 'c0': {
+                        node.shape = 'circle';  // class = 'c0' 时节点图形为 circle
+                        break;
+                    }
+                    case 'c1': {
+                        node.shape = 'rect';   // class = 'c1' 时节点图形为 rect
+                        node.size = [35, 20]; // class = 'c1' 时节点大小
+                        break;
+                    }
+                    case 'c2': {
+                        node.shape = 'ellipse';  // class = 'c2' 时节点图形为 ellipse
+                        node.size = [35, 20];  // class = 'c2' 时节点大小
+                        break;
+                    }
+                }
+            });
+            // 遍历边数据
+            edges.forEach(edge => {
+                if (!edge.style) {
+                    edge.style = {};
+                }
+                edge.style.lineWidth = edge.weight; // 边的粗细映射边数据中的 weight 属性数值
+                edge.style.opacity = 0.6;
+                edge.style.stroke = 'grey';
+            });
+
+            graph.data(remoteData);
+            graph.render();
+        };
+        main();
+    </script>
+</body>
+
+</html>
