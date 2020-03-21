@@ -105,6 +105,12 @@ kk-anti-reptile
 
     - https://gitee.com/kekingcn/kk-anti-reptile
 
+花火
+
+    - 在线可视化
+
+    - http://hanabi.data-viz.cn
+
 codis
 
     - Codis 是一个分布式 Redis 解决方案
