@@ -1,0 +1,10 @@
+策略模式:
+
+Java中的策略模式实例教程
+http://ifeve.com/strategy-design-pattern-in-java-example-tutorial/
+
+Java设计模式：策略模式
+http://ifeve.com/java-example-of-strategy-pattern/
+
+Java设计模式（十二） 策略模式
+http://www.jasongj.com/design_pattern/strategy/
