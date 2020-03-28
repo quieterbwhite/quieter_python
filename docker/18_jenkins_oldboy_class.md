@@ -22,6 +22,25 @@ docker pull jenkins:lts
 docker run -it --name jenkinsci -v /data/jenkins:/var/jenkins_home -p 8080:8080 -p 50000:50000 -p 45000:45000 jenkins/jenkins:lts
 
 docker run -u root -v /home/bwhite/data/jenkins:/var/jenkins_home -p 8005:8080 jenkinszh/jenkins-zh:lts
+
+!!! 上面docker方式都不合适，还是下载 jenkins.war包来用。
+使用命令　java -jar jenkins.war --httpPort=7004　来启动服务
+```
+
+##### 测试环境
+```
+机器: sony
+ip: 192.168.31.180
+
+jenkins:
+
+    java -jar jenkins.war --httpPort=7004
+
+gitlab:
+
+    docker start gitlab
+    username: root
+    password: oli
 ```
 
 ##### 第一个项目 free style
