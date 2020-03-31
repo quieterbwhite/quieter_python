@@ -1,0 +1,15 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    links:
+      - app
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+  app:
+    image: registry.cn-hangzhou.aliyuncs.com/psky/gonggao:file_2020_03_06
+    expose:
+      - "8080"
+
