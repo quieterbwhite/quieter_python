@@ -135,6 +135,12 @@ MyExcel
 
     - https://gitee.com/mirrors/MyExcel
 
+excelUtil
+
+    - https://gitee.com/likaixuan0/ExcelUtil
+
+    - ExcelUtil借助反射和POI对Excel读取,省略了以往读取Excel的繁琐步骤
+
 ecar_team/apimonitor
 
     - https://gitee.com/ecar_team/apimonitor
@@ -172,6 +178,12 @@ reduce
     - 短网址平台，Coody Framework首秀，自写IOC、MVC、ORM、TASK、JSON框架、自写Http服务器、0.5秒启动，全项目(带前端)仅5.5M（低配服可运行）
 
     - https://gitee.com/coodyer/reduce
+
+zuihou-admin-cloud
+
+    - 基于SpringCloud(Hoxton.SR1) + SpringBoot(2.2.5.RELEASE) 的SaaS 微服务脚手架
+
+    - https://gitee.com/zuihou111/zuihou-admin-cloud
 
 skrshop.tech
 
@@ -910,6 +922,12 @@ EasyPDF
     - https://easypdf.com/
 
     - https://linux.cn/article-10102-1.html
+
+x-easypdf
+
+    - x-easypdf基于pdfbox构建而来，极大降低使用门槛，以组件化的形式进行pdf的构建。
+
+    - https://gitee.com/xsxgit/x-easypdf
 
 速盘
 
