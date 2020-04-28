@@ -123,6 +123,12 @@ xk-time
 
     - https://gitee.com/xkzhangsan/xk-time
 
+wind-bell
+
+    - 风铃虫是一款轻量级的高效爬虫工具
+
+    - https://gitee.com/zhiyubujian/wind-bell
+
 WeTrident
 
     - 包含开发框架、质量套件、基础运营能力的一站式金融App开发套件，帮助开发者快速开发可正式上线运营的App。
@@ -233,7 +239,9 @@ idea插件
 
     - Free Mybatis plugin
 
-    - 
+    - Maven Helper 分析依赖冲突
+
+    - SequenceDiagram 根据代码生成时序图
 
 IJPay
 
@@ -866,12 +874,6 @@ RedisDesktopManager
     - https://github.com/uglide/RedisDesktopManager
 
     - sudo snap install redis-desktop-manager
-
-RedisPlus
-
-    - https://gitee.com/MaxBill/RedisPlus
-
-    - RedisPlus是为Redis管理开发的桌面客户端软件
 
 lazygit
 
