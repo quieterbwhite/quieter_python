@@ -9,6 +9,8 @@
 
     http://mirrors.aliyun.com/ubuntu-releases/
 
+    https://developer.aliyun.com/mirror/ubuntu
+
     https://opsx.alibaba.com/?lang=zh-CN
 
     https://mirrors.pinganyun.com/
@@ -98,6 +100,12 @@ sealyun | kubernetes安装
     - kubernetes高可用安装工具，一条命令，离线安装，包含所有依赖，内核负载不依赖haproxy keepalived,纯golang开发,99年证书,支持v1.16.3 v1.15.6 v1.14.9 v1.17.0! https://sealyun.com
 
     - https://github.com/fanux/sealos
+    
+Kuboard
+
+    - Kuboard 是基于 Kubernetes 的微服务管理界面。同时提供 Kubernetes 免费中文教程，入门教程，最新版本的 Kubernetes v1.18 安装手册，(k8s install) 在线答疑，持续更新。 https://kuboard.cn/
+    
+    - https://github.com/eip-work/kuboard-press
 
 kk-anti-reptile
 
@@ -322,6 +330,12 @@ go-mysql-elasticsearch
     - go-mysql-elasticsearch 实现数据同步
 
     - https://github.com/siddontang/go-mysql-elasticsearch
+
+kafka-elasticsearch
+
+    - kafka-elasticsearch数据同步工具，适用于kafka 2x版本
+
+    - https://gitee.com/bboss/bboss-elastic-tran
 
 mysql_monitor
 
@@ -881,7 +895,25 @@ lazygit
     
 VMware vSphere
 
-	- VMware vSphere集成容器（VIC）建立了一个在轻量级虚拟机内部署并管理容器的环境。
+    - VMware vSphere集成容器（VIC）建立了一个在轻量级虚拟机内部署并管理容器的环境。
+
+Schedulis
+
+    - Schedulis 是微众银行基于 LinkedIn 的开源项目 Azkaban 开发的一款工作流任务调度系统，用于解决金融级场景下，大量批量作业任务的复杂依赖、灵活调度。
+
+    - https://gitee.com/WeBank/Schedulis/blob/master/docs/schedulis_deploy_cn.md
+
+cnocr
+
+    - cnocr是用来做中文OCR的Python 3包。cnocr自带了训练好的识别模型，安装后即可直接使用
+
+    - https://gitee.com/cyahua/cnocr/blob/master/README.md
+
+Magnet
+
+    - 三分钟快速搭建流式处理应用！简单实用的分布式大数据处理框架，特点是零基础操作，支持批处理和流式处理。
+
+    - https://gitee.com/huanStephen/magnet
 
 postman
 

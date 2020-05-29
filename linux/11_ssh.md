@@ -5,6 +5,23 @@
 authorized_keys  
 ```
 
+##### ubuntu server, root login
+```
+ref: https://www.cnblogs.com/zepc007/p/10765314.html
+
+Ubuntu server版启用root用户登录
+sudo su
+vim /etc/ssh/sshd_config
+
+# 在 sshd_config 文件里的 “Authentication” 部分加上以下内容
+PermitRootLogin yes
+# 完成以后退出 vim 并保存
+
+service sshd restart # 重启 ssh 服务以应用更改
+passwd root # 直接修改 Root 用户的密码
+这样重新登陆 ssh 就可以用 Root 登陆了。
+```
+
 ##### 避免SSH连接因超时闲置断开/How to fix ssh timeout problems
 ```
 用SSH过程连接电脑时，经常遇到长时间不操作而被服务器踢出的情况，常见的提示如：
