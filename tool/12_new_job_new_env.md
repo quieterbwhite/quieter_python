@@ -87,6 +87,18 @@ jetbrains 激活码
 
     - https://zhile.io/2018/08/17/jetbrains-license-server-crack.html
 
+Plumelog
+
+    - 分布式日志系统
+
+    - https://gitee.com/frankchenlong/easy_log
+
+kubeasz
+
+    - 使用Ansible脚本安装K8S集群
+
+    - https://github.com/easzlab/kubeasz
+
 kind | kubernetes安装
 
     - Kubernetes IN Docker - local clusters for testing Kubernetes https://kind.sigs.k8s.io/
@@ -125,6 +137,12 @@ codis
 
     - https://github.com/CodisLabs/codis/blob/release3.2/doc/tutorial_zh.md
 
+单点登录
+
+    - MaxKey(马克思的钥匙)，寓意是最大钥匙,是用户单点登录认证系统
+
+    - https://gitee.com/shimingxy/MaxKey
+
 xk-time
 
     - 时间转换，计算，格式化，解析的工具，使用java8，线程安全，简单易用。
@@ -143,11 +161,23 @@ WeTrident
 
     - https://gitee.com/WeBank/WeTrident
 
+jetlinks-community
+
+    - JetLinks开源物联网平台
+
+    - https://gitee.com/jetlinks/jetlinks-community
+
 MyExcel
 
     - MyExcel，是一个集导入、导出、加密Excel等多项功能的工具包
 
     - https://gitee.com/mirrors/MyExcel
+
+DrissionPage
+
+    - DrissionPage，即driver和session的合体，是个基于python的Web自动化操作集成工具。
+
+    - https://gitee.com/g1879/DrissionPage
 
 excelUtil
 
