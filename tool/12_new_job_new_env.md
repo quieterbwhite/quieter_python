@@ -93,6 +93,12 @@ Plumelog
 
     - https://gitee.com/frankchenlong/easy_log
 
+GraphVis
+
+    - 知识图谱可视化，复杂网络可视化，关系图可视化，网络拓扑图，布局算法，社区发现算法等应用场景, network,graph,knowlegegraph，neo4j，gephi
+
+    - https://gitee.com/baopengdu/GraphVis
+
 kubeasz
 
     - 使用Ansible脚本安装K8S集群
