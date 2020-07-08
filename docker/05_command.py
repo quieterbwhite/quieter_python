@@ -134,10 +134,11 @@ docker commit 4dccab3c1ba3 smart-oss-base
 sudo docker commit -m "add oss support" -a "oss" 4dccab3c1ba3 a80:5000/smart_oss_base
 ```
 
+##### 拷贝文件到运行状态的容器中
+```
+https://blog.csdn.net/xbw12138/article/details/79126396
 
+docker inspect -f '{{.ID}}' 容器名称
 
-
-
-
-
-
+docker cp file_name.tar a3a01c03b20ee1bd432471a0e082e2aadf4dcfae809fdc13758f73cdae0ff1dd:/usr/share/elasticsearch/plugins/
+```

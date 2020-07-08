@@ -93,6 +93,20 @@ Plumelog
 
     - https://gitee.com/frankchenlong/easy_log
 
+EasySelect
+
+    - 爬虫工具：一个Chrome插件，让你根据页面元素快速获取可读可维护的 CSS 选择器。
+
+    - https://github.com/fy0/EasySelect
+
+Apifox
+
+    - Apifox = Postman + Swagger + Mock 接口文档、调试、Mock、自动化测试，提升 10 倍效率！
+
+    - https://www.apifox.cn/
+
+    - https://mp.weixin.qq.com/s/n-YiC9hDpTcG_crewDwYaw
+
 GraphVis
 
     - 知识图谱可视化，复杂网络可视化，关系图可视化，网络拓扑图，布局算法，社区发现算法等应用场景, network,graph,knowlegegraph，neo4j，gephi
@@ -118,6 +132,18 @@ sealyun | kubernetes安装
     - kubernetes高可用安装工具，一条命令，离线安装，包含所有依赖，内核负载不依赖haproxy keepalived,纯golang开发,99年证书,支持v1.16.3 v1.15.6 v1.14.9 v1.17.0! https://sealyun.com
 
     - https://github.com/fanux/sealos
+
+screw
+
+    - 简洁好用的数据库表结构文档生成器
+
+    - https://gitee.com/leshalv/screw
+
+datax-web
+
+    - DataX集成可视化页面，选择数据源即可一键生成数据同步任务
+
+    - https://gitee.com/WeiYe-Jing/datax-web
     
 Kuboard
 
