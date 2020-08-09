@@ -18,8 +18,23 @@ https://www.jianshu.com/p/358bfb64e3a6
 
 ['三剑客'之Swarm集群架构、集群管理 、服务管理](https://blog.51cto.com/ganbing/2090290)
 
-
+##### 安装
+```
 java -jar jenkins.war --httpPort=7004  
+
+https://juejin.im/post/5cf4a297e51d45595319e2f7
+
+sudo docker run -it -d \
+  --rm \
+  -u root \
+  -p 8099:8080 \
+  -v /opt/data/jenkins/data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \
+  --name jenkins jenkinsci/blueocean
+```
+
+
 
 
 ##### 流程

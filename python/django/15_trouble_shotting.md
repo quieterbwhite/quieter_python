@@ -4,7 +4,7 @@
 ```
 1. 继承 AbstractUser 后直接使用报错
 2. 线上环境, 蓝绿部署
-3. Django, after upgrade: MySQL server has gone away
+3. Django, after upgrade: MySQL server has gone away, 数据库连接池
 ```
 
 ## 继承 AbstractUser 后直接使用报错
@@ -41,7 +41,19 @@ DATABASES = {
         <other params here>
     }
 }
-Documentation: https://docs.djangoproject.com/en/1.7/ref/settings/#conn-max-age
+
+https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+
+https://docs.djangoproject.com/en/1.11/ref/settings/
+
+https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-CONN_MAX_AGE
+
+https://docs.djangoproject.com/en/1.11/ref/databases/
+
+https://www.centos.bz/2018/03/django中mysql-redis连接池/
+
+干货 | 优化Django的数据库连接
+https://www.jianshu.com/p/088017873ed1
 
 my.cnf:
 

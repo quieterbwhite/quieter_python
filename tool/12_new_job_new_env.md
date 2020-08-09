@@ -9,6 +9,8 @@
 
     http://mirrors.aliyun.com/ubuntu-releases/
 
+    https://developer.aliyun.com/mirror/ubuntu
+
     https://opsx.alibaba.com/?lang=zh-CN
 
     https://mirrors.pinganyun.com/
@@ -85,6 +87,38 @@ jetbrains 激活码
 
     - https://zhile.io/2018/08/17/jetbrains-license-server-crack.html
 
+Plumelog
+
+    - 分布式日志系统
+
+    - https://gitee.com/frankchenlong/easy_log
+
+EasySelect
+
+    - 爬虫工具：一个Chrome插件，让你根据页面元素快速获取可读可维护的 CSS 选择器。
+
+    - https://github.com/fy0/EasySelect
+
+Apifox
+
+    - Apifox = Postman + Swagger + Mock 接口文档、调试、Mock、自动化测试，提升 10 倍效率！
+
+    - https://www.apifox.cn/
+
+    - https://mp.weixin.qq.com/s/n-YiC9hDpTcG_crewDwYaw
+
+GraphVis
+
+    - 知识图谱可视化，复杂网络可视化，关系图可视化，网络拓扑图，布局算法，社区发现算法等应用场景, network,graph,knowlegegraph，neo4j，gephi
+
+    - https://gitee.com/baopengdu/GraphVis
+
+kubeasz
+
+    - 使用Ansible脚本安装K8S集群
+
+    - https://github.com/easzlab/kubeasz
+
 kind | kubernetes安装
 
     - Kubernetes IN Docker - local clusters for testing Kubernetes https://kind.sigs.k8s.io/
@@ -98,6 +132,24 @@ sealyun | kubernetes安装
     - kubernetes高可用安装工具，一条命令，离线安装，包含所有依赖，内核负载不依赖haproxy keepalived,纯golang开发,99年证书,支持v1.16.3 v1.15.6 v1.14.9 v1.17.0! https://sealyun.com
 
     - https://github.com/fanux/sealos
+
+screw
+
+    - 简洁好用的数据库表结构文档生成器
+
+    - https://gitee.com/leshalv/screw
+
+datax-web
+
+    - DataX集成可视化页面，选择数据源即可一键生成数据同步任务
+
+    - https://gitee.com/WeiYe-Jing/datax-web
+    
+Kuboard
+
+    - Kuboard 是基于 Kubernetes 的微服务管理界面。同时提供 Kubernetes 免费中文教程，入门教程，最新版本的 Kubernetes v1.18 安装手册，(k8s install) 在线答疑，持续更新。 https://kuboard.cn/
+    
+    - https://github.com/eip-work/kuboard-press
 
 kk-anti-reptile
 
@@ -117,11 +169,23 @@ codis
 
     - https://github.com/CodisLabs/codis/blob/release3.2/doc/tutorial_zh.md
 
+单点登录
+
+    - MaxKey(马克思的钥匙)，寓意是最大钥匙,是用户单点登录认证系统
+
+    - https://gitee.com/shimingxy/MaxKey
+
 xk-time
 
     - 时间转换，计算，格式化，解析的工具，使用java8，线程安全，简单易用。
 
     - https://gitee.com/xkzhangsan/xk-time
+
+wind-bell
+
+    - 风铃虫是一款轻量级的高效爬虫工具
+
+    - https://gitee.com/zhiyubujian/wind-bell
 
 WeTrident
 
@@ -129,11 +193,23 @@ WeTrident
 
     - https://gitee.com/WeBank/WeTrident
 
+jetlinks-community
+
+    - JetLinks开源物联网平台
+
+    - https://gitee.com/jetlinks/jetlinks-community
+
 MyExcel
 
     - MyExcel，是一个集导入、导出、加密Excel等多项功能的工具包
 
     - https://gitee.com/mirrors/MyExcel
+
+DrissionPage
+
+    - DrissionPage，即driver和session的合体，是个基于python的Web自动化操作集成工具。
+
+    - https://gitee.com/g1879/DrissionPage
 
 excelUtil
 
@@ -233,7 +309,9 @@ idea插件
 
     - Free Mybatis plugin
 
-    - 
+    - Maven Helper 分析依赖冲突
+
+    - SequenceDiagram 根据代码生成时序图
 
 IJPay
 
@@ -314,6 +392,12 @@ go-mysql-elasticsearch
     - go-mysql-elasticsearch 实现数据同步
 
     - https://github.com/siddontang/go-mysql-elasticsearch
+
+kafka-elasticsearch
+
+    - kafka-elasticsearch数据同步工具，适用于kafka 2x版本
+
+    - https://gitee.com/bboss/bboss-elastic-tran
 
 mysql_monitor
 
@@ -867,19 +951,31 @@ RedisDesktopManager
 
     - sudo snap install redis-desktop-manager
 
-RedisPlus
-
-    - https://gitee.com/MaxBill/RedisPlus
-
-    - RedisPlus是为Redis管理开发的桌面客户端软件
-
 lazygit
 
     - https://github.com/jesseduffield/lazygit
     
 VMware vSphere
 
-	- VMware vSphere集成容器（VIC）建立了一个在轻量级虚拟机内部署并管理容器的环境。
+    - VMware vSphere集成容器（VIC）建立了一个在轻量级虚拟机内部署并管理容器的环境。
+
+Schedulis
+
+    - Schedulis 是微众银行基于 LinkedIn 的开源项目 Azkaban 开发的一款工作流任务调度系统，用于解决金融级场景下，大量批量作业任务的复杂依赖、灵活调度。
+
+    - https://gitee.com/WeBank/Schedulis/blob/master/docs/schedulis_deploy_cn.md
+
+cnocr
+
+    - cnocr是用来做中文OCR的Python 3包。cnocr自带了训练好的识别模型，安装后即可直接使用
+
+    - https://gitee.com/cyahua/cnocr/blob/master/README.md
+
+Magnet
+
+    - 三分钟快速搭建流式处理应用！简单实用的分布式大数据处理框架，特点是零基础操作，支持批处理和流式处理。
+
+    - https://gitee.com/huanStephen/magnet
 
 postman
 
