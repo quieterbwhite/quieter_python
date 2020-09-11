@@ -93,6 +93,16 @@ Plumelog
 
     - https://gitee.com/frankchenlong/easy_log
 
+全国司法系统 - 法律快车
+
+    - https://www.lawtime.cn/sifaxitong/
+
+justauth
+
+    - 史上最全的整合第三方登录的开源库
+
+    - https://justauth.wiki/#/
+
 EasySelect
 
     - 爬虫工具：一个Chrome插件，让你根据页面元素快速获取可读可维护的 CSS 选择器。
@@ -951,6 +961,10 @@ RedisDesktopManager
 
     - sudo snap install redis-desktop-manager
 
+AnotherRedisDesktopManager
+
+    - https://gitee.com/qishibo/AnotherRedisDesktopManager
+
 lazygit
 
     - https://github.com/jesseduffield/lazygit
@@ -1076,6 +1090,10 @@ upterm
     - https://github.com/railsware/upterm
 
 wps    处理文档
+
+remmina 远程桌面
+
+    - ubuntu 远程连接 windows
 
 Zathura: 轻巧好用的 PDF 查看器
 

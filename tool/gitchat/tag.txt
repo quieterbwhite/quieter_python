@@ -18,7 +18,7 @@ $ git tag v0.9 6224937
 
 
 # 创建带有说明的标签，用-a指定标签名，-m指定说明文字：
-$ git tag -a v0.1 -m "version 0.1 released" 3628164
+$ git tag -a v0.1 -m "version 0.1 released"
 
 
 # 用特定的搜索模式列出符合条件的标签
