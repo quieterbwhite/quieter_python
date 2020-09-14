@@ -1,7 +1,6 @@
 # JAVA
 
-## 分布式事务
+##### jar包带环境变量(参数)启动
 ```
-聊聊分布式事务，再说说解决方案
-http://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html
+https://www.jianshu.com/p/fed7a174bfb8
 ```

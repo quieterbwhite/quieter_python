@@ -1,4 +1,5 @@
 #!/bin/bash
+### 这个方法比较蠢,安装unar，自动处理编码问题
 ### 将 values_here 替换为输入编码
 FROM_ENCODING="gb18030"
 ### 输出编码 (UTF-8)

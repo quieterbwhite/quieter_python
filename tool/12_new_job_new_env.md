@@ -93,6 +93,12 @@ Plumelog
 
     - https://gitee.com/frankchenlong/easy_log
 
+JProfiler
+
+    - https://www.ej-technologies.com/download/jprofiler/files
+
+    - ubuntu18.04上命令行启动报错，解决方法:sudo apt install openjdk-8-jdk
+
 全国司法系统 - 法律快车
 
     - https://www.lawtime.cn/sifaxitong/
