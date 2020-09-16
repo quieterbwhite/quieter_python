@@ -1131,6 +1131,8 @@ calibre - 电脑上看电子书
 
 rdesktop  ubuntu 远程连接 windows
 
+    - rdesktop -u bwhite -p olivia 192.168.0.28 -g 1900x1040
+
 坚果云
 
 网易云音乐
