@@ -1135,6 +1135,12 @@ rdesktop  ubuntu 远程连接 windows
 
 坚果云
 
+钉钉
+
+    - https://www.ctolib.com/article/releases/94608
+
+    - https://github.com/nashaofu/dingtalk
+
 网易云音乐
 
     - http://music.163.com/#/download
