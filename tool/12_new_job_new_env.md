@@ -149,6 +149,12 @@ sealyun | kubernetes安装
 
     - https://github.com/fanux/sealos
 
+k8seasy_release_page
+
+    - K8SEASY 是一个一键安装K8S高可用集群的软件。
+
+    - https://github.com/xiaojiaqi/K8seasy_release_page
+
 screw
 
     - 简洁好用的数据库表结构文档生成器
