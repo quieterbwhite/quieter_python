@@ -65,6 +65,12 @@ wine
 
     - https://wiki.winehq.org/Ubuntu_zhcn
 
+PrettyZoo
+
+    - PrettyZoo 是一个基于 Apache Curator 和 JavaFX 实现的 Zookeeper 图形化管理客户端。
+
+    - https://gitee.com/ox7c00/PrettyZoo
+
 wine-wechat
 
     - https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu
@@ -166,6 +172,12 @@ datax-web
     - DataX集成可视化页面，选择数据源即可一键生成数据同步任务
 
     - https://gitee.com/WeiYe-Jing/datax-web
+
+erupt
+
+    - Erupt 是一个低代码 全栈类 框架，它使用 Java 注解 动态生成页面以及增、删、改、查、权限控制等后台功能。
+
+    - https://gitee.com/erupt/erupt
     
 Kuboard
 
@@ -292,6 +304,12 @@ skrshop.tech
 Jenkins 中国定制发行版
 
     - https://gitee.com/jenkins-zh/docker-zh
+
+AppiumAir
+
+    - https://gitee.com/songjianghu/AppiumAir
+
+    - AppiumAir是基于Appium二次封装的Android自动化框架
 
 实时风控引擎
 
@@ -972,6 +990,12 @@ RedisDesktopManager
     - https://github.com/uglide/RedisDesktopManager
 
     - sudo snap install redis-desktop-manager
+
+quick_redis_blog
+
+    - QuickRedis 是一款 永久免费 的 Redis 可视化管理工具。
+
+    - https://gitee.com/quick123official/quick_redis_blog
 
 AnotherRedisDesktopManager
 
