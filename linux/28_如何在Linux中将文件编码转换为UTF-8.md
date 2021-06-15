@@ -5,7 +5,8 @@
 > https://linux.cn/article-7959-1.html
 > https://shockerli.net/post/linux-tool-iconv/
 
-unzip -O gb18030 知识中心重构v1.0原型及影响范围.zip  
+
+##### 重点注意：直接使用这个命令就好-->>>  unzip -O gb18030 知识中心重构v1.0原型及影响范围.zip  
 
 在这篇教程中，我们将解释字符编码的含义，然后给出一些使用命令行工具将使用某种字符编码的文件转化为另一种编码的例子。最后，我们将一起看一看如何在 Linux 下将使用各种字符编码的文件转化为 UTF-8 编码。
 

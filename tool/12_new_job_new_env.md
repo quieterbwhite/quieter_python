@@ -178,6 +178,16 @@ erupt
     - Erupt 是一个低代码 全栈类 框架，它使用 Java 注解 动态生成页面以及增、删、改、查、权限控制等后台功能。
 
     - https://gitee.com/erupt/erupt
+
+metersphere
+
+    - MeterSphere 一站式开源持续测试平台
+
+    - https://gitee.com/mirrors/MeterSphere
+
+聚商汇WMS--开源仓库管理系统
+
+    - https://gitee.com/Singosgu/GreaterWMS
     
 Kuboard
 
