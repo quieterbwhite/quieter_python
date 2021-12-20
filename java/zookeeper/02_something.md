@@ -30,6 +30,10 @@ zookeeper的节点可以是持久化(Persistent)的，也可以是临时(Epherme
 zookeeper还提供了顺序节点。
 类似于mysql里面的auto_increment属性。
 服务器会在顺序节点名称后自动增加自增的唯一后缀，保持节点名称的唯一性和顺序性。
+
+
+https://blog.csdn.net/pysense/article/details/100709138
+使用kazoo连接zookeeper并监听节点数量以及值变化
 ```
 
 

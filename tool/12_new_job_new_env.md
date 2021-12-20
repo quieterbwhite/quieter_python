@@ -393,9 +393,6 @@ BigDataParty
 
     - 大数据组件 All-in-One 的 Dockerfile
 
-electronic-wechat 
-
-    https://github.com/geeeeeeeeek/electronic-wechat/releases
 
 imgcook
 
